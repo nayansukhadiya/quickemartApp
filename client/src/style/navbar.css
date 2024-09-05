@@ -1,0 +1,77 @@
+header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  z-index: 99;
+  align-items: center;
+  text-transform: capitalize;
+  justify-content: space-evenly;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background: #fff;
+  backdrop-filter: blur(15.7px);
+  -webkit-backdrop-filter: blur(15.7px);
+  border: 1px solid rgba(255, 255, 255, 0.29);
+  position: relative;
+}
+
+ul {
+  display: flex;
+  gap: 14px;
+}
+li {
+  list-style: none;
+}
+a {
+  white-space: nowrap;
+  font-size: smaller;
+  text-decoration: none;
+  color: var(--main);
+}
+
+.activeNav {
+  color: var(--main2);
+  font-weight: 600;
+}
+.dropDownNav {
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  min-height: 250px;
+  min-width: 80%;
+  padding: 20px 10%;
+  background-color: rgb(255, 255, 255);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.2s linear;
+}
+li:hover .dropDownNav {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0, 5px);
+  pointer-events: all;
+}
+.upperPart,
+.bottomPart {
+  display: flex;
+  padding: 5px;
+  align-items: center;
+  width: 95%;
+  justify-content: space-between;
+  margin: auto;
+}
+
+header button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin-right: 8px;
+}
+header button svg {
+  width: 20px;
+  height: 20px;
+}

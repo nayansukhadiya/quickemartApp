@@ -1,0 +1,755 @@
+{
+  "Products": {
+    "id": "eat/uwf",
+    "title": "Confectionery Products",
+    "url": "https://flipkart.com/food-products/confectionery-products/pr?sid=eat,uwf",
+    "children": {
+      "Wafers and Waffle": {
+        "id": "eat/uwf/mao",
+        "title": "Wafers and Waffle",
+        "url": "https://flipkart.com/food-products/confectionery-products/wafers-and-waffle/pr?sid=eat,uwf,mao",
+        "children": {}
+      },
+      "Mouthfreshener": {
+        "id": "eat/uwf/eoi",
+        "title": "Mouthfreshener",
+        "url": "https://flipkart.com/food-products/confectionery-products/mouthfreshener/pr?sid=eat,uwf,eoi",
+        "children": {}
+      },
+      "Jelly": {
+        "id": "eat/uwf/zsr",
+        "title": "Jelly",
+        "url": "https://flipkart.com/food-products/confectionery-products/jelly/pr?sid=eat,uwf,zsr",
+        "children": {}
+      },
+      "Candy": {
+        "id": "eat/uwf/7wx",
+        "title": "Candy",
+        "url": "https://flipkart.com/food-products/confectionery-products/candy/pr?sid=eat,uwf,7wx",
+        "children": {}
+      },
+      "Chewing Gum": {
+        "id": "eat/uwf/fba",
+        "title": "Chewing Gum",
+        "url": "https://flipkart.com/food-products/confectionery-products/chewing-gum/pr?sid=eat,uwf,fba",
+        "children": {}
+      },
+      "Marshmallow": {
+        "id": "eat/uwf/e3x",
+        "title": "Marshmallow",
+        "url": "https://flipkart.com/food-products/confectionery-products/marshmallow/pr?sid=eat,uwf,e3x",
+        "children": {}
+      },
+      "Lollipops": {
+        "id": "eat/uwf/7qc",
+        "title": "Lollipops",
+        "url": "https://flipkart.com/food-products/confectionery-products/lollipops/pr?sid=eat,uwf,7qc",
+        "children": {}
+      }
+    }
+  },
+  "Edible Oil": {
+    "id": "eat/18p",
+    "title": "Edible Oil",
+    "url": "https://flipkart.com/food-products/edible-oil/pr?sid=eat,18p",
+    "children": {}
+  },
+  "Ready Meal & Mixes": {
+    "id": "eat/xn7",
+    "title": "Ready Meal & Mixes",
+    "url": "https://flipkart.com/food-products/ready-meal-mixes/pr?sid=eat,xn7",
+    "children": {
+      "Ready Mix Meals": {
+        "id": "eat/xn7/kzo",
+        "title": "Ready Mix Meals",
+        "url": "https://flipkart.com/food-products/ready-meal-mixes/ready-mix-meals/pr?sid=eat,xn7,kzo",
+        "children": {}
+      },
+      "Stock Broth": {
+        "id": "eat/xn7/7bf",
+        "title": "Stock Broth",
+        "url": "https://flipkart.com/food-products/ready-meal-mixes/stock-broth/pr?sid=eat,xn7,7bf",
+        "children": {}
+      },
+      "Ready to Eat": {
+        "id": "eat/xn7/dsl",
+        "title": "Ready to Eat",
+        "url": "https://flipkart.com/food-products/ready-meal-mixes/ready-to-eat/pr?sid=eat,xn7,dsl",
+        "children": {}
+      },
+      "Frozen Food": {
+        "id": "eat/xn7/zco",
+        "title": "Frozen Food",
+        "url": "https://flipkart.com/food-products/ready-meal-mixes/frozen-food/pr?sid=eat,xn7,zco",
+        "children": {}
+      }
+    }
+  },
+  "Food Combo": {
+    "id": "eat/ymr",
+    "title": "Food Combo",
+    "url": "https://flipkart.com/food-products/food-combo/pr?sid=eat,ymr",
+    "children": {}
+  },
+  "Jams and Marmalade": {
+    "id": "eat/t3s",
+    "title": "Jams and Marmalade",
+    "url": "https://flipkart.com/food-products/jams-and-marmalade/pr?sid=eat,t3s",
+    "children": {
+      "Jam": {
+        "id": "eat/t3s/97x",
+        "title": "Jam",
+        "url": "https://flipkart.com/food-products/jams-and-marmalade/jam/pr?sid=eat,t3s,97x",
+        "children": {}
+      },
+      "Marmalade": {
+        "id": "eat/t3s/rjz",
+        "title": "Marmalade",
+        "url": "https://flipkart.com/food-products/jams-and-marmalade/marmalade/pr?sid=eat,t3s,rjz",
+        "children": {}
+      }
+    }
+  },
+  "Vegetables": {
+    "id": "eat/lmt",
+    "title": "Vegetables",
+    "url": "https://flipkart.com/food-products/vegetables/pr?sid=eat,lmt",
+    "children": {
+      "Canned Vegetables": {
+        "id": "eat/lmt/oro",
+        "title": "Canned Vegetables",
+        "url": "https://flipkart.com/food-products/vegetables/canned-vegetables/pr?sid=eat,lmt,oro",
+        "children": {}
+      },
+      "Fresh Vegetables": {
+        "id": "eat/lmt/zhh",
+        "title": "Fresh Vegetables",
+        "url": "https://flipkart.com/food-products/vegetables/fresh-vegetables/pr?sid=eat,lmt,zhh",
+        "children": {}
+      }
+    }
+  },
+  "Noodle": {
+    "id": "eat/pqj",
+    "title": "Noodle",
+    "url": "https://flipkart.com/food-products/noodle/pr?sid=eat,pqj",
+    "children": {}
+  },
+  "Lassi": {
+    "id": "eat/mnd",
+    "title": "Lassi",
+    "url": "https://flipkart.com/food-products/lassi/pr?sid=eat,mnd",
+    "children": {}
+  },
+  "Syrup": {
+    "id": "eat/vqg",
+    "title": "Syrup",
+    "url": "https://flipkart.com/food-products/syrup/pr?sid=eat,vqg",
+    "children": {}
+  },
+  "Honey": {
+    "id": "eat/lnz",
+    "title": "Honey",
+    "url": "https://flipkart.com/food-products/honey/pr?sid=eat,lnz",
+    "children": {}
+  },
+  "Buttermilk": {
+    "id": "eat/a1m",
+    "title": "Buttermilk",
+    "url": "https://flipkart.com/food-products/buttermilk/pr?sid=eat,a1m",
+    "children": {}
+  },
+  "Milk": {
+    "id": "eat/zn0",
+    "title": "Milk",
+    "url": "https://flipkart.com/food-products/milk/pr?sid=eat,zn0",
+    "children": {}
+  },
+  "Soft Drink Products": {
+    "id": "eat/iw1",
+    "title": "Soft Drink Products",
+    "url": "https://flipkart.com/food-products/soft-drink-products/pr?sid=eat,iw1",
+    "children": {}
+  },
+  "Pickle": {
+    "id": "eat/kjf",
+    "title": "Pickle",
+    "url": "https://flipkart.com/food-products/pickle/pr?sid=eat,kjf",
+    "children": {}
+  },
+  "Ghee and Vanaspati": {
+    "id": "eat/klf",
+    "title": "Ghee and Vanaspati",
+    "url": "https://flipkart.com/food-products/ghee-and-vanaspati/pr?sid=eat,klf",
+    "children": {
+      "Vanaspati": {
+        "id": "eat/klf/qa6",
+        "title": "Vanaspati",
+        "url": "https://flipkart.com/food-products/ghee-and-vanaspati/vanaspati/pr?sid=eat,klf,qa6",
+        "children": {}
+      },
+      "Ghee": {
+        "id": "eat/klf/f3s",
+        "title": "Ghee",
+        "url": "https://flipkart.com/food-products/ghee-and-vanaspati/ghee/pr?sid=eat,klf,f3s",
+        "children": {}
+      }
+    }
+  },
+  "Chocolates": {
+    "id": "eat/0pt",
+    "title": "Chocolates",
+    "url": "https://flipkart.com/food-products/chocolates/pr?sid=eat,0pt",
+    "children": {}
+  },
+  "Soup and Dry Soup Mix": {
+    "id": "eat/edn",
+    "title": "Soup and Dry Soup Mix",
+    "url": "https://flipkart.com/food-products/soup-and-dry-soup-mix/pr?sid=eat,edn",
+    "children": {}
+  },
+  "Cake and Pastry Mix": {
+    "id": "eat/eeg",
+    "title": "Cake and Pastry Mix",
+    "url": "https://flipkart.com/food-products/cake-and-pastry-mix/pr?sid=eat,eeg",
+    "children": {
+      "Baking Mix": {
+        "id": "eat/eeg/3yl",
+        "title": "Baking Mix",
+        "url": "https://flipkart.com/food-products/cake-and-pastry-mix/baking-mix/pr?sid=eat,eeg,3yl",
+        "children": {}
+      },
+      "Jelly Mix": {
+        "id": "eat/eeg/zhr",
+        "title": "Jelly Mix",
+        "url": "https://flipkart.com/food-products/cake-and-pastry-mix/jelly-mix/pr?sid=eat,eeg,zhr",
+        "children": {}
+      },
+      "Cake Mix": {
+        "id": "eat/eeg/hep",
+        "title": "Cake Mix",
+        "url": "https://flipkart.com/food-products/cake-and-pastry-mix/cake-mix/pr?sid=eat,eeg,hep",
+        "children": {}
+      },
+      "Custard Powder": {
+        "id": "eat/eeg/c7s",
+        "title": "Custard Powder",
+        "url": "https://flipkart.com/food-products/cake-and-pastry-mix/custard-powder/pr?sid=eat,eeg,c7s",
+        "children": {}
+      }
+    }
+  },
+  "Pasta": {
+    "id": "eat/kuc",
+    "title": "Pasta",
+    "url": "https://flipkart.com/food-products/pasta/pr?sid=eat,kuc",
+    "children": {}
+  },
+  "Dry Fruit, Nut & Seed": {
+    "id": "eat/ltb",
+    "title": "Dry Fruit, Nut & Seed",
+    "url": "https://flipkart.com/food-products/dry-fruit-nut-seed/pr?sid=eat,ltb",
+    "children": {
+      "Dry Fruits": {
+        "id": "eat/ltb/ngb",
+        "title": "Dry Fruits",
+        "url": "https://flipkart.com/food-products/dry-fruit-nut-seed/dry-fruits/pr?sid=eat,ltb,ngb",
+        "children": {}
+      },
+      "Dry Fruits Gift Pack": {
+        "id": "eat/ltb/iq5",
+        "title": "Dry Fruits Gift Pack",
+        "url": "https://flipkart.com/food-products/dry-fruit-nut-seed/dry-fruits-gift-pack/pr?sid=eat,ltb,iq5",
+        "children": {}
+      },
+      "Edible Seed": {
+        "id": "eat/ltb/jlc",
+        "title": "Edible Seed",
+        "url": "https://flipkart.com/food-products/dry-fruit-nut-seed/edible-seed/pr?sid=eat,ltb,jlc",
+        "children": {}
+      },
+      "Mixed Dry Fruits": {
+        "id": "eat/ltb/oen",
+        "title": "Mixed Dry Fruits",
+        "url": "https://flipkart.com/food-products/dry-fruit-nut-seed/mixed-dry-fruits/pr?sid=eat,ltb,oen",
+        "children": {}
+      }
+    }
+  },
+  "Namkeen": {
+    "id": "eat/0we",
+    "title": "Namkeen",
+    "url": "https://flipkart.com/food-products/namkeen/pr?sid=eat,0we",
+    "children": {}
+  },
+  "Instant Drink Mix": {
+    "id": "eat/d25",
+    "title": "Instant Drink Mix",
+    "url": "https://flipkart.com/food-products/instant-drink-mix/pr?sid=eat,d25",
+    "children": {}
+  },
+  "Murabba and Gulkand": {
+    "id": "eat/vjr",
+    "title": "Murabba and Gulkand",
+    "url": "https://flipkart.com/food-products/murabba-and-gulkand/pr?sid=eat,vjr",
+    "children": {
+      "Murabba": {
+        "id": "eat/vjr/lqi",
+        "title": "Murabba",
+        "url": "https://flipkart.com/food-products/murabba-and-gulkand/murabba/pr?sid=eat,vjr,lqi",
+        "children": {}
+      },
+      "Gulkand": {
+        "id": "eat/vjr/5c4",
+        "title": "Gulkand",
+        "url": "https://flipkart.com/food-products/murabba-and-gulkand/gulkand/pr?sid=eat,vjr,5c4",
+        "children": {}
+      }
+    }
+  },
+  "Salt": {
+    "id": "eat/5ht",
+    "title": "Salt",
+    "url": "https://flipkart.com/food-products/salt/pr?sid=eat,5ht",
+    "children": {}
+  },
+  "Rice": {
+    "id": "eat/yul",
+    "title": "Rice",
+    "url": "https://flipkart.com/food-products/rice/pr?sid=eat,yul",
+    "children": {}
+  },
+  "Pulses": {
+    "id": "eat/anl",
+    "title": "Pulses",
+    "url": "https://flipkart.com/food-products/pulses/pr?sid=eat,anl",
+    "children": {
+      "Gram": {
+        "id": "eat/anl/e3o",
+        "title": "Gram",
+        "url": "https://flipkart.com/food-products/pulses/gram/pr?sid=eat,anl,e3o",
+        "children": {}
+      },
+      "Soya Chunk": {
+        "id": "eat/anl/vsh",
+        "title": "Soya Chunk",
+        "url": "https://flipkart.com/food-products/pulses/soya-chunk/pr?sid=eat,anl,vsh",
+        "children": {}
+      },
+      "Pulses Combo": {
+        "id": "eat/anl/nlo",
+        "title": "Pulses Combo",
+        "url": "https://flipkart.com/food-products/pulses/pulses-combo/pr?sid=eat,anl,nlo",
+        "children": {}
+      },
+      "Peanut": {
+        "id": "eat/anl/id0",
+        "title": "Peanut",
+        "url": "https://flipkart.com/food-products/pulses/peanut/pr?sid=eat,anl,id0",
+        "children": {}
+      },
+      "Dal": {
+        "id": "eat/anl/ovb",
+        "title": "Dal",
+        "url": "https://flipkart.com/food-products/pulses/dal/pr?sid=eat,anl,ovb",
+        "children": {}
+      },
+      "Bean": {
+        "id": "eat/anl/zul",
+        "title": "Bean",
+        "url": "https://flipkart.com/food-products/pulses/bean/pr?sid=eat,anl,zul",
+        "children": {}
+      }
+    }
+  },
+  "Fruits": {
+    "id": "eat/w2q",
+    "title": "Fruits",
+    "url": "https://flipkart.com/food-products/fruits/pr?sid=eat,w2q",
+    "children": {
+      "Dried Fruit": {
+        "id": "eat/w2q/2pb",
+        "title": "Dried Fruit",
+        "url": "https://flipkart.com/food-products/fruits/dried-fruit/pr?sid=eat,w2q,2pb",
+        "children": {}
+      },
+      "Fresh Fruit": {
+        "id": "eat/w2q/b0g",
+        "title": "Fresh Fruit",
+        "url": "https://flipkart.com/food-products/fruits/fresh-fruit/pr?sid=eat,w2q,b0g",
+        "children": {}
+      },
+      "Canned Fruit": {
+        "id": "eat/w2q/ibu",
+        "title": "Canned Fruit",
+        "url": "https://flipkart.com/food-products/fruits/canned-fruit/pr?sid=eat,w2q,ibu",
+        "children": {}
+      }
+    }
+  },
+  "Tea Powder": {
+    "id": "eat/fpm",
+    "title": "Tea Powder",
+    "url": "https://flipkart.com/food-products/tea-powder/pr?sid=eat,fpm",
+    "children": {}
+  },
+  "Papad": {
+    "id": "eat/8qh",
+    "title": "Papad",
+    "url": "https://flipkart.com/food-products/papad/pr?sid=eat,8qh",
+    "children": {}
+  },
+  "Cereal Bars": {
+    "id": "eat/c8v",
+    "title": "Cereal Bars",
+    "url": "https://flipkart.com/food-products/cereal-bars/pr?sid=eat,c8v",
+    "children": {}
+  },
+  "Condensed Milk": {
+    "id": "eat/1uy",
+    "title": "Condensed Milk",
+    "url": "https://flipkart.com/food-products/condensed-milk/pr?sid=eat,1uy",
+    "children": {}
+  },
+  "Vermicelli": {
+    "id": "eat/tkb",
+    "title": "Vermicelli",
+    "url": "https://flipkart.com/food-products/vermicelli/pr?sid=eat,tkb",
+    "children": {}
+  },
+  "Dairy Cream": {
+    "id": "eat/jj5",
+    "title": "Dairy Cream",
+    "url": "https://flipkart.com/food-products/dairy-cream/pr?sid=eat,jj5",
+    "children": {}
+  },
+  "Artificial Sweetener": {
+    "id": "eat/nin",
+    "title": "Artificial Sweetener",
+    "url": "https://flipkart.com/food-products/artificial-sweetener/pr?sid=eat,nin",
+    "children": {}
+  },
+  "Sauce and Dip": {
+    "id": "eat/jcr",
+    "title": "Sauce and Dip",
+    "url": "https://flipkart.com/food-products/sauce-and-dip/pr?sid=eat,jcr",
+    "children": {}
+  },
+  "Biscuit, Cookie and Rusk": {
+    "id": "eat/5am",
+    "title": "Biscuit, Cookie and Rusk",
+    "url": "https://flipkart.com/food-products/biscuit-cookie-and-rusk/pr?sid=eat,5am",
+    "children": {}
+  },
+  "Food Spreads": {
+    "id": "eat/xhv",
+    "title": "Food Spreads",
+    "url": "https://flipkart.com/food-products/food-spreads/pr?sid=eat,xhv",
+    "children": {}
+  },
+  "Breakfast Cereal": {
+    "id": "eat/cpy",
+    "title": "Breakfast Cereal",
+    "url": "https://flipkart.com/food-products/breakfast-cereal/pr?sid=eat,cpy",
+    "children": {}
+  },
+  "Chutneys": {
+    "id": "eat/xhc",
+    "title": "Chutneys",
+    "url": "https://flipkart.com/food-products/chutneys/pr?sid=eat,xhc",
+    "children": {}
+  },
+  "Spice Powder and Masala": {
+    "id": "eat/xgg",
+    "title": "Spice Powder and Masala",
+    "url": "https://flipkart.com/food-products/spice-powder-and-masala/pr?sid=eat,xgg",
+    "children": {}
+  },
+  "Grain": {
+    "id": "eat/znz",
+    "title": "Grain",
+    "url": "https://flipkart.com/food-products/grain/pr?sid=eat,znz",
+    "children": {
+      "Corn": {
+        "id": "eat/znz/q0j",
+        "title": "Corn",
+        "url": "https://flipkart.com/food-products/grain/corn/pr?sid=eat,znz,q0j",
+        "children": {}
+      },
+      "Sago": {
+        "id": "eat/znz/lqn",
+        "title": "Sago",
+        "url": "https://flipkart.com/food-products/grain/sago/pr?sid=eat,znz,lqn",
+        "children": {}
+      },
+      "Ragi": {
+        "id": "eat/znz/6vq",
+        "title": "Ragi",
+        "url": "https://flipkart.com/food-products/grain/ragi/pr?sid=eat,znz,6vq",
+        "children": {}
+      },
+      "Kasha": {
+        "id": "eat/znz/c2h",
+        "title": "Kasha",
+        "url": "https://flipkart.com/food-products/grain/kasha/pr?sid=eat,znz,c2h",
+        "children": {}
+      },
+      "Farro": {
+        "id": "eat/znz/50w",
+        "title": "Farro",
+        "url": "https://flipkart.com/food-products/grain/farro/pr?sid=eat,znz,50w",
+        "children": {}
+      },
+      "Quinoa": {
+        "id": "eat/znz/xee",
+        "title": "Quinoa",
+        "url": "https://flipkart.com/food-products/grain/quinoa/pr?sid=eat,znz,xee",
+        "children": {}
+      },
+      "Daliya": {
+        "id": "eat/znz/9nh",
+        "title": "Daliya",
+        "url": "https://flipkart.com/food-products/grain/daliya/pr?sid=eat,znz,9nh",
+        "children": {}
+      },
+      "Sorghum": {
+        "id": "eat/znz/d0y",
+        "title": "Sorghum",
+        "url": "https://flipkart.com/food-products/grain/sorghum/pr?sid=eat,znz,d0y",
+        "children": {}
+      },
+      "Millet": {
+        "id": "eat/znz/a6k",
+        "title": "Millet",
+        "url": "https://flipkart.com/food-products/grain/millet/pr?sid=eat,znz,a6k",
+        "children": {}
+      },
+      "Barley": {
+        "id": "eat/znz/lox",
+        "title": "Barley",
+        "url": "https://flipkart.com/food-products/grain/barley/pr?sid=eat,znz,lox",
+        "children": {}
+      },
+      "Couscous": {
+        "id": "eat/znz/fox",
+        "title": "Couscous",
+        "url": "https://flipkart.com/food-products/grain/couscous/pr?sid=eat,znz,fox",
+        "children": {}
+      },
+      "Wheat": {
+        "id": "eat/znz/0js",
+        "title": "Wheat",
+        "url": "https://flipkart.com/food-products/grain/wheat/pr?sid=eat,znz,0js",
+        "children": {}
+      },
+      "Jowar": {
+        "id": "eat/znz/pjt",
+        "title": "Jowar",
+        "url": "https://flipkart.com/food-products/grain/jowar/pr?sid=eat,znz,pjt",
+        "children": {}
+      }
+    }
+  },
+  "Herb and Seasoning": {
+    "id": "eat/g6m",
+    "title": "Herb and Seasoning",
+    "url": "https://flipkart.com/food-products/herb-and-seasoning/pr?sid=eat,g6m",
+    "children": {
+      "Herb Seasoning": {
+        "id": "eat/g6m/rla",
+        "title": "Herb Seasoning",
+        "url": "https://flipkart.com/food-products/herb-and-seasoning/herb-seasoning/pr?sid=eat,g6m,rla",
+        "children": {}
+      },
+      "Olive": {
+        "id": "eat/g6m/45l",
+        "title": "Olive",
+        "url": "https://flipkart.com/food-products/herb-and-seasoning/olive/pr?sid=eat,g6m,45l",
+        "children": {}
+      },
+      "Jalapeno": {
+        "id": "eat/g6m/lvy",
+        "title": "Jalapeno",
+        "url": "https://flipkart.com/food-products/herb-and-seasoning/jalapeno/pr?sid=eat,g6m,lvy",
+        "children": {}
+      }
+    }
+  },
+  "Fruit Juice": {
+    "id": "eat/br4",
+    "title": "Fruit Juice",
+    "url": "https://flipkart.com/food-products/fruit-juice/pr?sid=eat,br4",
+    "children": {}
+  },
+  "Vinegar": {
+    "id": "eat/nvt",
+    "title": "Vinegar",
+    "url": "https://flipkart.com/food-products/vinegar/pr?sid=eat,nvt",
+    "children": {}
+  },
+  "Fryum": {
+    "id": "eat/4c4",
+    "title": "Fryum",
+    "url": "https://flipkart.com/food-products/fryum/pr?sid=eat,4c4",
+    "children": {}
+  },
+  "Paste and Puree": {
+    "id": "eat/wze",
+    "title": "Paste and Puree",
+    "url": "https://flipkart.com/food-products/paste-and-puree/pr?sid=eat,wze",
+    "children": {}
+  },
+  "Chips": {
+    "id": "eat/lng",
+    "title": "Chips",
+    "url": "https://flipkart.com/food-products/chips/pr?sid=eat,lng",
+    "children": {}
+  },
+  "Jaggery": {
+    "id": "eat/vfd",
+    "title": "Jaggery",
+    "url": "https://flipkart.com/food-products/jaggery/pr?sid=eat,vfd",
+    "children": {}
+  },
+  "Drinking Water": {
+    "id": "eat/cqq",
+    "title": "Drinking Water",
+    "url": "https://flipkart.com/food-products/drinking-water/pr?sid=eat,cqq",
+    "children": {}
+  },
+  "Sugar": {
+    "id": "eat/mzy",
+    "title": "Sugar",
+    "url": "https://flipkart.com/food-products/sugar/pr?sid=eat,mzy",
+    "children": {}
+  },
+  "Baking Ingredients and Essential Products": {
+    "id": "eat/j70",
+    "title": "Baking Ingredients and Essential Products",
+    "url": "https://flipkart.com/food-products/baking-ingredients-and-essential-products/pr?sid=eat,j70",
+    "children": {
+      "Baking Soda": {
+        "id": "eat/j70/pgs",
+        "title": "Baking Soda",
+        "url": "https://flipkart.com/food-products/baking-ingredients-and-essential-products/baking-soda/pr?sid=eat,j70,pgs",
+        "children": {}
+      },
+      "Baking Powder": {
+        "id": "eat/j70/9jz",
+        "title": "Baking Powder",
+        "url": "https://flipkart.com/food-products/baking-ingredients-and-essential-products/baking-powder/pr?sid=eat,j70,9jz",
+        "children": {}
+      },
+      "Food Colors": {
+        "id": "eat/j70/quv",
+        "title": "Food Colors",
+        "url": "https://flipkart.com/food-products/baking-ingredients-and-essential-products/food-colors/pr?sid=eat,j70,quv",
+        "children": {}
+      },
+      "Baking Decorative Products": {
+        "id": "eat/j70/cys",
+        "title": "Baking Decorative Products",
+        "url": "https://flipkart.com/food-products/baking-ingredients-and-essential-products/baking-decorative-products/pr?sid=eat,j70,cys",
+        "children": {}
+      },
+      "Food Monosodium Glutamate": {
+        "id": "eat/j70/94v",
+        "title": "Food Monosodium Glutamate",
+        "url": "https://flipkart.com/food-products/baking-ingredients-and-essential-products/food-monosodium-glutamate/pr?sid=eat,j70,94v",
+        "children": {}
+      },
+      "Self Rising Flour": {
+        "id": "eat/j70/ffa",
+        "title": "Self Rising Flour",
+        "url": "https://flipkart.com/food-products/baking-ingredients-and-essential-products/self-rising-flour/pr?sid=eat,j70,ffa",
+        "children": {}
+      },
+      "Food Essence": {
+        "id": "eat/j70/9sb",
+        "title": "Food Essence",
+        "url": "https://flipkart.com/food-products/baking-ingredients-and-essential-products/food-essence/pr?sid=eat,j70,9sb",
+        "children": {}
+      },
+      "Food Thickening Agents": {
+        "id": "eat/j70/y0r",
+        "title": "Food Thickening Agents",
+        "url": "https://flipkart.com/food-products/baking-ingredients-and-essential-products/food-thickening-agents/pr?sid=eat,j70,y0r",
+        "children": {}
+      },
+      "Yeast": {
+        "id": "eat/j70/3hq",
+        "title": "Yeast",
+        "url": "https://flipkart.com/food-products/baking-ingredients-and-essential-products/yeast/pr?sid=eat,j70,3hq",
+        "children": {}
+      },
+      "Food Stabilizing Agents": {
+        "id": "eat/j70/d7u",
+        "title": "Food Stabilizing Agents",
+        "url": "https://flipkart.com/food-products/baking-ingredients-and-essential-products/food-stabilizing-agents/pr?sid=eat,j70,d7u",
+        "children": {}
+      },
+      "Cocoa Powder": {
+        "id": "eat/j70/opp",
+        "title": "Cocoa Powder",
+        "url": "https://flipkart.com/food-products/baking-ingredients-and-essential-products/cocoa-powder/pr?sid=eat,j70,opp",
+        "children": {}
+      }
+    }
+  },
+  "Coffee Powder": {
+    "id": "eat/dui",
+    "title": "Coffee Powder",
+    "url": "https://flipkart.com/food-products/coffee-powder/pr?sid=eat,dui",
+    "children": {}
+  },
+  "Flour and Sooji": {
+    "id": "eat/e6o",
+    "title": "Flour and Sooji",
+    "url": "https://flipkart.com/food-products/flour-and-sooji/pr?sid=eat,e6o",
+    "children": {}
+  },
+  "Seafood": {
+    "id": "eat/woo",
+    "title": "Seafood",
+    "url": "https://flipkart.com/food-products/seafood/pr?sid=eat,woo",
+    "children": {
+      "Canned Seafood": {
+        "id": "eat/woo/n1h",
+        "title": "Canned Seafood",
+        "url": "https://flipkart.com/food-products/seafood/canned-seafood/pr?sid=eat,woo,n1h",
+        "children": {}
+      }
+    }
+  },
+  "Milk Powder": {
+    "id": "eat/xog",
+    "title": "Milk Powder",
+    "url": "https://flipkart.com/food-products/milk-powder/pr?sid=eat,xog",
+    "children": {}
+  },
+  "Sweets and Mixes": {
+    "id": "eat/pta",
+    "title": "Sweets and Mixes",
+    "url": "https://flipkart.com/food-products/sweets-and-mixes/pr?sid=eat,pta",
+    "children": {
+      "Dessert Mix": {
+        "id": "eat/pta/cpt",
+        "title": "Dessert Mix",
+        "url": "https://flipkart.com/food-products/sweets-and-mixes/dessert-mix/pr?sid=eat,pta,cpt",
+        "children": {}
+      },
+      "Packaged Sweets": {
+        "id": "eat/pta/qoz",
+        "title": "Packaged Sweets",
+        "url": "https://flipkart.com/food-products/sweets-and-mixes/packaged-sweets/pr?sid=eat,pta,qoz",
+        "children": {}
+      }
+    }
+  },
+  "Popcorn": {
+    "id": "eat/bwl",
+    "title": "Popcorn",
+    "url": "https://flipkart.com/food-products/popcorn/pr?sid=eat,bwl",
+    "children": {}
+  }
+}

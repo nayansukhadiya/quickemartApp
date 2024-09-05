@@ -1,0 +1,8 @@
+.logo-section {
+  height: auto;
+  width: 120px;
+}
+.logo-section h3 {
+  color: var(--primary-color);
+  font-weight: 600;
+}

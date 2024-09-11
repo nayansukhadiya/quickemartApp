@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 const useFetchProducts = () => {
   const categories = [
     "vegetables", "fruits", "chips", "milk", "chocolates",
-    "noodle", "fruitJuice", "flour", "softDrink", "tea", "syrup"
+    "noodle", "fruitJuice", "flour", "softDrink", "tea", "syrup", 
+    "cheese", "paneer", "dairyCream", "pavBun", "masala", 
+    "chutneys", "herb", "paste", "baking", "dryFruits"
   ];
 
   const [allProductData, setAllProductData] = useState([]);
@@ -18,7 +20,15 @@ const useFetchProducts = () => {
         for (let cat of categories) {
           const response = await fetch(`json/${cat}.json`);
           const data = await response.json();
-          fetchedProducts = [...fetchedProducts, ...data.products];
+
+       
+          const productsWithID = data.map((product, index) => ({
+            ...product,
+            ProIDSearch: `rapidShop-${cat}-${index + 1}`,
+            catOfPro: cat,
+          }));
+
+          fetchedProducts = [...fetchedProducts, ...productsWithID];
         }
         setAllProductData(fetchedProducts);
       } catch (err) {

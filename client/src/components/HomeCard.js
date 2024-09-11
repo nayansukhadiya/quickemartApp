@@ -1,7 +1,6 @@
 import React from "react";
 
-function HomeCard({ img, name, mrp, price }) {
-  // Skip rendering the card if the price is null
+function HomeCard({ img, name, mrp, price,catOfPro }) {
   if (price === null || price === undefined) {
     return null;
   }
@@ -15,6 +14,7 @@ function HomeCard({ img, name, mrp, price }) {
       <div className="details">
         <div>
           <p>{name}</p>
+          <p>{catOfPro}</p>
         </div>
         <div className="priceDetails">
           <div>

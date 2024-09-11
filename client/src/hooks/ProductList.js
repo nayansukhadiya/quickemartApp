@@ -14,7 +14,7 @@ const ProductList = ({ category }) => {
         const response = await fetch(`json/${category}.json`);
         const data = await response.json();
         console.log(data);
-        setProducts(data.products);
+        setProducts(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -43,6 +43,7 @@ const ProductList = ({ category }) => {
             name={item.title}
             mrp={item.mrp}
             price={item.price}
+            catOfPro={item.catOfPro}
           />
         ))}
         <Link to={`/shop?id=${category}`}>

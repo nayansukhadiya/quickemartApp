@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 function HomeCard({ img, name, mrp, price }) {
   // Skip rendering the card if the price is null
   if (price === null || price === undefined) {
@@ -15,6 +15,7 @@ function HomeCard({ img, name, mrp, price }) {
       <div className="details">
         <div>
           <p>{name}</p>
+          <p>{catOfPro}</p>
         </div>
         <div className="priceDetails">
           <div>

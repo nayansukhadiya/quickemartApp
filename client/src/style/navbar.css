@@ -19,8 +19,9 @@ header {
 }
 
 ul {
+  width: 1250px;
   display: flex;
-  gap: 14px;
+  justify-content: space-around;
 }
 li {
   list-style: none;
@@ -31,6 +32,34 @@ a {
   text-decoration: none;
   color: var(--main);
 }
+.dropdown {
+  position: relative;
+}
+
+
+.dropdown-list {
+  position: absolute;
+  top: 40px; /* Adjust based on your navbar height */
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+  z-index: 1000;
+}
+
+.dropdown-list a {
+  padding: 10px 16px;
+  color: #333;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dropdown-list a:hover {
+  background-color: #f1f1f1;
+}
+
 
 .activeNav {
   color: var(--main2);
@@ -63,6 +92,7 @@ li:hover .dropDownNav {
   width: 95%;
   justify-content: space-between;
   margin: auto;
+  /* overflow-x: auto; */
 }
 
 header button {

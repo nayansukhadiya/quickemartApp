@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 const useFetchProducts = () => {
   const categories = [
     "vegetables", "fruits", "chips", "milk", "chocolates",
-    "noodle", "fruitJuice", "flour", "softDrink", "tea", "syrup"
+    "noodle", "fruitJuice", "flour", "softDrink", "tea", "syrup", 
+    "cheese", "paneer", "dairyCream", "pavBun", "masala", 
+    "chutneys", "herb", "paste", "baking", "dryFruits"
   ];
 
   const [allProductData, setAllProductData] = useState([]);
@@ -21,12 +23,7 @@ const useFetchProducts = () => {
             throw new Error(`Failed to fetch ${cat}: ${response.statusText}`);
           }
           const data = await response.json();
-          const productsWithIndex = data.products.map((product, index) => ({
-            ...product,
-            index: `${index}rapicart${product.pid}`, 
-            category: cat 
-          }));
-          fetchedProducts = [...fetchedProducts, ...productsWithIndex];
+          fetchedProducts = [...fetchedProducts, ...data.products];
         }
         console.log('Fetched products:', fetchedProducts);
         setAllProductData(fetchedProducts);

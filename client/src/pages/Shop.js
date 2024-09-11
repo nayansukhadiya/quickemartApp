@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import HomeCard from '../components/HomeCard';
 import '../style/home.css';
 import '../style/shop.css';
+import ShopSideNav from '../components/ShopSideNav';
 
 function Shop() {
   const [categoryArr, setCategoryArr] = useState([]);
@@ -26,7 +27,7 @@ function Shop() {
         fetch(`json/${urlId}.json`)
         .then(response => response.json())
         .then((data) => {
-          setCategoryArr(data.products);
+          setCategoryArr(data);
         });
       }
     }
@@ -36,7 +37,7 @@ function Shop() {
       fetch(`json/${urlId}.json`)
         .then(response => response.json())
         .then((data) => {
-          setCategoryArr(data.products);
+          setCategoryArr(data);
         });
     }
   }, [urlId]);
@@ -79,7 +80,9 @@ function Shop() {
   };
 
   return (
-    <div>
+    <div className='shopPage'>
+    <ShopSideNav />
+    <div className='shopMain'>
       <h1>Shop</h1>
       <div className='upperSecShop'>
         <h5>{categoryArr.length} Product Found</h5>
@@ -129,7 +132,7 @@ function Shop() {
           &gt;
         </button>
       </div>
-    </div>
+    </div></div>
   );
 }
 

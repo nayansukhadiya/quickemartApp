@@ -1,25 +1,62 @@
-import React, { useContext, useRef, useEffect } from "react";
+import React, { useContext, useRef, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import UserContext from "../context/UserContext";
 
 function SearchBar() {
   const { setSearchProduct } = useContext(UserContext);
+  const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const inputRef = useRef(null);
   const location = useLocation();
 
+  // Set the query state based on URL query parameters when on the search page
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const q = queryParams.get("q");
+    if (q) {
+      setQuery(q);
+      setSearchProduct(q);
+    }
+  }, [location.search, setSearchProduct]);
+
+  // Focus input when on the /search page
   useEffect(() => {
     if (location.pathname === "/search" && inputRef.current) {
       inputRef.current.focus();
     }
   }, [location.pathname]);
 
-  const handleSearchClick = () => {
-    navigate("/search");
+  // Handle input change: navigate or update URL query parameter
+  const handleInputChange = (e) => {
+    const newQuery = e.target.value;
+    setQuery(newQuery);
+    setSearchProduct(newQuery);
+
+    if (location.pathname === "/search") {
+      // Update query parameter in the URL without navigation
+      navigate(`/search?q=${encodeURIComponent(newQuery)}`, { replace: true });
+    } else {
+      // Navigate to the search page
+      navigate(`/search?q=${encodeURIComponent(newQuery)}`);
+    }
   };
 
-  const handleInputChange = (e) => {
-    setSearchProduct(e.target.value);
+  // Handle search button click
+  const handleSearch = () => {
+    navigate(`/search?q=${encodeURIComponent(query)}`);
+  };
+
+  // Clear query and reset input field
+  const handleCancel = () => {
+    setQuery("");
+    setSearchProduct("");
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+    if (location.pathname === "/search") {
+      // Update query parameter to clear search results
+      navigate(`/search?q=`, { replace: true });
+    }
   };
 
   return (
@@ -42,11 +79,12 @@ function SearchBar() {
       <input
         type="text"
         placeholder="What are you looking for?"
-        onClick={handleSearchClick}
         onChange={handleInputChange}
+        value={query}
         ref={inputRef}
       />
-      <div className="cancelBtn">X</div>
+      <button onClick={handleSearch} className="searchButton">Search</button>
+      {query && <div className="cancelBtn" onClick={handleCancel}>X</div>}
     </div>
   );
 }

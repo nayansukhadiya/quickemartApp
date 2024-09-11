@@ -17,11 +17,21 @@ const useFetchProducts = () => {
         let fetchedProducts = [];
         for (let cat of categories) {
           const response = await fetch(`json/${cat}.json`);
+          if (!response.ok) {
+            throw new Error(`Failed to fetch ${cat}: ${response.statusText}`);
+          }
           const data = await response.json();
-          fetchedProducts = [...fetchedProducts, ...data.products];
+          const productsWithIndex = data.products.map((product, index) => ({
+            ...product,
+            index: `${index}rapicart${product.pid}`, 
+            category: cat 
+          }));
+          fetchedProducts = [...fetchedProducts, ...productsWithIndex];
         }
+        console.log('Fetched products:', fetchedProducts);
         setAllProductData(fetchedProducts);
       } catch (err) {
+        console.error('Fetching error:', err);
         setError(err.message || "Error fetching data");
       } finally {
         setLoading(false);

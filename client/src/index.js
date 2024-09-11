@@ -7,6 +7,7 @@ import Layout from './Layout';
 import Shop from './pages/Shop';
 import Home from './pages/Home'
 import Search from './pages/Search'
+import ProDetailPage from './pages/ProDetailPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -14,6 +15,7 @@ const router = createBrowserRouter(
       <Route path="" element={<Home/>}/>
       <Route path="shop" element={<Shop />} />
       <Route path='search' element={<Search />}/>
+      <Route path='detail' element={<ProDetailPage />}/>
     </Route>
   )
 );

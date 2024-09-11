@@ -60,7 +60,7 @@ function SearchBar() {
   };
 
   return (
-    <div className="searchBar">
+    <div className="searchBar ">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="0.94em"

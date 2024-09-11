@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import "../style/productDetail.css";
 
 function ProDetailPage() {
-  // State to keep track of the main image source
   const [mainImage, setMainImage] = useState('https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=85,metadata=none,w=120,h=120/app/images/products/full_screen/pro_68554.jpg?ts=1701174619');
 
-  // List of images to show in the more images section
   const images = [
     'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=85,metadata=none,w=120,h=120/app/images/products/sliding_image/68554d.jpg?ts=1701174619',
     'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=85,metadata=none,w=120,h=120/app/images/products/full_screen/pro_68554.jpg?ts=1701174619',

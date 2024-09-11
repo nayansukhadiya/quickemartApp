@@ -23,7 +23,7 @@ const useFetchProducts = () => {
             throw new Error(`Failed to fetch ${cat}: ${response.statusText}`);
           }
           const data = await response.json();
-          fetchedProducts = [...fetchedProducts, ...data.products];
+          fetchedProducts = [...fetchedProducts, ...data];
         }
         console.log('Fetched products:', fetchedProducts);
         setAllProductData(fetchedProducts);

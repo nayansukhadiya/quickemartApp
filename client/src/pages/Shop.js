@@ -106,6 +106,7 @@ function Shop() {
             name={item.title}
             mrp={item.mrp}
             price={item.price}
+            catOfPro={item.catOfPro}
           />
         ))}
       </div>

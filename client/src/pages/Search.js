@@ -56,7 +56,6 @@ function Search() {
     };
   }, [qValue, debouncedSearchTerm, allProductData]);
 
-  // Handle loading and error states
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -67,7 +66,7 @@ function Search() {
         <SearchBar onSearch={setQValue} value={qValue} /> {/* Pass qValue to SearchBar */}
         <OtherActionBtn />
       </header>
-      <div className="shop-cards" style={{ marginTop: "100px" }}>
+      <div className="shop-cards searchPageSec" style={{ marginTop: "100px" }}>
         {filterProduct.length > 0 ? (
           filterProduct.map((item) => (
             <HomeCard
@@ -76,6 +75,7 @@ function Search() {
               name={item.title}
               mrp={item.mrp}
               price={item.price}
+              catOfPro={item.catOfPro}
             />
           ))
         ) : (

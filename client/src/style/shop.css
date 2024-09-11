@@ -44,9 +44,12 @@ color: var(--primary-color);
   aspect-ratio: 1;
 }
 .shop-cards {
-  display: grid;
   grid-template-columns: repeat(4, 1fr);
+  display: grid;
   gap: 10px;
+}
+.searchPageSec{
+  grid-template-columns: repeat(5, 1fr);
 }
 .shop-cards .card {
   width: 100%;

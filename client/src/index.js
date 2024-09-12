@@ -8,6 +8,7 @@ import Shop from './pages/Shop';
 import Home from './pages/Home'
 import Search from './pages/Search'
 import ProDetailPage from './pages/ProDetailPage';
+import ChatBot from './pages/ChatBot';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
       <Route path="shop" element={<Shop />} />
       <Route path='search' element={<Search />}/>
       <Route path='detail' element={<ProDetailPage />}/>
+      <Route path='chat' element={<ChatBot />}/>
     </Route>
   )
 );

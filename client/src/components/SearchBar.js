@@ -9,7 +9,6 @@ function SearchBar() {
   const inputRef = useRef(null);
   const location = useLocation();
 
-  // Set the query state based on URL query parameters when on the search page
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const q = queryParams.get("q");
@@ -19,34 +18,28 @@ function SearchBar() {
     }
   }, [location.search, setSearchProduct]);
 
-  // Focus input when on the /search page
   useEffect(() => {
     if (location.pathname === "/search" && inputRef.current) {
       inputRef.current.focus();
     }
   }, [location.pathname]);
 
-  // Handle input change: navigate or update URL query parameter
   const handleInputChange = (e) => {
     const newQuery = e.target.value;
     setQuery(newQuery);
     setSearchProduct(newQuery);
 
     if (location.pathname === "/search") {
-      // Update query parameter in the URL without navigation
       navigate(`/search?q=${encodeURIComponent(newQuery)}`, { replace: true });
     } else {
-      // Navigate to the search page
       navigate(`/search?q=${encodeURIComponent(newQuery)}`);
     }
   };
 
-  // Handle search button click
   const handleSearch = () => {
     navigate(`/search?q=${encodeURIComponent(query)}`);
   };
 
-  // Clear query and reset input field
   const handleCancel = () => {
     setQuery("");
     setSearchProduct("");
@@ -54,7 +47,6 @@ function SearchBar() {
       inputRef.current.focus();
     }
     if (location.pathname === "/search") {
-      // Update query parameter to clear search results
       navigate(`/search?q=`, { replace: true });
     }
   };

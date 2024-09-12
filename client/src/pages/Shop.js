@@ -9,55 +9,42 @@ function Shop() {
   const [categoryArr, setCategoryArr] = useState([]);
   const [urlId, setUrlId] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(30);
+  const [productsPerPage] = useState(28);
   const [sortOrder, setSortOrder] = useState('Relative');
   const location = useLocation();
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const id = queryParams.get('id');
-    setUrlId(id); 
-    paginate(1);
+    setUrlId(id);
+    setCurrentPage(1); // Reset to the first page on URL change
   }, [location.search]);
 
   useEffect(() => {
-    if(sortOrder === 'Relative'){
-
+    const fetchData = async () => {
       if (urlId) {
-        fetch(`json/${urlId}.json`)
-        .then(response => response.json())
-        .then((data) => {
+        const response = await fetch(`json/${urlId}.json`);
+        const data = await response.json();
+        if (sortOrder === 'Relative') {
           setCategoryArr(data);
-        });
+        } else {
+          sortArr(data, sortOrder);
+        }
       }
-    }
-  }, [sortOrder]);
-  useEffect(() => {
-    if (urlId) {
-      fetch(`json/${urlId}.json`)
-        .then(response => response.json())
-        .then((data) => {
-          setCategoryArr(data);
-        });
-    }
-  }, [urlId]);
+    };
+    fetchData();
+  }, [urlId, sortOrder]);
 
-  const sortArr = (order) => {
-    let sortedArr = [...categoryArr];
+  const sortArr = (data, order) => {
+    let sortedArr = [...data];
     if (order === 'asc') {
       sortedArr = sortedArr.sort((a, b) => a.price - b.price);
     } else if (order === 'desc') {
       sortedArr = sortedArr.sort((a, b) => b.price - a.price);
     }
     setCategoryArr(sortedArr);
-    paginate(1);
+    setCurrentPage(1); // Reset to the first page when sorting changes
   };
-
-  useEffect(() => {
-    if (sortOrder !== 'Relative') {
-      sortArr(sortOrder);
-    }
-  }, [sortOrder]);
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -67,73 +54,63 @@ function Shop() {
 
   const totalPages = Math.ceil(categoryArr.length / productsPerPage);
 
-  const goToPrevious = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const goToNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
   return (
-    <div className='shopPage'>
-    <ShopSideNav />
-    <div className='shopMain'>
-      <h1>Shop</h1>
-      <div className='upperSecShop'>
-        <h5>{categoryArr.length} Product Found</h5>
-
-    
-      <div className="dropdown">
-        <button className="dropbtn">Sort by Price</button>
-        <div className="dropdown-content">
-          <button onClick={() => setSortOrder('Relative')}>Relative</button>
-          <button onClick={() => setSortOrder('asc')}>Price: Low to High</button>
-          <button onClick={() => setSortOrder('desc')}>Price: High to Low</button>
-      </div>
+    <>
+      <div>
+        <h1>Shop</h1>
+        <div className='upperSecShop'>
+          <h5>{categoryArr.length} Product(s) Found</h5>
+          <div className="dropdown">
+            <button className="dropbtn">Sort by Price</button>
+            <div className="dropdown-content">
+              <button onClick={() => setSortOrder('Relative')}>Relative</button>
+              <button onClick={() => setSortOrder('asc')}>Price: Low to High</button>
+              <button onClick={() => setSortOrder('desc')}>Price: High to Low</button>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className="shop-cards">
-        {currentProducts.map((item, index) => (
-          <HomeCard
-            key={index}
-            img={item.images[0]}
-            name={item.title}
-            mrp={item.mrp}
-            price={item.price}
-            catOfPro={item.catOfPro}
-          />
-        ))}
+      <div className='shopPage'>
+        <ShopSideNav />
+        <div className='shopMain'>
+          <div className="shop-cards">
+            {currentProducts.map((item, index) => (
+              <HomeCard
+                key={index}
+                img={item.images[0]}
+                name={item.title}
+                mrp={item.mrp}
+                price={item.price}
+                ProIDSearch={item.ProIDSearch}
+              />
+            ))}
+          </div>
+          <div className="pagination">
+            <button 
+              onClick={() => paginate(currentPage - 1)} 
+              disabled={currentPage === 1}
+            >
+              &lt;
+            </button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(number => (
+              <button 
+                key={number} 
+                onClick={() => paginate(number)}
+                className={number === currentPage ? 'active' : ''}
+              >
+                {number}
+              </button>
+            ))}
+            <button 
+              onClick={() => paginate(currentPage + 1)} 
+              disabled={currentPage === totalPages}
+            >
+              &gt;
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="pagination">
-        <button 
-          onClick={goToPrevious} 
-          disabled={currentPage === 1}
-        >
-          &lt;
-        </button>
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map(number => (
-          <button 
-            key={number} 
-            onClick={() => paginate(number)}
-            className={number === currentPage ? 'active' : ''}
-          >
-            {number}
-          </button>
-        ))}
-        <button 
-          onClick={goToNext} 
-          disabled={currentPage === totalPages}
-        >
-          &gt;
-        </button>
-      </div>
-    </div></div>
+    </>
   );
 }
 

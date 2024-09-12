@@ -43,7 +43,7 @@ const ProductList = ({ category }) => {
             name={item.title}
             mrp={item.mrp}
             price={item.price}
-            catOfPro={item.catOfPro}
+            ProIDSearch={item.ProIDSearch}
           />
         ))}
         <Link to={`/shop?id=${category}`}>

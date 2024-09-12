@@ -1,7 +1,3 @@
-.main{
-  width: min(80%, 1250px);
-  margin: auto;
-}
 .banner {
   display: flex;
   justify-content: center;
@@ -124,45 +120,35 @@ video {
   justify-content: center;
   border-radius: 50%;
 }
-.card .addToCart{
-  outline: 1px solid var(--primary-color);
-  background-color: #e7ffe8;
-  color: var(--primary-color);
-  padding: 6px 14px;
-  border-radius: 5px;
-  font-weight: 700;
-  width: fit-content;
-}
 
-.card .addToCart:hover{
-  background-color: var(--primary-color);
-  color: white;
-}
 .card .details p {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 13px;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  white-space: wrap;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 40px;
+  height: 33px;
+  margin: 16px 0 10px 0;
 }
 
 
 .card .priceDetails {
   display: flex;
   align-items: center;
-  gap: 8px;
   margin-top: 6px;
+  height: 28px;
   justify-content: space-between;
 }
 
 .card .priceDetails span {
-  font-size: 12px;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .FeaturesHome .card .priceDetails .mrp {
@@ -173,4 +159,21 @@ video {
   color: var(--main2);
   font-size: 14px;
   font-weight: 600;
+}
+
+@media screen and (max-width: 480px) {
+  .relatedPro .card{
+    width: unset;
+  }
+  .card{
+    min-width: unset;
+    padding: 10px;
+  }
+  .card .img-section {
+    height: unset;
+    width: 100%;
+  }
+  .card .details p {
+    height: 33px;
+  }
 }

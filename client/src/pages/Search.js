@@ -11,22 +11,23 @@ import useFetchProducts from "../hooks/useFetchProducts";
 import _ from 'lodash';
 
 function Search() {
-  const [qValue, setQValue] = useState(''); // State for the query value
-  const [filterProduct, setFilterProduct] = useState([]); // State for filtered products
-  const { allProductData, loading, error } = useFetchProducts(); // Fetch products
-  const location = useLocation(); // Access the location object
+  const [qValue, setQValue] = useState(''); 
+  const [filterProduct, setFilterProduct] = useState([]);
+  const { allProductData, loading, error } = useFetchProducts(); 
 
-  // Extract the query from the URL
+
+
+  const location = useLocation(); 
+
   const query = new URLSearchParams(location.search).get("q");
 
-  // Debounced search function to limit how often we filter the products
   const debouncedSearchTerm = useMemo(
     () => _.debounce((term) => {
       if (allProductData) {
         const filtered = allProductData.filter((item) => {
           const titleMatch = item.title?.toLowerCase().includes(term.toLowerCase());
-          const categoryMatch = item.category?.toLowerCase().includes(term.toLowerCase());
-          return titleMatch || categoryMatch; // Matches if either title or category includes the term
+          const categoryMatch = item.catOfPro?.toLowerCase().includes(term.toLowerCase());
+          return titleMatch || categoryMatch; 
         });
         setFilterProduct(filtered);
       }
@@ -63,19 +64,19 @@ function Search() {
     <>
       <header className="searchPage">
         <Logo />
-        <SearchBar onSearch={setQValue} value={qValue} /> {/* Pass qValue to SearchBar */}
+        <SearchBar onSearch={setQValue} value={qValue} /> 
         <OtherActionBtn />
       </header>
       <div className="shop-cards searchPageSec" style={{ marginTop: "100px" }}>
         {filterProduct.length > 0 ? (
           filterProduct.map((item) => (
             <HomeCard
-              key={item.id}
-              img={item.images[0]}
+              key={item.ProIDSearch}
+              img={item.image}
               name={item.title}
               mrp={item.mrp}
               price={item.price}
-              catOfPro={item.catOfPro}
+              ProIDSearch={item.ProIDSearch}
             />
           ))
         ) : (

@@ -25,7 +25,10 @@
     width: min(60%,700px);
 }
 .searchPage{
+    width: 100vw;
     position: fixed;
+    top: 0;
+    display: flex;
     width: 95vw;
     padding: 20px 2.5vw;
     align-items: center;

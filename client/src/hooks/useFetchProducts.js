@@ -2,10 +2,14 @@ import { useState, useEffect } from "react";
 
 const useFetchProducts = () => {
   const categories = [
-    "vegetables", "fruits", "chips", "milk", "chocolates",
-    "noodle", "fruitJuice", "flour", "softDrink", "tea", "syrup", 
-    "cheese", "paneer", "dairyCream", "pavBun", "masala", 
-    "chutneys", "herb", "paste", "baking", "dryFruits"
+    'chips',      'chocolates', 'biscuit',
+    'fruitJuice', 'noodle',     'softDrink',
+    'fruits',     'vegetables', 'flour',
+    'milk',       'syrup',      'tea',
+    'coffee',     'cheese',     'paneer',
+    'dairyCream', 'pavBun',     'masala',
+    'chutneys',   'herb',       'paste',
+    'baking',     'dryFruits'
   ];
 
   const [allProductData, setAllProductData] = useState([]);
@@ -23,7 +27,18 @@ const useFetchProducts = () => {
             throw new Error(`Failed to fetch ${cat}: ${response.statusText}`);
           }
           const data = await response.json();
-          fetchedProducts = [...fetchedProducts, ...data];
+          // fetchedProducts = [...fetchedProducts, ...data];
+          for(let i=0; i<data.length; i++){
+            fetchedProducts.push({
+                "pid": data[i].pid,
+                "ProIDSearch": `rapidShop-${cat}-${i + 1}-${data[i].pid}`,
+                "image": data[i].images?.[0] || null,
+                "price": data[i].price,
+                "title": data[i].title,
+                "brand": data[i].brand,
+                "catOfPro": `rapidShop-${cat}`
+            },)
+          }
         }
         console.log('Fetched products:', fetchedProducts);
         setAllProductData(fetchedProducts);

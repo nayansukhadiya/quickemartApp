@@ -7,7 +7,6 @@ function ShopSideNav() {
   const { navCat } = useContext(UserContext); // Accessing navCat from the context
 
   return (
-    <div>
       <div className="sideNav">
         <nav className="navbar">
           <ul>
@@ -26,7 +25,6 @@ function ShopSideNav() {
           </ul>
         </nav>
       </div>
-    </div>
   );
 }
 

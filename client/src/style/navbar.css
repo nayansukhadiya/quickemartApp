@@ -1,4 +1,4 @@
-header {
+ header {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -18,19 +18,17 @@ header {
   position: relative;
 }
 
-ul {
+.bottomPart ul {
   width: 1250px;
   display: flex;
   justify-content: space-around;
 }
-li {
+.bottomPart li {
   list-style: none;
 }
-a {
+.bottomPart a {
   white-space: nowrap;
   font-size: smaller;
-  text-decoration: none;
-  color: var(--main);
 }
 .dropdown {
   position: relative;

@@ -1,22 +1,25 @@
 .shopPage {
   display: flex;
   margin-top: 20px;
+  gap: 15px;
+  position: relative;
 }
-.sideNav   {
-  position: sticky;
-  top: 0;
-  left: 0;
+.sideNav {
+position: sticky;
+top: 0;
+left: 0;
+height: fit-content;
+max-height: unset;
 }
-.shopMain{
-  margin-left: 30px;
-}
+
 .sideNav nav ul {
   display: flex;
-  width: 230px;
+  width: 100%;
   flex-direction: column;
   gap: 10px;
 }
 .sideNav nav ul li {
+  list-style: none;
   margin: 0;
 }
 
@@ -28,7 +31,7 @@
   align-items: center;
   white-space: break-spaces;
   width: 100%;
-  padding: 8px;
+  padding: 8px 0;
   gap: 15px;
   background-color: #ffffff;
   border-bottom: 1px solid rgb(209, 209, 209);
@@ -53,6 +56,10 @@ color: var(--primary-color);
 }
 .shop-cards .card {
   width: 100%;
+}
+.shopMain{
+  max-height: unset;
+  overflow: auto;
 }
 .upperSecShop {
   display: flex;
@@ -133,4 +140,25 @@ color: var(--primary-color);
 
 .pagination button:hover:not(:disabled) {
   outline: 1px solid var(--primary-color);
+}
+
+@media screen and (max-width: 480px) {
+  .shopMain{
+    max-height: 100vh;
+    overflow: auto;
+  }
+  .sideNav {
+    position: unset;
+    min-width: 60px;
+    max-height: 100vh;
+    overflow: auto;
+  }
+    .sideNav nav ul li a {
+    flex-direction: column;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .shop-cards {
+    grid-template-columns: repeat(2, 1fr);}
 }

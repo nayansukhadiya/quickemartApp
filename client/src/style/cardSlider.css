@@ -26,13 +26,13 @@
   scroll-behavior: smooth;
   overflow: -moz-scrollbars-none;
   scrollbar-width: none;
+  gap: 10px;
 }
 .card-slider::-webkit-scrollbar {
   display: none;
 }
 .card-item {
   flex: 0 0 auto;
-  margin-right: 10px;
 }
 
 .slider-button {
@@ -68,4 +68,5 @@
   .slider-button{
     display: none;
   }
+  
 }

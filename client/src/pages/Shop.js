@@ -53,7 +53,7 @@ function Shop() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const totalPages = Math.ceil(categoryArr.length / productsPerPage);
-
+console.log(currentProducts)
   return (
     <>
       <div>
@@ -81,7 +81,9 @@ function Shop() {
                 name={item.title}
                 mrp={item.mrp}
                 price={item.price}
+                subTitle={item.subTitle}
                 ProIDSearch={item.ProIDSearch}
+                category={item.category}
               />
             ))}
           </div>

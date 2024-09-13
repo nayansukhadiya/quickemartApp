@@ -43,12 +43,11 @@ const ProductList = ({ category }) => {
             name={item.title}
             mrp={item.mrp}
             price={item.price}
+            subTitle={item.subTitle}
             ProIDSearch={item.ProIDSearch}
+            category={item.category}
           />
         ))}
-        <Link to={`/shop?id=${category}`}>
-          <div className="nameCard">Sell All {category}</div>
-        </Link>
       </CardSlider>
     </div>
   );

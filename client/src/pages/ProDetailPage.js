@@ -9,18 +9,15 @@ function ProDetailPage() {
   const query = new URLSearchParams(location.search).get("id");
 
   const [detailArr, setDetailArr] = useState([]);
-  const [mainImage, setMainImage] = useState(
-    "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=85,metadata=none,w=120,h=120/app/images/products/full_screen/pro_68554.jpg?ts=1701174619"
-  );
+  const [mainImage, setMainImage] = useState("");
   const [images, setImages] = useState([]);
   const [relatedPro, setRelatedPro] = useState([]);
 
   const searchQuery = query.split("-");
 
   useEffect(() => {
-    window.scrollTo(0, 0); 
+    window.scrollTo(0, 0);
   }, [query]);
-  
 
   useEffect(() => {
     fetch(`json/${searchQuery[1]}.json`)
@@ -32,16 +29,19 @@ function ProDetailPage() {
         const totalProducts = data.length;
         const currentIndex = parseInt(searchQuery[2], 10);
 
-        // Related products logic
         let relatedArrPrev = [];
         if (currentIndex === 0) {
           relatedArrPrev = data.slice(-10).reverse();
         } else if (currentIndex - 10 < 0) {
           const startPrev = data.slice(0, currentIndex).reverse();
-          const wrapPrev = data.slice(totalProducts - (10 - currentIndex)).reverse();
+          const wrapPrev = data
+            .slice(totalProducts - (10 - currentIndex))
+            .reverse();
           relatedArrPrev = [...wrapPrev, ...startPrev];
         } else {
-          relatedArrPrev = data.slice(currentIndex - 10, currentIndex).reverse();
+          relatedArrPrev = data
+            .slice(currentIndex - 10, currentIndex)
+            .reverse();
         }
 
         let relatedArrNext = [];
@@ -122,7 +122,6 @@ function ProDetailPage() {
             <span>{detailArr.length > 0 && detailArr[0].mrp}</span>
           </h3>
 
-          {/* Conditional rendering for discount */}
           {percentageDifference(
             detailArr.length > 0 && detailArr[0].price,
             detailArr.length > 0 && detailArr[0].mrp
@@ -135,9 +134,15 @@ function ProDetailPage() {
               % OFF
             </p>
           )}
-
-          <AddCartBtn />
-
+          <AddCartBtn
+            ProIDSearch={query}
+            img={images[0]}
+            name={detailArr.length > 0 && detailArr[0].title}
+            price={detailArr.length > 0 && detailArr[0].price}
+            mrp={detailArr.length > 0 && detailArr[0].mrp}
+            subTitle={detailArr.length > 0 && detailArr[0].subTitle}
+            category={detailArr.length > 0 && detailArr[0].category}
+          />
           <div className="highlight">
             {detailArr.length > 0 &&
               detailArr[0].highlights &&
@@ -181,13 +186,15 @@ function ProDetailPage() {
               name={item.title}
               mrp={item.mrp}
               price={item.price}
+              subTitle={item.subTitle}
               ProIDSearch={item.ProIDSearch}
+              category={item.category}
             />
           ))}
         </div>
-          <Link to={`/shop?id=${searchQuery[1]}`} className="showRelatedMore">
-            All Related Products
-          </Link>
+        <Link to={`/shop?id=${searchQuery[1]}`} className="showRelatedMore">
+          All Related Products
+        </Link>
       </div>
     </>
   );

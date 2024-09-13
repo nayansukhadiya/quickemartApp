@@ -4,7 +4,7 @@ import UserContext from '../context/UserContext'
 import "../style/shop.css";
 
 function ShopSideNav() {
-  const { navCat } = useContext(UserContext); // Accessing navCat from the context
+  const { navCat } = useContext(UserContext); 
 
   return (
       <div className="sideNav">

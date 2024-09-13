@@ -26,7 +26,8 @@
 .bottomPart li {
   list-style: none;
 }
-.bottomPart a {
+.bottomPart a,.dropdown button {
+  font-weight: 600;
   white-space: nowrap;
   font-size: smaller;
 }
@@ -102,4 +103,65 @@ header button {
 header button svg {
   width: 20px;
   height: 20px;
+}
+.bottomNavbar{
+  display: none;
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+}
+.bottom-other-logo{
+  /* position: relative; */
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+}
+
+.bottom-other-logo a{
+  padding: 15px 0;
+  font-size: 0.75rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.bottom-other-logo button svg{
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.bottom-other-logo .chatBtn{
+  position: relative;
+  top: 50%;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  aspect-ratio: 1;
+  padding: 10px;
+  height: 2.1rem;
+  width: 2.1rem;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.bottom-other-logo .chatBtn svg path{
+  fill: #f1f1f1;
+}
+@media screen and (max-width: 480px) {
+  .bottomNavbar{
+    display: block;
+  }
+  .upperPart{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .bottomPart{
+    display: none;
+  }
+  .other-logo{
+    display: none;
+  }
 }

@@ -1,18 +1,18 @@
 // components/CardSlider.js
 
 import React, { useRef, useEffect, useState } from 'react';
-import '../style/cardSlider.css'; // Import your custom CSS
+import '../style/cardSlider.css'; 
 
 const CardSlider = ({ children }) => {
   const sliderRef = useRef(null);
-  const [cardsToShow, setCardsToShow] = useState(3); // Default number of cards
+  const [cardsToShow, setCardsToShow] = useState(3); 
 
   const updateCardsToShow = () => {
     if (sliderRef.current) {
       const sliderWidth = sliderRef.current.offsetWidth;
       const cardElements = sliderRef.current.children;
-      const cardWidth = cardElements[0]?.offsetWidth || 300; // Default card width if not available
-      const margin = parseFloat(window.getComputedStyle(cardElements[0]).marginRight) || 20; // Margin between cards
+      const cardWidth = cardElements[0]?.offsetWidth || 300; 
+      const margin = parseFloat(window.getComputedStyle(cardElements[0]).marginRight) || 20; 
       const cardsVisible = Math.floor(sliderWidth / (cardWidth + margin));
       setCardsToShow(cardsVisible > 0 ? cardsVisible : 1);
     }

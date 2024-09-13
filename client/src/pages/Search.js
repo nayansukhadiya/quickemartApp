@@ -8,52 +8,52 @@ import HomeCard from "../components/HomeCard";
 import "../style/home.css";
 import "../style/shop.css";
 import useFetchProducts from "../hooks/useFetchProducts";
-import _ from 'lodash';
+import _ from "lodash";
 
 function Search() {
-  const [qValue, setQValue] = useState(''); 
+  const [qValue, setQValue] = useState("");
   const [filterProduct, setFilterProduct] = useState([]);
-  const { allProductData, loading, error } = useFetchProducts(); 
-
-
-
-  const location = useLocation(); 
+  const { allProductData, loading, error } = useFetchProducts();
+  console.log(allProductData);
+  const location = useLocation();
 
   const query = new URLSearchParams(location.search).get("q");
 
   const debouncedSearchTerm = useMemo(
-    () => _.debounce((term) => {
-      if (allProductData) {
-        const filtered = allProductData.filter((item) => {
-          const titleMatch = item.title?.toLowerCase().includes(term.toLowerCase());
-          const categoryMatch = item.catOfPro?.toLowerCase().includes(term.toLowerCase());
-          return titleMatch || categoryMatch; 
-        });
-        setFilterProduct(filtered);
-      }
-    }, 300),
+    () =>
+      _.debounce((term) => {
+        if (allProductData) {
+          const filtered = allProductData.filter((item) => {
+            const titleMatch = item.title
+              ?.toLowerCase()
+              .includes(term.toLowerCase());
+            const categoryMatch = item.catOfPro
+              ?.toLowerCase()
+              .includes(term.toLowerCase());
+            return titleMatch || categoryMatch;
+          });
+          setFilterProduct(filtered);
+        }
+      }, 300),
     [allProductData]
   );
-  
 
-  // Show top 50 products or filtered products if there's a search query
   useEffect(() => {
     if (query) {
-      setQValue(query); // Set the search term from the URL query parameter
+      setQValue(query); 
     } else if (allProductData) {
-      setFilterProduct(allProductData.slice(0, 50)); // Show top 50 products if no query
+      setFilterProduct(allProductData.slice(0, 50)); 
     }
   }, [query, allProductData]);
 
-  // Trigger the debounced search whenever the search value changes
   useEffect(() => {
     if (qValue) {
       debouncedSearchTerm(qValue);
     } else if (allProductData) {
-      setFilterProduct(allProductData.slice(0, 50)); // Reset to top 50 products if search is cleared
+      setFilterProduct(allProductData.slice(0, 50)); 
     }
     return () => {
-      debouncedSearchTerm.cancel(); // Cleanup debounce on unmount
+      debouncedSearchTerm.cancel(); 
     };
   }, [qValue, debouncedSearchTerm, allProductData]);
 
@@ -64,7 +64,7 @@ function Search() {
     <>
       <header className="searchPage">
         <Logo />
-        <SearchBar onSearch={setQValue} value={qValue} /> 
+        <SearchBar onSearch={setQValue} value={qValue} />
         <OtherActionBtn />
       </header>
       <div className="shop-cards searchPageSec" style={{ marginTop: "100px" }}>
@@ -76,7 +76,9 @@ function Search() {
               name={item.title}
               mrp={item.mrp}
               price={item.price}
+              subTitle={item.subTitle}
               ProIDSearch={item.ProIDSearch}
+              category={item.category}
             />
           ))
         ) : (

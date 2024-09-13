@@ -27,15 +27,15 @@ const useFetchProducts = () => {
             throw new Error(`Failed to fetch ${cat}: ${response.statusText}`);
           }
           const data = await response.json();
-          // fetchedProducts = [...fetchedProducts, ...data];
           for(let i=0; i<data.length; i++){
             fetchedProducts.push({
                 "pid": data[i].pid,
-                "ProIDSearch": `rapidShop-${cat}-${i + 1}-${data[i].pid}`,
+                "ProIDSearch": `rapidShop-${cat}-${data[i].pid}`,
                 "image": data[i].images?.[0] || null,
                 "price": data[i].price,
                 "title": data[i].title,
                 "brand": data[i].brand,
+                "subTitle": data[i].subTitle,
                 "catOfPro": `rapidShop-${cat}`
             },)
           }

@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { useLocation } from 'react-router-dom';
 import UserContextProvider from './context/UserContextProvider';
+import BottomNav from './components/BottomNav';
 
 function Layout() {
   const [searchActive, setSearchActive] = useState(false);
@@ -24,7 +25,8 @@ function Layout() {
       <div className="main">
         <Outlet />
       </div>
-      {!searchActive && <Footer />}
+      <BottomNav />
+      {/* {!searchActive && <Footer />} */}
     </UserContextProvider>
   );
 }

@@ -4,7 +4,7 @@
     gap: 10px;
 }
 .CartCard{
-    display: flex;
+    /* display: flex; */
     align-items: center;
     width: auto;
     padding: 10px 40px;
@@ -45,10 +45,13 @@ border-bottom: 1px solid rgb(219, 219, 219);
 .CartCard .AmountDetail{
     display: flex;
     align-items: flex-end;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 5px;
 }
-
+.part-1{
+    display: flex;
+    align-items: center;
+}
 @media screen and (max-width: 450px){
     .CartCard{
         padding: 10px;
@@ -67,6 +70,9 @@ border-bottom: 1px solid rgb(219, 219, 219);
         .CartCard .cartProDetail .cartProSubTitle{
             font-size: 0.6rem;
             opacity: 0.8;
+        }
+        .CartCard .counterBtnGroup {
+            flex-direction: row;
         }
     /* .CartCard .AmountDetail{
         flex-direction: column;

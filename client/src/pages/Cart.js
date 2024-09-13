@@ -17,13 +17,14 @@ function Cart() {
         {proCart && proCart.length > 0 ? (
           proCart.map((item) => (
             <div key={item.ProIDSearch} className="CartCard">
+              <div className="part-1">
               <div className="imgCartSec">
                 <img src={item.img} alt={item.name} />
               </div>
               <div className="cartProDetail">
                 <div className="cartProName">{item.name}</div>
                 <div className="cartProSubTitle">{item.subTitle}</div>
-              </div>
+              </div></div>
               <div className="AmountDetail">
                 <AddCartBtn
                   ProIDSearch={item.ProIDSearch}

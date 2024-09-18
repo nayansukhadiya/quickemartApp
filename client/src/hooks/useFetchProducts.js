@@ -20,28 +20,38 @@ const useFetchProducts = () => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        let fetchedProducts = [];
-        for (let cat of categories) {
-          const response = await fetch(`json/${cat}.json`);
+        const fetchedProducts = [];
+        const productIds = new Set(); // To track unique product IDs
+
+        // for (let cat of categories) {
+          const response = await fetch(`json/searchProduct.json`);
           if (!response.ok) {
-            throw new Error(`Failed to fetch ${cat}: ${response.statusText}`);
+            throw new Error(`Failed to fetch : ${response.statusText}`);
           }
           const data = await response.json();
-          for(let i=0; i<data.length; i++){
-            fetchedProducts.push({
-                "pid": data[i].pid,
-                "ProIDSearch": `rapidShop-${cat}-${data[i].pid}`,
-                "image": data[i].images?.[0] || null,
-                "price": data[i].price,
-                "title": data[i].title,
-                "brand": data[i].brand,
-                "subTitle": data[i].subTitle,
-                "catOfPro": `rapidShop-${cat}`
-            },)
-          }
-        }
-        console.log('Fetched products:', fetchedProducts);
-        setAllProductData(fetchedProducts);
+
+          // for (let i = 0; i < data.length; i++) {
+          //   const product = {
+          //     "pid": data[i].pid,
+          //     "ProIDSearch": `rapidShop-${cat}-${data[i].pid}`,
+          //     "image": data[i].images?.[0] || null,
+          //     "price": data[i].price,
+          //     "title": data[i].title,
+          //     "brand": data[i].brand,
+          //     "subTitle": data[i].subTitle,
+          //     "catOfPro": `rapidShop-${cat}`
+          //   };
+
+          //   // Check if product ID is already in the Set
+          //   if (!productIds.has(product.pid)) {
+          //     productIds.add(product.pid); // Add ID to Set
+          //     fetchedProducts.push(product); // Add unique product to the array
+          //   }
+          // }
+        // }
+        
+        console.log('Fetched products:', data);
+        setAllProductData(data);
       } catch (err) {
         console.error('Fetching error:', err);
         setError(err.message || "Error fetching data");

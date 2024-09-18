@@ -15,7 +15,7 @@ function Navbar() {
           <SearchBar />
          <OtherActionBtn />
         </div>
-       <div><ProductNav/></div>
+       {/* <div><ProductNav/></div> */}
       </header>
     </>
   );

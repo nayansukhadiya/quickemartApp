@@ -8,8 +8,13 @@
   margin: 20px 0;
   position: relative;
   overflow: hidden;
-  background-color: #08AEEA;
-  background-image: linear-gradient(235deg, #6dd5fb 0%, #9dfbd0 100%);
+  background-image: linear-gradient(
+    150deg,
+    #c4d7ff 0%,
+    #bdd2ffe1 55%,
+    #88adff 100%
+  );
+
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .banner-detail {
@@ -21,35 +26,35 @@
   z-index: 2;
 }
 .banner-detail > h1 {
-  font-weight: 800;
+  font-weight: 600;
   font-size: 35px;
 }
-.banner img{
-position: absolute;
-height: 300px;
-right: -30px;
-bottom: -30px;
+.banner img {
+  position: absolute;
+  height: 300px;
+  right: -30px;
+  bottom: -30px;
 }
 #bannerBtn {
   display: block;
-  background-color: var(--primary-color);
+  color: var(--primary-color);
   border-radius: 10px;
   width: fit-content;
   font-size: 1.2rem;
   padding: 10px 40px;
-  font-weight: 700;
-  color: #fff;
+  font-weight: 600;
+  background-color: #fff;
   text-decoration: none;
 }
 #titleFont {
-  font-weight: 600;
+  font-weight: 500;
   border-radius: 5px;
   width: fit-content;
 }
 .FeaturesHome {
   width: 100%;
 }
-.nameCard{
+.nameCard {
   position: relative;
   display: flex;
   align-items: center;
@@ -68,7 +73,7 @@ bottom: -30px;
 .card {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 8px;
   min-width: 200px;
   /* height: 326px; */
   width: 200px;
@@ -80,7 +85,7 @@ bottom: -30px;
   position: relative;
   border: 1px solid rgb(223, 223, 223);
 }
-.card:hover{
+.card:hover {
   cursor: pointer;
 }
 .card .cmpName {
@@ -115,10 +120,12 @@ bottom: -30px;
   flex: 1;
 }
 
-
+.card .discountBoxInner svg path {
+  fill: var(--primary-color);
+}
 .card .details p {
-  font-weight: 700;
-  font-size: 13px;
+  font-weight: 500;
+  font-size: 14px;
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: wrap;
@@ -128,11 +135,37 @@ bottom: -30px;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 33px;
+  height: 36px;
   margin: 16px 0 10px 0;
 }
-
-
+.card .discountBox {
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
+.card .discountBox .discountBoxInner {
+  position: relative;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card .discountBox .discountBoxInner svg{
+  position: absolute;
+  top: -2px;
+  width: 40px;
+  height: 40px;
+}
+.card .discountBox .discountBoxInner .discountText {
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-size: 10px;
+  text-align: center;
+  z-index: 20;
+}
 .card .priceDetails {
   display: flex;
   align-items: center;
@@ -151,19 +184,22 @@ bottom: -30px;
 }
 
 .FeaturesHome .card .priceDetails .price {
-  color: var(--main2);
-  font-size: 14px;
+  color: black;
+  font-size: 16px;
   font-weight: 600;
 }
-.HomeSubTitle{
-  min-height: 17px;
+.HomeSubTitle {
+  min-height: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.9;
 }
 @media screen and (max-width: 480px) {
-  .banner{
+  .banner {
     padding: 20px 15px;
     border-radius: 14px;
   }
-  .banner-detail{
+  .banner-detail {
     width: 100%;
   }
   #bannerBtn {
@@ -173,18 +209,18 @@ bottom: -30px;
   .banner-detail > h1 {
     font-size: 1.7rem;
   }
-  #titleFont{
+  #titleFont {
     width: 70%;
-    font-size: 0.90rem;
+    font-size: 0.9rem;
   }
   .banner img {
     height: 180px;
     opacity: 0.8;
-}
-  .relatedPro .card{
+  }
+  .relatedPro .card {
     width: unset;
   }
-  .card{
+  .card {
     width: 160px;
     min-width: unset;
     padding: 10px;

@@ -1,0 +1,23 @@
+.ChatPage{
+    position: relative;
+    min-height: 84vh;
+}
+.textChat{
+    font-size: 1.5rem;
+    position: absolute;
+    top: 30%;
+    left: 0%;
+    width: 70%;
+    padding-left: 20px;
+    font-weight: 600;
+}
+.textChat span{
+    font-weight: 700;
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+@media (max-width: 480px) {
+    .ChatPage{
+        min-height: 72vh;
+    }
+}

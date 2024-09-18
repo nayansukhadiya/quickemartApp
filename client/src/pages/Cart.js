@@ -40,7 +40,7 @@ function Cart() {
             </div>
           ))
         ) : (
-          <div>Your cart is empty</div>
+          <div className="emptyMessage">Your cart is empty</div>
         )}
       </div>
     </div>

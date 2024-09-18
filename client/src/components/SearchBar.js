@@ -29,15 +29,17 @@ function SearchBar() {
     setQuery(newQuery);
     setSearchProduct(newQuery);
 
-    if (location.pathname === "/search") {
+    if (location.pathname === "/search" && newQuery !== query) {
       navigate(`/search?q=${encodeURIComponent(newQuery)}`, { replace: true });
-    } else {
+    } else if (newQuery !== query) {
       navigate(`/search?q=${encodeURIComponent(newQuery)}`);
     }
   };
 
   const handleSearch = () => {
-    navigate(`/search?q=${encodeURIComponent(query)}`);
+    if (query !== new URLSearchParams(location.search).get("q")) {
+      navigate(`/search?q=${encodeURIComponent(query)}`);
+    }
   };
 
   const handleCancel = () => {
@@ -52,11 +54,11 @@ function SearchBar() {
   };
 
   return (
-    <div className="searchBar ">
+    <div className="searchBar">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="0.94em"
-        height="1em"
+        width="20px"
+        height="20px"
         viewBox="0 0 15 16"
       >
         <path
@@ -75,7 +77,7 @@ function SearchBar() {
         value={query}
         ref={inputRef}
       />
-      <button onClick={handleSearch} className="searchButton">Search</button>
+      {/* <button onClick={handleSearch} className="searchButton">Search</button> */}
       {query && <div className="cancelBtn" onClick={handleCancel}>X</div>}
     </div>
   );

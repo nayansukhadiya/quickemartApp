@@ -9,16 +9,16 @@ function Banner() {
         <h1>One Click, and RapidShop AI Builds Your Perfect Cart</h1>
         <p id='titleFont'>Not sure what you need? Let RapidShop AI create your cart in one click. Say goodbye to endless searching and hello to smart shopping.</p>
         <div>
-          <NavLink to='/chat' id='bannerBtn'>Try now  &gt;</NavLink>
+          <NavLink to='/chat' id='bannerBtn'>Try now</NavLink>
         </div>
       </div>
-      <img src='https://www.brainio.ai/wp-content/uploads/2023/05/ai-robot.png'/>
+      <img src='https://cdn3d.iconscout.com/3d/premium/thumb/chatbot-3d-icon-download-in-png-blend-fbx-gltf-file-formats--robot-chat-talk-communication-robotic-automation-internet-marketing-pack-business-icons-6497271.png?f=webp'/>
     </div>
   );
 }
 
 export default Banner;
-
+// Say goodye to meal planning stress- get fresh groceries and tasty recipes delivered right at your door
 
 // Tagline Ideas:
 // "No Idea What to Buy? Let RapidShop AI Do the Work!"

@@ -14,48 +14,57 @@ function Search() {
   const [qValue, setQValue] = useState("");
   const [filterProduct, setFilterProduct] = useState([]);
   const { allProductData, loading, error } = useFetchProducts();
-  console.log(allProductData);
   const location = useLocation();
+  const [searchArr, setSearchArr] = useState([]);
+
+  useEffect(() => {
+    if (allProductData) {
+      setSearchArr(allProductData);
+    }
+  }, [allProductData]);
 
   const query = new URLSearchParams(location.search).get("q");
 
   const debouncedSearchTerm = useMemo(
     () =>
       _.debounce((term) => {
-        if (allProductData) {
-          const filtered = allProductData.filter((item) => {
+        if (searchArr.length > 0) {
+          const filtered = searchArr.filter((item) => {
             const titleMatch = item.title
               ?.toLowerCase()
               .includes(term.toLowerCase());
             const categoryMatch = item.catOfPro
               ?.toLowerCase()
               .includes(term.toLowerCase());
-            return titleMatch || categoryMatch;
+            const brandMatch = item.brand
+              ?.toLowerCase()
+              .includes(term.toLowerCase());
+            return titleMatch || categoryMatch || brandMatch;
           });
           setFilterProduct(filtered);
         }
       }, 300),
-    [allProductData]
+    [searchArr]
   );
 
   useEffect(() => {
     if (query) {
-      setQValue(query); 
-    } else if (allProductData) {
-      setFilterProduct(allProductData.slice(0, 50)); 
+      setQValue(query);
+    } else if (searchArr.length > 0) {
+      setFilterProduct(searchArr.slice(0, 50));
     }
-  }, [query, allProductData]);
+  }, [query, searchArr]);
 
   useEffect(() => {
     if (qValue) {
       debouncedSearchTerm(qValue);
-    } else if (allProductData) {
-      setFilterProduct(allProductData.slice(0, 50)); 
+    } else if (searchArr.length > 0) {
+      setFilterProduct(searchArr.slice(0, 50));
     }
     return () => {
-      debouncedSearchTerm.cancel(); 
+      debouncedSearchTerm.cancel();
     };
-  }, [qValue, debouncedSearchTerm, allProductData]);
+  }, [qValue, debouncedSearchTerm, searchArr]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;

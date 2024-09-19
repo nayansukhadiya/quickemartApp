@@ -1,9 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import SearchBar from "../components/SearchBar";
-import "../style/searchPage.css";
-import Logo from "../components/Logo";
-import OtherActionBtn from "../components/OtherActionBtn";
 import HomeCard from "../components/HomeCard";
 import "../style/home.css";
 import "../style/shop.css";
@@ -71,12 +67,7 @@ function Search() {
 
   return (
     <>
-      <header className="searchPage">
-        <Logo />
-        <SearchBar onSearch={setQValue} value={qValue} />
-        <OtherActionBtn />
-      </header>
-      <div className="shop-cards searchPageSec" style={{ marginTop: "100px" }}>
+      <div className="shop-cards searchPageSec">
         {filterProduct.length > 0 ? (
           filterProduct.map((item) => (
             <HomeCard

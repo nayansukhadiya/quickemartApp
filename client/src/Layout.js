@@ -12,7 +12,7 @@ function Layout() {
 
   useEffect(() => {
     const currentPath = location.pathname; 
-    if (currentPath === "/search") {
+    if (currentPath === "/search" || currentPath === "/chat") {
       setSearchActive(true);
     } else {
       setSearchActive(false);
@@ -21,12 +21,11 @@ function Layout() {
 
   return (
     <UserContextProvider>
-      {!searchActive && <Navbar />}
+      <Navbar />
       <div className="main">
         <Outlet />
       </div>
-      <BottomNav />
-      {/* {!searchActive && <Footer />} */}
+      {!searchActive &&  <BottomNav />}
     </UserContextProvider>
   );
 }

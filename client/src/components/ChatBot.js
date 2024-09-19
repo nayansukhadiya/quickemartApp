@@ -52,6 +52,7 @@ function ChatBot() {
       const ChatBox = document.querySelector(".chatBoxForm").style.borderRadius = "28px";
       textarea.style.height = '40px'; 
       textarea.style.height = `${textarea.scrollHeight}px`;
+      textarea.style.overflow = "auto";
     }
   }, [prompt]); 
 
@@ -64,7 +65,7 @@ function ChatBot() {
           onChange={(e) => setPrompt(e.target.value)}
           ref={inputRef}
           disabled={isLoading}
-          placeholder="Type your message..."
+          placeholder="Type Your Prompt..."
         />
         <button type="submit" disabled={isLoading || !prompt.trim()}>
           {isLoading ? (

@@ -19,6 +19,7 @@ max-height: unset;
   gap: 10px;
 }
 .sideNav nav ul li {
+  position: relative;
   list-style: none;
   margin: 0;
 }
@@ -27,6 +28,9 @@ max-height: unset;
   display: none;
 }
 .sideNav nav ul li a{
+  overflow: hidden;
+  position: relative;
+  min-width: 200px;
   display: flex;
   align-items: center;
   white-space: break-spaces;
@@ -38,6 +42,17 @@ max-height: unset;
   font-weight: 600;
   font-size: 14px;
 }
+.sideNav nav ul li a:before{
+  position: absolute;
+    content: '';
+    right: -3px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 54px;
+    width: 7px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+}
 .sideNav nav ul li a:hover{
 color: var(--primary-color);
 }
@@ -48,8 +63,10 @@ color: var(--primary-color);
 }
 .shop-cards {
   grid-template-columns: repeat(5, 1fr);
-  display: grid;
-  gap: 10px;
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+    background: #f3faff;
 }
 .searchPageSec{
   grid-template-columns: repeat(6, 1fr);
@@ -70,11 +87,12 @@ color: var(--primary-color);
 .dropbtn {
   background-color: var(--primary-color);
   color: white;
-  padding: 6px 12px;
-  font-size: small;
+  padding: 12px 16px;
+  min-width: 120px;
   border: none;
   font-weight: 600;
   cursor: pointer;
+  border-radius: 7px;
 }
 
 .dropdown {
@@ -84,12 +102,14 @@ color: var(--primary-color);
 
 .dropdown-content {
   display: none;
+  overflow: hidden;
+  border-radius: 8px;
   position: absolute;
   right: 0;
   background-color: #f9f9f9;
-  min-width: 160px;
+  min-width: 120px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 30;
 }
 
 .dropdown-content button {
@@ -101,7 +121,8 @@ color: var(--primary-color);
 }
 
 .dropdown-content button:hover {
-  background-color: var(--secondary-color);
+  color: #f9f9f9;
+  background-color: var(--primary-color);
 }
 
 .dropdown:hover .dropdown-content {
@@ -109,7 +130,7 @@ color: var(--primary-color);
 }
 
 .dropdown:hover .dropbtn {
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
 }
 
 .pagination {
@@ -142,6 +163,34 @@ color: var(--primary-color);
   outline: 1px solid var(--primary-color);
 }
 
+
+@media (max-width: 1200px) {
+  .shop-cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .searchPageSec {
+    grid-template-columns: repeat(5, 1fr); 
+}
+}
+@media (max-width: 1000px) {
+  .shop-cards {
+    grid-template-columns: repeat(3, 1fr); 
+  }
+  .searchPageSec {
+    grid-template-columns: repeat(4, 1fr); 
+  }
+}
+
+@media (max-width: 800px) {
+  .shop-cards {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+  .searchPageSec {
+    grid-template-columns: repeat(3, 1fr); 
+  }
+}
+
 @media screen and (max-width: 480px) {
   .shopMain{
     max-height: 100vh;
@@ -158,6 +207,7 @@ color: var(--primary-color);
     text-align: center;
     font-size: 10px;
     font-weight: 500;
+    min-width: auto;
   }
   .shop-cards {
     grid-template-columns: repeat(2, 1fr);}

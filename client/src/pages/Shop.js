@@ -64,8 +64,8 @@ console.log(currentProducts)
             <button className="dropbtn">Sort by Price</button>
             <div className="dropdown-content">
               <button onClick={() => setSortOrder('Relative')}>Relative</button>
-              <button onClick={() => setSortOrder('asc')}>Price: Low to High</button>
-              <button onClick={() => setSortOrder('desc')}>Price: High to Low</button>
+              <button onClick={() => setSortOrder('asc')}>Low to High</button>
+              <button onClick={() => setSortOrder('desc')}>High to Low</button>
             </div>
           </div>
         </div>

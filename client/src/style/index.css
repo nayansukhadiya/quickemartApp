@@ -19,7 +19,7 @@
  } */
 :root {
   --primary-color: #4379F2;
-  --secondary-color: #d8f5ff;
+  --secondary-color: #86acfe;
   --btn-back-color: #d4e3ff;
   --accent-color: #ffd54f;
   --background-color: #f5f5f5;
@@ -34,14 +34,21 @@
   font-weight: 400;
   margin: 0;
   padding: 0;
+  font-family: "Sora", sans-serif;
 }
-
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 body {
   color: var(--text-color);
-  font-family: "Sora", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+#root{
+  height: 100%;
 }
 button {
   outline: none;
@@ -50,8 +57,10 @@ button {
   cursor: pointer;
 }
 .main {
+  height: calc(100% - 90px);
   width: min(80%, 1250px);
-  margin: auto;
+  margin: 0 auto;
+  padding-top: 90px;
 }
 .card .addToCart {
   width: 100%;
@@ -157,6 +166,8 @@ a {
 @media screen and (max-width: 480px) {
   .main {
     width: 95%;
+    overflow: scroll;
+    height: calc(100% - 165.5px);
   }
 
   .decrementBtn,

@@ -25,9 +25,10 @@ function ProDetailPage() {
       .then((data) => {
         const filterPro = data.filter((item) => item.ProIDSearch === query);
         setDetailArr(filterPro);
-
+        console.log(query);
+        console.log(filterPro);
         const totalProducts = data.length;
-        const currentIndex = parseInt(searchQuery[2], 10);
+        const currentIndex = parseInt(1, 10);
 
         let relatedArrPrev = [];
         if (currentIndex === 0) {
@@ -57,6 +58,7 @@ function ProDetailPage() {
 
         const relatedArr = [...relatedArrPrev, ...relatedArrNext];
         setRelatedPro(relatedArr);
+        console.log(relatedArr);
 
         if (filterPro.length > 0) {
           const productImages = filterPro[0].images || [];
@@ -84,19 +86,6 @@ function ProDetailPage() {
           <div className="mainImg">
             <img src={mainImage} alt="Main product" />
           </div>
-
-          <div className="moreImg">
-            {images.map((imgSrc, index) => (
-              <div className="img-section-mini" key={index}>
-                <img
-                  src={imgSrc}
-                  alt={`Product thumbnail ${index}`}
-                  onClick={() => setMainImage(imgSrc)}
-                  className="thumbnail-img"
-                />
-              </div>
-            ))}
-          </div>
         </div>
 
         <div className="detail-section-product part-section">
@@ -109,8 +98,11 @@ function ProDetailPage() {
           <h3 className="ProTitle">
             {detailArr.length > 0 && detailArr[0].title}
           </h3>
-
           <h5>{detailArr.length > 0 && detailArr[0].subTitle}</h5>
+          <div className="directLink">
+            <Link  to={`/search?q=${searchQuery[1]}`}>{searchQuery[1]}</Link>
+            <Link  to={`/search?q=${detailArr.length > 0 && detailArr[0].brand}`}>{detailArr.length > 0 && detailArr[0].brand}</Link>
+          </div>
           <Link
             className="allBrandPro"
             to={`/search?q=${detailArr.length > 0 && detailArr[0].brand}`}
@@ -126,7 +118,8 @@ function ProDetailPage() {
             detailArr.length > 0 && detailArr[0].price,
             detailArr.length > 0 && detailArr[0].mrp
           ) && (
-            <p>
+            <p className="detailDis">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-badge-percent"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/></svg>
               {percentageDifference(
                 detailArr.length > 0 && detailArr[0].price,
                 detailArr.length > 0 && detailArr[0].mrp
@@ -165,6 +158,7 @@ function ProDetailPage() {
               <h5>Name</h5>
               <p>{detailArr.length > 0 && detailArr[0].title}</p>
             </div>
+
             <div>
               <h5>Brand</h5>
               <p>{detailArr.length > 0 && detailArr[0].brand}</p>
@@ -179,18 +173,22 @@ function ProDetailPage() {
       <div className="relativeSec">
         <h3 className="relatedTitle">Related Products</h3>
         <div className="relatedPro">
-          {relatedPro.map((item) => (
-            <HomeCard
-              key={item.id}
-              img={item.images[0]}
-              name={item.title}
-              mrp={item.mrp}
-              price={item.price}
-              subTitle={item.subTitle}
-              ProIDSearch={item.ProIDSearch}
-              category={item.category}
-            />
-          ))}
+          {relatedPro.length > 0 ? (
+            relatedPro.map((item) => (
+              <HomeCard
+                key={item.id}
+                img={item.images[0] || "fallback_image_url"} // Add fallback image
+                name={item.title}
+                mrp={item.mrp}
+                price={item.price}
+                subTitle={item.subTitle}
+                ProIDSearch={item.ProIDSearch}
+                category={item.category}
+              />
+            ))
+          ) : (
+            <p>No related products found.</p> // Message for empty state
+          )}
         </div>
         <Link to={`/shop?id=${searchQuery[1]}`} className="showRelatedMore">
           All Related Products

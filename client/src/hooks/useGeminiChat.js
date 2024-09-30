@@ -26,7 +26,7 @@ const useGeminiChat = () => {
       responseSchema: {
         type: "object",
         description:
-          "Return ingredients, their quantities,brand,packet_size,NumberQuantity and a summary for the requested recipe",
+          "Return ingredients, their quantities, brand, packet_size, NumberQuantity, and a summary for the requested recipe",
         properties: {
           recipe: {
             type: "object",
@@ -37,7 +37,8 @@ const useGeminiChat = () => {
               },
               summary: {
                 type: "string",
-                description: "A brief summary of the recipe or dish response",
+                description:
+                  "A brief summary of the recipe or dish response and user input",
               },
               ingredients: {
                 type: "array",
@@ -47,12 +48,12 @@ const useGeminiChat = () => {
                     ingredient_name: {
                       type: "string",
                       description:
-                        "Name of the ingredient if don't specified than give the popular brand",
+                        "Name of the ingredient, if not specified, provide a popular brand",
                     },
                     brand: {
                       type: "string",
                       description:
-                        "give me any popular brand relating to the ingredient_name (e.g.,if any soft drink brand is not clear by user than give popular like coca cola thumbs up that is applied with all ingredient_name",
+                        "Popular brand relating to the ingredient_name (e.g., Coca-Cola, Pepsi for soft drinks)",
                     },
                     quantity: {
                       type: "string",
@@ -64,16 +65,25 @@ const useGeminiChat = () => {
                         "Packet size available in the store (e.g., 500g, 1kg)",
                     },
                     NumberQuantity: {
-                      type: "Number",
+                      type: "number",
                       description:
-                        "give me number of packet or item (e.g., 4 piece of potato, 2 pack of coca cola",
+                        "Number of packets or items (e.g., 4 potatoes, 2 packs of Coca-Cola)",
                     },
                   },
+                  required: [
+                    "ingredient_name",
+                    "brand",
+                    "quantity",
+                    "packet_size",
+                    "NumberQuantity",
+                  ],
                 },
               },
             },
+            required: ["name", "summary", "ingredients"], // All fields are required
           },
         },
+        required: ["recipe"], // Recipe object itself is required
       },
     };
 
@@ -105,18 +115,15 @@ const useGeminiChat = () => {
     setIsLoading(true);
 
     try {
-      // Adjust the prompt to be dynamic and interpret user intent
-      const promptMessage = `I want you to create a shopping cart based on my request. Here's my dish request: ${userInput}. If the number of people is not specified, make it for 1 person. Please provide a list of ingredients and quantities in JSON format.`;
+      const promptMessage = `I want you to create a shopping cart based on my request. Here's my dish request: ${userInput}. If the number of people is not specified, make it for 1 person. Please provide a list of ingredients and quantities in JSON format. dont give the food order link always make sure give the ingredient of the food`;
 
       const result = await chatSession.sendMessage(promptMessage);
       console.log("API Response:", result.response);
 
-      // Extract and parse the JSON response
       const responseText =
         result.response?.candidates?.[0]?.content?.parts?.[0]?.text;
       const parsedResponse = responseText ? JSON.parse(responseText) : null;
 
-      // Set the response dynamically
       setResponse(parsedResponse?.recipe);
     } catch (err) {
       setError(err.message);

@@ -4,7 +4,7 @@ import '../style/logo.css'
 function Logo() {
   return (
     <div className="logo-section">
-    <Link to='/'><h3>RapidShop</h3></Link>
+    <Link to='/'><h3>Urban24</h3></Link>
     </div>
   )
 }

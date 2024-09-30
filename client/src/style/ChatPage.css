@@ -20,19 +20,22 @@
 .textChat {
     position: relative;
     font-size: 1.3rem;
-    width: 100%;
+    width: 80%;
     padding: 20px 0;
-    min-height: 120px;
+    min-height: 220px;
+    margin: 0 auto;
     text-align: center;
     height: fit-content;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
+    align-items: baseline;
     overflow: hidden; 
 }
 
 .textChat span {
     position: absolute;
+    bottom: 0;
     font-weight: 700;
     /* left: 50%; */
     transform: translate(20px,50%);
@@ -181,8 +184,11 @@
     .ChatSuggestCardSec{
         justify-content: start;
     }
+    .textChat {
+        width: 100%;
+    }
     .textChat span {
-        font-size: 20px;
+        font-size: 25px;
     }
     .textChat{
         font-size: 14px;

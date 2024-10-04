@@ -21,7 +21,7 @@
     width: fit-available;
 }
 .searchBar:focus-within {
-    background-color: var(--secondary-color); 
+    border-color: var(--secondary-color); 
 }
 .searchBar{
     width: min(60%,700px);

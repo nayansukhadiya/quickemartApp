@@ -26,13 +26,16 @@
   gap: 10px;
 }
 .mainImg {
-  padding: 50px;
+  /* background-image: url('https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_544,w_504/Mall_Assets/placeholder_image.png'); */
+  background-size: cover;
+  background-repeat: no-repeat;
   border-radius: 14px;
   border: 1px solid rgb(179, 179, 179);
   width: 100%;
-  max-width: 500px;
-  height: 500px;
+  max-width: 600px;
+  height: 600px;
   display: grid;
+  overflow: hidden;
   place-items: center;
 }
 
@@ -76,8 +79,7 @@
 .img-section-mini img {
   height: 100%;
   width: 100%;
-  object-fit: contain;
-  aspect-ratio: 1;
+  object-fit: cover;
 }
 
 .ProductPageDir {

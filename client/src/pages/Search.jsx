@@ -3,89 +3,82 @@ import { useLocation } from "react-router-dom";
 import HomeCard from "../components/HomeCard";
 import "../style/home.css";
 import "../style/shop.css";
-import useFetchProducts from "../hooks/useFetchProducts";
 import _ from "lodash";
 
 function Search() {
+  const location = useLocation();
   const [qValue, setQValue] = useState("");
   const [filterProduct, setFilterProduct] = useState([]);
-  const { allProductData, loading, error } = useFetchProducts();
-  const location = useLocation();
   const [searchArr, setSearchArr] = useState([]);
-
-  useEffect(() => {
-    if (allProductData) {
-      setSearchArr(allProductData);
-    }
-  }, [allProductData]);
-
   const query = new URLSearchParams(location.search).get("q");
 
-  const debouncedSearchTerm = useMemo(
-    () =>
-      _.debounce((term) => {
-        if (searchArr.length > 0) {
-          const filtered = searchArr.filter((item) => {
-            const titleMatch = item.title
-              ?.toLowerCase()
-              .includes(term.toLowerCase());
-            const categoryMatch = item.catOfPro
-              ?.toLowerCase()
-              .includes(term.toLowerCase());
-            const brandMatch = item.brand
-              ?.toLowerCase()
-              .includes(term.toLowerCase());
-            return titleMatch || categoryMatch || brandMatch;
-          });
-          setFilterProduct(filtered);
+  useEffect(() => {
+    const fetchFilteredProducts = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/products/search?q=${query}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
-      }, 300),
+        const data = await response.json();
+        // Ensure data is an array
+        setSearchArr(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Error fetching filtered products:', error);
+      }
+    };
+    if (query) fetchFilteredProducts();
+  }, [query]);
+
+  const debouncedSearchTerm = useMemo(
+    () => _.debounce((term) => {
+      if (searchArr.length > 0) {
+        const lowerTerm = term.toLowerCase();
+        const filtered = searchArr.filter((item) => {
+          return (
+            item.title2?.toLowerCase().includes(lowerTerm) ||
+            item.category?.toLowerCase().includes(lowerTerm) ||
+            item.sub_category?.toLowerCase().includes(lowerTerm) ||
+            item.brand?.toLowerCase().includes(lowerTerm)
+          );
+        });
+        setFilterProduct(filtered.slice(0, 50)); // Limiting to first 50 results
+      }
+    }, 300),
     [searchArr]
   );
 
   useEffect(() => {
     if (query) {
       setQValue(query);
-    } else if (searchArr.length > 0) {
-      setFilterProduct(searchArr.slice(0, 50));
-    }
-  }, [query, searchArr]);
-
-  useEffect(() => {
-    if (qValue) {
-      debouncedSearchTerm(qValue);
-    } else if (searchArr.length > 0) {
+      debouncedSearchTerm(query);
+    } else {
       setFilterProduct(searchArr.slice(0, 50));
     }
     return () => {
       debouncedSearchTerm.cancel();
     };
-  }, [qValue, debouncedSearchTerm, searchArr]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  }, [query, debouncedSearchTerm]);
 
   return (
-    <>
-      <div className="shop-cards searchPageSec">
-        {filterProduct.length > 0 ? (
-          filterProduct.map((item) => (
-            <HomeCard
-              key={item.ProIDSearch}
-              img={item.image}
-              name={item.title}
-              mrp={item.mrp}
-              price={item.price}
-              subTitle={item.subTitle}
-              ProIDSearch={item.ProIDSearch}
-              category={item.category}
-            />
-          ))
-        ) : (
-          <p>No products found.</p>
-        )}
-      </div>
-    </>
+    <div className="shop-cards searchPageSec">
+      {filterProduct.length > 0 ? (
+        filterProduct.map((item) => (
+          <HomeCard
+          key={item.p_id} 
+          ProIDSearch={item.p_id} 
+          img={item.img} 
+          name={item.name} 
+          price={item.price}
+          mrp={item.mrp} 
+          unit={item.unit} 
+          category={item.category} 
+          discount={item.discount} 
+          />
+        ))
+      ) : (
+        <p>No products found for "{qValue}".</p>
+      )}
+    </div>
   );
 }
 

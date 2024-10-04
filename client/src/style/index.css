@@ -59,7 +59,8 @@ button {
   padding-top: 90px;
 }
 .card .addToCart {
-  width: 100%;
+  width: 93%;
+  margin: auto auto 10px auto;
 }
 .addToCart {
   z-index: 10;

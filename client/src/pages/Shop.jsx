@@ -23,17 +23,25 @@ function Shop() {
   useEffect(() => {
     const fetchData = async () => {
       if (urlId) {
-        const response = await fetch(`json/${urlId}.json`);
-        const data = await response.json();
-        if (sortOrder === 'Relative') {
-          setCategoryArr(data);
-        } else {
-          sortArr(data, sortOrder);
+        try {
+          const response = await fetch(`http://localhost:5000/products?sub_category=${urlId}`);
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data = await response.json();
+          if (sortOrder === 'Relative') {
+            setCategoryArr(data);
+          } else {
+            sortArr(data, sortOrder);
+          }
+        } catch (error) {
+          console.error('Error fetching products:', error);
         }
       }
     };
     fetchData();
   }, [urlId, sortOrder]);
+  
 
   const sortArr = (data, order) => {
     let sortedArr = [...data];
@@ -76,14 +84,15 @@ console.log(currentProducts)
           <div className="shop-cards">
             {currentProducts.map((item, index) => (
               <HomeCard
-                key={index}
-                img={item.images[0]}
-                name={item.title}
-                mrp={item.mrp}
-                price={item.price}
-                subTitle={item.subTitle}
-                ProIDSearch={item.ProIDSearch}
-                category={item.category}
+              key={item.p_id} 
+              ProIDSearch={item.p_id} 
+              img={item.img} 
+              name={item.name} 
+              price={item.price}
+              mrp={item.mrp} 
+              unit={item.unit} 
+              category={item.category} 
+              discount={item.discount} 
               />
             ))}
           </div>

@@ -9,14 +9,16 @@ const CardSlider = ({ children }) => {
 
   const updateCardsToShow = () => {
     if (sliderRef.current) {
-      const sliderWidth = sliderRef.current.offsetWidth;
       const cardElements = sliderRef.current.children;
+      if (cardElements.length === 0) return; // Ensure there are children elements
+      const sliderWidth = sliderRef.current.offsetWidth;
       const cardWidth = cardElements[0]?.offsetWidth || 300; 
-      const margin = parseFloat(window.getComputedStyle(cardElements[0]).marginRight) || 20; 
+      const margin = parseFloat(window.getComputedStyle(cardElements[0])?.marginRight || '20px'); // Check for valid margin
       const cardsVisible = Math.floor(sliderWidth / (cardWidth + margin));
       setCardsToShow(cardsVisible > 0 ? cardsVisible : 1);
     }
   };
+  
 
   useEffect(() => {
     updateCardsToShow();

@@ -3,6 +3,7 @@ import HomeCard from "../components/HomeCard";
 import CardSlider from "../components/CardSlider";
 import "../style/cardSlider.css";
 import { Link } from "react-router-dom";
+
 const ProductList = ({ category }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);

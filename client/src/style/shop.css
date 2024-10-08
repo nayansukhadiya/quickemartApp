@@ -5,18 +5,18 @@
   position: relative;
 }
 .sideNav {
-position: sticky;
-top: 0;
-left: 0;
-height: fit-content;
-max-height: unset;
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: fit-content;
+  max-height: unset;
 }
 
 .sideNav nav ul {
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: 10px;
+  border: 1px solid lightgrey;
 }
 .sideNav nav ul li {
   position: relative;
@@ -27,54 +27,59 @@ max-height: unset;
 .shopPage .bottomPart {
   display: none;
 }
-.sideNav nav ul li a{
+.sideNav nav ul li a {
   overflow: hidden;
-  position: relative;
-  min-width: 200px;
-  display: flex;
-  align-items: center;
-  white-space: break-spaces;
-  width: 100%;
-  padding: 8px 0;
-  gap: 15px;
-  background-color: #ffffff;
-  border-bottom: 1px solid rgb(209, 209, 209);
-  font-weight: 600;
-  font-size: 14px;
+    position: relative;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    white-space: break-spaces;
+    width: 100%;
+    padding: 8px 0;
+    gap: 15px;
+    font-weight: 600;
+    font-size: 14px;
+    width: 260px;
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 14px;
+    background: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    max-width: 350px;
+    border-top: 1px solid lightgray;
+    margin-right: 5px;
+  }
+  .sideNav nav ul li a.activeBtn{
+    border-radius: 0px 5px 5px 0px;
+    background: var(--secondary-color);
+    border-right: 4px solid var(--primary-color);
 }
-.sideNav nav ul li a:before{
-  position: absolute;
-    content: '';
-    right: -3px;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 54px;
-    width: 7px;
-    border-radius: 5px;
-    background-color: var(--primary-color);
+.sideNav nav ul li a:hover {
+  color: var(--primary-color);
 }
-.sideNav nav ul li a:hover{
-color: var(--primary-color);
-}
-.sideNav nav ul li a img{
-  width: 50px;
-  height: 50px;
+.sideNav nav ul li a img {
+  width: 70px;
+  height: 70px;
   aspect-ratio: 1;
 }
 .shop-cards {
   grid-template-columns: repeat(5, 1fr);
-    display: grid;
-    gap: 10px;
-    padding: 10px;
-    background: #f3faff;
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+  background: #f3faff;
 }
-.searchPageSec{
+.searchPageSec {
   grid-template-columns: repeat(6, 1fr);
 }
 .shop-cards .card {
   width: 100%;
 }
-.shopMain{
+.shopMain {
   max-height: unset;
   overflow: auto;
 }
@@ -163,36 +168,35 @@ color: var(--primary-color);
   outline: 1px solid var(--primary-color);
 }
 
-
 @media (max-width: 1200px) {
   .shop-cards {
     grid-template-columns: repeat(4, 1fr);
   }
 
   .searchPageSec {
-    grid-template-columns: repeat(5, 1fr); 
-}
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 @media (max-width: 1000px) {
   .shop-cards {
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr);
   }
   .searchPageSec {
-    grid-template-columns: repeat(4, 1fr); 
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (max-width: 800px) {
   .shop-cards {
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr);
   }
   .searchPageSec {
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media screen and (max-width: 480px) {
-  .shopMain{
+  .shopMain {
     max-height: 100vh;
     overflow: auto;
   }
@@ -202,7 +206,7 @@ color: var(--primary-color);
     max-height: 100vh;
     overflow: auto;
   }
-    .sideNav nav ul li a {
+  .sideNav nav ul li a {
     flex-direction: column;
     text-align: center;
     font-size: 10px;
@@ -210,5 +214,6 @@ color: var(--primary-color);
     min-width: auto;
   }
   .shop-cards {
-    grid-template-columns: repeat(2, 1fr);}
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

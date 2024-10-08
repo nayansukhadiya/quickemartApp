@@ -1,0 +1,13 @@
+/* .CartGenPage .card-slider-container {
+    width: 86%;
+} */
+.ingredientName{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    background-color: rgb(162, 207, 247);
+    padding: 20px;
+    border-radius: 30px;
+    margin: 20px 0;
+}

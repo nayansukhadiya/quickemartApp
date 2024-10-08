@@ -1,0 +1,94 @@
+.chatHistory {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    margin: 0 auto; 
+    overflow: auto;
+    /* padding-right: 10px; */
+}
+
+.Message {
+    display: flex;
+    gap: 10px;
+    width: fit-content;
+    max-width: 80%;
+    white-space: break-spaces;
+    border-radius: 20px;
+    overflow-wrap: break-word; 
+    transition: all 0.6s ease-in-out;
+}
+.logoChat{
+    background-color: var(--secondary-color);
+    width: 45px;
+    height: 45px;
+    display: flex;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+.logoChat svg{
+    width: 25px;
+    height: 25px;
+}
+.logoChat svg path{
+    fill: var(--primary-color);
+}
+.cartTitle{
+    padding: 15px 20px;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 18px;
+}
+.userMessage {
+    align-self: flex-end;
+    color: white;
+    background: var(--primary-color, #d1e7dd); 
+    text-align: right; 
+    padding: 20px;
+}
+
+.chatDetail {
+    align-self: flex-start;
+    background: var(--admin-message-bg-color, #ffffff); 
+    text-align: left; 
+    -webkit-border-radius: 20px;
+-webkit-border-top-left-radius: 0;
+-moz-border-radius: 20px;
+-moz-border-radius-topleft: 0;
+border-radius: 20px;
+border-top-left-radius: 0;
+}
+.linkSec{
+    padding: 5px 20px;
+    width: auto;
+    border-top: 1px solid rgb(202, 202, 202);
+    color: var(--primary-color);
+}
+.linkSec a{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+}
+.linkSec svg{
+    width: 17px;
+    height: 17px;
+    margin-left: 2px;
+}
+.Message .summary{
+    width: auto;
+    padding: 0px 20px 10px 20px;
+}
+
+.Message .summary ul{
+    padding-top: 10px;
+}
+.Message .summary ul li {
+    font-size: 14px;
+    padding: 3px 0;
+    list-style-position: inside;
+}
+@media (max-width: 480px) {
+    
+}

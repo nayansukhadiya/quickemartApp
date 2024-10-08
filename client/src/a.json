@@ -1,0 +1,143 @@
+[
+    {
+        "recipe": {
+            "name": "Pav Bhaji with Cold Drinks",
+            "ingredients": [
+                {
+                    "NumberQuantity": 1,
+                    "brand": "Pepsi",
+                    "ingredient_name": "Pepsi",
+                    "packet_size": "2L",
+                    "quantity": "2L"
+                },
+                {
+                    "NumberQuantity": 1,
+                    "brand": "Amul",
+                    "ingredient_name": "Butter",
+                    "packet_size": "200g",
+                    "quantity": "200g"
+                },
+                {
+                    "NumberQuantity": 1,
+                    "brand": "Kissan",
+                    "ingredient_name": "Tomato Ketchup",
+                    "packet_size": "500g",
+                    "quantity": "500g"
+                },
+                {
+                    "NumberQuantity": 1,
+                    "brand": "Maggi",
+                    "ingredient_name": "Noodles",
+                    "packet_size": "70g",
+                    "quantity": "70g"
+                },
+                {
+                    "NumberQuantity": 1,
+                    "brand": "Fortune",
+                    "ingredient_name": "Cooking Oil",
+                    "packet_size": "1L",
+                    "quantity": "1L"
+                },
+                {
+                    "NumberQuantity": 1,
+                    "brand": "Cadbury",
+                    "ingredient_name": "Chocolate Bar",
+                    "packet_size": "50g",
+                    "quantity": "50g"
+                },
+                {
+                    "NumberQuantity": 1,
+                    "brand": "Nestle",
+                    "ingredient_name": "Milk Powder",
+                    "packet_size": "500g",
+                    "quantity": "500g"
+                },
+                {
+                    "NumberQuantity": 2,
+                    "brand": "Aashirvaad",
+                    "ingredient_name": "Atta",
+                    "packet_size": "5kg",
+                    "quantity": "10kg"
+                },
+                {
+                    "NumberQuantity": 1,
+                    "brand": "Haldiram",
+                    "ingredient_name": "Pav Bhaji Masala",
+                    "packet_size": "100g",
+                    "quantity": "100g"
+                },
+                {
+                    "NumberQuantity": 2,
+                    "brand": "Amul",
+                    "ingredient_name": "Cheese",
+                    "packet_size": "200g",
+                    "quantity": "400g"
+                },
+                {
+                    "NumberQuantity": 1,
+                    "brand": "Patanjali",
+                    "ingredient_name": "Turmeric Powder",
+                    "packet_size": "100g",
+                    "quantity": "100g"
+                },
+                {
+                    "NumberQuantity": 1,
+                    "brand": "MDH",
+                    "ingredient_name": "Red Chilli Powder",
+                    "packet_size": "100g",
+                    "quantity": "100g"
+                },
+                {
+                    "NumberQuantity": 1,
+                    "brand": "Tata",
+                    "ingredient_name": "Salt",
+                    "packet_size": "1kg",
+                    "quantity": "1kg"
+                },
+                {
+                    "NumberQuantity": 1,
+                    "brand": "Everest",
+                    "ingredient_name": "Cumin Powder",
+                    "packet_size": "100g",
+                    "quantity": "100g"
+                },
+                {
+                    "NumberQuantity": 1,
+                    "brand": "MDH",
+                    "ingredient_name": "Coriander Powder",
+                    "packet_size": "100g",
+                    "quantity": "100g"
+                },
+                {
+                    "NumberQuantity": 1,
+                    "brand": "Aashirvaad",
+                    "ingredient_name": "Sugar",
+                    "packet_size": "1kg",
+                    "quantity": "1kg"
+                },
+                {
+                    "NumberQuantity": 1,
+                    "brand": "Amul",
+                    "ingredient_name": "Milk",
+                    "packet_size": "1L",
+                    "quantity": "1L"
+                },
+                {
+                    "NumberQuantity": 1,
+                    "brand": "Britannia",
+                    "ingredient_name": "Butter",
+                    "packet_size": "200g",
+                    "quantity": "200g"
+                },
+                {
+                    "NumberQuantity": 1,
+                    "brand": "Patanjali",
+                    "ingredient_name": "Ginger Garlic Paste",
+                    "packet_size": "200g",
+                    "quantity": "200g"
+                }
+            ]
+        },
+        "summary": "A Pav Bhaji recipe for 5 people with a selection of cold drinks. "
+    }
+]

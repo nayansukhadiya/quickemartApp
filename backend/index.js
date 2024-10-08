@@ -26,7 +26,8 @@ mongoose.connect('mongodb+srv://nayansukhadiya31:nayandata@cluster0.b04ap.mongod
 
 // Sample route for searching products
 app.get('/products/search', async (req, res) => {
-  const query = req.query.q?.toLowerCase();
+  const query = req.query.q
+
   if (!query) {
     return res.status(400).json({ error: 'Query parameter is required' });
   }
@@ -66,6 +67,40 @@ app.get('/products', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+
+app.get('/products/filter', async (req, res) => {
+
+  try {
+    const { q, category } = req.query; // Destructure q and category from req.query
+    const filterCriteria = {
+      $or: [] // Initialize an array for OR conditions
+    };
+
+    // If a name (q) is provided, use it for filtering
+    if (q) {
+      filterCriteria.$or.push({ name: { $regex: q, $options: 'i' } }); // Search by name
+    }
+
+    // If a category is provided, include it in the criteria
+    if (category) {
+      filterCriteria.$or.push({ sub_category: { $regex: category, $options: 'i' } }); // Filter by the given category
+    }
+
+    // Execute the query with the built filter criteria
+    const filteredProducts = await Product.find(filterCriteria);
+    res.json(filteredProducts);
+  } catch (error) {
+    console.error('Error fetching filtered products:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+
+
+
+//detail page 
 app.get('/detail', async (req, res) => {
   const p_id = req.query.p_id; // Assuming you pass p_id as a query parameter
   try {

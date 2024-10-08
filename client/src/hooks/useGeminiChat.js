@@ -6,14 +6,25 @@ const useGeminiChat = () => {
   const [chatSession, setChatSession] = useState(null);
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
+  const [brandArr,setBrandsArr] = useState(null)
   const [isLoading, setIsLoading] = useState(false);
+  const [namePro,setNamePro] = useState(null);
 
   useEffect(() => {
     if (!apiKey) {
       setError("Missing GEMINI_API_KEY environment variable");
       return;
     }
-
+fetch("./data/name.json")
+.then(res => res.json())
+.then((Data)=> {
+  setNamePro(Data)
+})
+fetch("./data/brand.json")
+.then(res => res.json())
+.then((Data)=> {
+  setBrandsArr(Data)
+})
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
@@ -26,14 +37,14 @@ const useGeminiChat = () => {
       responseSchema: {
         type: "object",
         description:
-          "Return ingredients, their quantities, brand, packet_size, NumberQuantity, and a summary for the requested recipe",
+          "Return ingredients,if the user give the any request like hi hey then give back to the greet answer not include than cart in title , and always give return emoji where require i will give the 6000 products name and the give the categories also make sure you will give the more relatable product from the my data and most relatable data is must be on the first their quantities, brand, packet_size, NumberQuantity, and a summary for the requested recipe if the recipe is than the mentioned otherwise mentioned cart",
         properties: {
           recipe: {
             type: "object",
             properties: {
               name: {
                 type: "string",
-                description: "Name of the recipe",
+                description: "give name of the recipe according to user prompt like veg,non-veg,vegen Name of the recipe not found then do not mentioned if the recipe is not like veg,non-veg or vegan then simply return name of the related cart type or user prompt",
               },
               summary: {
                 type: "string",
@@ -48,12 +59,12 @@ const useGeminiChat = () => {
                     ingredient_name: {
                       type: "string",
                       description:
-                        "Name of the ingredient, if not specified, provide a popular brand",
+                        `Name of the ingredient, if not specified, provide a popular brand i will give you the 6000 products do not use Cold Drink instead use soft drinks name do mean i want est match on top name array make sure if the possible than give me the name from the arr ${namePro}`,
                     },
                     brand: {
                       type: "string",
                       description:
-                        "Popular brand relating to the ingredient_name (e.g., Coca-Cola, Pepsi for soft drinks)",
+                        `Popular brand relating to the ingredient_name i giving you the name of every brand is ${brandArr} and fresh_vegetable and fresh_fruits are brand is Local Vendors (e.g., Coca-Cola, Pepsi for soft drinks)`,
                     },
                     quantity: {
                       type: "string",
@@ -69,6 +80,10 @@ const useGeminiChat = () => {
                       description:
                         "Number of packets or items (e.g., 4 potatoes, 2 packs of Coca-Cola)",
                     },
+                    ProCategory: {
+                      type: "string",
+                      description: "give me the relative category as you thought that is my category from the database dry_fruits, masala, chocolates, chips, whole_spices, oil, instance_noodles, juices, rice, crunchies, nuts_makhana, milk_drink, coffee, cookies, other_dals, fresh_vegetable, herbs_seasoning, i_c_tub, soft_drinks, dark_chocolates, candies_gums, sticks, peanut_spread, poha, namkeens, tea, fresh_fruit, spread_dips, cheese, popcorn, green_herbal_tea, pickels_chutney, nachos, soda, ice_tea_cold_coffee, cakes_pels, cream_biscuits, korean_noodles, fruit_syrups, i_c_cup, sugar, asian_sauces, energy_bars, wafers_biscuit, oats, drink_mixture, bread, othe_sweets, ghee, salted_plain, batter, marle_digestive, enrgy_drinks, cooking_sauces, pastes, filter_coffee, salt, moong_dals, flakes, cones, tomato_ketchup, flour, olive_oil, panner_cream, cooking_pasta, i_c_sandwiches, toor_dals, bread, kids_cereals, hakka_noodles, chana_dals, yogurts, soup, i_c_kulfi, butter, cup_noodles, jaggery, kabuli_chana, instance_pasta, gulab_jamun, chocolate_spread, milk, choco_syrups, frozen_vegetable, laddoo, rusk_khari, pav, papad, kaju_katli, peda, rasgulla, chana, curd, burfi, jams, soan_papdi, vinegar_sauses give according to you other wise return defult "
+                    }
                   },
                   required: [
                     "ingredient_name",
@@ -110,8 +125,7 @@ const useGeminiChat = () => {
     if (!chatSession) {
       setError("Chat session not yet initialized");
       return;
-    }
-
+    }console.log(userInput)
     setIsLoading(true);
 
     try {

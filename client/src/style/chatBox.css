@@ -62,9 +62,9 @@
   -webkit-animation: spin 1s infinite;
   animation: spin 1s infinite;
   border-radius: 100%;
-  -webkit-box-shadow: 8px 0 0 1.6px var(--secondary-color), 0 8px 0 1.6px var(--background-color),
+  -webkit-box-shadow: 8px 0 0 1.6px black, 0 8px 0 1.6px var(--background-color),
   0 -8px 0 1.6px var(--background-color), -8px 0 0 1.6px var(--background-color);
-box-shadow: 8px 0 0 1.6px var(--secondary-color), 0 8px 0 1.6px var(--background-color),
+box-shadow: 8px 0 0 1.6px black, 0 8px 0 1.6px var(--background-color),
   0 -8px 0 1.6px var(--background-color), -8px 0 0 1.6px var(--background-color);
 }
 

@@ -21,6 +21,10 @@ function Shop() {
   }, [location.search]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
+  useEffect(() => {
     const fetchData = async () => {
       if (urlId) {
         try {

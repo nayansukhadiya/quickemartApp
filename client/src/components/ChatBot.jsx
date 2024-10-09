@@ -23,7 +23,7 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
     e.preventDefault();
     if (prompt.trim() === "") return;
     setAnsGet(true);
-    const promptMessage = `I want you to create a shopping cart based on my request. Here's my  dish request: ${prompt} And food Style is must be ${foodPmt}. Please provide a list of ingredients and quantities in JSON format.`;
+    const promptMessage = `I want you to create a shopping cart based on my request. Here's my  dish request to how to cook and give me require every minor single ingredients ofr every single dish: ${prompt} And food Style is must be ${foodPmt}. Please provide a list of ingredients and quantities in JSON format.`;
 
     try {
       await sendMessage(promptMessage);

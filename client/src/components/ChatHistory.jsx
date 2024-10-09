@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import HomeCard from "./HomeCard"; // Ensure this is needed
 import UserContext from "../context/UserContext";
 import useChatProduct from "../hooks/useChatProduct";
@@ -10,7 +10,18 @@ function ChatHistory() {
   const { chatArray } = useContext(UserContext);
   const { filterPro, notPreArr } = useChatProduct(chatArray);
 
-  console.log(chatArray);
+  // Ref to scroll to the bottom
+  const chatEndRef = useRef(null);
+
+  // Function to scroll to the bottom
+  const scrollToBottom = () => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Scroll to the bottom whenever chatArray changes
+  useEffect(() => {
+    scrollToBottom();
+  }, [chatArray]);
 
   return (
     <div className="chatHistory">
@@ -20,7 +31,7 @@ function ChatHistory() {
         chatArray.map((item) => {
           if (item.author === "user") {
             return (
-              <div className="userMessage Message" key={item.id}>
+              <div className="userMessage Message shadowMes" key={item.id}>
                 {item.message}
               </div>
             );
@@ -29,7 +40,7 @@ function ChatHistory() {
             item.rapidRecipeArr.length > 0
           ) {
             return (
-              <div className="adminMessage Message" key={item.id}>
+              <div className="adminMessage Message " key={item.id}>
                 <div className="logoMessage">
                   <div className="logoChat">
                     <svg
@@ -48,20 +59,22 @@ function ChatHistory() {
                     </svg>
                   </div>
                 </div>
-                <div className="chatDetail">
+                <div className="chatDetail shadowMes">
                   <h3 className="cartTitle">
                     {item.rapidRecipeArr[0]?.recipe?.name}
                   </h3>
                   <p className="summary">
                     {item.rapidRecipeArr[0]?.summary}
-                  
-                  <ul className="ingredientsList">
-                    {item.rapidRecipeArr[0]?.recipe?.ingredients?.map(
-                      (ingredient, index) => (
-                        <li key={index}>{ingredient.ingredient_name}</li> // Assuming `name` field exists in ingredient object
-                      )
-                    )}
-                  </ul></p>
+                    <ul className="ingredientsList">
+                      {item.rapidRecipeArr[0]?.recipe?.ingredients?.map(
+                        (ingredient, index) => (
+                          <li key={index}>
+                            {ingredient.ingredient_name}
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </p>
                   <div className="linkSec">
                     <Link to={`/cartgen?id=${item.cart_id}`}>
                       View Your Cart{" "}
@@ -90,6 +103,8 @@ function ChatHistory() {
           return null;
         })
       )}
+      {/* The div that triggers scrolling to the bottom */}
+      <div ref={chatEndRef} />
     </div>
   );
 }

@@ -1,4 +1,3 @@
-// ChatHistory.js
 import React, { useContext } from "react";
 import HomeCard from "./HomeCard"; // Ensure this is needed
 import UserContext from "../context/UserContext";

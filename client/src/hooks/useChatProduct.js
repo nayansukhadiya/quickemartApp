@@ -32,30 +32,30 @@ function useChatProduct() {
           cart_id: arr[0]?.cart_id, 
           cart_name: arr[0]?.rapidRecipeArr[0]?.recipe?.name,
           author: arr[0]?.author,
-          products: {} // Change to an object to hold the product lists
+          products: {} 
         };
   
-        // Correct the iteration to use the current ingredient's data
         results.forEach((productList, index) => {
-          const ingredient = ingredients[index];  // Use the current ingredient in the loop
+          const ingredient = ingredients[index];  
           const ingredientName = ingredient?.ingredient_name;
   
           arr2.products[ingredientName] = productList.map(product => ({
-            resBrand: ingredient.brand,  // Use the current ingredient's brand
-            resUnit: ingredient.packet_size,  // Use the current ingredient's unit
-            resQuantity: ingredient.quantity,  // Use the current ingredient's quantity
-            resCategory: ingredient.ProCategory,  // Use the current ingredient's category
-            resNumberQuantity: ingredient.NumberQuantity,  // Use the current ingredient's number quantity
+            resBrand: ingredient.brand, 
+            resUnit: ingredient.packet_size,  
+            resQuantity: ingredient.quantity,  
+            resCategory: ingredient.ProCategory,  
+            resNumberQuantity: ingredient.NumberQuantity, 
             productName: product.name,
+            ingredientsDetail: ingredient.ingredientsDetail,
+            AverageColor: ingredient.AverageColor,
             data: {
-              summary: arr[0]?.rapidRecipeArr[0]?.summary,  // Keep this if it's the same for all products
+              summary: arr[0]?.rapidRecipeArr[0]?.summary,  
               ...product 
             }
           }));
         });
   
-        // Update chatArrPro state with the new structured object
-        setChatArrPro(prev => [...prev, arr2]); // Append arr2 to the previous state
+        setChatArrPro(prev => [...prev, arr2]); 
         console.log("Structured products object:", arr2);
   
         return arr2;

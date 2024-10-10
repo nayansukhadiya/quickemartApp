@@ -86,10 +86,12 @@ button {
   /* background-image: linear-gradient(to top, #dfe9f3 0%, white 100%); */
 
 }
-.main {
-  height: calc(100% - 90px);
+.main{
   width: min(80%, 1250px);
   margin: 0 auto;
+}
+.main {
+  height: calc(100% - 90px);
   padding-top: 90px;
 }
 .card .addToCart {
@@ -198,6 +200,9 @@ a {
     overflow: scroll;
     height: calc(100% - 165.5px);
   }
+.main{
+  width: 95%;
+}
 
   .decrementBtn,
   .incrementBtn {

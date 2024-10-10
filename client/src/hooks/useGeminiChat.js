@@ -6,25 +6,25 @@ const useGeminiChat = () => {
   const [chatSession, setChatSession] = useState(null);
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
-  const [brandArr,setBrandsArr] = useState(null)
+  const [brandArr, setBrandsArr] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [namePro,setNamePro] = useState(null);
+  const [namePro, setNamePro] = useState(null);
 
   useEffect(() => {
     if (!apiKey) {
       setError("Missing GEMINI_API_KEY environment variable");
       return;
     }
-fetch("./data/name.json")
-.then(res => res.json())
-.then((Data)=> {
-  setNamePro(Data)
-})
-fetch("./data/brand.json")
-.then(res => res.json())
-.then((Data)=> {
-  setBrandsArr(Data)
-})
+    fetch("./data/name.json")
+      .then((res) => res.json())
+      .then((Data) => {
+        setNamePro(Data);
+      });
+    fetch("./data/brand.json")
+      .then((res) => res.json())
+      .then((Data) => {
+        setBrandsArr(Data);
+      });
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
@@ -37,14 +37,15 @@ fetch("./data/brand.json")
       responseSchema: {
         type: "object",
         description:
-        "Return ingredients. If the user gives any request like 'hi' or 'hey,' then give a greeting answer and not include the cart in the title. If at any time the user asks for a combo, then give all the names to make it, not just every dish as it is. (For example: if the user wants a combo of a burger and pizza, don't just give the dish name as ingredients; provide how to make the dish and give the proper list of minor to major ingredients for each single dish). Always include an emoji where required. I will give you 6,000 product names and the categories. Make sure you return the most relatable product from my data, and the most relevant data must be listed first, including quantities, brand, packet size, number quantity, and a summary for the requested recipe. If the recipe is mentioned, provide it; otherwise, mention the cart.",
+          "Return ingredients. If the user gives any request like 'hi' or 'hey,' then give a greeting answer and not include the cart in the title. If at any time the user asks for a combo, then give all the names to make it, not just every dish as it is. (For example: if the user wants a combo of a burger and pizza, don't just give the dish name as ingredients; provide how to make the dish and give the proper list of minor to major ingredients for each single dish). Always include an emoji where required. I will give you 6,000 product names and the categories. Make sure you return the most relatable product from my data, and the most relevant data must be listed first, including quantities, brand, packet size, number quantity, and a summary for the requested recipe. If the recipe is mentioned, provide it; otherwise, mention the cart.",
         properties: {
           recipe: {
             type: "object",
             properties: {
               name: {
                 type: "string",
-                description: "and some time user demand the more dish than give all dishes respectively ingredients give name of the recipe according to user prompt like veg,non-veg,vegen Name of the recipe not found then do not mentioned if the recipe is not like veg,non-veg or vegan then simply return name of the related cart type or user prompt",
+                description:
+                  "and some time user demand the more dish than give all dishes respectively ingredients give name of the recipe according to user prompt like veg,non-veg,vegen Name of the recipe not found then do not mentioned if the recipe is not like veg,non-veg or vegan then simply return name of the related cart type or user prompt",
               },
               summary: {
                 type: "string",
@@ -58,13 +59,11 @@ fetch("./data/brand.json")
                   properties: {
                     ingredient_name: {
                       type: "string",
-                      description:
-                        `Please don't give name like that Coca-Cola instead give me coca cola Name of the ingredient, if not specified, provide a popular brand i will give you the 6000 products do not use Cold Drink instead use soft drinks name do mean i want est match on top name array make sure if the possible than give me the name from the arr ${namePro}`,
+                      description: `Please don't give name like that Coca-Cola instead give me coca cola Name of the ingredient, if not specified, provide a popular brand i will give you the 6000 products do not use Cold Drink instead use soft drinks name do mean i want est match on top name array make sure if the possible than give me the name from the arr ${namePro}`,
                     },
                     brand: {
                       type: "string",
-                      description:
-                        `Popular brand relating to the ingredient_name i giving you the name of every brand is ${brandArr} and fresh_vegetable and fresh_fruits are brand is Local Vendors (e.g., Coca-Cola, Pepsi for soft drinks)`,
+                      description: `Popular brand relating to the ingredient_name i giving you the name of every brand is ${brandArr} and fresh_vegetable and fresh_fruits are brand is Local Vendors (e.g., Coca-Cola, Pepsi for soft drinks)`,
                     },
                     quantity: {
                       type: "string",
@@ -82,7 +81,17 @@ fetch("./data/brand.json")
                     },
                     ProCategory: {
                       type: "string",
-                      description: "give me the relative category as you thought that is my category from the database dry_fruits, masala, chocolates, chips, whole_spices, oil, instance_noodles, juices, rice, crunchies, nuts_makhana, milk_drink, coffee, cookies, other_dals, fresh_vegetable, herbs_seasoning, i_c_tub, soft_drinks, dark_chocolates, candies_gums, sticks, peanut_spread, poha, namkeens, tea, fresh_fruit, spread_dips, cheese, popcorn, green_herbal_tea, pickels_chutney, nachos, soda, ice_tea_cold_coffee, cakes_pels, cream_biscuits, korean_noodles, fruit_syrups, i_c_cup, sugar, asian_sauces, energy_bars, wafers_biscuit, oats, drink_mixture, bread, othe_sweets, ghee, salted_plain, batter, marle_digestive, enrgy_drinks, cooking_sauces, pastes, filter_coffee, salt, moong_dals, flakes, cones, tomato_ketchup, flour, olive_oil, panner_cream, cooking_pasta, i_c_sandwiches, toor_dals, bread, kids_cereals, hakka_noodles, chana_dals, yogurts, soup, i_c_kulfi, butter, cup_noodles, jaggery, kabuli_chana, instance_pasta, gulab_jamun, chocolate_spread, milk, choco_syrups, frozen_vegetable, laddoo, rusk_khari, pav, papad, kaju_katli, peda, rasgulla, chana, curd, burfi, jams, soan_papdi, vinegar_sauses give according to you other wise return defult "
+                      description:
+                        "give me the relative category as you thought that is my category from the database dry_fruits, masala, chocolates, chips, whole_spices, oil, instance_noodles, juices, rice, crunchies, nuts_makhana, milk_drink, coffee, cookies, other_dals, fresh_vegetable, herbs_seasoning, i_c_tub, soft_drinks, dark_chocolates, candies_gums, sticks, peanut_spread, poha, namkeens, tea, fresh_fruit, spread_dips, cheese, popcorn, green_herbal_tea, pickels_chutney, nachos, soda, ice_tea_cold_coffee, cakes_pels, cream_biscuits, korean_noodles, fruit_syrups, i_c_cup, sugar, asian_sauces, energy_bars, wafers_biscuit, oats, drink_mixture, bread, othe_sweets, ghee, salted_plain, batter, marle_digestive, enrgy_drinks, cooking_sauces, pastes, filter_coffee, salt, moong_dals, flakes, cones, tomato_ketchup, flour, olive_oil, panner_cream, cooking_pasta, i_c_sandwiches, toor_dals, bread, kids_cereals, hakka_noodles, chana_dals, yogurts, soup, i_c_kulfi, butter, cup_noodles, jaggery, kabuli_chana, instance_pasta, gulab_jamun, chocolate_spread, milk, choco_syrups, frozen_vegetable, laddoo, rusk_khari, pav, papad, kaju_katli, peda, rasgulla, chana, curd, burfi, jams, soan_papdi, vinegar_sauses give according to you other wise return defult ",
+                    },
+                    ingredientsDetail: {
+                      type: "string",
+                      description:
+                        "give the detail of the summary of the ingredients give the detail of product might like what it is how use? ",
+                    },
+                    AverageColor: {
+                      type: "string",
+                      description: "give me the  color of that product make sure give perfect in hex color code"
                     }
                   },
                   required: [
@@ -91,6 +100,8 @@ fetch("./data/brand.json")
                     "quantity",
                     "packet_size",
                     "NumberQuantity",
+                    "ingredientsDetail",
+                    "AverageColor"
                   ],
                 },
               },
@@ -125,7 +136,8 @@ fetch("./data/brand.json")
     if (!chatSession) {
       setError("Chat session not yet initialized");
       return;
-    }console.log(userInput)
+    }
+    console.log(userInput);
     setIsLoading(true);
 
     try {

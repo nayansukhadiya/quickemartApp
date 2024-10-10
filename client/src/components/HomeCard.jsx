@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AddCartBtn from "./AddCartBtn";
 import { FastAverageColor } from "fast-average-color";
 
-function HomeCard({ img, name, mrp, price, ProIDSearch, subTitle, category, discount,unit }) {
+function HomeCard({ img, name, mrp, price, ProIDSearch, category, discount,unit }) {
   const [averageColor, setAverageColor] = useState(null);
   const imgRef = useRef(null);
 
@@ -90,7 +90,6 @@ function HomeCard({ img, name, mrp, price, ProIDSearch, subTitle, category, disc
         price={price}
         mrp={mrp}
         unit={unit}
-        subTitle={subTitle}
         category={category}
         discount={discount}
       />

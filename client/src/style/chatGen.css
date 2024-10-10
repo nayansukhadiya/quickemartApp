@@ -1,16 +1,72 @@
-/* .CartGenPage .card-slider-container {
-    width: 86%;
-} */
-.ingredientName{
-    display: flex;
-    flex-direction: column;
+.ingredientPart {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* flex-direction: column; */
     align-items: center;
-    gap: 40px;
-    /* background-color: rgb(221, 221, 221); */
-    padding: 20px;
-    border-radius: 30px;
+    gap: 20px;
     margin: 20px 0;
 }
-.proSliderSec{
+
+.DetailSec {
+    grid-column: span 1;
     width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    background-image: linear-gradient(135deg, #86acfe66 0%, #bbd1ffd7 80%, #c0cfff 100%);
+}
+.sliderSecIn{
+
+    grid-column: span 4;
+}
+.DetailSec h3 {
+    font-size: 20px;
+    font-weight: 600;
+}
+.prdDetail{
+    grid-column: span 4;
+    white-space: pre-wrap;
+}
+.prdDetail h3{
+    font-size: 14px;
+    font-weight: 400;
+}
+.proSliderSec {
+    width: 100%;
+}
+
+.cardSecTitle {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.cardSecTitle1 {
+    margin-bottom: 15px;
+}
+.upperSec{
+    /* width: 100%;
+    display: flex; */
+}
+.cardSecTitle2 {
+    margin: 14px 0;
+}
+
+.relatedPro1 .card {
+    width: 160px;
+}
+
+.perfectPro .card {
+    width: 200px;
+}
+
+.cartInCard {
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.productCardSliders {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }

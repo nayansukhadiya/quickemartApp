@@ -43,7 +43,7 @@ const ProductList = ({ category }) => {
             name={item.title}
             mrp={item.mrp}
             price={item.price}
-            subTitle={item.subTitle}
+            unit={item.unit}
             ProIDSearch={item.ProIDSearch}
             category={item.category}
           />

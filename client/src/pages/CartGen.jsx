@@ -26,7 +26,6 @@ function CartGen() {
     } else {
       setFindCart(null); // Cart not found
     }
-    console.log("product is the ", cart);
   }, [query, chatArrPro]);
 
   useEffect(() => {
@@ -36,66 +35,141 @@ function CartGen() {
 
       Object.keys(findCart.products).forEach((key) => {
         const productArray = findCart.products[key];
+        const cleanedKey = key.replace(/-/g, " ");
 
-        const cleanedKey = key.replace(/-/g, ' ');
-        console.log("cleanedKey is the ",cleanedKey.toLowerCase())
-        let filteredBySubCategoryAndUnit = productArray.filter((product) => {
-          const resUnitAsFloat = Math.floor(parseFloat(product.resUnit));
-          return (
-            product.data.name.toLowerCase().includes(cleanedKey.toLowerCase()) &&
-            product.data.sub_category === product.resCategory &&
-            product.data.unit.includes(resUnitAsFloat)&&
-            !product.data.unit.includes("combo")
+        // Function to apply filters with priority
+        function applyFilters(
+          productArray,
+          cleanedKey,
+          resCategory,
+          resBrand,
+          resUnit
+        ) {
+          const searchKey = cleanedKey.toLowerCase();
+          const resUnitAsFloat = Math.floor(parseFloat(resUnit));
+          let filterApplied = false;
+          let filtered = [];
+
+          // Priority 1: Exact match on name, sub_category, unit (excluding "combo")
+          filtered = productArray.filter(
+            (product) =>
+              product.data?.name?.toLowerCase().includes(searchKey) &&
+              product.data?.sub_category === resCategory &&
+              product.data?.unit?.includes(resUnitAsFloat) &&
+              !product.data?.unit?.includes("combo")
           );
-        });
 
-        if (filteredBySubCategoryAndUnit.length === 0) {
-          filteredBySubCategoryAndUnit = productArray.filter(
-            (product) =>
-              product.data.sub_category
-                .toLowerCase()
-                .includes(product.resCategory) &&
-              product.data.name.toLowerCase().includes(cleanedKey.toLowerCase()) &&
-              product.data.brand === product.resBrand &&
-              !product.data.unit.includes("combo")
-          );
-        }
-        if (filteredBySubCategoryAndUnit.length === 0) {
-          filteredBySubCategoryAndUnit = productArray.filter(
-            (product) =>
-              product.data.name.toLowerCase().includes(cleanedKey.toLowerCase()) &&
-            product.data.brand === product.resBrand &&
-            !product.data.unit.includes("combo")
+          if (filtered.length > 0) {
+            filterApplied = true;
+          }
+
+          // Priority 2: Match name, sub_category, and brand (excluding "combo")
+          if (filtered.length === 0) {
+            filtered = productArray.filter(
+              (product) =>
+                product.data?.sub_category
+                  ?.toLowerCase()
+                  .includes(resCategory.toLowerCase()) &&
+                product.data?.name?.toLowerCase().includes(searchKey) &&
+                product.data?.brand === resBrand &&
+                !product.data?.unit?.includes("combo")
             );
-        }
-        if (filteredBySubCategoryAndUnit.length === 0) {
-          filteredBySubCategoryAndUnit = productArray.filter(
-            (product) =>
-              product.data.name.toLowerCase().includes(cleanedKey.toLowerCase()) &&
-            !product.data.unit.includes("combo")
+
+            if (filtered.length > 0) {
+              filterApplied = true;
+            }
+          }
+
+          // Priority 3: Match name and brand only (excluding "combo")
+          if (filtered.length === 0) {
+            filtered = productArray.filter(
+              (product) =>
+                product.data?.name?.toLowerCase().includes(searchKey) &&
+                product.data?.brand === resBrand &&
+                !product.data?.unit?.includes("combo")
             );
+
+            if (filtered.length > 0) {
+              filterApplied = true;
+            }
+          }
+
+          // Priority 4: Match name and sub_category (excluding "combo")
+          if (filtered.length === 0) {
+            filtered = productArray.filter(
+              (product) =>
+                product.data?.sub_category === resCategory &&
+                product.data?.name?.toLowerCase().includes(searchKey) &&
+                !product.data?.unit?.includes("combo")
+            );
+
+            if (filtered.length > 0) {
+              filterApplied = true;
+            }
+          }
+
+          // Priority 5: Match sub_category and brand (excluding "combo")
+          if (filtered.length === 0) {
+            filtered = productArray.filter(
+              (product) =>
+                product.data?.sub_category === resCategory &&
+                product.data?.brand === resBrand &&
+                !product.data?.unit?.includes("combo") &&
+                !product.data?.unit?.toLowerCase().includes("local vendor")
+            );
+
+            if (filtered.length > 0) {
+              filterApplied = true;
+            }
+          }
+
+          // Priority 6: Match name only (excluding "combo")
+          if (filtered.length === 0) {
+            filtered = productArray.filter(
+              (product) =>
+                product.data?.name?.toLowerCase().includes(searchKey) &&
+                !product.data?.unit?.includes("combo")
+            );
+
+            if (filtered.length > 0) {
+              filterApplied = true;
+            }
+          }
+
+          return filtered;
         }
 
-        filtered[key] = filteredBySubCategoryAndUnit;
+        filtered[key] = applyFilters(
+          productArray,
+          cleanedKey,
+          productArray[0]?.resCategory,
+          productArray[0]?.resBrand,
+          productArray[0]?.resUnit
+        );
+
+        // Related Products Filtering
         let relatedFilterPro = productArray.filter(
           (product) =>
-            product.data.name.toLowerCase().includes(cleanedKey.toLowerCase()) &&
-            product.data.sub_category === product.resCategory  &&
-            !product.data.unit.includes("combo")
+            product.data?.name
+              ?.toLowerCase()
+              .includes(cleanedKey.toLowerCase()) &&
+            product.data?.sub_category === productArray[0]?.resCategory &&
+            product.data?.brand === productArray[0]?.resBrand &&
+            !product.data?.unit?.includes("combo") &&
+            product.data?.price <= productArray[0]?.price + 20 &&
+            product.data?.price >= productArray[0]?.price - 20
         );
+
+        // Fallback filter
         if (relatedFilterPro.length === 0) {
           relatedFilterPro = productArray.filter(
             (product) =>
-            product.data.sub_category === product.resCategory
-            &&
-            product.data.name.toLowerCase().includes(cleanedKey.toLowerCase())
-            //  &&
-            // product.data.brand === product.resBrand
+              product.data?.sub_category === productArray[0]?.resCategory &&
+              !product.data?.unit?.includes("combo")
           );
-        } 
-        const filteredIds = filteredBySubCategoryAndUnit.map(
-          (product) => product.data.p_id
-        );
+        }
+
+        const filteredIds = filtered[key].map((product) => product.data.p_id);
         const uniqueRelatedProducts = relatedFilterPro.filter(
           (product) => !filteredIds.includes(product.data.p_id)
         );
@@ -105,14 +179,25 @@ function CartGen() {
 
       setFilteredProducts(filtered);
       setRelatedProd(relatedFilter);
-
-      console.log("filter product is the ", filtered);
-      console.log("related filter product is the ", relatedFilter);
     }
   }, [findCart]);
 
-  if (!findCart) {
-    return <p>Cart not found or loading...</p>;
+  // Function to format quantity and unit
+  function formatCartQuantityAndUnit(name, quantity) {
+    if (name) {
+      let nameArr = name.split(" ");
+      let number = parseFloat(nameArr[0]);
+      let unitTxt = nameArr.slice(1).join(" ");
+      let sum = number * quantity;
+
+      if (isNaN(sum)) {
+        return quantity; // Return just the quantity if sum is NaN
+      } else {
+        return `${sum} ${unitTxt}`; // Return the calculated sum and unit
+      }
+    } else {
+      return "No data available"; // Handle case when name is not provided
+    }
   }
 
   // Render product cards
@@ -136,35 +221,72 @@ function CartGen() {
     );
   };
 
+  if (!findCart) {
+    return <p>Cart not found or loading...</p>;
+  }
+
   return (
     <div className="CartGenPage">
       {filteredProducts ? (
         Object.keys(filteredProducts).map((key) => (
-          <div key={key} className="ingredientName">
-            <div className="detailIngredient">
-              <p>Ingredient: {key}</p>
-              <p>Quantity: {findCart.products[key][0].resQuantity || "0"}</p>
-              <p>Unit: {findCart.products[key][0].resUnit}</p>
-            </div>
+          <div className="ingredientSec">
+            <div key={key} className="ingredientPart">
+              <div className="DetailSec cartInCard">
+                <div>
+                  <p>Ingredient</p>
+                  <h3>{key}</h3>
+                </div>
+                <div>
+                  <p>Quantity</p>
+                  <h3>{findCart.products[key][0]?.resQuantity || "0"}</h3>
+                </div>
+                <div>
+                  <p>Available packet size</p>
+                  <h3>{findCart.products[key][0]?.resUnit}</h3>
+                </div>
+                <div>
+                  <p>Total Required</p>
+                  <h3>
+                    {formatCartQuantityAndUnit(
+                      findCart.products[key][0]?.resUnit,
+                      findCart.products[key][0]?.resQuantity
+                    )}
+                  </h3>
+                </div>
+                <div className="prdDetail">
+                  <p>Product Detail</p>
+                  <h3>{findCart.products[key][0]?.ingredientsDetail}</h3>
+                </div>
+              </div>
+<div className="sliderSecIn">
+              {filteredProducts[key]?.length > 0 ? (
+                <div className="proSliderSec perfectPro">
+                  <h1 className="cardSecTitle cardSecTitle1">
+                    Perfect Product for you
+                  </h1>
+                  <CardSlider>
+                    {renderProducts(filteredProducts[key], "product")}
+                  </CardSlider>
+                </div>
+              ) : (
+                <div>No products found</div>
+              )}
 
-            <div className="proSliderSec">
-              <h1>Perfect cart</h1>
-              <CardSlider>
-                {renderProducts(filteredProducts[key], "product")}
-              </CardSlider>
-            </div>
-
-            <div className="proSliderSec">
-              <h1>related product</h1>
-              <CardSlider>
-                {relatedProd[key] &&
-                  renderProducts(relatedProd[key], "related product")}
-              </CardSlider>
-            </div>
+              {relatedProd[key]?.length > 0 && (
+                <div className="proSliderSec relatedPro1">
+                  <h1 className="cardSecTitle cardSecTitle2">
+                    You Might Prefer That
+                  </h1>
+                  <CardSlider>
+                    {renderProducts(relatedProd[key], "related product")}
+                  </CardSlider>
+                </div>
+              )}
+            </div></div>
           </div>
         ))
       ) : (
-        <p>Loading products...</p>
+        <p>Loading Products...</p>
       )}
     </div>
   );

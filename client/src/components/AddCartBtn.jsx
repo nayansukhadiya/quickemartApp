@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useMemo } from "react";
 import UserContext from "../context/UserContext";
 
-function AddCartBtn({ ProIDSearch, img, price, mrp, name, subTitle, category }) {
+function AddCartBtn({ ProIDSearch, img, price, mrp, name, unit, category }) {
   const { cartPro, setCartPro } = useContext(UserContext);
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
@@ -37,8 +37,8 @@ function AddCartBtn({ ProIDSearch, img, price, mrp, name, subTitle, category }) 
       } else {
         // Remove item if quantity is 0
         deleteItem(ProIDSearch, category);
-        return 1;  // Reset quantity to 1 for UI purposes
-      }
+        return 1;  
+       }
     });
   };
 
@@ -63,14 +63,13 @@ function AddCartBtn({ ProIDSearch, img, price, mrp, name, subTitle, category }) 
         price,
         mrp,
         name,
-        subTitle,
+        unit,
         category,
         ProTotalAmount: price,  // Initial total amount is price when quantity is 1
       },
     ]);
   };
 
-  // Update the cart whenever quantity changes and product is added
   useEffect(() => {
     if (added) {
       setCartPro((prevCartPro) =>

@@ -1,30 +1,44 @@
 // components/CardSlider.js
 
 import React, { useRef, useEffect, useState } from 'react';
-import '../style/cardSlider.css'; 
+import '../style/cardSlider.css';
 
 const CardSlider = ({ children }) => {
   const sliderRef = useRef(null);
-  const [cardsToShow, setCardsToShow] = useState(3); 
+  const [cardsToShow, setCardsToShow] = useState(3);
+  const [isOverflowing, setIsOverflowing] = useState(false); // Track if the slider overflows
 
   const updateCardsToShow = () => {
     if (sliderRef.current) {
       const cardElements = sliderRef.current.children;
       if (cardElements.length === 0) return; // Ensure there are children elements
       const sliderWidth = sliderRef.current.offsetWidth;
-      const cardWidth = cardElements[0]?.offsetWidth || 300; 
+      const cardWidth = cardElements[0]?.offsetWidth || 300;
       const margin = parseFloat(window.getComputedStyle(cardElements[0])?.marginRight || '20px'); // Check for valid margin
       const cardsVisible = Math.floor(sliderWidth / (cardWidth + margin));
       setCardsToShow(cardsVisible > 0 ? cardsVisible : 1);
     }
   };
-  
+
+  const checkOverflow = () => {
+    if (sliderRef.current) {
+      const isOverflow = sliderRef.current.scrollWidth > sliderRef.current.clientWidth;
+      setIsOverflowing(isOverflow); // Update overflow state
+    }
+  };
 
   useEffect(() => {
     updateCardsToShow();
-    window.addEventListener('resize', updateCardsToShow);
+    checkOverflow(); // Check for overflow on initial render
+    window.addEventListener('resize', () => {
+      updateCardsToShow();
+      checkOverflow(); // Recheck on resize
+    });
     return () => {
-      window.removeEventListener('resize', updateCardsToShow);
+      window.removeEventListener('resize', () => {
+        updateCardsToShow();
+        checkOverflow(); // Cleanup on component unmount
+      });
     };
   }, []);
 
@@ -37,7 +51,11 @@ const CardSlider = ({ children }) => {
 
   return (
     <div className='card-slider-container'>
-      <button className='slider-button prev' onClick={() => scroll('prev')}>&lt;</button>
+      {isOverflowing && (
+        <button className='slider-button prev' onClick={() => scroll('prev')}>
+          &lt;
+        </button>
+      )}
       <div className='card-slider' ref={sliderRef}>
         {React.Children.map(children, (child, index) => (
           <div className='card-item' key={index}>
@@ -45,7 +63,11 @@ const CardSlider = ({ children }) => {
           </div>
         ))}
       </div>
-      <button className='slider-button next' onClick={() => scroll('next')}>&gt;</button>
+      {isOverflowing && (
+        <button className='slider-button next' onClick={() => scroll('next')}>
+          &gt;
+        </button>
+      )}
     </div>
   );
 };

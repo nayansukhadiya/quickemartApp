@@ -8,14 +8,14 @@ function HomeBanner() {
         <div className='HomeBannerBox' style={{background: "#bfffbf"}}>
             <div className='detailHomeBanner'>
                 <p>Fresh Vegetable & Fruits</p>
-                <Link to='/shop?id=vegetable'>order now</Link>
+                <Link to='/shop?catid=sweets&subid=vegetable'>order now</Link>
             </div>
             <img src='https://sojmayimpex.com/wp-content/uploads/2021/05/about_veg.png'></img>
         </div>
         <div className='HomeBannerBox' style={{background: "#bfffbf"}}>
             <div className='detailHomeBanner'>
                 <p>Fresh Vegetable & Fruits</p>
-                <Link to='/shop?id=vegetable'>order now</Link>
+                <Link to='/shop?catid=sweets&subid=vegetable'>order now</Link>
             </div>
             <img src='https://rukminim2.flixcart.com/image/1160/1160/xif0q/chocolate/y/a/p/350-desserts-brownie-5-cadbury-dairy-milk-silk-original-imahfjehtcg4q9qa.jpeg?q=90'></img>
         </div>

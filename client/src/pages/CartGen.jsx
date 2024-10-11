@@ -191,12 +191,12 @@ function CartGen() {
       let sum = number * quantity;
 
       if (isNaN(sum)) {
-        return quantity; // Return just the quantity if sum is NaN
+        return quantity; 
       } else {
-        return `${sum} ${unitTxt}`; // Return the calculated sum and unit
+        return `${sum} ${unitTxt}`; 
       }
     } else {
-      return "No data available"; // Handle case when name is not provided
+      return "No data available"; 
     }
   }
 

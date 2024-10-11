@@ -31,7 +31,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--secondary-color); /* color of the scroll thumb */
+  background-color: #7aa4ff; /* color of the scroll thumb */
   border-radius: 20px;
 }
 @font-face {
@@ -86,13 +86,13 @@ button {
   /* background-image: linear-gradient(to top, #dfe9f3 0%, white 100%); */
 
 }
-.main{
+.main,.cartPageIn{
   width: min(80%, 1250px);
   margin: 0 auto;
 }
 .main {
-  height: calc(100% - 90px);
-  padding-top: 90px;
+  height: calc(100% - 86px);
+  padding-top: 86px;
 }
 .card .addToCart {
   width: auto;

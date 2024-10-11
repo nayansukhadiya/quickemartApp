@@ -9,7 +9,7 @@ function ProCategory() {
     <div className="headProCategory"><p>Category</p><Link>Sell all Category</Link></div>
     <div className='ProCategorySec'>
       {navCat.slice(0,16).map((item)=> (
-        <Link className="CatProBox" to={`/shop?id=${item.linkName}`}>
+        <Link className="CatProBox" to={`/shop?catid=sweets&subid=${item.linkName}`}>
           <div className="catImgBox"> <img
                     src={require(`../assets/cat/cat_${item.linkName}.png`)}
                     alt={item.label}

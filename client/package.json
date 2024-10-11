@@ -9,7 +9,11 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.7",
     "client": "file:",
+    "crypto-browserify": "^3.12.0",
+    "dotenv": "^16.4.5",
     "fast-average-color": "^9.4.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.1",
@@ -28,6 +32,7 @@
       "react-app/jest"
     ]
   },
+  "proxy": "http://localhost:5000",
   "browserslist": {
     "production": [
       ">0.2%",

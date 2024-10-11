@@ -3,15 +3,16 @@ import HomeCard from "../components/HomeCard";
 import CardSlider from "../components/CardSlider";
 import "../style/cardSlider.css";
 import { Link } from "react-router-dom";
+import config from "../config";
 
 function FilteredProductsPage({ subCategory }) {
   const [products, setProducts] = useState([]);
-
+console.log(`${config.apiUrl}/products?sub_category=${subCategory}`)
   useEffect(() => {
     const fetchFilteredProducts = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/products?sub_category=${subCategory}`
+          `${config.apiUrl}/products?sub_category=${subCategory}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -38,7 +39,7 @@ function FilteredProductsPage({ subCategory }) {
       <div className="FeaturesHome">
         <div className="category-title-sec">
           <h2 className="category-title"></h2>
-          <Link to={`/shop?id=${subCategory}`}>See All</Link>
+          <Link to={`/shop?catid=sweets&subid=${subCategory}`}>See All</Link>
         </div>
         <CardSlider>
           {/* Ensure products is not empty before mapping */}

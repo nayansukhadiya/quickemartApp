@@ -10,22 +10,22 @@
 
 .DetailSec {
     grid-column: span 1;
-    width: 100%;
+    width: auto;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    /* grid-template-columns: repeat(4, 1fr); */
     gap: 20px;
     background-image: linear-gradient(135deg, #86acfe66 0%, #bbd1ffd7 80%, #c0cfff 100%);
 }
 .sliderSecIn{
 
-    grid-column: span 4;
+    /* grid-column: span 4; */
 }
 .DetailSec h3 {
     font-size: 20px;
     font-weight: 600;
 }
 .prdDetail{
-    grid-column: span 4;
+    /* grid-column: span 4; */
     white-space: pre-wrap;
 }
 .prdDetail h3{
@@ -43,6 +43,9 @@
 
 .cardSecTitle1 {
     margin-bottom: 15px;
+}
+.sliderSecIn{
+    grid-column: 4 span;
 }
 .upperSec{
     /* width: 100%;

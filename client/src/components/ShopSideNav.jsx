@@ -1,30 +1,35 @@
-import React, { useContext } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
-import UserContext from '../context/UserContext'
 import "../style/shop.css";
 
-function ShopSideNav() {
-  const { navCat } = useContext(UserContext); 
+function ShopSideNav({ catArr , ActiveBtn}) {
+  // Ensure catArr is not null/undefined and has at least one object with subcategories
+  const subcategories = catArr && catArr.length > 0 && catArr[0].subcategories ? catArr[0].subcategories : [];
 
   return (
-      <div className="sideNav">
-        <nav className="navbar">
-          <ul>
-            {navCat.map((item, index) => (
-              <li key={index}>
-                <NavLink to={`?id=${item.linkName}`}>
-                  {/* Dynamically load the image based on the label */}
+    <div className="sideNav">
+      <nav className="navbar">
+        <ul>
+          {subcategories.length > 0 ? (
+            subcategories.map((item, index) => (
+              <li key={index} className={ActiveBtn === item ? "ActiveBtn" : ""} >
+                <NavLink to={`?catid=${catArr[0].category}&subid=${item}`}>
+                  <div className="sideBarImgSec">
+                    <div className="bgImg"></div>
                   <img
-                    src={require(`../assets/cat/cat_${item.linkName}.png`)}
-                    alt={item.label}
-                  />
-                  {item.label}
+                    src={require(`../assets/cat/cat_chips.png`)} 
+                    alt={item}  
+                  /></div>
+                  {item.replace(/_/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase()) || "Unknown"}  
                 </NavLink>
               </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
+            ))
+          ) : (
+            <li>No subcategories available</li>  
+          )}
+        </ul>
+      </nav>
+    </div>
   );
 }
 

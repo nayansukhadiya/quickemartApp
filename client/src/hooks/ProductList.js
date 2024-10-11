@@ -33,7 +33,7 @@ const ProductList = ({ category }) => {
     <div>
       <div className="category-title-sec">
         <h2 className="category-title">{category}</h2>
-        <Link to={`/shop?id=${category}`}>See All</Link>
+        <Link to={`/shop?catid=sweets&subid=${category}`}>See All</Link>
       </div>
       <CardSlider>
         {products.slice(0, 15).map((item) => (

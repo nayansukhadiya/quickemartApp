@@ -25,7 +25,7 @@ const Footer = () => {
         <ul>
           {navItems.map((item, index) => (
             <li key={index}>
-              <NavLink to={`shop?id=${item.linkName}`}>
+              <NavLink to={`shop?catid=sweets&subid=${item.linkName}`}>
                 {item.label}
               </NavLink>
             </li>

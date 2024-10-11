@@ -6,6 +6,7 @@ import Logo from "./Logo";
 import { useLocation } from 'react-router-dom';
 import OtherActionBtn from "./OtherActionBtn";
 
+
 function Navbar() {
   const [searchActive, setSearchActive] = useState(false);
   const location = useLocation(); 

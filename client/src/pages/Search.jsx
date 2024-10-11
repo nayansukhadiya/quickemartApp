@@ -4,6 +4,7 @@ import HomeCard from "../components/HomeCard";
 import "../style/home.css";
 import "../style/shop.css";
 import _ from "lodash";
+import config from "../config";
 
 function Search() {
   const location = useLocation();
@@ -15,7 +16,7 @@ function Search() {
   useEffect(() => {
     const fetchFilteredProducts = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/products/search?q=${query}`);
+        const response = await fetch(`${config.apiUrl}/products/search?q=${query}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

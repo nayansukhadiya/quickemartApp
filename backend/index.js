@@ -1,22 +1,20 @@
-// Import the required modules
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import express from 'express';
 import cors from 'cors';
-import Product from './models/Product.js'; // Ensure to add .js extension
+import Product from './models/Product.js'; 
+import Category from './models/Category.js';
 
-// Load environment variables from .env file
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware to parse JSON
 app.use(express.json());
 app.use(cors());
 
 // Connect to MongoDB Atlas
-mongoose.connect('mongodb+srv://nayansukhadiya31:nayandata@cluster0.b04ap.mongodb.net/data?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to MongoDB Atlas');
   })
@@ -67,6 +65,27 @@ app.get('/products', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+// categories wise saw
+app.get('/categories', async (req, res) => {
+  const categoryName = req.query.cat_name; 
+  try {
+    let category;
+    if (categoryName) {
+      category = await Category.find({
+        category: { $regex: new RegExp(categoryName, 'i') } // 'i' for case-insensitive
+      });
+    } else {
+      category = await Category.find();
+    }
+
+    res.json(category); // Return the fetched category as JSON
+  } catch (error) {
+    console.error('Error fetching category:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
 
 app.get('/products/filter', async (req, res) => {

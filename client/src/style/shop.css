@@ -1,9 +1,11 @@
 .shopPage {
-  display: flex;
+  display: grid;
+  grid-template-columns: 20% 80%;
   margin-top: 20px;
   gap: 15px;
   position: relative;
 }
+
 .sideNav {
   position: sticky;
   top: 0;
@@ -16,8 +18,9 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  border: 1px solid lightgrey;
+  border: 1px solid rgb(240, 240, 240);
 }
+
 .sideNav nav ul li {
   position: relative;
   list-style: none;
@@ -27,66 +30,92 @@
 .shopPage .bottomPart {
   display: none;
 }
+
 .sideNav nav ul li a {
   overflow: hidden;
-    position: relative;
-    min-width: 200px;
-    display: flex;
-    align-items: center;
-    white-space: break-spaces;
-    width: 100%;
-    padding: 8px 0;
-    gap: 15px;
-    font-weight: 600;
-    font-size: 14px;
-    width: 260px;
-    font-weight: 600;
-    font-size: 14px;
-    background: #fff;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px;
-    cursor: pointer;
-    max-width: 350px;
-    border-top: 1px solid lightgray;
-    margin-right: 5px;
-  }
-  .sideNav nav ul li a.activeBtn{
-    border-radius: 0px 5px 5px 0px;
-    background: var(--secondary-color);
-    border-right: 4px solid var(--primary-color);
+  position: relative;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  white-space: break-spaces;
+  padding: 8px 0;
+  gap: 15px;
+  font-weight: 600;
+  font-size: 14px;
+  width: 100%;
+  cursor: pointer;
+  border-top: 1px solid rgb(235, 235, 235);
+  margin-right: 5px;
 }
+
+.ActiveBtn {
+  border-radius: 0px 5px 5px 0px;
+  background: var(--secondary-color);
+  border-right: 4px solid var(--primary-color);
+}
+
 .sideNav nav ul li a:hover {
   color: var(--primary-color);
 }
-.sideNav nav ul li a img {
-  width: 70px;
+.sideNav nav ul li a .sideBarImgSec {
+  position: relative;
   height: 70px;
+  width: 60px;
+  margin-left: 10px;
+  /* border-radius: 10px; */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+.sideNav nav ul li a .sideBarImgSec .bgImg {
+  position: absolute;
+  height: 40px;
+  width: 60px;
+  border-radius: 17% 17% 17% 17% / 17% 17% 0% 0%;
+  background-color: #ceedff;
+}
+.sideNav nav ul li a img {
+  position: absolute;
+  bottom: -10px;
+  width: 60px;
+  height: 60px;
   aspect-ratio: 1;
 }
+.ActiveBtn img {
+  transform: scale(1.2);
+  transition: all 0.2s linear;
+}
 .shop-cards {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   display: grid;
   gap: 10px;
   padding: 10px;
 }
+.DisablePaginate{
+  display: none;
+}
 .searchPageSec {
   grid-template-columns: repeat(5, 1fr);
 }
+
 .shop-cards .card {
   width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.04) 2px 2px 8px;
 }
+
 .shopMain {
   max-height: unset;
   overflow: auto;
 }
+
 .upperSecShop {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin: 70px 0 20px 0;
 }
+
 .dropbtn {
   background-color: var(--primary-color);
   color: white;
@@ -143,6 +172,7 @@
   margin: 20px 0;
   justify-content: center;
 }
+
 .pagination button {
   height: 35px;
   width: 35px;
@@ -175,10 +205,12 @@
     grid-template-columns: repeat(5, 1fr);
   }
 }
+
 @media (max-width: 1000px) {
   .shop-cards {
     grid-template-columns: repeat(3, 1fr);
   }
+
   .searchPageSec {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -188,6 +220,7 @@
   .shop-cards {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .searchPageSec {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -198,12 +231,14 @@
     max-height: 100vh;
     overflow: auto;
   }
+
   .sideNav {
-    position: unset;
+    position: static;
     min-width: 60px;
     max-height: 100vh;
     overflow: auto;
   }
+
   .sideNav nav ul li a {
     flex-direction: column;
     text-align: center;
@@ -212,6 +247,7 @@
     width: auto;
     min-width: auto;
   }
+
   .shop-cards {
     grid-template-columns: repeat(2, 1fr);
   }

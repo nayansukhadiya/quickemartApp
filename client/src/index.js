@@ -5,13 +5,15 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom'; 
 import Layout from './Layout';
 import Shop from './pages/Shop';
-import Home from './pages/Home'
-import Search from './pages/Search'
+import Home from './pages/Home';
+import Search from './pages/Search';
 import ProDetailPage from './pages/ProDetailPage';
 import Cart from './pages/Cart';
 import Account from './pages/Account';
 import ChatPage from './pages/ChatPage';
 import CartGen from './pages/CartGen';
+
+// Remove dotenv related lines, it's not needed for the client-side React app
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +29,7 @@ const router = createBrowserRouter(
     </Route>
   )
 );
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

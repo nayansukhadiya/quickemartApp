@@ -3,6 +3,7 @@ import "../style/productDetail.css";
 import { Link, useLocation } from "react-router-dom";
 import AddCartBtn from "../components/AddCartBtn";
 import { FastAverageColor } from "fast-average-color";
+import config from "../config";
 
 function ProDetailPage() {
   const fac = new FastAverageColor();
@@ -14,7 +15,10 @@ function ProDetailPage() {
   const [mainImage, setMainImage] = useState("");
   const [images, setImages] = useState([]);
 
-  const searchQuery = query.split("-");
+  const searchQuery = query ? query.split("-") : [];
+  if (searchQuery.length !== 2) {
+    console.error("Invalid query format");
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,7 +28,7 @@ function ProDetailPage() {
 
   useEffect(() => {
     if (p_id) {
-      fetch(`http://localhost:5000/detail?p_id=${p_id}`)
+      fetch(`${config.apiUrl}/detail?p_id=${p_id}`)
         .then((res) => {
           if (!res.ok) {
             throw new Error("Network response was not ok");
@@ -52,7 +56,6 @@ function ProDetailPage() {
 
   const handleImageLoad = () => {
     const imgElement = imgRef.current;
-
     if (imgElement) {
       fac.getColorAsync(imgElement)
         .then((color) => {
@@ -65,7 +68,20 @@ function ProDetailPage() {
     }
   };
 
+  const handleImageError = () => {
+    setMainImage("path/to/default-image.jpg");
+  };
+
+  const renderIfExists = (value, fallback = "Loading...") => {
+    return value ? value : fallback;
+  };
+
   const product = detailArr[0];
+
+  // Guard clause for when product is undefined
+  if (!product) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -84,6 +100,7 @@ function ProDetailPage() {
               src={product?.img ? replaceImageDimensions(product.img) : "path/to/default-image.jpg"}
               alt="Main product"
               onLoad={handleImageLoad}
+              onError={handleImageError}  // Added error handler
             />
           </div>
         </div>
@@ -91,40 +108,42 @@ function ProDetailPage() {
         <div className="detail-section-product part-section">
           <div className="ProductPageDir">
             <Link to="/">Home</Link> <p> / </p>
-            <Link to={`/shop?id=${searchQuery[1]}`}>{searchQuery[1]}</Link>{" "}
+            <Link to={`/shop?catid=${product.category}&subid=${product.sub_category}`}>
+              {renderIfExists(product.sub_category.replace(/_/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase()))}
+            </Link>{" "}
             <p> / </p>
-            <p>{product ? product.name : "Loading..."}</p>
+            <p>{renderIfExists(product.name)}</p>
           </div>
-          <h3 className="ProTitle">{product ? product.name : "Loading..."}</h3>
-          <h5>{product ? product.unit : "Loading..."}</h5>
+          <h3 className="ProTitle">{renderIfExists(product.name)}</h3>
+          <h5>{renderIfExists(product.unit)}</h5>
           <div className="directLink">
             <Link to={`/search?q=${searchQuery[1]}`}>{searchQuery[1]}</Link>
-            <Link to={`/search?q=${product ? product.brand : ""}`}>
-              {product ? product.brand : "Loading..."}
+            <Link to={`/search?q=${renderIfExists(product.brand)}`}>
+              {renderIfExists(product.brand)}
             </Link>
           </div>
-          <Link className="allBrandPro" to={`/search?q=${product ? product.brand : ""}`}>
-            View all {product ? product.brand : "Loading..."} Products
+          <Link className="allBrandPro" to={`/search?q=${renderIfExists(product.brand)}`}>
+            View all {renderIfExists(product.brand)} Products
           </Link>
           <h3 className="ProTitle">
-            &#8377; {product ? product.price : "Loading..."}{" "}
-            <span>{product ? product.mrp : "Loading..."}</span>
+            &#8377; {renderIfExists(product.price)}{" "}
+            <span>{renderIfExists(product.mrp)}</span>
           </h3>
 
           {product && (
             <AddCartBtn
               key={p_id}
               ProIDSearch={p_id}
-              img={product.img} // Extracted from product
-              name={product.name} // Extracted from product
-              price={product.price} // Extracted from product
-              mrp={product.mrp} // Extracted from product
-              unit={product.unit} // Extracted from product
-              category={product.category} // Extracted from product
-              discount={product.discount} // Extracted from product
+              img={product.img}
+              name={product.name}
+              price={product.price}
+              mrp={product.mrp}
+              unit={product.unit}
+              category={product.category}
+              discount={product.discount}
             />
           )}
-          
+
           <div className="highlight">
             {product?.highlights?.length > 0 && (
               <>
@@ -143,16 +162,16 @@ function ProDetailPage() {
             </h6>
             <div>
               <h5>Name</h5>
-              <p>{product ? product.name : "Loading..."}</p>
+              <p>{renderIfExists(product.name)}</p>
             </div>
 
             <div>
               <h5>Brand</h5>
-              <p>{product ? product.brand : "Loading..."}</p>
+              <p>{renderIfExists(product.brand)}</p>
             </div>
             <div>
               <h5>Category</h5>
-              <p>{searchQuery[1]}</p>
+              <p>{renderIfExists(searchQuery[1])}</p>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import UserContext from "../context/UserContext";
+import config from "../config";
 
 function useChatProduct() { 
   const { chatArrPro, setChatArrPro } = useContext(UserContext);
@@ -13,7 +14,7 @@ function useChatProduct() {
       // Create an array of fetch promises
       const fetchPromises = ingredients.map((ingredient) => {
         console.log(ingredient.ingredient_name);
-        return fetch(`http://localhost:5000/products/filter?q=${ingredient.ingredient_name}&category=${ingredient.ProCategory}`)
+        return fetch(`${config.apiUrl}/products/filter?q=${ingredient.ingredient_name}&category=${ingredient.ProCategory}`)
           .then((res) => {
             if (!res.ok) {
               throw new Error("Network response was not ok");

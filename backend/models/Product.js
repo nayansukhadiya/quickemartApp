@@ -11,10 +11,9 @@ const productSchema = new mongoose.Schema({
   discount: { type: String, required: true },
   mrp: { type: Number, required: true },
   category: { type: String, required: true },
-  sub_category: { type: String, required: true }, // Ensure this field exists
+  sub_category: { type: String, required: true },
 });
 
-// Create index for efficient querying
 productSchema.index({ sub_category: 1 });
 
 const Product = mongoose.model('Product', productSchema);

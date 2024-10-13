@@ -87,7 +87,8 @@ button {
 
 }
 .main,.cartPageIn{
-  width: min(80%, 1250px);
+  /* width: min(80%, 1250px); */
+  width: 80%;
   margin: 0 auto;
 }
 .main {
@@ -98,9 +99,10 @@ button {
   width: auto;
 }
 .card .addToCart{
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+  margin: 0px 10px 10px 10px;
+  background-color: white;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
 }
 .addToCart {
   z-index: 10;
@@ -114,20 +116,19 @@ button {
   transition: background-color 0.3s ease;
 }
 .addButton {
-  border-radius: 10px;
+color: var(--primary-color);
   border: none;
   height: 30px;
-  width: 30px;
+  width: 100%;
   font-weight: 500;
-  background-color: var(--primary-color);
-  color: white;
-  font-size: 22px;
+  /* font-size: 22px; */
   cursor: pointer;
 }
 .QanActive {
   padding: 0;
 }
 .counterBtnGroup {
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -136,7 +137,7 @@ button {
   display: flex;
   align-items: center;
   gap: 5px;
-  width: fit-content;
+  width: 100%;
   justify-content: space-between;
   color: var(--primary-color);
   border-radius: 4px;
@@ -160,20 +161,23 @@ button {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  color: white;
   width: 30px;
   height: 30px;
   padding: 5px;
   font-weight: 600;
-  border-radius: 9px;
   font-size: 16px;
-  background-color: var(--primary-color);
+  color: var(--primary-color);
 }
-
+.incrementBtn{
+  border-left: 1px solid var(--primary-color);
+}
+.decrementBtn{
+  border-right: 1px solid var(--primary-color);
+}
 .quantity {
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 18px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
   width: 30px;
   text-align: center;
 }

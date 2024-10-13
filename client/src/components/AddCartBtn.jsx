@@ -86,7 +86,7 @@ function AddCartBtn({ ProIDSearch, img, price, mrp, name, unit, category }) {
     <div className={`addToCart ${added ? "QanActive" : ""}`}>
       {!added ? (
         <button onClick={handleClick} className="addButton">
-          +
+          Add
         </button>
       ) : (
         <div className="counterBtnGroup">

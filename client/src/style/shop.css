@@ -8,7 +8,7 @@
 
 .sideNav {
   position: sticky;
-  top: 0;
+  top: 144px;
   left: 0;
   height: fit-content;
   max-height: unset;
@@ -177,10 +177,11 @@
   height: 35px;
   width: 35px;
   border: none;
+  font-weight: 600;
   color: #222222;
+  background-color: #f1f1f1;
   cursor: pointer;
   border-radius: 50%;
-  background-color: transparent;
 }
 
 .pagination button:disabled {

@@ -88,10 +88,6 @@ const useGeminiChat = () => {
                       type: "string",
                       description:
                         "give the detail of the summary of the ingredients give the detail of product might like what it is how use? ",
-                    },
-                    AverageColor: {
-                      type: "string",
-                      description: "give me the  color of that product make sure give perfect in hex color code"
                     }
                   },
                   required: [
@@ -100,8 +96,7 @@ const useGeminiChat = () => {
                     "quantity",
                     "packet_size",
                     "NumberQuantity",
-                    "ingredientsDetail",
-                    "AverageColor"
+                    "ingredientsDetail"
                   ],
                 },
               },

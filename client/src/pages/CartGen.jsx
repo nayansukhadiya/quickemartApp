@@ -214,6 +214,7 @@ function CartGen() {
           unit={product.data.unit}
           category={product.data.category}
           discount={product.data.discount}
+          brand={product.data.brand}
         />
       ))
     ) : (

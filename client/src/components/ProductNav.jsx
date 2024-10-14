@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "../style/navbar.css";
 
 function ProductNav() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [navData, setNavData] = useState([]);
-
+  const [catNavId , setCatNavId] = useState();
+  const location = useLocation();
   useEffect(() => {
     // Assuming your JSON file is structured as an array of categories.
     fetch("./data/category.json")
@@ -14,6 +15,12 @@ function ProductNav() {
         setNavData(data);
       });
   }, []);
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const catId = queryParams.get("catid");
+console.log("product navbar category is", catId)
+setCatNavId(catId);
+  }, [location.search]);
 
   const visibleItems = navData.slice(0, 11); // First 11 items
   const moreItems = navData.slice(11); // Remaining items after 14
@@ -28,7 +35,7 @@ function ProductNav() {
           <ul>
             {/* Render the visibleItems as the main navbar */}
             {visibleItems.map((item, index) => (
-              <li key={index}>
+              <li key={index} className={catNavId === item ? "NavActiveBtn" : ""}>
                 <NavLink to={`?catid=${item}`}>
                   {item.replace(/_/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase())}
                 </NavLink>

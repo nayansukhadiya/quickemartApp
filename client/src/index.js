@@ -12,6 +12,7 @@ import Cart from './pages/Cart';
 import Account from './pages/Account';
 import ChatPage from './pages/ChatPage';
 import CartGen from './pages/CartGen';
+import Category from './pages/Category';
 
 // Remove dotenv related lines, it's not needed for the client-side React app
 
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
       <Route path='cart' element={<Cart />}/>
       <Route path='account' element={<Account />}/>
       <Route path='cartgen' element={<CartGen />}/>
+      <Route path='category' element={<Category />}/>
     </Route>
   )
 );

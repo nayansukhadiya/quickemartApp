@@ -1,0 +1,19 @@
+.categorySec {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+.categoryCard {
+  overflow: hidden;
+}
+.categoryCard img {
+  aspect-ratio: 1;
+  width: 85%;
+  padding: 8px 15px;
+  /* object-fit: cover; */
+  border-radius: 10px;
+  background-color: #efefef;
+}
+.categoryCard p {
+  padding-top: 5px;
+}

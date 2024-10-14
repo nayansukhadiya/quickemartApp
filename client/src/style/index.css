@@ -70,6 +70,7 @@ body {
   height: 100%;
 }
 button {
+  color: var(--text-color);
   outline: none;
   border: none;
   background-color: transparent;

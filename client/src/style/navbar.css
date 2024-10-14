@@ -5,15 +5,14 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 99;
+  z-index: 140;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 86px;
 }
 header {
-  width: min(80%, 1250px);
-  /* top: 0; */
+  width: 80%;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -24,12 +23,15 @@ header {
 }
 
 .ProductNav ul {
-  width: 1250px;
   display: flex;
+  gap: 30px;
   justify-content: space-around;
 }
 .ProductNav li {
   list-style: none;
+  padding: 20px 0;
+  width: 100%;
+  text-align: center;
 }
 .ProductNav a,.dropdownPro button {
   font-size: 14px;
@@ -43,7 +45,7 @@ header {
 
 .dropdown-list {
   position: absolute;
-  top: 40px; /* Adjust based on your navbar height */
+  top: 40px;
   right: 0;
   display: flex;
   flex-direction: column;
@@ -64,7 +66,11 @@ header {
   background-color: #f1f1f1;
 }
 
-
+.NavActiveBtn{
+  border-radius: 4px;
+border-bottom: 4px solid var(--primary-color);
+color: var(--primary-color);
+}
 .activeNav {
   color: var(--main2);
   font-weight: 600;
@@ -101,7 +107,7 @@ li:hover .dropDownNav {
 .ProductNav{
   position: fixed;
   left: 0;
-  z-index: 11;
+  z-index: 100;
   display: flex;
   height: 60px;
   align-items: center;

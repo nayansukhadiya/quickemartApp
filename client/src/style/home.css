@@ -185,19 +185,24 @@
   justify-content: space-between;
 }
 
-.card .priceDetails span {
+.card .priceDetails .price {
   font-size: 16px;
   font-weight: 700;
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 14px;
 }
 
 .FeaturesHome .card .priceDetails .mrp {
   text-decoration: line-through;
 }
 
-.FeaturesHome .card .priceDetails .price {
-  color: black;
-  font-size: 22px;
+ .card  .mrp {
+  color: rgb(85, 85, 85);
+  font-size: 14px;
   font-weight: 600;
+  text-decoration: line-through;
 }
 .HomeSubTitle {
   min-height: 15px;

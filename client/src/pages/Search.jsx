@@ -74,6 +74,7 @@ function Search() {
           unit={item.unit} 
           category={item.category} 
           discount={item.discount} 
+          brand={item.brand} 
           />
         ))
       ) : (

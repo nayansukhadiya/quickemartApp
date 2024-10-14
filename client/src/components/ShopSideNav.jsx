@@ -17,7 +17,7 @@ function ShopSideNav({ catArr , ActiveBtn}) {
                   <div className="sideBarImgSec">
                     <div className="bgImg"></div>
                   <img
-                    src={require(`../assets/cat/cat_chips.png`)} 
+                    src={require(`../assets/cat_img/${item}.png`)} 
                     alt={item}  
                   /></div>
                   {item.replace(/_/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase()) || "Unknown"}  

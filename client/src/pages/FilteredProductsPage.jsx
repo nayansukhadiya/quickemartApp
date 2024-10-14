@@ -57,6 +57,7 @@ console.log(`${config.apiUrl}/products?sub_category=${subCategory}`)
                   unit={item.unit} 
                   category={item.category} 
                   discount={item.discount} 
+                  brand={item.brand} 
                 />
               ))
           ) : (

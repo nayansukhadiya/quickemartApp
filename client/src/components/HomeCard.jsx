@@ -12,6 +12,7 @@ function HomeCard({
   category,
   discount,
   unit,
+  brand
 }) {
   const [averageColor, setAverageColor] = useState(null);
   const [imgClass, setImgClass] = useState("pngImg"); // Default class is for PNG
@@ -92,12 +93,13 @@ function HomeCard({
           </div>
           <div>
             <h5 className="HomeSubTitle">{unit || " "}</h5>
+            <h5 className="HomeSubTitle" style={{color: "red"}}>{brand || " "}</h5>
           </div>
           <div className="priceDetails">
             <div>
-              <span className="price">
-                &#8377; {price.toLocaleString("en-IN")}
-              </span>
+              <p className="price">
+                &#8377; {price.toLocaleString("en-IN")} <span className="mrp">{mrp ? mrp.toLocaleString("en-IN") : ""} </span>
+              </p>
             </div>
 
             {discount !== null && (

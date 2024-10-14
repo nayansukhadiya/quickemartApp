@@ -48,7 +48,6 @@ function useChatProduct() {
             resNumberQuantity: ingredient.NumberQuantity, 
             productName: product.name,
             ingredientsDetail: ingredient.ingredientsDetail,
-            AverageColor: ingredient.AverageColor,
             data: {
               summary: arr[0]?.rapidRecipeArr[0]?.summary,  
               ...product 

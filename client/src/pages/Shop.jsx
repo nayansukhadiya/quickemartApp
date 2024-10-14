@@ -13,6 +13,8 @@ function Shop() {
   const [productsPerPage] = useState(28);
   const [catData, setCatData] = useState(null);
   const [sortOrder, setSortOrder] = useState("Relative");
+  const [filterBrand, setFilterBrand] = useState([]);
+  const [sidebarBrand, setSidebarBrand] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -48,14 +50,13 @@ function Shop() {
     };
     fetchData();
   }, [urlId.catId, sortOrder]);
-  
+
   useEffect(() => {
-    // Only run if `catData` has been set
-    if (!catData) return; // Exit if no category data has been fetched
-  
+    if (!catData) return;
+
     const fetchData = async () => {
       let subName = urlId.subId ? urlId.subId : catData[0].subcategories[0];
-  
+
       try {
         const response = await fetch(
           `${config.apiUrl}/products?sub_category=${subName}`
@@ -73,10 +74,10 @@ function Shop() {
         console.error("Error fetching products:", error);
       }
     };
-  
+
     fetchData();
   }, [catData, urlId.subId, sortOrder]);
-  
+
   const sortArr = (data, order) => {
     let sortedArr = [...data];
     if (order === "asc") {
@@ -85,8 +86,17 @@ function Shop() {
       sortedArr = sortedArr.sort((a, b) => b.price - a.price);
     }
     setCategoryArr(sortedArr);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
+
+  useEffect(() => {
+    let brandArr = [];
+    for (const element of categoryArr) {
+      brandArr.push(element.brand);
+    }
+    const uniqueArray = [...new Set(brandArr)];
+    setFilterBrand(uniqueArray);
+  }, [categoryArr]);
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -113,9 +123,20 @@ function Shop() {
               <button onClick={() => setSortOrder("desc")}>High to Low</button>
             </div>
           </div>
+          <button onClick={() => setSidebarBrand(true)}>Open</button>
         </div>
       </div>
       <div className="shopPage">
+      <div className={`brandFilterSec ${sidebarBrand ? "ActiveSideBar" : ""}`}>
+          <div className="bgFilter"></div>
+          <div className="brandFilterDiv">
+          <button onClick={() => setSidebarBrand(false)}>Close</button>
+
+          {filterBrand.map((item) => (
+                <button key={item}>{item}</button>
+              ))}
+          </div>
+        </div>
         <ShopSideNav catArr={catData} ActiveBtn={urlId.subId} />
         <div className="shopMain">
           <div className="shop-cards">
@@ -130,10 +151,11 @@ function Shop() {
                 unit={item.unit}
                 category={item.category}
                 discount={item.discount}
+                brand={item.brand}
               />
             ))}
           </div>
-          <div className={totalPages === 1 ? "DisablePaginate" : "pagination"} >
+          <div className={totalPages === 1 ? "DisablePaginate" : "pagination"}>
             <button
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}

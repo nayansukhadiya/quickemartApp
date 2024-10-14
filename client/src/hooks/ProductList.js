@@ -46,6 +46,7 @@ const ProductList = ({ category }) => {
             unit={item.unit}
             ProIDSearch={item.ProIDSearch}
             category={item.category}
+            brand={item.brand}
           />
         ))}
       </CardSlider>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import HomeCard from "../components/HomeCard";
 import "../style/home.css";
@@ -6,6 +6,7 @@ import "../style/shop.css";
 import ShopSideNav from "../components/ShopSideNav";
 import config from "../config";
 import ProductNav from "../components/ProductNav";
+
 function Shop() {
   const [categoryArr, setCategoryArr] = useState([]);
   const [urlId, setUrlId] = useState({ catId: null, subId: null });
@@ -13,8 +14,10 @@ function Shop() {
   const [productsPerPage] = useState(28);
   const [catData, setCatData] = useState(null);
   const [sortOrder, setSortOrder] = useState("Relative");
+  const [allBrand, setAllBrand] = useState([]);
   const [filterBrand, setFilterBrand] = useState([]);
-  const [sidebarBrand, setSidebarBrand] = useState(false);
+  const [sidebarBrand, setSidebarBrand] = useState(true);
+  const [checkedBrand, setCheckedBrand] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
@@ -67,6 +70,7 @@ function Shop() {
         const data = await response.json();
         if (sortOrder === "Relative") {
           setCategoryArr(data);
+          setFilterBrand(data);
         } else {
           sortArr(data, sortOrder);
         }
@@ -91,50 +95,123 @@ function Shop() {
 
   useEffect(() => {
     let brandArr = [];
-    for (const element of categoryArr) {
+    for (const element of filterBrand) {
       brandArr.push(element.brand);
     }
     const uniqueArray = [...new Set(brandArr)];
-    setFilterBrand(uniqueArray);
+    setAllBrand(uniqueArray);
   }, [categoryArr]);
 
+  function handleCheckedBrand(item) {
+    if (checkedBrand.includes(item)) {
+      setCheckedBrand(checkedBrand.filter((brand) => brand !== item));
+    } else {
+      setCheckedBrand([...checkedBrand, item]);
+    }
+    console.log("all Brand data is the", allBrand);
+  }
+
+  function handleApplyFilter() {
+    const filteredProducts1 = filterBrand.filter((item) =>
+      checkedBrand.length ? checkedBrand.includes(item.brand) : true
+    );
+    setCategoryArr(filteredProducts1);
+    console.log(filteredProducts1);
+    setCurrentPage(1);
+    console.log("all Brand data is the", allBrand);
+  }
+  function handleRemoveFilter() {
+    setCheckedBrand([]);
+  }
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = categoryArr.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
+  const currentProducts = useMemo(() => {
+    return categoryArr.slice(indexOfFirstProduct, indexOfLastProduct);
+  }, [categoryArr, indexOfFirstProduct, indexOfLastProduct]);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const totalPages = Math.ceil(categoryArr.length / productsPerPage);
-
+  const defaultImage = require("../assets/BrandLogo/amul.png").default;
   return (
     <>
       <ProductNav />
       <div>
         <div className="upperSecShop">
           <h5>{categoryArr.length} Product(s) Found</h5>
-          <div className="dropdown">
-            <button className="dropbtn">Sort by Price</button>
-            <div className="dropdown-content">
-              <button onClick={() => setSortOrder("Relative")}>Relative</button>
-              <button onClick={() => setSortOrder("asc")}>Low to High</button>
-              <button onClick={() => setSortOrder("desc")}>High to Low</button>
+          <div>
+            <div className="dropdown">
+              <button className="dropbtn">Sort by Price</button>
+              <div className="dropdown-content">
+                <button onClick={() => setSortOrder("Relative")}>
+                  Relative
+                </button>
+                <button onClick={() => setSortOrder("asc")}>Low to High</button>
+                <button onClick={() => setSortOrder("desc")}>
+                  High to Low
+                </button>
+              </div>
             </div>
+            <button className="dropbtn" onClick={() => setSidebarBrand(true)}>
+              Open
+            </button>
           </div>
-          <button onClick={() => setSidebarBrand(true)}>Open</button>
         </div>
       </div>
       <div className="shopPage">
-      <div className={`brandFilterSec ${sidebarBrand ? "ActiveSideBar" : ""}`}>
-          <div className="bgFilter"></div>
+        <div
+          className={`bgFilter ${sidebarBrand ? "ActiveBgFilter" : ""}`}
+        ></div>
+        <div
+          className={`brandFilterSec ${sidebarBrand ? "ActiveSideBar" : ""}`}
+        >
           <div className="brandFilterDiv">
-          <button onClick={() => setSidebarBrand(false)}>Close</button>
-
-          {filterBrand.map((item) => (
-                <button key={item}>{item}</button>
+            <div className="upperSecDiv">
+              Filter
+              <button
+                className="dropbtn"
+                onClick={() => setSidebarBrand(false)}
+              >
+                X
+              </button>
+            </div>
+            <div className="brandList">
+              {allBrand.map((item) => (
+                <button
+                  key={item}
+                  className="brandBtnFilter"
+                  onClick={() => handleCheckedBrand(item)}
+                >
+                  <div className="customCheckBox">
+                    <div
+                      className={`transition ${
+                        checkedBrand.includes(item) ? "ActiveChecked" : ""
+                      }`}
+                    ></div>
+                  </div>
+                  <div className="brandLogoDiv">
+                    <img
+                      alt={item}
+                      src={
+                        require(`../assets/BrandLogo/${item.toLowerCase().replace(/ /g, "_")}.png`) || defaultImage
+                      }
+                      onError={(e) => {
+                        e.target.src = defaultImage;
+                      }}
+                    />
+                  </div>
+                  <p>{item}</p>
+                </button>
               ))}
+            </div>
+            <div className="filterApplyDiv">
+              <button className="clearBtn" onClick={handleRemoveFilter}>
+                Clear Filter
+              </button>
+              <button className="filterBtn" onClick={handleApplyFilter}>
+                Apply
+              </button>
+            </div>
           </div>
         </div>
         <ShopSideNav catArr={catData} ActiveBtn={urlId.subId} />

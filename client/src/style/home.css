@@ -88,6 +88,7 @@
   box-sizing: border-box;
   position: relative;
   border: 1px solid rgb(223, 223, 223);
+  transition: all 0.2s linear;
 }
 .card:hover {
   cursor: pointer;
@@ -113,7 +114,13 @@
   align-items: center;
   overflow: hidden;
 }
-
+.card :hover img{
+  transition: all 0.2s linear;
+  transform: scale(1.2);
+}
+.shop-cards .card:hover{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 .card .pngImg {
   width: 80%;
   height: 80%;

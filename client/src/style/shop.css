@@ -8,23 +8,142 @@
 .brandFilterSec {
   position: fixed;
   right: 0;
-  bottom: 0;
-  height: 83vh;
-  width: 0vw;
+  bottom: -100vh;
+  height: 100vh;
+  width: 100vw;
   z-index: 22;
-  background-color: #4242428e;
+  /* background-color: #4242428e; */
+  transition: bottom 0.3s ease-in-out; /* Add transition here */
+}
+.bgFilter {
+  height: 100vh;
+  width: 100vw;
+  background: #00000075;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+}
+.ActiveBgFilter {
+  z-index: 21;
+  opacity: 1;
+  /* transition: all 0.3s linear; */
 }
 .ActiveSideBar {
-  width: 100vw;
+  bottom: 0;
 }
-.brandFilterDiv {
+
+.brandFilterSec .brandFilterDiv {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: -50vh;
   height: 40vh;
-  padding: 10px;
-  width: 100%;
+  padding: 30px 4%;
+  width: 92%;
   background-color: #ffffff;
+  transition: bottom 0.3s ease-in-out;
+  border-radius: 40px 40px 0px 0px;
+  -moz-border-radius: 40px 40px 0px 0px;
+  -webkit-border-radius: 40px 40px 0px 0px;
+  border: 0px solid #000000;
+}
+
+.ActiveSideBar .brandFilterDiv {
+  bottom: 0;
+}
+.brandFilterDiv .upperSecDiv {
+  padding: 20px 10px;
+  display: flex;
+  font-size: 30px;
+  font-style: 600;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.brandList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: start;
+  overflow: scroll;
+  padding: 0 10px;
+  height: 70%;
+  margin-bottom: 20px;
+}
+.brandBtnFilter {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 16px;
+  line-height: 35px;
+}
+.brandLogoDiv{
+  height: 35px;
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #b5b5b5;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.brandLogoDiv img{
+  height: 100%;
+  width: 100%;
+  aspect-ratio: 1;
+}
+.clear {
+  clear: both;
+}
+
+.customCheckBox {
+  display: block;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 0px 0px 2px black;
+}
+
+.transition{
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  top: -35px;
+  left: -35px;
+  position: absolute;
+  transform: rotateZ(45deg);
+  z-index: 100;
+  transition: 300ms ease;
+}
+
+.ActiveChecked {
+  left: -10px;
+  top: -10px;
+}
+
+.filterApplyDiv{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* justify-content: space-around; */
+}
+.filterApplyDiv button{
+  padding: 10px 30px;
+  border-radius: 10px;
+  background-color: #e9e9e9;
+  font-weight: 600;
+  font-size: 16px;
+}
+.filterApplyDiv .filterBtn{
+  background-color: var(--primary-color);
+  color: #fff;
 }
 .sideNav {
   position: sticky;

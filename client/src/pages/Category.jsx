@@ -16,7 +16,7 @@ function Category() {
     <>
       <div className="categorySec">
         {catArr.map((item) => (
-          <NavLink className="categoryCard" to={`?catid=${item}`}>
+          <NavLink className="categoryCard" to={`/shop?catid=${item}`}>
             <img src={require(`../assets/category_img/${item}.png`)} />
             <p>
               {" "}

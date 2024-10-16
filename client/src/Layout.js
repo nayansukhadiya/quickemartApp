@@ -10,25 +10,27 @@ function Layout() {
   const [chatBgSet, setChatBgSet] = useState(false);
   const [searchBarRem,setSearchBarRem] = useState(false);
   const location = useLocation(); 
-  const currentPath = location.pathname; 
-
+  
   useEffect(() => {
+    const currentPath = location.pathname; 
     if (currentPath === "/search" || currentPath === "/chat" || currentPath === "/cartgen") {
       setSearchActive(true);
     } else {
       setSearchActive(false);
     }
   }, [location]);
-
+  
   useEffect(() => {
+    const currentPath = location.pathname; 
     if (currentPath === "/chat") {
       setChatBgSet(true); 
     } else {
       setChatBgSet(false); 
     }
   }, [location]);
-
+  
   useEffect(()=> {
+    const currentPath = location.pathname; 
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     if(isMobile && currentPath === "/shop"){  
     setSearchBarRem(true);

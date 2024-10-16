@@ -16,7 +16,7 @@ function Shop() {
   const [sortOrder, setSortOrder] = useState("Relative");
   const [allBrand, setAllBrand] = useState([]);
   const [filterBrand, setFilterBrand] = useState([]);
-  const [sidebarBrand, setSidebarBrand] = useState(true);
+  const [sidebarBrand, setSidebarBrand] = useState(false);
   const [checkedBrand, setCheckedBrand] = useState([]);
   const location = useLocation();
 

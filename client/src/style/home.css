@@ -133,8 +133,11 @@
   object-fit: cover;
 }
 .card .details {
-  padding: 10px 10px 0 10px;
-  flex: 1;
+  padding: 10px 10px 0 10px ;
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .card .discountBoxInner svg path {
@@ -153,7 +156,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   height: 33px;
-  margin: 0px 0 10px 0;
 }
 .card .discountBox {
   position: absolute;
@@ -185,11 +187,10 @@
   z-index: 20;
 }
 .card .priceDetails {
+  height: 20px;
   display: flex;
-  align-items: center;
-  margin-top: 10px;
-  height: 16px;
-  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
 }
 
 .card .priceDetails .price {
@@ -198,7 +199,6 @@
   color: black;
   font-size: 18px;
   font-weight: 600;
-  margin-top: 14px;
 }
 
 .FeaturesHome .card .priceDetails .mrp {
@@ -250,8 +250,5 @@
   .card .img-section {
     height: unset;
     width: 100%;
-  }
-  .card .details p {
-    height: 33px;
   }
 }

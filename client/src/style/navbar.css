@@ -133,7 +133,7 @@ header button svg {
   z-index: 100;
   bottom: 0;
   left: 0;
-  background-color: #fff;
+  background-color: #ffffff;
   width: 100%;
 }
 .bottom-other-logo{
@@ -172,6 +172,9 @@ header button svg {
   fill: #f1f1f1;
 }
 @media screen and (max-width: 480px) {
+  .ProductNav{
+    display: none;
+  }
   header{
     width: 100%;
   }

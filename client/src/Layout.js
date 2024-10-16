@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import UserContextProvider from './context/UserContextProvider';
 import BottomNav from './components/BottomNav';
 import ChatBg from './components/ChatBg';
@@ -9,10 +8,11 @@ import ChatBg from './components/ChatBg';
 function Layout() {
   const [searchActive, setSearchActive] = useState(false);
   const [chatBgSet, setChatBgSet] = useState(false);
+  const [searchBarRem,setSearchBarRem] = useState(false);
   const location = useLocation(); 
+  const currentPath = location.pathname; 
 
   useEffect(() => {
-    const currentPath = location.pathname; 
     if (currentPath === "/search" || currentPath === "/chat" || currentPath === "/cartgen") {
       setSearchActive(true);
     } else {
@@ -21,22 +21,30 @@ function Layout() {
   }, [location]);
 
   useEffect(() => {
-    const currentPath = location.pathname; 
     if (currentPath === "/chat") {
-      setChatBgSet(true); // Show ChatBg when path is /chat
+      setChatBgSet(true); 
     } else {
-      setChatBgSet(false); // Hide ChatBg when path is anything else
+      setChatBgSet(false); 
     }
   }, [location]);
 
+  useEffect(()=> {
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if(isMobile && currentPath === "/shop"){  
+    setSearchBarRem(true);
+    } else {
+      setSearchBarRem(false);
+    }
+  }, [location])
+
   return (
     <UserContextProvider>
-      <Navbar />
-      <div className="main">
+      {!searchBarRem &&  <Navbar />}
+      <div className={`main ${searchBarRem ? "mainShop" : ""}`}>
         <Outlet />
       </div>
       {!searchActive &&  <BottomNav />}
-      {chatBgSet && <ChatBg />} {/* Show ChatBg when chatBgSet is true */}
+      {chatBgSet && <ChatBg />} 
     </UserContextProvider>
   );
 }

@@ -94,12 +94,24 @@ function Shop() {
   };
 
   useEffect(() => {
-    let brandArr = [];
+    let brandCount = {};
+
     for (const element of filterBrand) {
-      brandArr.push(element.brand);
+      const brand = element.brand;
+      if (brandCount[brand]) {
+        brandCount[brand] += 1;
+      } else {
+        brandCount[brand] = 1;
+      }
     }
-    const uniqueArray = [...new Set(brandArr)];
-    setAllBrand(uniqueArray);
+
+    const uniqueArrayWithCount = Object.entries(brandCount)
+      .map(([brand, count]) => ({
+        brand,
+        count,
+      }))
+      .sort((a, b) => a.brand.localeCompare(b.brand));
+    setAllBrand(uniqueArrayWithCount);
   }, [categoryArr]);
 
   function handleCheckedBrand(item) {
@@ -116,12 +128,11 @@ function Shop() {
       checkedBrand.length ? checkedBrand.includes(item.brand) : true
     );
     setCategoryArr(filteredProducts1);
-    console.log(filteredProducts1);
     setCurrentPage(1);
-    console.log("all Brand data is the", allBrand);
   }
   function handleRemoveFilter() {
     setCheckedBrand([]);
+    setCategoryArr(filterBrand);
   }
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -134,11 +145,11 @@ function Shop() {
   const totalPages = Math.ceil(categoryArr.length / productsPerPage);
   const defaultImage = require("../assets/BrandLogo/amul.png").default;
   return (
-    <>
+    <div className="ShopMainPage">
       <ProductNav />
       <div>
         <div className="upperSecShop">
-          <h5>{categoryArr.length} Product(s) Found</h5>
+          <h5>{categoryArr.length} Product Found</h5>
           <div>
             <div className="dropdown">
               <button className="dropbtn">Sort by Price</button>
@@ -153,7 +164,7 @@ function Shop() {
               </div>
             </div>
             <button className="dropbtn" onClick={() => setSidebarBrand(true)}>
-              Open
+              Brand
             </button>
           </div>
         </div>
@@ -169,38 +180,78 @@ function Shop() {
             <div className="upperSecDiv">
               Filter
               <button
-                className="dropbtn"
+                className="closeSideBar"
                 onClick={() => setSidebarBrand(false)}
               >
-                X
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
               </button>
             </div>
             <div className="brandList">
               {allBrand.map((item) => (
                 <button
-                  key={item}
-                  className="brandBtnFilter"
-                  onClick={() => handleCheckedBrand(item)}
+                  key={item.brand}
+                  className={`brandBtnFilter ${
+                    checkedBrand.includes(item.brand)
+                      ? "ActiveBrandBtnFilter"
+                      : ""
+                  }`}
+                  onClick={() => handleCheckedBrand(item.brand)}
                 >
-                  <div className="customCheckBox">
+                  <div className="firstSec">
+                    <div className="brandLogoDiv">
+                      <img
+                        alt={item.brand}
+                        src={
+                          require(`../assets/BrandLogo/${item.brand
+                            .toLowerCase()
+                            .replace(/ /g, "_")}.png`) || defaultImage
+                        }
+                        onError={(e) => {
+                          e.target.src = defaultImage;
+                        }}
+                      />
+                    </div>
+                    <p>
+                      {item.brand} <span className="countBrandFilter">({item.count})</span>
+                    </p>{" "}
+                  </div>
+                  <div
+                    className={`customCheckBox ${
+                      checkedBrand.includes(item.brand)
+                        ? "ActiveCustomCheckBox"
+                        : ""
+                    }`}
+                  >
                     <div
                       className={`transition ${
-                        checkedBrand.includes(item) ? "ActiveChecked" : ""
+                        checkedBrand.includes(item.brand) ? "ActiveChecked" : ""
                       }`}
-                    ></div>
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M20 6 9 17l-5-5" />
+                      </svg>
+                    </div>
                   </div>
-                  <div className="brandLogoDiv">
-                    <img
-                      alt={item}
-                      src={
-                        require(`../assets/BrandLogo/${item.toLowerCase().replace(/ /g, "_")}.png`) || defaultImage
-                      }
-                      onError={(e) => {
-                        e.target.src = defaultImage;
-                      }}
-                    />
-                  </div>
-                  <p>{item}</p>
                 </button>
               ))}
             </div>
@@ -259,7 +310,7 @@ function Shop() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

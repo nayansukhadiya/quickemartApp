@@ -28,7 +28,7 @@ function BottomNav() {
             </svg>
           </button>
         </Link>
-        <Link to="/shop?catid=sweets&subid=chips">
+        <Link to="/category">
           <button>
             <svg
               width="24"

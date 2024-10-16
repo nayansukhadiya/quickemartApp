@@ -22,18 +22,18 @@
   background-color: var(--primary-color);
   color: #fff;
 }
-::-webkit-scrollbar {
-  width: 12px; /* width of the entire scrollbar */
+/* ::-webkit-scrollbar {
+  width: 12px; 
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent; /* color of the tracking area */
+  background: transparent; 
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #7aa4ff; /* color of the scroll thumb */
+  background-color: #7aa4ff; 
   border-radius: 20px;
-}
+} */
 @font-face {
   font-family: "gillroy";
   src: url('../assets/font/Gilroy-Regular.ttf');
@@ -84,8 +84,6 @@ button {
   width: 100vw;
   height: 100vh;
   background-image: linear-gradient(135deg, #86acfe66 0%, #bbd1ffd7 80%, #c0cfff 100%);
-  /* background-image: linear-gradient(to top, #dfe9f3 0%, white 100%); */
-
 }
 .main,.cartPageIn{
   /* width: min(80%, 1250px); */
@@ -96,14 +94,19 @@ button {
   height: calc(100% - 86px);
   padding-top: 86px;
 }
+.mainShop{
+  height: 100% !important;
+  padding-top: 0 !important;
+  width: 100% !important;
+}
 .card .addToCart {
   width: auto;
 }
 .card .addToCart{
-  margin: 0px 10px 10px 10px;
   background-color: white;
   border: 1px solid var(--primary-color);
   border-radius: 8px;
+  margin: 0 10px 10px 10px;
 }
 .addToCart {
   z-index: 10;
@@ -169,12 +172,7 @@ color: var(--primary-color);
   font-size: 16px;
   color: var(--primary-color);
 }
-.incrementBtn{
-  border-left: 1px solid var(--primary-color);
-}
-.decrementBtn{
-  border-right: 1px solid var(--primary-color);
-}
+
 .quantity {
   font-size: 16px;
   font-weight: 500;

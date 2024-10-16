@@ -12,7 +12,7 @@ function HomeCard({
   category,
   discount,
   unit,
-  brand
+  brand,
 }) {
   const [averageColor, setAverageColor] = useState(null);
   const [imgClass, setImgClass] = useState("pngImg"); // Default class is for PNG
@@ -85,37 +85,39 @@ function HomeCard({
             alt={name}
             onLoad={handleImageLoad}
             className={isTransparent ? "pngImg" : "jpgImg"} // Dynamic class based on transparency
-            />
+          />
         </div>
+        {discount !== null && (
+          <div className="discountBox">
+            <div className="discountBoxInner">
+              <svg
+                viewBox="0 0 29 28"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M28.9499 0C28.3999 0 27.9361 1.44696 27.9361 2.60412V27.9718L24.5708 25.9718L21.2055 27.9718L17.8402 25.9718L14.4749 27.9718L11.1096 25.9718L7.74436 27.9718L4.37907 25.9718L1.01378 27.9718V2.6037C1.01378 1.44655 0.549931 0 0 0H28.9499Z"></path>
+              </svg>
+              <h4 className="discountText">{discount}</h4>
+            </div>
+          </div>
+        )}
         <div className="details">
           <div>
             <p>{name}</p>
           </div>
           <div>
+            <h5 className="HomeSubTitle">{brand || " "}</h5>
+          </div>
+          <div>
             <h5 className="HomeSubTitle">{unit || " "}</h5>
-            <h5 className="HomeSubTitle" style={{color: "red"}}>{brand || " "}</h5>
           </div>
           <div className="priceDetails">
-            <div>
               <p className="price">
-                &#8377; {price.toLocaleString("en-IN")} <span className="mrp">{mrp ? mrp.toLocaleString("en-IN") : ""} </span>
+                &#8377; {price.toLocaleString("en-IN")}{" "}
               </p>
-            </div>
-
-            {discount !== null && (
-              <div className="discountBox">
-                <div className="discountBoxInner">
-                  <svg
-                    viewBox="0 0 29 28"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M28.9499 0C28.3999 0 27.9361 1.44696 27.9361 2.60412V27.9718L24.5708 25.9718L21.2055 27.9718L17.8402 25.9718L14.4749 27.9718L11.1096 25.9718L7.74436 27.9718L4.37907 25.9718L1.01378 27.9718V2.6037C1.01378 1.44655 0.549931 0 0 0H28.9499Z"></path>
-                  </svg>
-                  <h4 className="discountText">{discount}</h4>
-                </div>
-              </div>
-            )}
+                <span className="mrp">
+                  {mrp ? mrp.toLocaleString("en-IN") : ""}{" "}
+                </span>
           </div>
         </div>
       </Link>

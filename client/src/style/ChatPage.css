@@ -174,7 +174,7 @@
 }
 @media (max-width: 480px) {
   .main {
-    height: calc(100% - 90px) !important;
+    height: calc(100% - 90px);
   }
   .ChatPage {
     overflow: hidden;

@@ -32,7 +32,7 @@ function Layout() {
   useEffect(()=> {
     const currentPath = location.pathname; 
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    if(isMobile && currentPath === "/shop"){  
+    if(isMobile && currentPath === "/shop" || currentPath === "/chat"){  
     setSearchBarRem(true);
     } else {
       setSearchBarRem(false);

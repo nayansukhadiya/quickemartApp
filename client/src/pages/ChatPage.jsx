@@ -4,6 +4,7 @@ import UserContext from "../context/UserContext";
 import "../style/ChatPage.css";
 import TextAnimation from "../components/TextAnimation";
 import ChatHistory from '../components/ChatHistory';
+import { NavLink } from "react-router-dom";
 const suggestionArr = [
   {
     icon: (
@@ -159,6 +160,7 @@ function ChatPage() {
 
   return (
     <div className="ChatPage">
+      <NavLink to='/' className="HomeBtn">Home</NavLink>
       <div className="pageRes">
         <div className={`prePageChat ${ansGet === true ? "ChatActive" : ""}`}>
         <TextAnimation />

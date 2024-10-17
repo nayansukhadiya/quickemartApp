@@ -17,7 +17,7 @@ function HomeBanner() {
                 <p>Fresh Vegetable & Fruits</p>
                 <Link to='/shop?catid=sweets&subid=vegetable'>order now</Link>
             </div>
-            <img src='https://rukminim2.flixcart.com/image/1160/1160/xif0q/chocolate/y/a/p/350-desserts-brownie-5-cadbury-dairy-milk-silk-original-imahfjehtcg4q9qa.jpeg?q=90'></img>
+            <img src='http://localhost:3000/static/media/chocolates.471de7f0776ac206769c.png'></img>
         </div>
     </div>
   )

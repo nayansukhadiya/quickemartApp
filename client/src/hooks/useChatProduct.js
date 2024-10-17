@@ -11,7 +11,6 @@ function useChatProduct() {
     const ingredients = arr[0]?.rapidRecipeArr[0]?.recipe?.ingredients;
   
     if (ingredients && ingredients.length > 0) {
-      // Create an array of fetch promises
       const fetchPromises = ingredients.map((ingredient) => {
         console.log(ingredient.ingredient_name);
         return fetch(`${config.apiUrl}/products/filter?q=${ingredient.ingredient_name}&category=${ingredient.ProCategory}`)

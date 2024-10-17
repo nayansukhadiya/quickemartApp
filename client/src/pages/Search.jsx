@@ -61,7 +61,7 @@ function Search() {
   }, [query, debouncedSearchTerm]);
 
   return (
-    <div className="shop-cards searchPageSec">
+    <div className="shop-cards gridLayout searchPageSec">
       {filterProduct.length > 0 ? (
         filterProduct.map((item) => (
           <HomeCard

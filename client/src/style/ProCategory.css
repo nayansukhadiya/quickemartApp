@@ -12,44 +12,38 @@
     font-weight: 600;
     color: var(--primary-color);
 }
-.ProCategorySec{
-    display: grid;
-    grid-template-columns: repeat(10,1fr);
-    gap: 8px;
+.categorySec {
+    /* display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; */
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
 }
-.CatProBox{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 40px;
-    gap: 10px;
-}
-.CatProBox .catImgBox{
-    height: 90px;
-    padding-top: 10px;
-    width: 100%;
+.categoryCard {
+      width: calc(100%/ 8);  
     overflow: hidden;
+  }
+  .categoryCard img {
+    aspect-ratio: 1;
+    width: 85%;
+    padding: 8px 15px;
+    /* object-fit: cover; */
     border-radius: 10px;
-    position: relative;
-    background-image: linear-gradient(
-    180deg,
-    #c4d7ff 0%,
-    #bdd2ffe1 55%,
-    #ffffff 100%
-  );
-}
-.CatProBox .catImgBox img{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -26px;
-}
-.CatProBox .catName{
-    font-size: smaller;
-    font-weight: 500;
-}
+    background-color: #efefef;
+  }
+  .categoryCard p {
+    padding-top: 5px;
+  }
+  
 
 @media screen and (max-width: 480px) {
+  .categorySec {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);}
+    .categoryCard {
+      width: 100%;
+    }
     .ProCategorySec{
         display: grid;
         grid-template-columns: repeat(4,1fr);}

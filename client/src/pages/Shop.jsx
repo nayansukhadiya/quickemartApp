@@ -6,6 +6,8 @@ import "../style/shop.css";
 import ShopSideNav from "../components/ShopSideNav";
 import config from "../config";
 import ProductNav from "../components/ProductNav";
+import Loader from "../components/Loader";
+import SkeletonSec from "../components/SkeletonSec";
 
 function Shop() {
   const [categoryArr, setCategoryArr] = useState([]);
@@ -18,6 +20,9 @@ function Shop() {
   const [filterBrand, setFilterBrand] = useState([]);
   const [sidebarBrand, setSidebarBrand] = useState(false);
   const [checkedBrand, setCheckedBrand] = useState([]);
+  const [loaderTime, setLoaderTime] = useState(true);
+  const [skeletonLoader, setSkeletonLoader] = useState(true);
+  const [currentProducts,setCurrentProducts] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
@@ -28,6 +33,12 @@ function Shop() {
     setUrlId({ catId, subId });
     setCurrentPage(1);
   }, [location.search]);
+
+useEffect(()=> {
+setSkeletonLoader(true);
+window.scrollTo(0, 0);
+setCheckedBrand([])
+},[urlId])
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -71,6 +82,7 @@ function Shop() {
         if (sortOrder === "Relative") {
           setCategoryArr(data);
           setFilterBrand(data);
+          setLoaderTime(false);
         } else {
           sortArr(data, sortOrder);
         }
@@ -120,26 +132,39 @@ function Shop() {
     } else {
       setCheckedBrand([...checkedBrand, item]);
     }
-    console.log("all Brand data is the", allBrand);
   }
 
   function handleApplyFilter() {
+    setSkeletonLoader(true);
     const filteredProducts1 = filterBrand.filter((item) =>
       checkedBrand.length ? checkedBrand.includes(item.brand) : true
     );
-    setCategoryArr(filteredProducts1);
+    setSidebarBrand(false);
     setCurrentPage(1);
+    setTimeout(() => {
+      setSkeletonLoader(false);
+    }, 1000);
+    setCategoryArr(filteredProducts1);
   }
   function handleRemoveFilter() {
+    setSkeletonLoader(true);
     setCheckedBrand([]);
+    setTimeout(() => {
+      setSkeletonLoader(false);
+    }, 1000);
     setCategoryArr(filterBrand);
   }
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = useMemo(() => {
-    return categoryArr.slice(indexOfFirstProduct, indexOfLastProduct);
+  useEffect(() => {
+    setCurrentProducts([]);
+    setSkeletonLoader(true);
+    const currentProducts1 = categoryArr.slice(indexOfFirstProduct, indexOfLastProduct);
+    setCurrentProducts(currentProducts1)
+    setSkeletonLoader(false);
   }, [categoryArr, indexOfFirstProduct, indexOfLastProduct]);
-
+  
+  
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const totalPages = Math.ceil(categoryArr.length / productsPerPage);
@@ -148,6 +173,9 @@ function Shop() {
     <div className="ShopMainPage">
       <ProductNav />
       <div>
+        <div className={`${loaderTime ? "loaderSec" : "LoaderNone"}`}>
+          <Loader />
+        </div>
         <div className="upperSecShop">
           <h5>{categoryArr.length} Product Found</h5>
           <div>
@@ -225,7 +253,8 @@ function Shop() {
                       />
                     </div>
                     <p>
-                      {item.brand} <span className="countBrandFilter">({item.count})</span>
+                      {item.brand}{" "}
+                      <span className="countBrandFilter">({item.count})</span>
                     </p>{" "}
                   </div>
                   <div
@@ -267,7 +296,10 @@ function Shop() {
         </div>
         <ShopSideNav catArr={catData} ActiveBtn={urlId.subId} />
         <div className="shopMain">
-          <div className="shop-cards">
+          <div className={`gridLayout ${skeletonLoader ? "skeletonLoaderSec" : "LoaderNone"}`}>
+          <SkeletonSec />
+        </div>
+          <div className="shop-cards gridLayout">
             {currentProducts.map((item) => (
               <HomeCard
                 key={item.p_id}

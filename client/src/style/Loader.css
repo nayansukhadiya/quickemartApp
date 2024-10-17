@@ -1,0 +1,56 @@
+.LoaderSection {
+    position: relative;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 128px;
+    height: 128px;
+    padding: 30px;
+  }
+  .LoaderSection svg{
+    width: 100px;
+    height: 100px;
+  }
+  .svg1, .svg2, .svg3 {
+    position: absolute;
+    opacity: 0;
+    transform: scale(0);
+    border-radius: 50%;
+    border: 8px solid transparent;
+    animation: scaleUpDown 4s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+  }
+ 
+  
+  .svg2 {
+    animation-delay: 1.2s;
+  }
+  
+  .svg3 {
+    animation-delay: 2.5s;
+  }
+  
+  @keyframes scaleUpDown {
+    0%, 16.66% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    16.66%, 50% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50%, 100% {
+      opacity: 0;
+      transform: scale(1.5);
+    }
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

@@ -6,35 +6,48 @@ import useChatProduct from "../hooks/useChatProduct";
 
 function ChatBot({ chatPrompt, foodStyleBtn }) {
   const { chatArray, setChatArray } = useContext(UserContext);
-  const { ansGet, setAnsGet } = useContext(UserContext);
+  const { ansGet, setAnsGet, chatLoad, setChatLoad } = useContext(UserContext);
   const [prompt, setPrompt] = useState("");
   const [foodPmt, setFoodPmt] = useState(null); 
   const [rapidRecipeArr, setRapidRecipeArr] = useState([]);
-  const { filterPro,notPreArr } = useChatProduct(chatArray);
+  const { filterPro, notPreArr } = useChatProduct(chatArray);
   const inputRef = useRef(null);
 
-  useEffect(()=>{
+  useEffect(() => {
     setFoodPmt(foodStyleBtn);
-
-  },[foodStyleBtn])
+  }, [foodStyleBtn]);
 
   const { sendMessage, isLoading, error, response } = useGeminiChat();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (prompt.trim() === "") return;
     setAnsGet(true);
-    const promptMessage = `I want you to create a shopping cart based on my request. Here's my  dish request to how to cook and give me require every minor single ingredients ofr every single dish: ${prompt} And food Style is must be ${foodPmt}. Please provide a list of ingredients and quantities in JSON format.`;
+    const promptMessage = `I want you to create a shopping cart based on my request. Here's my dish request to how to cook and give me require every minor single ingredients of every single dish: ${prompt} And food Style is must be ${foodPmt}. Please provide a list of ingredients and quantities in JSON format.`;
 
     try {
-      await sendMessage(promptMessage);
       setChatArray((prev) => [
         ...prev,
         { author: "user", message: prompt },
+        {author: "ChatLoad", message: "Loading"}
       ]);
+      // setChatLoad(true);
+      await sendMessage(promptMessage);
+      // setChatLoad(false);
       setPrompt("");
-      
     } catch (err) {
       console.error("Error sending message:", err);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      if (e.shiftKey) {
+        return;
+      } else {
+        e.preventDefault();
+        handleSubmit(e);
+      }
     }
   };
 
@@ -53,9 +66,11 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
       setRapidRecipeArr([]);
     }
   }, [response]);
+
   const generateUniqueIdWithIndex = (index) => {
     return `Rapid.nayan.dev-${Date.now()}-${index}`; 
   };
+
   useEffect(() => {
     if (chatPrompt) {
       setPrompt(chatPrompt);
@@ -64,7 +79,6 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
 
   useEffect(() => {
     const newIndex = chatArray.length;
-    console.log("rapidRecipeArr ", rapidRecipeArr);
     setChatArray((prev) => [
       ...prev,
       {
@@ -97,6 +111,7 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
           className="chatBoxInput"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
+          onKeyDown={handleKeyDown}
           ref={inputRef}
           disabled={isLoading}
           placeholder="Type Your Prompt..."

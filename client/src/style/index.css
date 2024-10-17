@@ -219,4 +219,7 @@ a {
     width: 16.5px;
     height: 16.5px;
   }
+  .chatBg {
+    /* background-image: linear-gradient(135deg, #c8d9ff66 0%, #f0f0f0d7 80%, #c0cfff 100%); */
+  }
 }

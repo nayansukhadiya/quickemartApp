@@ -8,6 +8,7 @@ const UserContextProvider = ({ children }) => {
   const [chatArray, setChatArray] = useState([]);
   const [ansGet, setAnsGet] = useState(false);
   const [chatArrPro, setChatArrPro] = useState([]);
+  const [chatLoad, setChatLoad] = useState(false);
   const [navCat, setNavCat] = useState([
     { label: "Chips", linkName: "chips", path: "eat/lng" },
     { label: "Chocolates", linkName: "chocolates", path: "eat/0pt" },
@@ -50,6 +51,7 @@ const UserContextProvider = ({ children }) => {
         setAnsGet,
         chatArrPro,
         setChatArrPro,
+        chatLoad, setChatLoad
       }}
     >
       {children}

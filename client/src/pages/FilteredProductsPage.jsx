@@ -19,11 +19,10 @@ console.log(`${config.apiUrl}/products?sub_category=${subCategory}`)
         }
         const data = await response.json();
         console.log(data);
-        // Ensure data is an array
         if (Array.isArray(data)) {
           setProducts(data);
         } else {
-          setProducts([]); // Fallback to empty array if data is not as expected
+          setProducts([]); 
         }
       } catch (error) {
         console.error("Error fetching filtered products:", error);
@@ -42,7 +41,6 @@ console.log(`${config.apiUrl}/products?sub_category=${subCategory}`)
           <Link to={`/shop?catid=sweets&subid=${subCategory}`}>See All</Link>
         </div>
         <CardSlider>
-          {/* Ensure products is not empty before mapping */}
           {products.length > 0 ? (
             products
               .slice(0, 15)

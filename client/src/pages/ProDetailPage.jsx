@@ -10,11 +10,11 @@ function ProDetailPage() {
   const imgRef = useRef(null);
   const location = useLocation();
   const query = new URLSearchParams(location.search).get("id");
-  const [averageColor, setAverageColor] = useState(""); // State for average color
+  const [averageColor, setAverageColor] = useState("");
   const [detailArr, setDetailArr] = useState([]);
   const [mainImage, setMainImage] = useState("");
   const [images, setImages] = useState([]);
-
+ 
   const searchQuery = query ? query.split("-") : [];
   if (searchQuery.length !== 2) {
     console.error("Invalid query format");
@@ -39,7 +39,9 @@ function ProDetailPage() {
           console.log("Fetched product:", data);
           setDetailArr([data]);
           if (data.images && data.images.length > 0) {
-            const updatedImages = data.images.map((img) => replaceImageDimensions(img));
+            const updatedImages = data.images.map((img) =>
+              replaceImageDimensions(img)
+            );
             setImages(updatedImages);
             setMainImage(updatedImages[0]);
           }
@@ -51,16 +53,17 @@ function ProDetailPage() {
   }, [p_id]);
 
   const replaceImageDimensions = (url) => {
-    return url.replace(/h_\d+/, 'h_1080').replace(/w_\d+/, 'w_1080');
+    return url.replace(/h_\d+/, "h_1080").replace(/w_\d+/, "w_1080");
   };
 
   const handleImageLoad = () => {
     const imgElement = imgRef.current;
     if (imgElement) {
-      fac.getColorAsync(imgElement)
+      fac
+        .getColorAsync(imgElement)
         .then((color) => {
           const rgbaWithAlpha = `rgba(${color.value[0]}, ${color.value[1]}, ${color.value[2]}, 0.2)`;
-          setAverageColor(rgbaWithAlpha); // Set RGBA with modified alpha
+          setAverageColor(rgbaWithAlpha);
         })
         .catch((e) => {
           console.error(e);
@@ -78,7 +81,6 @@ function ProDetailPage() {
 
   const product = detailArr[0];
 
-  // Guard clause for when product is undefined
   if (!product) {
     return <div>Loading...</div>;
   }
@@ -97,10 +99,14 @@ function ProDetailPage() {
             <img
               crossOrigin="anonymously" // Fixed the spelling here
               ref={imgRef}
-              src={product?.img ? replaceImageDimensions(product.img) : "path/to/default-image.jpg"}
+              src={
+                product?.img
+                  ? replaceImageDimensions(product.img)
+                  : "path/to/default-image.jpg"
+              }
               alt="Main product"
               onLoad={handleImageLoad}
-              onError={handleImageError}  // Added error handler
+              onError={handleImageError} // Added error handler
             />
           </div>
         </div>
@@ -108,8 +114,14 @@ function ProDetailPage() {
         <div className="detail-section-product part-section">
           <div className="ProductPageDir">
             <Link to="/">Home</Link> <p> / </p>
-            <Link to={`/shop?catid=${product.category}&subid=${product.sub_category}`}>
-              {renderIfExists(product.sub_category.replace(/_/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase()))}
+            <Link
+              to={`/shop?catid=${product.category}&subid=${product.sub_category}`}
+            >
+              {renderIfExists(
+                product.sub_category
+                  .replace(/_/g, " ")
+                  .replace(/\b\w/g, (char) => char.toUpperCase())
+              )}
             </Link>{" "}
             <p> / </p>
             <p>{renderIfExists(product.name)}</p>
@@ -122,13 +134,24 @@ function ProDetailPage() {
               {renderIfExists(product.brand)}
             </Link>
           </div>
-          <Link className="allBrandPro" to={`/search?q=${renderIfExists(product.brand)}`}>
-            View all {renderIfExists(product.brand)} Products
+          <Link
+            className="allBrandPro"
+            to={`/search?q=${renderIfExists(product.brand)}`}
+          >
+            
+            <img
+              src={require(`../assets/BrandLogo/${product.brand
+                .toLowerCase()
+                .replace(/ /g, "_")}.png`)}
+              alt={product.brand}
+            />{" "}
+            View all {product.brand} Products
           </Link>
           <h3 className="ProTitle">
-            &#8377; {renderIfExists(product.price)}{" "}
-            <span>{renderIfExists(product.mrp)}</span>
-          </h3>
+  &#8377; {renderIfExists(product.price)}{" "}
+  {product.mrp && <span>{product.mrp}</span>} 
+</h3>
+
 
           {product && (
             <AddCartBtn

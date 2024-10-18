@@ -112,4 +112,7 @@ justify-content: space-between;
 align-items: center;
 }
 @media screen and (max-width: 450px) {
+  .cartSec {
+    flex-direction: column;
+}
 }

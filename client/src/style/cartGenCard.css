@@ -1,0 +1,85 @@
+.CartGenCard {
+  width: 160px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: relative;
+    border: 1px solid rgb(223, 223, 223);
+    transition: all 0.2s linear;
+}
+.CartGenCard .imgSec {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.CartGenCard .imgSec img {
+  width: 80%;
+  height: 80%;
+}
+.CartGenCard .imgSec .pngImg {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    padding: 12px 0;
+  }
+  .CartGenCard .imgSec .jpgImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+.CartGenCard .imgSec .CartGenCardBrand {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 12px;
+  padding: 5px 10px;
+  background-color: white;
+  border-radius: 0px 10px 0px 0px;
+}
+.CartGenCard .detailCard{
+    padding: 10px;
+}
+.CartGenCard .detailCard .name{
+    font-weight: 500;
+    font-size: 14px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: wrap;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 33px;
+}
+.CartGenCard .detailCard .unit{
+    font-weight: 500;
+    font-size: 12px;
+}
+.CartGenCard .priceAndCart{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+}
+.CartGenCard .priceAndCart .CardGenCardPrice{
+    font-size: 16px;
+    line-height: 1.1;
+    font-weight: 500;
+}
+
+.CartGenCard .priceAndCart .addToCart {
+    width: 55%;
+    margin: 0;
+}
+.CartGenCard .priceAndCart .addToCart  .quantity{
+  width: unset;
+}
+.CartGenCard .priceAndCart .addToCart .decrementBtn, .incrementBtn {
+  padding: 3px 8px;
+}

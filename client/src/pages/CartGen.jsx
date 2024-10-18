@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import UserContext from "../context/UserContext";
 import { useLocation } from "react-router-dom";
-import HomeCard from "../components/HomeCard";
 import CardSlider from "../components/CardSlider";
 import "../style/chatGen.css";
+import CartGenCard from "../components/CartGenCard";
+import BackToShop from "../components/BackToShop";
 
 function CartGen() {
   const { chatArrPro } = useContext(UserContext);
@@ -11,20 +12,28 @@ function CartGen() {
   const [findCart, setFindCart] = useState(null);
   const [filteredProducts, setFilteredProducts] = useState(null);
   const [relatedProd, setRelatedProd] = useState({});
+  const [titleAndMessage, setTitleAndMessage] = useState({
+    title: '',
+    message: ''
+  });
   const query = new URLSearchParams(location.search).get("id");
-
-  // Scroll to top when the query changes
+  console.log("cart generation is the", chatArrPro);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [query]);
-
+  console.log("cart id is the from query", query);
   // Find the cart based on the query parameter
   useEffect(() => {
     const cart = chatArrPro.find((item) => item.cart_id === query);
     if (cart) {
       setFindCart(cart);
+      setTitleAndMessage({
+        title: cart.cart_name,
+        message: cart.userMessageDetail,
+      })
+      console.log("Find cart generation is the", cart);
     } else {
-      setFindCart(null); // Cart not found
+      setFindCart(null);
     }
   }, [query, chatArrPro]);
 
@@ -191,12 +200,12 @@ function CartGen() {
       let sum = number * quantity;
 
       if (isNaN(sum)) {
-        return quantity; 
+        return quantity;
       } else {
-        return `${sum} ${unitTxt}`; 
+        return `${sum} ${unitTxt}`;
       }
     } else {
-      return "No data available"; 
+      return "😢 We’re really sorry";
     }
   }
 
@@ -204,7 +213,7 @@ function CartGen() {
   const renderProducts = (products, type) => {
     return products.length > 0 ? (
       products.map((product) => (
-        <HomeCard
+        <CartGenCard
           key={product.data.p_id}
           ProIDSearch={product.data.p_id}
           img={product.data.img}
@@ -223,27 +232,37 @@ function CartGen() {
   };
 
   if (!findCart) {
-    return <p>Cart not found or loading...</p>;
+    return <>
+    <BackToShop LinkName={"Generative Cart"} />
+    <p>Cart not found or loading...</p>;
+     </> 
   }
-
+console.log(titleAndMessage)
   return (
     <div className="CartGenPage">
+      <BackToShop LinkName={"Generative Cart"}/>
+      <h1 className="CartGenTitle">{titleAndMessage.title}</h1>
+      <p className="CartUserMessage">{titleAndMessage.message}</p>
       {filteredProducts ? (
         Object.keys(filteredProducts).map((key) => (
           <div className="ingredientSec">
             <div key={key} className="ingredientPart">
               <div className="DetailSec cartInCard">
-                <div>
-                  <p>Ingredient</p>
-                  <h3>{key}</h3>
+                <div className="mainTitle">
+                  <h3>{key.replace(/\b\w/g, (char) => char.toUpperCase())}</h3>
                 </div>
-                <div>
-                  <p>Quantity</p>
-                  <h3>{findCart.products[key][0]?.resQuantity || "0"}</h3>
-                </div>
+                <div className="requiredDetailsSec">
                 <div>
                   <p>Available packet size</p>
-                  <h3>{findCart.products[key][0]?.resUnit}</h3>
+                  <h3>
+                    {findCart &&
+                    findCart.products &&
+                    findCart.products[key]?.length > 0
+                      ? findCart.products[key][0]?.resUnit === "null"
+                        ? null
+                        : findCart.products[key][0]?.resUnit
+                      : "😢 We're really sorry"}
+                  </h3>
                 </div>
                 <div>
                   <p>Total Required</p>
@@ -253,37 +272,41 @@ function CartGen() {
                       findCart.products[key][0]?.resQuantity
                     )}
                   </h3>
-                </div>
+                </div></div>
                 <div className="prdDetail">
-                  <p>Product Detail</p>
-                  <h3>{findCart.products[key][0]?.ingredientsDetail}</h3>
+                  <p>Do you Know</p>
+                  <h3>
+  {findCart.products[key][0]?.ingredientsDetail || "😢 We're really sorry"}
+</h3>
+
                 </div>
               </div>
-<div className="sliderSecIn">
-              {filteredProducts[key]?.length > 0 ? (
-                <div className="proSliderSec perfectPro">
-                  <h1 className="cardSecTitle cardSecTitle1">
-                    Perfect Product for you
-                  </h1>
-                  <CardSlider>
-                    {renderProducts(filteredProducts[key], "product")}
-                  </CardSlider>
-                </div>
-              ) : (
-                <div>No products found</div>
-              )}
+              <div className="sliderSecIn">
+                {filteredProducts[key]?.length > 0 ? (
+                  <div className="proSliderSec perfectPro">
+                    <h1 className="cardSecTitle cardSecTitle1">
+                      Perfect Product for you
+                    </h1>
+                    <CardSlider>
+                      {renderProducts(filteredProducts[key], "product")}
+                    </CardSlider>
+                  </div>
+                ) : (
+                  <div>😢 We’re really sorry, but no products were found.</div>
+                )}
 
-              {relatedProd[key]?.length > 0 && (
-                <div className="proSliderSec relatedPro1">
-                  <h1 className="cardSecTitle cardSecTitle2">
-                    You Might Prefer That
-                  </h1>
-                  <CardSlider>
-                    {renderProducts(relatedProd[key], "related product")}
-                  </CardSlider>
-                </div>
-              )}
-            </div></div>
+                {relatedProd[key]?.length > 0 && (
+                  <div className="proSliderSec relatedPro1">
+                    <h1 className="cardSecTitle cardSecTitle2">
+                      You Might Prefer That
+                    </h1>
+                    <CardSlider>
+                      {renderProducts(relatedProd[key], "related product")}
+                    </CardSlider>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         ))
       ) : (

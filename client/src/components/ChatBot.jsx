@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect, useContext, useMemo } from "react";
 import "../style/chatBox.css";
 import useGeminiChat from "../hooks/useGeminiChat";
 import UserContext from "../context/UserContext";
@@ -10,30 +10,30 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
   const [prompt, setPrompt] = useState("");
   const [foodPmt, setFoodPmt] = useState(null); 
   const [rapidRecipeArr, setRapidRecipeArr] = useState([]);
-  const { filterPro, notPreArr } = useChatProduct(chatArray);
+  const [userCartMessage, setUserCartMessage] =  useState(null)
   const inputRef = useRef(null);
-
+  
   useEffect(() => {
     setFoodPmt(foodStyleBtn);
   }, [foodStyleBtn]);
-
+  
+  const { filterPro } = useChatProduct(chatArray);
   const { sendMessage, isLoading, error, response } = useGeminiChat();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (prompt.trim() === "") return;
     setAnsGet(true);
+    setChatLoad(true);
     const promptMessage = `I want you to create a shopping cart based on my request. Here's my dish request to how to cook and give me require every minor single ingredients of every single dish: ${prompt} And food Style is must be ${foodPmt}. Please provide a list of ingredients and quantities in JSON format.`;
 
     try {
       setChatArray((prev) => [
         ...prev,
-        { author: "user", message: prompt },
-        {author: "ChatLoad", message: "Loading"}
+        { author: "user", message: prompt }
       ]);
-      // setChatLoad(true);
       await sendMessage(promptMessage);
-      // setChatLoad(false);
+      setChatLoad(false);
       setPrompt("");
     } catch (err) {
       console.error("Error sending message:", err);
@@ -60,38 +60,48 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
             ingredients: response.ingredients,
           },
           summary: response.summary,
+          userMessageDetail: response.userMessageDetail,
         },
       ]);
+      setUserCartMessage(response.userMessageDetail)
     } else {
       setRapidRecipeArr([]);
     }
   }, [response]);
-
+  
   const generateUniqueIdWithIndex = (index) => {
     return `Rapid.nayan.dev-${Date.now()}-${index}`; 
   };
-
+  
   useEffect(() => {
     if (chatPrompt) {
       setPrompt(chatPrompt);
     }
   }, [chatPrompt]);
-
+  
+  
   useEffect(() => {
     const newIndex = chatArray.length;
+    if(rapidRecipeArr.length === 0){
+      setChatArray([])
+    }
     setChatArray((prev) => [
       ...prev,
       {
         cart_id: generateUniqueIdWithIndex(newIndex),
         author: "admin",
+        useChatProduct: userCartMessage,
         rapidRecipeArr,
       },
     ]);
+
     filterPro([{
       cart_id: generateUniqueIdWithIndex(newIndex),
       author: "admin",
+      useChatProduct: userCartMessage,
       rapidRecipeArr,
     }]);
+    console.log("response is ",rapidRecipeArr)
   }, [rapidRecipeArr]);
 
   useEffect(() => {
@@ -120,10 +130,8 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
           type="submit"
           disabled={isLoading || !prompt.trim()}
           aria-label="Send Message"
+          className={` ${isLoading ? 'loadingChatBtn' : ''}`} 
         >
-          {isLoading ? (
-            <div className="spinner"></div>
-          ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1em"
@@ -137,7 +145,6 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
                 clipRule="evenodd"
               />
             </svg>
-          )}
         </button>
       </form>
       {error && <div className="error">{error}</div>}

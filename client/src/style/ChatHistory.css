@@ -1,124 +1,167 @@
 .chatHistory {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    margin: 0 auto; 
-    overflow: auto;
-    max-height: 70vh; /* Limit height to prevent overflow */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 80%;
+  padding: 2% 10% 0 10%;
+  margin: 0 auto;
+  overflow: auto;
+  max-height: 73vh;
 }
-/* From Uiverse.io by ashish-yadv */ 
-.loader {
-    width: 60px;
-    display: flex;
-    justify-content: space-evenly;
+.dots-container {
+  position: relative;
+  background-color: white;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  width: 120px;
+  padding: 3px 17px;
+  border-radius: 20px 20px 20px 15px;
+}
+
+.tailMessage {
+  position: absolute;
+  z-index: 1;
+}
+.rightSide {
+  bottom: -6px;
+  left: -8px;
+}
+.tailMessage svg {
+  width: 30px;
+  height: 30px;
+}
+.dot {
+  z-index: 2;
+  height: 10px;
+  width: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  background-color: #b3d4fc;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+.dot:last-child {
+  margin-right: 0;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.3s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: -0.1s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    background-color: #b3d4fc;
+    box-shadow: 0 0 0 0 rgba(178, 212, 252, 0.7);
   }
-  
-  .ball {
-    list-style: none;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #fff;
+
+  50% {
+    transform: scale(1.2);
+    background-color: #6793fb;
+    box-shadow: 0 0 0 10px rgba(178, 212, 252, 0);
   }
-  
-  .ball:nth-child(1) {
-    animation: bounce-1 2.1s ease-in-out infinite;
+
+  100% {
+    transform: scale(0.8);
+    background-color: #b3d4fc;
+    box-shadow: 0 0 0 0 rgba(178, 212, 252, 0.7);
   }
-  
-  @keyframes bounce-1 {
-    50% {
-      transform: translateY(-18px);
-    }
-  }
-  
-  .ball:nth-child(2) {
-    animation: bounce-3 2.1s ease-in-out 0.3s infinite;
-  }
-  
-  @keyframes bounce-2 {
-    50% {
-      transform: translateY(-18px);
-    }
-  }
-  
-  .ball:nth-child(3) {
-    animation: bounce-3 2.1s ease-in-out 0.6s infinite;
-  }
-  
-  @keyframes bounce-3 {
-    50% {
-      transform: translateY(-18px);
-    }
-  }
+}
 .Message {
-    font-weight: 600;
-    display: flex;
-    line-height: 1.4;
-    flex-direction: column; /* Stack items vertically */
-    gap: 5px;
-    width: fit-content;
-    max-width: 85%;
-    white-space: break-spaces;
-    border-radius: 10px;
-    overflow-wrap: break-word; 
-    transition: all 0.3s ease-in-out; /* Faster transition */
-    padding: 15px; /* Added padding for comfort */
+  position: relative;
+  font-weight: 600;
+  display: flex;
+  line-height: 1.4;
+  flex-direction: column;
+  gap: 5px;
+  width: fit-content;
+  max-width: 85%;
+  white-space: break-spaces;
+  border-radius: 20px;
+  overflow-wrap: break-word;
+  transition: all 0.3s ease-in-out; 
+  padding: 10px 17px;
 }
 
 .userMessage {
-    align-self: flex-end;
-    color: white;
-    background: var(--primary-color, #007bff); /* Updated default color */
-    text-align: right; 
+  align-self: flex-end;
+  color: white;
+  background: var(--primary-color, #007bff); /* Updated default color */
+  text-align: right;
+  margin-right: 14px;
 }
-
+.userMessage .leftSide {
+  bottom: -6px;
+  right: -9px;
+}
+.userMessage svg {
+  fill: var(--primary-color);
+}
 .adminMessage {
-    align-self: flex-start;
-    background: var(--admin-message-bg-color, #ffffff); 
-    text-align: left; 
-    border-radius: 10px;
+  align-self: flex-start;
+  background: var(--admin-message-bg-color, #ffffff);
+  text-align: left;
+  border-radius: 20px 20px 20px 15px;
+  margin-left: 14px;
 }
-
+.adminMessage .rightSide {
+  bottom: -9px;
+  left: -9px;
+}
 .cartTitle {
-    font-size: 18px;
-    font-weight: bold;
-    color: var(--primary-color);
-    margin: 5px 0; /* Added margin for spacing */
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin: 5px 0; /* Added margin for spacing */
 }
-.ingredientsList li{
-    list-style-position: inside;
+.ingredientsList li {
+  list-style-position: inside;
 }
 .summary {
-    font-size: 14px; 
-margin: 7px 0;    
+  font-size: 14px;
+  margin: 7px 0;
 }
 
 .linkSec {
-    padding: 5px 0;
-    margin-top: 5px; /* Added margin for spacing */
+  margin-top: 5px; 
+  border-top: 1px solid lightgray;
 }
 
 .linkSec a {
-    display: flex;
-    align-items: center;
-    font-weight: 600;
-    color: var(--primary-color);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--primary-color);
 }
 
 .linkSec svg {
-    width: 17px;
-    height: 17px;
-    margin-left: 5px; /* Added margin for better spacing */
+  width: 17px;
+  height: 17px;
+  margin-right: 5px; /* Added margin for better spacing */
 }
 
 @media (max-width: 480px) {
-    .Message {
-        font-size: 14px; /* Smaller font for mobile */
-        max-width: 86%; /* Increased max-width for mobile */
-    }
+  .chatHistory {
+    width: 95%;
+    padding: 2% 2.5% 0 2.5%;
+  }
+  .Message {
+    font-size: 14px; /* Smaller font for mobile */
+    max-width: 76%; /* Increased max-width for mobile */
+  }
 
-    .cartTitle {
-        font-size: 16px; 
-    }
+  .cartTitle {
+    font-size: 16px;
+  }
 }

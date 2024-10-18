@@ -9,10 +9,12 @@ function useChatProduct() {
     if (!arr || arr.length === 0) return;
   
     const ingredients = arr[0]?.rapidRecipeArr[0]?.recipe?.ingredients;
-  
+  const userMessageDetail = arr[0]?.useChatProduct
+  console.log("=====================",arr)
+  console.log(">>>>>>>>>>>>>>>>>>>",userMessageDetail)
     if (ingredients && ingredients.length > 0) {
       const fetchPromises = ingredients.map((ingredient) => {
-        console.log(ingredient.ingredient_name);
+
         return fetch(`${config.apiUrl}/products/filter?q=${ingredient.ingredient_name}&category=${ingredient.ProCategory}`)
           .then((res) => {
             if (!res.ok) {
@@ -26,12 +28,15 @@ function useChatProduct() {
         // Wait for all fetch promises to resolve
         const results = await Promise.all(fetchPromises);
         console.log("Fetched products:", results);
+        console.log("Fetched products :", results);
   
         // Initialize the structured product array
+
         const arr2 = {
           cart_id: arr[0]?.cart_id, 
           cart_name: arr[0]?.rapidRecipeArr[0]?.recipe?.name,
           author: arr[0]?.author,
+          userMessageDetail: userMessageDetail,
           products: {} 
         };
   

@@ -59,12 +59,12 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  overflow-x: hidden !important;
 }
 body {
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 #root {
   height: 100%;
@@ -102,7 +102,7 @@ button {
 .card .addToCart {
   width: auto;
 }
-.card .addToCart{
+ .addToCart{
   background-color: white;
   border: 1px solid var(--primary-color);
   border-radius: 8px;
@@ -220,6 +220,6 @@ a {
     height: 16.5px;
   }
   .chatBg {
-    /* background-image: linear-gradient(135deg, #c8d9ff66 0%, #f0f0f0d7 80%, #c0cfff 100%); */
+    background-image: linear-gradient(135deg, #e2e2e2d7 0%,  #c8d9ff66 80%, #c0cfff 100%);
   }
 }

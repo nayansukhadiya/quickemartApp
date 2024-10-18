@@ -1,29 +1,21 @@
 .ChatPage {
   position: relative;
-  width: 80%;
-  height: 97%;
+  width: 100%;
+  height: 99%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-between;
   gap: 10px;
   margin: auto;
+  overflow-x: hidden;
 }
-.HomeBtn{
-  position: absolute;
-  top: 20px;
-  left: 2%;
-padding: 10px 20px;
-border-radius: 20px;
-color: white;
-background-color: #437af271;
-font-weight: 600;
-backdrop-filter: blur(20px);
-}
+
 .ChatActive{
-    display: none;
+    display: none !important;
 }
 .pageRes {
-  /* width: 100%; */
+  width: 100%;
   display: flex;
   overflow-y: auto;
   flex-direction: column;
@@ -91,6 +83,7 @@ backdrop-filter: blur(20px);
   min-height: 185px;
   overflow: auto;
   padding-bottom: 6px;
+  justify-content: center;
 }
 .suggestedCard {
   display: flex;
@@ -146,17 +139,26 @@ backdrop-filter: blur(20px);
 .suggestedCard .textSuggestion p {
   font-size: 14px;
 }
-.FoodStyleCardSec {
-  display: flex;
+
+.FoodStyleCardSec,.prePageChat  {
+  width: 80%;
+  padding: 0 10%;
   align-items: center;
+  display: flex;
+}
+.prePageChat{
+  flex-direction: column;
+}
+  .FoodStyleCardSec  {
   gap: 10px;
   overflow-x: auto;
   min-height: 40px;
   margin-bottom: 10px;
 }
+
 .FoodStyleCardSec button {
-  color: var(--primary-color);
-  background-color: var(--secondary-color);
+  color: rgb(119, 119, 119);
+  background-color: rgb(255, 255, 255);
   border-radius: 25px;
   padding: 10px 24px;
   cursor: pointer;
@@ -173,7 +175,7 @@ backdrop-filter: blur(20px);
 .FoodStyleCardSec button svg {
   height: 16px;
   width: 16px;
-  stroke: var(--primary-color);
+  stroke:  rgb(119, 119, 119);
 }
 
 .FoodStyleCardSec .active {
@@ -187,10 +189,26 @@ backdrop-filter: blur(20px);
   .main {
     height: calc(100% - 90px);
   }
-  .ChatPage {
-    width: 95%;
-    margin: auto;
-    overflow: hidden;
+  .ChatSuggestCardSec {
+    min-height: unset;
+  }
+  .pageRes{
+    gap: 2px;
+  }
+  .suggestedCard{
+    min-height: 120px;
+    height: 120px;
+    min-width: 200px;
+    width: 200px;
+  }
+  .suggestedCard .textSuggestion{
+height: 56px;
+  }
+  .suggestedCard .textSuggestion h3 {
+    font-size: 16px;
+  }
+  .suggestedCard .textSuggestion p {
+    font-size: 12px;
   }
   .ChatSuggestCardSec {
     justify-content: start;
@@ -210,4 +228,15 @@ backdrop-filter: blur(20px);
   .boxImgGemini div {
     margin: 0 auto;
   }
+  .FoodStyleCardSec,.prePageChat  {
+  width: 95%;
+  padding: 0 2.5%;
+  margin-bottom: 0px;
+  }
+  .FoodStyleCardSec button {
+    font-size: 14px;
+  }
+  .FoodStyleCardSec button svg {
+    height: 14px;
+    width: 14px;}
 }

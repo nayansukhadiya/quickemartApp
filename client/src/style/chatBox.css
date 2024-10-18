@@ -1,6 +1,6 @@
 .chatBox {
   height: auto;
-  width: 100%;
+  width: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,7 +10,7 @@
   width: 100%;
   border-radius: 38px;
   overflow: hidden;
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   padding: 11px;
   gap: 10px;
   align-items: end;
@@ -27,6 +27,7 @@
   background-color: transparent;
   border: none;
   resize: none;
+  color: black;
   box-sizing: border-box;
   outline: none;
   overflow: hidden;
@@ -48,7 +49,10 @@
   align-items: center;
   justify-content: center;
 }
-
+.loadingChatBtn{
+  opacity: 0.4;
+  cursor: none;
+}
 .chatBox button svg {
   width: 20px;
   height: 20px;
@@ -83,6 +87,9 @@ box-shadow: 8px 0 0 1.6px black, 0 8px 0 1.6px var(--background-color),
 }
 
 @media screen and (max-width: 480px) {
+  .chatBox {
+    width: 95%;
+  }
   /* .chatBox .chatBoxForm {
     padding: 5px;
   } */

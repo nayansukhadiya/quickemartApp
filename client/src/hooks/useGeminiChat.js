@@ -52,6 +52,10 @@ const useGeminiChat = () => {
                 description:
                   "A brief summary of the recipe or dish response and user input",
               },
+              userMessageDetail : {
+                type: "string", 
+                description: "Emoji is required Give a beautiful message for that cart generator message, like if they ask for any healthy cart, then replay like you are doing very well in life and you like the healthy and very conscious about your life, so we generate the best cart that helps your life, and if the user requests any dish or receipt, then give about a little bit of information and some praise about the recipe, and if any requests any dish or receipt, then give about a little bit of information and some praise about the recipe, and if any request is about a birthday, any party, or any other celebration type, then give a response according to it, and make sure to give also some emoji, and if any other cart, give a reply according to it."
+              },
               ingredients: {
                 type: "array",
                 items: {
@@ -87,7 +91,7 @@ const useGeminiChat = () => {
                     ingredientsDetail: {
                       type: "string",
                       description:
-                        "give the detail of the summary of the ingredients give the detail of product might like what it is how use? ",
+                        "specific give the why we suggest ans like that is help for good health or what is role in your recipe give the detail of the summary of the ingredients give the detail of product might like what it is how use? ",
                     }
                   },
                   required: [
@@ -101,7 +105,7 @@ const useGeminiChat = () => {
                 },
               },
             },
-            required: ["name", "summary", "ingredients"], // All fields are required
+            required: ["name", "summary", "ingredients","userMessageDetail"], // All fields are required
           },
         },
         required: ["recipe"], // Recipe object itself is required
@@ -144,8 +148,9 @@ const useGeminiChat = () => {
       const responseText =
         result.response?.candidates?.[0]?.content?.parts?.[0]?.text;
       const parsedResponse = responseText ? JSON.parse(responseText) : null;
-
+console.log("response from gemini is the",parsedResponse?.recipe)
       setResponse(parsedResponse?.recipe);
+
     } catch (err) {
       setError(err.message);
     } finally {

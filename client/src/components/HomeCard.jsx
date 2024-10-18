@@ -23,12 +23,6 @@ function HomeCard({
     const fac = new FastAverageColor();
     const imgElement = imgRef.current;
 
-    // Determine image format by its extension
-    // const extension = img.split('.').pop().toLowerCase();
-    // if (extension !== 'png') {
-    //   setImgClass("jpgImg"); // If not PNG, set class to jpgImg
-    // }
-
     if (imgElement) {
       fac
         .getColorAsync(imgElement)
@@ -84,7 +78,7 @@ function HomeCard({
             src={img}
             alt={name}
             onLoad={handleImageLoad}
-            className={isTransparent ? "pngImg" : "jpgImg"} // Dynamic class based on transparency
+            className={isTransparent ? "pngImg" : "jpgImg"} 
           />
         </div>
         {discount !== null && (

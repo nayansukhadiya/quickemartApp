@@ -82,9 +82,9 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
   
   useEffect(() => {
     const newIndex = chatArray.length;
-    if(rapidRecipeArr.length === 0){
-      setChatArray([])
-    }
+    // if(rapidRecipeArr.length === 0){
+    //   setChatArray([])
+    // }
     setChatArray((prev) => [
       ...prev,
       {

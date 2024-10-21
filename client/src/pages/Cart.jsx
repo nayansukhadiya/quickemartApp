@@ -32,26 +32,51 @@ function Cart() {
 
   // Helper function to calculate the total amount including delivery
   const calculateTotalAmount = () => {
-    return calculateTotalValue() + calculateDeliveryFee();
+    return calculateTotalValue() - calculateTotalSavings();
   };
 
   return (
     <div className="cartPage">
       <BackToShop LinkName={"Cart"} />
       <div className="cartPageIn">
-        <h1>My Cart</h1>
+        {/* <h1>My Cart</h1> */}
         <div className="cartSec">
           <div className="cartCardSec">
-            {proCart && proCart.length > 0 ? (
-              proCart.map((item) => (
-                <CartCard key={item.ProIDSearch} item={item} />
-              ))
-            ) : (
-              <div className="emptyMessage">Your cart is empty</div>
-            )}
+            <div className="cartCardSecTitle">
+              <div className="iconSec">
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24"
+                >
+                <path
+                  fill="black"
+                  fill-rule="evenodd"
+                  d="M9.75 2.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5h-.75v1.532a8.7 8.7 0 0 1 4.884 2.023l.836-.835a.75.75 0 1 1 1.06 1.06l-.835.836a8.75 8.75 0 1 1-7.445-3.084V3.25h-.75a.75.75 0 0 1-.75-.75M12 6.25a7.25 7.25 0 1 0 0 14.5a7.25 7.25 0 0 0 0-14.5"
+                  clip-rule="evenodd"
+                  />
+                <path
+                className="innerFill"
+                fill="black"
+                d="M12 7.75a5.75 5.75 0 1 0 4.98 8.625L12 13.5z"
+                opacity="0.5"
+                />
+              </svg>
+                </div>
+              
+              <div>
+              <p className="bigFont">Deliver in 8 min</p>
+              <p className="smallFont">Shipped {proCart.length} items</p>
+              </div>
+            </div>
+            {proCart.map((item) => (
+              <CartCard key={item.ProIDSearch} item={item} />
+            ))}
           </div>
           <div className="offerBenefitsSec">
-            <h2>Offer and Benefits</h2>
+            {/* <h2>Offer and Benefits</h2> */}
             <div className="ApplyCoupe">
               <div className="titleSec">
                 <svg
@@ -80,27 +105,39 @@ function Cart() {
               />
             </div>
             <div className="cartTotal">
-              <h3>Cart Total</h3>
+              <h3>Bill Detail</h3>
               <div className="summarySec">
                 <div className="summaryDiv">
-                  <p>Total Value</p>
-                  <p className="summaryValue">₹{calculateTotalValue().toFixed(2)}</p>
+                  <p>Item Total</p>
+                  <p className="summaryValue">
+                    ₹{calculateTotalValue().toFixed(2)}
+                  </p>
                 </div>
                 <div className="summaryDiv">
                   <p>Total Savings</p>
-                  <p className="summaryValue">₹{calculateTotalSavings().toFixed(2)}</p>
+                  <p className="summaryValue">
+                    ₹{calculateTotalSavings().toFixed(2)}
+                  </p>
                 </div>
                 <div className="summaryDiv">
                   <p>Delivery Fee</p>
-                  <p className="summaryValue">₹{calculateDeliveryFee().toFixed(2)}</p>
+                  <p className="summaryValue">
+                  <span className="freeFee">FREE</span> <span className="cancelFee">₹{calculateDeliveryFee().toFixed(2)}</span>
+                  </p>
                 </div>
-                <div className="summaryDiv">
-                  <p>Total Amount</p>
-                  <p className="summaryValue">₹{calculateTotalAmount().toFixed(2)}</p>
+
+                <div className="summaryDiv totalAmount">
+                  <p className="">Total Amount</p>
+                  <p className="summaryValue">
+                    ₹{calculateTotalAmount().toFixed(2)}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <div className="checkOutSec">
+          <button className="checkOutSecBtn">select payment option</button>
         </div>
       </div>
     </div>

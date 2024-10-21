@@ -1,15 +1,15 @@
 .cartPage {
-  position: absolute;
+  position: relative;
   left: 0;
   width: 100vw;
-  background-color: #f1f1f1;
+  background-color: #f5f7fd;
   min-height: 100vh;
 }
 
 .cartPage h1 {
   font-weight: 600;
   font-size: 30px;
-  padding: 40px 0;
+  padding: 100px 0 40px 0;
 }
 .cartSec {
   display: flex;
@@ -21,33 +21,86 @@
 }
 .cartCardSec {
   width: 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
-.cartCardSec, .cartTotal,.ApplyCoupe{
+.cartCardSecTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cartCardSecTitle {
+  padding: 10px 14px 10px 14px;
+  border-bottom: 1px solid lightgray;
+}
+
+.cartCardSecTitle  .iconSec{
+  height: 48px;
+  width: 48px;
+  background-color: #f5f7fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+.cartCardSecTitle svg {
+  width: 34px;
+  height: 34px;
+}
+ .innerFill{
+fill: var(--primary-color);
+}
+.cartCardSecTitle .bigFont{
+  font-size: 16px;
+  font-weight: 600;
+}
+.cartCardSecTitle .smallFont{
+  font-size: 12px;
+  opacity: 0.7;
+}
+.cartCardSec,
+.cartTotal,
+.ApplyCoupe {
   background-color: white;
   overflow: hidden;
   border-radius: 16px;
   border: 1px solid rgb(236, 236, 236);
-  box-shadow: rgba(0, 0, 0, 0.04) 2px 2px 8px;
+  /* box-shadow: rgba(0, 0, 0, 0.04) 2px 2px 8px; */
 }
 .CartCard {
+  gap: 6px;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
   width: auto;
-  padding: 20px 30px;
   border-bottom: 1px solid rgb(236, 236, 236);
+}
+.CartCard:last-child{
+  border-bottom: none;
 }
 .part-1 {
   gap: 15px;
   display: flex;
   align-items: center;
 }
-.cartProName{
+.cartProName {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 8px;
 }
-.cartProSubTitle{
+.cartProSubTitle {
   font-size: 14px;
+}
+.freeFee{
+  color: var(--primary-color);
+}
+.cancelFee{
+  font-size: smaller;
+  text-decoration: line-through;
+}
+.cartSec{
+  padding-top: 65px;
 }
 .imgCartSec {
   display: flex;
@@ -58,6 +111,15 @@
   border-radius: 10px;
   overflow: hidden;
   background-color: #ececec;
+  border: 1px solid rgb(242, 242, 242);
+  background: linear-gradient(
+      to right,
+      rgb(248, 248, 248) 0%,
+      rgb(255, 255, 255) 10%,
+      rgb(248, 248, 248) 40%,
+      rgb(248, 248, 248) 100%
+    )
+    no-repeat rgb(248, 248, 248);
 }
 .imgCartSec img {
   width: 90px;
@@ -65,20 +127,21 @@
   aspect-ratio: 1;
   object-fit: contain;
 }
-.offerBenefitsSec{
- width: 30%;
-display: flex;
-flex-direction: column;
-gap: 30px;
+
+.offerBenefitsSec {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
-.offerBenefitsSec h2{
+.offerBenefitsSec h2 {
   font-weight: 600;
   font-size: 18px;
 }
-.ApplyCoupe{
+.ApplyCoupe {
   padding: 20px;
 }
-.ApplyCoupe .titleSec{
+.ApplyCoupe .titleSec {
   display: flex;
   font-size: 18px;
   font-weight: 600;
@@ -86,7 +149,7 @@ gap: 30px;
   gap: 8px;
   margin-bottom: 10px;
 }
-.CouponInput{
+.CouponInput {
   font-size: 16px;
   border-radius: 10px;
   width: -webkit-fill-available;
@@ -95,24 +158,105 @@ gap: 30px;
   background-color: #f1f1f1;
   outline: none;
 }
-.cartTotal{
-  
+.cartTotal {
   padding: 18px;
 }
-.cartTotal h3{
+.cartTotal h3 {
   font-size: 18px;
   font-weight: 600;
   padding-bottom: 18px;
 }
-.summaryDiv{
+.summaryDiv {
   padding: 10px 0;
-display: flex;
-width: 100%;
-justify-content: space-between;
-align-items: center;
+  display: flex;
+  width: auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.totalAmount {
+  border-top: 1px solid lightgray;
+}
+.totalAmount p {
+  font-weight: 700;
+}
+.cartProTotalAmount {
+  font-weight: 600;
+}
+.checkOutSec {
+  width: 100%;
+  padding: 10px 0;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+  display: flex;
+  border-radius: 15px 15px 0px 0px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 0px 10px 0px;
+}
+.checkOutSecBtn {
+  width: 95%;
+  margin: 0 auto;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 18px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
 }
 @media screen and (max-width: 450px) {
   .cartSec {
     flex-direction: column;
-}
+  }
+  .cartPage {
+    /* width: 96%; */
+  }
+  .cartPageIn {
+    width: 94%;
+    margin: 0 auto;
+  }
+  .cartCardSec {
+    width: 100%;
+    /* padding: 12px; */
+  }
+
+  .cartProName {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    word-wrap: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    height: 36px;
+    margin: 0;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: wrap;
+  }
+  .AmountDetail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 6px;
+  }
+  .cartPage .addToCart {
+    margin: 0;
+  }
+  .imgCartSec {
+    min-width: 60px;
+    height: 60px;
+  }
+  .imgCartSec img {
+    width: 50px;
+    height: 50px;
+  }
+  .offerBenefitsSec {
+    width: 100%;
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
 }

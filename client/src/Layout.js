@@ -13,7 +13,7 @@ function Layout() {
   
   useEffect(() => {
     const currentPath = location.pathname; 
-    if (currentPath === "/search" || currentPath === "/chat" || currentPath === "/cartgen") {
+    if (currentPath === "/search" || currentPath === "/chat" || currentPath === "/cartgen"  || currentPath === "/cart") {
       setSearchActive(true);
     } else {
       setSearchActive(false);

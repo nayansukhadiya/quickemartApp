@@ -85,7 +85,7 @@ button {
   height: 100vh;
   background-image: linear-gradient(135deg, #86acfe66 0%, #bbd1ffd7 80%, #c0cfff 100%);
 }
-.main,.cartPageIn{
+.main{
   /* width: min(80%, 1250px); */
   width: 80%;
   margin: 0 auto;

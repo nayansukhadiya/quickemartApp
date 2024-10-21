@@ -9,7 +9,7 @@
     gap: 10px;
     color: var(--primary-color);
     padding: 0px;
-    background-color: #F1F1F2;
+    background: linear-gradient(to right, rgb(248, 248, 248) 0%, rgb(255, 255, 255) 10%, rgb(248, 248, 248) 40%, rgb(248, 248, 248) 100%) no-repeat rgb(248, 248, 248);
     font-weight: 600;
     z-index: 10;
     border-bottom: 1px solid lightgray;

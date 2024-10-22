@@ -129,21 +129,23 @@ header button svg {
 .bottomNavbar{
   padding: 8px 0;
   display: none;
-  position: sticky;
+  position: fixed;
   z-index: 100;
   bottom: 0;
   left: 0;
   background-color: #ffffff;
   width: 100%;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.043);
 }
 .bottom-other-logo{
   width: 100%;
   display: grid;
   grid-template-columns: repeat(5,1fr);
+  /* height: 2.4rem; */
 }
 
 .bottom-other-logo a{
-  padding: 15px 0;
+  padding: 6px 0;
   font-size: 0.75rem;
   display: flex;
   justify-content: center;
@@ -151,26 +153,12 @@ header button svg {
   align-items: center;
   gap: 6px;
 }
-.bottom-other-logo button svg{
-  width: 1.5rem;
-  height: 1.5rem;
+
+.bottom-other-logo  svg{
+  width: 24px;
+  height: 24px;
 }
-.bottom-other-logo .chatBtn{
-  position: relative;
-  top: 50%;
-  background-color: var(--primary-color);
-  border-radius: 50%;
-  aspect-ratio: 1;
-  padding: 10px;
-  height: 2.1rem;
-  width: 2.1rem;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-.bottom-other-logo .chatBtn svg path{
-  fill: #f1f1f1;
-}
+
 @media screen and (max-width: 480px) {
   .ProductNav{
     display: none;

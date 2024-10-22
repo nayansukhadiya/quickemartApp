@@ -1,0 +1,23 @@
+.chatBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    aspect-ratio: 1;
+    padding: 10px;
+    height: 2.1rem;
+    width: 2.1rem;
+    z-index: 200;
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+  }
+  .chatBtn svg{
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+  .chatBtn svg path{
+    fill: #f1f1f1;
+  }

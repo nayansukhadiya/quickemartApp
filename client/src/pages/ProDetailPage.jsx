@@ -14,7 +14,7 @@ function ProDetailPage() {
   const [detailArr, setDetailArr] = useState([]);
   const [mainImage, setMainImage] = useState("");
   const [images, setImages] = useState([]);
- 
+
   const searchQuery = query ? query.split("-") : [];
   if (searchQuery.length !== 2) {
     console.error("Invalid query format");
@@ -138,7 +138,6 @@ function ProDetailPage() {
             className="allBrandPro"
             to={`/search?q=${renderIfExists(product.brand)}`}
           >
-            
             <img
               src={require(`../assets/BrandLogo/${product.brand
                 .toLowerCase()
@@ -148,10 +147,9 @@ function ProDetailPage() {
             View all {product.brand} Products
           </Link>
           <h3 className="ProTitle">
-  &#8377; {renderIfExists(product.price)}{" "}
-  {product.mrp && <span>{product.mrp}</span>} 
-</h3>
-
+            &#8377; {renderIfExists(product.price)}{" "}
+            {product.mrp && <span>{product.mrp}</span>}
+          </h3>
 
           {product && (
             <AddCartBtn

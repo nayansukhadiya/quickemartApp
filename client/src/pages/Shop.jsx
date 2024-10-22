@@ -296,10 +296,10 @@ setCheckedBrand([])
         </div>
         <ShopSideNav catArr={catData} ActiveBtn={urlId.subId} />
         <div className="shopMain">
-          <div className={`gridLayout ${skeletonLoader ? "skeletonLoaderSec" : "LoaderNone"}`}>
+          <div className={`gridLayout  ${skeletonLoader   ? "skeletonLoaderSec" : "LoaderNone"}`}>
           <SkeletonSec />
         </div>
-          <div className="shop-cards gridLayout">
+          <div className={`shop-cards gridLayout  ${skeletonLoader ? "skeletonLoaderSecActiveDis" : ""}`}>
             {currentProducts.map((item) => (
               <HomeCard
                 key={item.p_id}

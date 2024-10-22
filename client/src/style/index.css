@@ -8,7 +8,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap");
 :root {
   /* --primary-color:  #163d2a; */
-  --primary-color: #4379f2;
+  --primary-color: #0083d1;
   /* --secondary-color:  #163d2a20; */
   --secondary-color: #86acfe4b;
   --sec-color: #ff6f61;
@@ -83,14 +83,12 @@ button {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(135deg, #86acfe66 0%, #bbd1ffd7 80%, #c0cfff 100%);
+  background-image: linear-gradient(135deg, #86acfe66 0%, #0084d147 80%, #0084d150 100%);
 }
 .main{
   /* width: min(80%, 1250px); */
   width: 80%;
   margin: 0 auto;
-}
-.main {
   height: calc(100% - 86px);
   padding-top: 86px;
 }
@@ -198,15 +196,22 @@ a {
   width: 100%;
 }
 @media screen and (max-width: 480px) {
+  .mainShop{
+    height: 100% !important;
+    padding-top: 0 !important;
+    width: 100% !important;
+  }
+  .homePage{
+    margin-bottom: 90px;
+  }
   .main {
     width: 95%;
     overflow: scroll;
-    height: calc(100% - 165.5px);
+    height: calc(100% - 165.5px) ;
   }
 .main{
   width: 95%;
 }
-
   .decrementBtn,
   .incrementBtn {
     padding: 3px 10px;
@@ -220,6 +225,6 @@ a {
     height: 16.5px;
   }
   .chatBg {
-    background-image: linear-gradient(135deg, #e2e2e2d7 0%,  #c8d9ff66 80%, #c0cfff 100%);
+    background-image: linear-gradient(135deg, #ffffffd7 0%,  #0083d136 80%,#ccecff 100%);
   }
 }

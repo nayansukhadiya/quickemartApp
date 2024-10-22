@@ -68,7 +68,7 @@ function HomeCard({
         <div
           className="img-section"
           style={{
-            backgroundColor: averageColor || "transparent",
+            // backgroundColor: averageColor || "transparent",
             transition: "background-color 0.3s ease",
           }}
         >

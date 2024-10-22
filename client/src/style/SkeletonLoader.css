@@ -15,6 +15,7 @@ border-radius: 6px;
     flex-direction: column;
     gap: 10px;
     min-width: 39px;
+    min-height: 250px;
     border-radius: 8px;
     background-color: #f6f8ff48;
     border: 1px solid #dddddd;

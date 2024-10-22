@@ -4,11 +4,13 @@ import Navbar from './components/Navbar';
 import UserContextProvider from './context/UserContextProvider';
 import BottomNav from './components/BottomNav';
 import ChatBg from './components/ChatBg';
+import CartAiBtn from './components/CartAiBtn';
 
 function Layout() {
   const [searchActive, setSearchActive] = useState(false);
   const [chatBgSet, setChatBgSet] = useState(false);
   const [searchBarRem,setSearchBarRem] = useState(false);
+  const [chatBtnHide,setChatBtnHide] = useState(false);
   const location = useLocation(); 
   
   useEffect(() => {
@@ -28,7 +30,14 @@ function Layout() {
       setChatBgSet(false); 
     }
   }, [location]);
-  
+  useEffect(() => {
+    const currentPath = location.pathname; 
+    if (currentPath === "/chat" || currentPath === "/cartgen") {
+      setChatBtnHide(true); 
+    } else {
+      setChatBtnHide(false); 
+    }
+  }, [location]);
   useEffect(()=> {
     const currentPath = location.pathname; 
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -42,6 +51,7 @@ function Layout() {
   return (
     <UserContextProvider>
       {!searchBarRem &&  <Navbar />}
+      {!chatBtnHide &&  <CartAiBtn />}
       <div className={`main ${searchBarRem ? "mainShop" : ""}`}>
         <Outlet />
       </div>

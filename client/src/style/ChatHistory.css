@@ -39,7 +39,7 @@
   width: 10px;
   margin-right: 10px;
   border-radius: 10px;
-  background-color: #b3d4fc;
+  background-color: var(--primary-color);
   animation: pulse 1.5s infinite ease-in-out;
 }
 .dot:last-child {
@@ -67,7 +67,7 @@
 
   50% {
     transform: scale(1.2);
-    background-color: #6793fb;
+    background-color: var(--primary-color);
     box-shadow: 0 0 0 10px rgba(178, 212, 252, 0);
   }
 

@@ -105,10 +105,10 @@ const useGeminiChat = () => {
                 },
               },
             },
-            required: ["name", "summary", "ingredients","userMessageDetail"], // All fields are required
+            required: ["name", "summary", "ingredients","userMessageDetail"],
           },
         },
-        required: ["recipe"], // Recipe object itself is required
+        required: ["recipe"],
       },
     };
 

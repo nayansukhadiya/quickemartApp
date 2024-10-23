@@ -69,25 +69,60 @@ app.get('/products', async (req, res) => {
 app.get('/related/similar', async (req, res) => {
   const { proId, subCategory } = req.query; 
   try {
-    // Fetch products based on the subCategory
+    // Fetch all products based on the subCategory
     const filteredProducts = await Product.find({
       sub_category: { $regex: subCategory, $options: 'i' }
     });
 
-    // Filter out the product with the specified proId
-    const newArray = filteredProducts.filter(product => product.p_id !== proId); // Use 'p_id' instead of 'p_id'
+    // Find the index of the specified product
+    const productIndex = filteredProducts.findIndex(product => product.p_id === proId);
 
-    // Check if filteredProducts is empty
-    if (newArray.length === 0) {
-      return res.json([]); // Return an empty array if no similar products are found
+    // Initialize arrays to hold adjacent products and fallback products
+    let similarProducts = [];
+    let leftIndex = productIndex - 1;
+    let rightIndex = productIndex + 1;
+
+    // Collect adjacent products first (5 from before and 5 from after)
+    while (similarProducts.length < 5 && (leftIndex >= 0 || rightIndex < filteredProducts.length)) {
+      if (leftIndex >= 0) {
+        const leftProduct = filteredProducts[leftIndex];
+        if (leftProduct.p_id !== proId && !similarProducts.some(product => product.p_id === leftProduct.p_id)) {
+          similarProducts.push(leftProduct);
+        }
+        leftIndex--;
+      }
+      
+      if (rightIndex < filteredProducts.length && similarProducts.length < 5) {
+        const rightProduct = filteredProducts[rightIndex];
+        if (rightProduct.p_id !== proId && !similarProducts.some(product => product.p_id === rightProduct.p_id)) {
+          similarProducts.push(rightProduct);
+        }
+        rightIndex++;
+      }
     }
 
-    res.json(newArray); // Send the filtered products as a JSON response
+    // If we have less than 10 products, fill in with products from the same sub-category
+    if (similarProducts.length < 10) {
+      const needed = 10 - similarProducts.length;
+      const fallbackProducts = filteredProducts.filter(product => 
+        product.p_id !== proId && !similarProducts.some(p => p.p_id === product.p_id)
+      ).slice(0, needed); // Get only the needed amount of products
+
+      similarProducts = [...similarProducts, ...fallbackProducts];
+    }
+
+    // Check if we still have less than 10 products
+    if (similarProducts.length < 10) {
+      return res.json(similarProducts); // Return whatever we found
+    }
+
+    res.json(similarProducts.slice(0, 10)); // Send the first 10 products as a JSON response
   } catch (error) {
-    console.error('Error fetching brands:', error); // Log the error for debugging
+    console.error('Error fetching similar products:', error); // Log the error for debugging
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 
 
 // given data by the brand match 

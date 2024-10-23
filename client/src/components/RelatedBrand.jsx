@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import config from '../config';
 import '../style/relatedBrand.css'
+import { Link } from 'react-router-dom';
 
 function RelatedBrand({ category, brandName }) {
   const [brand, setBrand] = useState([]);
@@ -39,12 +40,13 @@ function RelatedBrand({ category, brandName }) {
 
   return (
     <div className='relatedComponents'>
-      <h2>Related Brands</h2>
+      <h2>Brands in that category</h2>
       {brand.length === 0 ? (
         <p>No related brands found.</p>
       ) : (
-        <div className='relatedBrandSec'>
+        <div  className='relatedBrandSec'>
           {brand.slice(0, 16).map((item) => (
+        <Link to={`/search?q=${item}`} className='cardBrand'>
             <img
             title={item}
               key={item} // Ensure unique key, if item is not unique consider using a unique identifier
@@ -55,6 +57,8 @@ function RelatedBrand({ category, brandName }) {
                 e.target.src = '../assets/BrandLogo/default.png'; // Fallback image
               }}
             />
+            <h6>{item}</h6>
+        </Link>
           ))}
         </div>
       )}

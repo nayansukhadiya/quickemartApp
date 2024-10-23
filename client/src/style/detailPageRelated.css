@@ -1,5 +1,19 @@
 .detailPageRelatedSec{
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(6,1fr);
     gap: 10px;
+}
+.detailPageRelatedComponent h2{
+    font-size: 18px;
+    font-weight: 600;
+    padding: 4px 0 14px 0;
+}
+@media screen and (max-width: 480px) {
+    .detailPageRelatedSec{
+        display: flex;
+    overflow-x: auto;}
+        .detailPageRelatedSec .card{
+            min-width: 200px;
+        }
 }

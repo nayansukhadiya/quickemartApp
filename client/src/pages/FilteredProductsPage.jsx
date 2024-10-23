@@ -43,7 +43,7 @@ console.log(`${config.apiUrl}/products?sub_category=${subCategory}`)
         <CardSlider>
           {products.length > 0 ? (
             products
-              .slice(0, 15)
+              .slice(0, 25)
               .map((item) => (
                 <HomeCard
                   key={item.p_id} 

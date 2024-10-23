@@ -132,12 +132,15 @@ color: white;
 }
 .firstSec {
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 10px;
+  text-align: left;
 }
 .brandLogoDiv {
   height: 35px;
   width: 35px;
+  min-height: 35px;
+  min-width: 35px;
   display: flex;
   justify-content: center;
   align-items: center;

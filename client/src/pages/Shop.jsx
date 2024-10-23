@@ -22,7 +22,7 @@ function Shop() {
   const [checkedBrand, setCheckedBrand] = useState([]);
   const [loaderTime, setLoaderTime] = useState(true);
   const [skeletonLoader, setSkeletonLoader] = useState(true);
-  const [currentProducts,setCurrentProducts] = useState([]);
+  const [currentProducts, setCurrentProducts] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
@@ -34,11 +34,11 @@ function Shop() {
     setCurrentPage(1);
   }, [location.search]);
 
-useEffect(()=> {
-setSkeletonLoader(true);
-window.scrollTo(0, 0);
-setCheckedBrand([])
-},[urlId])
+  useEffect(() => {
+    setSkeletonLoader(true);
+    window.scrollTo(0, 0);
+    setCheckedBrand([]);
+  }, [urlId]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -159,12 +159,14 @@ setCheckedBrand([])
   useEffect(() => {
     setCurrentProducts([]);
     setSkeletonLoader(true);
-    const currentProducts1 = categoryArr.slice(indexOfFirstProduct, indexOfLastProduct);
-    setCurrentProducts(currentProducts1)
+    const currentProducts1 = categoryArr.slice(
+      indexOfFirstProduct,
+      indexOfLastProduct
+    );
+    setCurrentProducts(currentProducts1);
     setSkeletonLoader(false);
   }, [categoryArr, indexOfFirstProduct, indexOfLastProduct]);
-  
-  
+
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const totalPages = Math.ceil(categoryArr.length / productsPerPage);
@@ -296,10 +298,18 @@ setCheckedBrand([])
         </div>
         <ShopSideNav catArr={catData} ActiveBtn={urlId.subId} />
         <div className="shopMain">
-          <div className={`gridLayout  ${skeletonLoader   ? "skeletonLoaderSec" : "LoaderNone"}`}>
-          <SkeletonSec />
-        </div>
-          <div className={`shop-cards gridLayout  ${skeletonLoader ? "skeletonLoaderSecActiveDis" : ""}`}>
+          <div
+            className={`gridLayout  ${
+              skeletonLoader ? "skeletonLoaderSec" : "LoaderNone"
+            }`}
+          >
+            <SkeletonSec />
+          </div>
+          <div
+            className={`shop-cards gridLayout  ${
+              skeletonLoader ? "skeletonLoaderSecActiveDis" : ""
+            }`}
+          >
             {currentProducts.map((item) => (
               <HomeCard
                 key={item.p_id}

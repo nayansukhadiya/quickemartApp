@@ -15,7 +15,7 @@ function Layout() {
   
   useEffect(() => {
     const currentPath = location.pathname; 
-    if (currentPath === "/search" || currentPath === "/chat" || currentPath === "/cartgen"  || currentPath === "/cart") {
+    if (currentPath === "/search" || currentPath === "/chat" || currentPath === "/cartgen"  || currentPath === "/cart" || currentPath === "/detail") {
       setSearchActive(true);
     } else {
       setSearchActive(false);
@@ -41,10 +41,12 @@ function Layout() {
   useEffect(()=> {
     const currentPath = location.pathname; 
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    if(isMobile && currentPath === "/shop" || currentPath === "/chat" || currentPath === "/cartgen" || currentPath === "/cart"){  
-    setSearchBarRem(true);
-    } else {
+    if(isMobile && currentPath === "/" || currentPath === "/search" ){  
       setSearchBarRem(false);
+    }else if(!isMobile){
+      setSearchBarRem(false);
+    } else {
+      setSearchBarRem(true);
     }
   }, [location])
 
@@ -52,7 +54,7 @@ function Layout() {
     <UserContextProvider>
       {!searchBarRem &&  <Navbar />}
       {!chatBtnHide &&  <CartAiBtn />}
-      <div className={`main ${searchBarRem ? "mainShop" : ""}`}>
+      <div className={`main ${searchBarRem ? "mobileShop" : ""}`}>
         <Outlet />
       </div>
       {!searchActive &&  <BottomNav />}

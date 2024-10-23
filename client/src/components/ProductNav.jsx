@@ -49,23 +49,38 @@ function ProductNav() {
         <nav className="navbar">
           <ul>
             {visibleItems.map((item) => (
-              <li key={item} className={catNavId === item ? "NavActiveBtn" : ""}>
+              <li
+                key={item}
+                className={catNavId === item ? "NavActiveBtn" : ""}
+              >
                 <NavLink to={`?catid=${item}`}>
-                  {item.replace(/_/g, " ").replace(/\b\w/g, (char) => char.toUpperCase())}
+                  {item
+                    .replace(/_/g, " ")
+                    .replace(/\b\w/g, (char) => char.toUpperCase())}
                 </NavLink>
               </li>
             ))}
 
             {moreItems.length > 0 && (
               <li className="dropdownPro">
-                <button className="dropList" onClick={toggleDropdown} aria-expanded={isDropdownOpen}>
+                <button
+                  className="dropList"
+                  onClick={toggleDropdown}
+                  aria-expanded={isDropdownOpen}
+                >
                   More
                 </button>
                 {isDropdownOpen && (
                   <div className="dropdown-list">
                     {moreItems.map((item) => (
-                      <NavLink key={item} to={`?catid=${item}`} onClick={() => handleCategorySelect(item)}>
-                        {item.replace(/_/g, " ").replace(/\b\w/g, (char) => char.toUpperCase())}
+                      <NavLink
+                        key={item}
+                        to={`?catid=${item}`}
+                        onClick={() => handleCategorySelect(item)}
+                      >
+                        {item
+                          .replace(/_/g, " ")
+                          .replace(/\b\w/g, (char) => char.toUpperCase())}
                       </NavLink>
                     ))}
                   </div>
@@ -94,7 +109,9 @@ function ProductNav() {
           </svg>
         </Link>
         <p>
-          {catNavId?.replace(/_/g, " ").replace(/\b\w/g, (char) => char.toUpperCase())}
+          {catNavId
+            ?.replace(/_/g, " ")
+            .replace(/\b\w/g, (char) => char.toUpperCase())}
         </p>
         <Link to="/search">
           <svg

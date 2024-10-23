@@ -45,7 +45,7 @@
 
   /* font-family: helvetica neue, Arial, sans-serif; */
   /* font-family: "Sora", sans-serif; */
-  /* font-family: 'Uber Move Text', sans-serif; */
+  font-family: 'Uber Move Text', sans-serif;
   /* font-family: 'Urbanist', sans-serif; */
   /* font-family: 'Poppins', sans-serif; */
   /* font-family: 'Qanelas Soft', sans-serif; */
@@ -92,7 +92,7 @@ button {
   height: calc(100% - 86px);
   padding-top: 86px;
 }
-.mainShop{
+.mobileShop{
   height: 100% !important;
   padding-top: 0 !important;
   width: 100% !important;
@@ -196,7 +196,7 @@ a {
   width: 100%;
 }
 @media screen and (max-width: 480px) {
-  .mainShop{
+  .mobileShop{
     height: 100% !important;
     padding-top: 0 !important;
     width: 100% !important;

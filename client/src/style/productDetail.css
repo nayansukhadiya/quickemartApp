@@ -1,20 +1,116 @@
 .detailMain {
   display: flex;
-  gap: 80px;
+  gap: 40px;
   padding: 20px;
   width: 100%;
   height: 79vh;
   align-items: center;
   position: relative;
+  overflow-y: auto;
+  background-color: rgb(246, 246, 246);
 }
 
+.ProDetailNav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: auto;
+  display: none;
+  background-color: var(--primary-color);
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0px 20px;
+  /* height: 30px; */
+  color: white;
+}
+
+.ProDetailNav p {
+  font-size: 14px;
+  width: 70%;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.ProDetailNav svg {
+  width: 20px;
+  height: 20px;
+}
+.detailMain .AddCartSec {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  /* height: 80px; */
+  padding: 10px 4%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 92%;
+  z-index: 200;
+  border-radius: 14px 14px 0px 0px;
+-moz-border-radius: 14px 14px 0px 0px;
+-webkit-border-radius: 14px 14px 0px 0px;
+  box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.2);
+}
+.detailMain .AddCartSec .cartProDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.detailMain .AddCartSec p {
+  font-size: 14px;
+}
+.detailMain .AddCartSec p span {
+  font-weight: 600;
+  margin-left: 2px;
+}
+.detailMain .AddCartSec h5 {
+  font-size: 12px;
+  font-weight: 600;
+}
+.detailMain .AddCartSec h6 {
+  opacity: 0.8;
+  font-size: 9px;
+}
+.bgDetailDifferent{
+  width: auto;
+  background-color: #ffffff;
+  padding: 13px;
+  border-radius: 10px;
+  border: 1px solid rgb(231, 231, 231);
+}
+.firstSecDetail{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
 .detailMain .img-section {
-    align-items: center;
-    height: 100%;
-    margin: auto;
-    flex-direction: row;
+  align-items: center;
+  height: 100%;
+  margin: auto;
+  flex-direction: row;
+  justify-content: end;
 }
 
+.detailMain .nameSecBrand{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+  .detailMain .nameSecBrand .sec1 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.detailMain .nameSecBrand .brandName {
+  font-size: 18px;
+  font-weight: 600;
+}
 .part-section {
   display: flex;
   flex-direction: column;
@@ -26,59 +122,21 @@
   gap: 10px;
 }
 .mainImg {
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-radius: 14px;
+  border-radius: 20px;
+  overflow: hidden;
   border: 1px solid rgb(179, 179, 179);
+}
+.mainImg img {
+  background-size: contain;
+  background-repeat: no-repeat;
   width: 100%;
   max-width: 600px;
   height: 600px;
   display: grid;
   overflow: hidden;
   place-items: center;
-}
-
-.moreImg {
-  display: flex;
-  width: 90%;
-  overflow-x: auto;
-  gap: 10px;
-  padding-bottom: 10px;
-  scrollbar-color: var(--primary-color) #ffffff;
-  scrollbar-width: thin;
-}
-
-.moreImg::-webkit-scrollbar {
-  width: 8px;
-  height: 12px;
-  border-radius: 10px;
-}
-
-.moreImg::-webkit-scrollbar-track {
-  background: #ffffff;
-}
-
-.moreImg::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color);
-  border-radius: 10px;
-}
-
-.img-section-mini {
-  min-width: 60px;
-  min-height: 60px;
-  width: 60px;
-  height: 60px;
-  padding: 5px;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid #d5d5d5;
-}
-
-.mainImg img,
-.img-section-mini img {
   height: 100%;
   width: 100%;
-  object-fit: cover;
 }
 
 .ProductPageDir {
@@ -86,35 +144,28 @@
   align-items: center;
   gap: 6px;
 }
-.directLink{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 5px 0;
-}
-.directLink a{
-  border-radius: 50px;
-  padding: 6px 16px;
-  font-size: 14px;
-  color: var(--primary-color);
-  font-weight: 500;
-  text-transform: capitalize;
-  background-color: #CCDCFF;
-}
+
 .detailMain .addToCart {
-  width: 150px;
+  margin: 0;
+  width: 120px;
   border-radius: 5px;
   border: 1px solid var(--primary-color);
-  height: 30px;
+  height: 40px;
+  background-color: var(--primary-color);
 }
-.detailMain .addToCart .addButton{
-  padding: 8px !important;
-  /* background-color: var(--primary-color); */
-  font-size: 20px;
-  /* color: white; */
-
+.detailMain .QanActive {
+  background-color: var(--primary-color);
 }
-.detailDis{
+.detailMain .QanActive .counter,
+.detailMain .QanActive .decrementBtn,
+.detailMain .QanActive .incrementBtn,
+.detailMain .addToCart .addButton {
+  /* padding: 8px !important; */
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+.detailDis {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -127,10 +178,10 @@
   /* background-color: #CCDCFF; */
 }
 .ProductPageDir a {
-    font-size: 12px;
+  font-size: 12px;
   font-weight: 500;
 }
-.ProductPageDir p{   
+.ProductPageDir p {
   font-size: 12px;
   font-weight: 500;
   overflow: hidden;
@@ -146,7 +197,7 @@
 
 .ProTitle {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 600;
 }
 .ProTitle span {
   text-decoration: line-through;
@@ -161,66 +212,95 @@
   font-weight: 600;
   /* color: var(--primary-color); */
 }
-.allBrandPro img{
+.allBrandPro img {
   height: 50px;
   width: 50px;
+  min-height: 50px;
+  min-width: 50px;
   border-radius: 5px;
   overflow: hidden;
   background-color: #efefef;
   border: 1px solid #d5d5d5;
 }
-.productHighlight {
-  padding-top: 10px;
+.productDetailIconSec {
+  width: fit-content;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  gap: 1px;
 }
-
-.productHighlight li {
-  list-style-position: inside;
-  font-size: 13px;
-}
-
-.ProductMoreDetail {
+.productDetailIcon {
+  padding: 14px;
+  width: 80px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 2px;
+  align-items: center;
+  background: linear-gradient(180deg, rgb(218, 241, 255), rgb(255, 255, 255));
 }
-
-.ProductMoreDetail div h5 {
+.productDetailIcon svg {
+  height: 24px;
+  width: 24px;
+}
+.productDetailIcon p {
+  font-size: 13px;
   font-weight: 600;
 }
-
-.ProductMoreDetail div p {
-  font-size: 14px;
+.productDetailIcon h6 {
+  font-size: 10px;
 }
-
-.relatedPro{
-    display: grid;
-    grid-template-columns: repeat(6,1fr);
-    gap: 10px;
+.relatedPro {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
 }
-.showRelatedMore{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgb(194, 194, 194);
-    border: 1px solid var(--primary-color);
-    background-color: #e7ffe8;
-    padding: 10px 14px;
-    border-radius: 5px;
-    outline: none;
-    width: fit-content;
-    color: var(--primary-color);
-    font-weight: 700;
-    margin: 10px 0;
+.showRelatedMore {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(194, 194, 194);
+  border: 1px solid var(--primary-color);
+  background-color: #e7ffe8;
+  padding: 10px 14px;
+  border-radius: 5px;
+  outline: none;
+  width: fit-content;
+  color: var(--primary-color);
+  font-weight: 700;
+  margin: 10px 0;
 }
-.relatedTitle{
-    font-size: 1.5rem;
-    margin: 10px 0;
+.relatedTitle {
+  font-size: 1.5rem;
+  margin: 10px 0;
 }
 @media screen and (max-width: 480px) {
+  .mainImg {
+    position: relative;
+    border-radius: 0;
+    border: none;
+  }
+  .mainImg::before{
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    height: 50px;
+    width: 100%;
+    background: linear-gradient(180deg, #00000000, rgb(246, 246, 246));
+  }
+  .ProDetailNav {
+    display: flex;
+  }
+  .detail-section-product {
+    padding-top: 10px;
+  }
   .detailMain {
     padding: 0;
     flex-direction: column;
+    gap: 0;
+  }
+  .ProTitle {
+    font-size: 20px;
   }
   .detailMain .img-section {
     position: unset;
@@ -230,11 +310,29 @@
   .part-section {
     width: 100%;
   }
-  .relatedPro{
+  .detail-section-product {
+    width: 94%;
+    padding: 0 3%;
+    margin: auto;
+  }
+  .productDetailIconSec {
+    width: 100%;
+    gap: 1px;
+  }
+  .productDetailIcon {
+    width: calc(100% / 3);
+  }
+  .relatedPro {
     display: grid;
-    grid-template-columns: repeat(2,1fr);}
-    /* .relatedTitle{
-        font-size: 1rem;
-        margin: 7px 0;
-    } */
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .allBrandPro img {
+    height: 40px;
+    width: 40px;
+    min-height: 40px;
+    min-width: 40px;
+}
+  .detailMain .nameSecBrand .sec1{
+    gap: 2px;
+}
 }

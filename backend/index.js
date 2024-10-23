@@ -65,6 +65,76 @@ app.get('/products', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+//related brand product get
+app.get('/related/similar', async (req, res) => {
+  const { proId, subCategory } = req.query; 
+  try {
+    // Fetch products based on the subCategory
+    const filteredProducts = await Product.find({
+      sub_category: { $regex: subCategory, $options: 'i' }
+    });
+
+    // Filter out the product with the specified proId
+    const newArray = filteredProducts.filter(product => product.p_id !== proId); // Use 'p_id' instead of 'p_id'
+
+    // Check if filteredProducts is empty
+    if (newArray.length === 0) {
+      return res.json([]); // Return an empty array if no similar products are found
+    }
+
+    res.json(newArray); // Send the filtered products as a JSON response
+  } catch (error) {
+    console.error('Error fetching brands:', error); // Log the error for debugging
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+// given data by the brand match 
+app.get('/related/brandSimilar', async (req, res) => {
+  const { proId, brand } = req.query; 
+  try {
+    // Fetch products based on the subCategory
+    const filteredProducts = await Product.find({
+      brand: { $regex: brand, $options: 'i' }
+    });
+
+    // Filter out the product with the specified proId
+    const newArray = filteredProducts.filter(product => product.p_id !== proId); 
+
+    // Check if filteredProducts is empty
+    if (newArray.length === 0) {
+      return res.json([]); // Return an empty array if no similar products are found
+    }
+
+    res.json(newArray); // Send the filtered products as a JSON response
+  } catch (error) {
+    console.error('Error fetching brands:', error); // Log the error for debugging
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// given data by the sub category match 
+app.get('/related', async (req, res) => {
+  const categoryName = req.query.related_brand; 
+  try {
+    const filteredProducts = await Product.find({
+      $or: [
+        { sub_category: { $regex: categoryName, $options: 'i' } }
+      ]
+    });
+
+    // Check if filteredProducts is empty
+    if (filteredProducts.length === 0) {
+      return res.json([]); // Return an empty array if no products are found
+    }
+
+    res.json(uniqueBrands); // Send unique brands as a JSON response
+  } catch (error) {
+    console.error('Error fetching brands:', error); // Log the error for debugging
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 // categories wise saw
 app.get('/categories', async (req, res) => {
@@ -115,7 +185,39 @@ app.get('/products/filter', async (req, res) => {
   }
 });
 
+//similar brand get from  sub category
 
+app.get('/brand', async (req, res) => {
+  const categoryName = req.query.related_brand;  // Get category from the query
+  const excludedBrand = req.query.brand;         // Get the brand to exclude from the query
+  
+  try {
+    // Find products based on the related category (sub_category)
+    const filteredProducts = await Product.find({
+      sub_category: { $regex: categoryName, $options: 'i' }  // Case-insensitive matching
+    });
+
+    // Check if no products are found
+    if (filteredProducts.length === 0) {
+      return res.json([]); // Return an empty array if no products are found
+    }
+
+    // Extract all brand names from the products
+    const brandArr = filteredProducts.map(item => item.brand);
+
+    // Filter out the brand that needs to be excluded
+    const filteredBrands = brandArr.filter(productBrand => productBrand !== excludedBrand);
+
+    // Get unique brands using Set
+    const uniqueBrands = Array.from(new Set(filteredBrands)); // Convert Set back to an array
+
+    // Send the unique brands as a JSON response
+    res.json(uniqueBrands);
+  } catch (error) {
+    console.error('Error fetching brands:', error); // Log the error for debugging
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 
 

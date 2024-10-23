@@ -69,59 +69,59 @@ app.get('/products', async (req, res) => {
 app.get('/related/similar', async (req, res) => {
   const { proId, subCategory } = req.query; 
   try {
-    // Fetch all products based on the subCategory
+    // Fetch products based on the subCategory
     const filteredProducts = await Product.find({
       sub_category: { $regex: subCategory, $options: 'i' }
     });
 
     // Find the index of the specified product
-    const productIndex = filteredProducts.findIndex(product => product.p_id === proId);
+    const currentIndex = filteredProducts.findIndex(product => product.p_id === proId);
 
-    // Initialize arrays to hold adjacent products and fallback products
+    // Get the total count of filtered products
+    const totalCount = filteredProducts.length;
+
+    // Prepare to store the similar products
     let similarProducts = [];
-    let leftIndex = productIndex - 1;
-    let rightIndex = productIndex + 1;
 
-    // Collect adjacent products first (5 from before and 5 from after)
-    while (similarProducts.length < 5 && (leftIndex >= 0 || rightIndex < filteredProducts.length)) {
-      if (leftIndex >= 0) {
-        const leftProduct = filteredProducts[leftIndex];
-        if (leftProduct.p_id !== proId && !similarProducts.some(product => product.p_id === leftProduct.p_id)) {
-          similarProducts.push(leftProduct);
-        }
-        leftIndex--;
-      }
-      
-      if (rightIndex < filteredProducts.length && similarProducts.length < 5) {
-        const rightProduct = filteredProducts[rightIndex];
-        if (rightProduct.p_id !== proId && !similarProducts.some(product => product.p_id === rightProduct.p_id)) {
-          similarProducts.push(rightProduct);
-        }
-        rightIndex++;
+    // Calculate how many products to get from the right side
+    const rightCount = Math.min(12, totalCount - (currentIndex + 1)); // Get maximum 12 or remaining count
+
+    // If the index is less than the total count
+    if (currentIndex >= 0 && currentIndex < totalCount) {
+      // Get products to the right
+      similarProducts.push(...newArray.slice(currentIndex + 1, currentIndex + 1 + rightCount));
+
+      const remainingCount = 12 - similarProducts.length; 
+      if (remainingCount > 0) {
+        const leftCount = Math.min(remainingCount, currentIndex);
+        // Get products to the left
+        similarProducts.unshift(...newArray.slice(currentIndex - leftCount, currentIndex));
       }
     }
 
-    // If we have less than 10 products, fill in with products from the same sub-category
-    if (similarProducts.length < 10) {
-      const needed = 10 - similarProducts.length;
-      const fallbackProducts = filteredProducts.filter(product => 
-        product.p_id !== proId && !similarProducts.some(p => p.p_id === product.p_id)
-      ).slice(0, needed); // Get only the needed amount of products
+    // If the total is still less than 12, include additional products from either side
+    if (similarProducts.length < 12) {
+      const additionalCount = 12 - similarProducts.length;
+      // Check if there's room to get more from the right
+      const additionalFromRight = Math.min(additionalCount, totalCount - (currentIndex + 1 + rightCount));
+      similarProducts.push(...newArray.slice(currentIndex + 1 + rightCount, currentIndex + 1 + rightCount + additionalFromRight));
 
-      similarProducts = [...similarProducts, ...fallbackProducts];
+      // If still less than 12, add from the left
+      if (similarProducts.length < 12) {
+        const remainingFromLeft = 12 - similarProducts.length;
+        similarProducts.unshift(...newArray.slice(currentIndex - remainingFromLeft, currentIndex));
+      }
     }
 
-    // Check if we still have less than 10 products
-    if (similarProducts.length < 10) {
-      return res.json(similarProducts); // Return whatever we found
-    }
-
-    res.json(similarProducts.slice(0, 10)); // Send the first 10 products as a JSON response
+    // Send the similar products as a JSON response
+    res.json(similarProducts.slice(0, 12)); // Ensure to return only the first 12 products
   } catch (error) {
-    console.error('Error fetching similar products:', error); // Log the error for debugging
+    console.error('Error fetching brands:', error); // Log the error for debugging
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+
 
 
 

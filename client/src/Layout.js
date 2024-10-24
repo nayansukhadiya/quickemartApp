@@ -5,12 +5,14 @@ import UserContextProvider from './context/UserContextProvider';
 import BottomNav from './components/BottomNav';
 import ChatBg from './components/ChatBg';
 import CartAiBtn from './components/CartAiBtn';
+import CartPop from './components/CartPop';
 
 function Layout() {
   const [searchActive, setSearchActive] = useState(false);
   const [chatBgSet, setChatBgSet] = useState(false);
   const [searchBarRem,setSearchBarRem] = useState(false);
   const [chatBtnHide,setChatBtnHide] = useState(false);
+  const [CartPopAnim,setCartPopAnim] = useState(false);
   const location = useLocation(); 
   
   useEffect(() => {
@@ -38,6 +40,14 @@ function Layout() {
       setChatBtnHide(false); 
     }
   }, [location]);
+  useEffect(() => {
+    const currentPath = location.pathname; 
+    if (currentPath === "/chat" || currentPath === "/cart") {
+      setCartPopAnim(true); 
+    } else {
+      setCartPopAnim(false); 
+    }
+  }, [location]);
   useEffect(()=> {
     const currentPath = location.pathname; 
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -57,6 +67,7 @@ function Layout() {
       <div className={`main ${searchBarRem ? "mobileShop" : ""}`}>
         <Outlet />
       </div>
+      {!CartPopAnim &&  <CartPop />}
       {!searchActive &&  <BottomNav />}
       {chatBgSet && <ChatBg />} 
     </UserContextProvider>

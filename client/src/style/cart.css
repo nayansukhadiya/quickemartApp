@@ -1,11 +1,13 @@
 .cartPage {
   position: relative;
   left: 0;
-  width: 100vw;
+  width: 100%;
   background-color: #f5f7fd;
   min-height: 100vh;
 }
-
+.cartPage .addToCart {
+  margin: 0;
+}
 .cartPage h1 {
   font-weight: 600;
   font-size: 30px;
@@ -70,7 +72,7 @@ fill: var(--primary-color);
 }
 .CartCard {
   gap: 6px;
-  padding: 10px;
+  padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   width: auto;
@@ -210,7 +212,7 @@ fill: var(--primary-color);
     flex-direction: column;
   }
   .cartPage {
-    /* width: 96%; */
+    width: 100vw;
   }
   .cartPageIn {
     width: 94%;
@@ -243,9 +245,7 @@ fill: var(--primary-color);
     align-items: flex-end;
     gap: 6px;
   }
-  .cartPage .addToCart {
-    margin: 0;
-  }
+  
   .imgCartSec {
     min-width: 60px;
     height: 60px;

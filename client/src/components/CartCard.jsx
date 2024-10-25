@@ -5,7 +5,7 @@ function CartCard({ item }) {
   return (
     <div className="CartCard">
       <div className="part-1">
-        <div className="imgCartSec">
+        <div className="imgCartSec lightGrayBorder">
           <img src={item.img} alt={item.name} />
         </div>
         <div className="cartProDetail">

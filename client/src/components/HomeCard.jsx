@@ -63,7 +63,7 @@ function HomeCard({
   }
 
   return (
-    <div className="card">
+    <div className="card lightGrayBorder">
       <Link title={name} to={`/detail?id=${ProIDSearch}`}>
         <div
           className="img-section"

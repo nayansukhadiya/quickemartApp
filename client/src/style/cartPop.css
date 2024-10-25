@@ -6,6 +6,7 @@
   background-color: var(--primary-color);
   height: 40px;
   width: 0px;
+  visibility: hidden;
   color: aliceblue;
   border-radius: 100px;
   display: flex;
@@ -13,8 +14,8 @@
   justify-content: space-between;
   gap: 10px;
   padding: 0;
-  z-index: 200;
-  transition: all 0.3s linear;
+  z-index: -1;
+  transition: all 1s linear;
 }
 .removalMessage {
   position: absolute;
@@ -28,7 +29,7 @@
   z-index: 100;
 }
 .RemoveMessageActive {
-    display: flex;
+  display: flex;
   animation: cartPopRemove 1.4s forwards ease-in-out;
 }
 @keyframes cartPopRemove {
@@ -44,6 +45,8 @@
 }
 @keyframes cartPop {
   100% {
+    z-index: 200;
+    visibility: visible;
     padding: 8px;
     width: fit-content;
   }
@@ -90,8 +93,8 @@
     opacity: 1;
   }
 }
-.cartPopSec .cartSecImg  .animatedAdd{
-    animation: slideDown 0.63s ease;
+.cartPopSec .cartSecImg .animatedAdd {
+  animation: slideDown 0.63s ease;
 }
 .cartPopSec .cartSecImg .cartImgSec:last-child {
   animation: slideDown 0.63s ease;

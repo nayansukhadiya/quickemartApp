@@ -325,6 +325,7 @@ color: white;
 
 .shop-cards .card {
   width: 100%;
+  max-width: unset;
 }
 
 .shopMain {

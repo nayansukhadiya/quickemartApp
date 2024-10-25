@@ -1,16 +1,19 @@
 .detailMain {
   display: flex;
   gap: 40px;
-  padding: 20px;
+  padding: 20px 0;
   width: 100%;
-  align-items: center;
+  /* align-items: center; */
   position: relative;
   overflow-y: auto;
   margin-top: 0px;
 }
-body{
-  background-color: rgb(246, 246, 246);
+.relatedPart .card{
+  max-width: unset;
 }
+/* body{
+  background-color: rgb(246, 246, 246);
+} */
 .ProDetailNav {
   position: sticky;
   top: 0;
@@ -46,16 +49,17 @@ body{
   justify-content: space-between;
   background-color: white;
   /* height: 80px; */
-  padding: 10px 4%;
+  padding: 10px 10%;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 92%;
   z-index: 200;
   border-radius: 14px 14px 0px 0px;
--moz-border-radius: 14px 14px 0px 0px;
--webkit-border-radius: 14px 14px 0px 0px;
+  -moz-border-radius: 14px 14px 0px 0px;
+  -webkit-border-radius: 14px 14px 0px 0px;
   box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.2);
+  width: 80%;
 }
 .detailMain .AddCartSec .cartProDetail {
   display: flex;
@@ -82,8 +86,6 @@ body{
   background-color: #ffffff;
   padding: 13px;
   border-radius: 10px;
-  border: 1px solid rgb(231, 231, 231);
-  box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
 }
 .firstSecDetail{
   display: flex;
@@ -97,7 +99,7 @@ body{
   min-height: 200px;
   margin: auto;
   flex-direction: row;
-  justify-content: end;
+  justify-content: center;
 }
 
 .detailMain .nameSecBrand{
@@ -125,13 +127,12 @@ body{
   width: 50%;
 }
 .detail-section-product {
-  padding-top: 40px;
   gap: 10px;
 }
 .mainImg {
-  border-radius: 20px;
+  border-radius: 10px;
   overflow: hidden;
-  border: 1px solid rgb(179, 179, 179);
+    
 }
 .mainImg img {
   background-size: contain;
@@ -261,9 +262,12 @@ body{
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 10px 3% 80px 3% !important;
+  padding: 10px 0% 80px 0% !important;
 }
 @media screen and (max-width: 480px) {
+  .relatedPart{
+    padding: 10px 3% 80px 3% !important;
+  }
   .mainImg {
     position: relative;
     border-radius: 0;
@@ -299,6 +303,9 @@ body{
     position: unset;
     height: auto;
     width: 100%;
+  }
+  .relatedPart .card{
+    max-width: 200px;
   }
   .part-section {
     width: 100%;

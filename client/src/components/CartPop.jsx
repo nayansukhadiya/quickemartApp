@@ -7,7 +7,9 @@ import Boom from "../assets/boomAnim/boom.gif";
 function CartPop() {
   const [proCart, setProCart] = useState([]);
   const { cartPro } = useContext(UserContext);
-  const [startAnim, setStartAnim] = useState(false);
+  const [startAnim, setStartAnim] = useState(
+    sessionStorage.getItem("startAnim") === "true"
+  );
   const [removingPid, setRemovingPid] = useState(null);
   const [sliceRange, setSliceRange] = useState([0, 3]);
   const [containerWidth, setContainerWidth] = useState(40);
@@ -21,11 +23,12 @@ function CartPop() {
       }, 1000);
     }
   }, [removalMessage]);
+
   useEffect(() => {
     const previousCart = prevCartRef.current || [];
     const newCart = cartPro;
 
-    if (previousCart > newCart) {
+    if (previousCart.length > newCart.length) {
       setRemovalMessage(true);
     }
 
@@ -33,18 +36,18 @@ function CartPop() {
 
     if (newCart.length === 1) {
       setStartAnim(true);
+      sessionStorage.setItem("startAnim", "true");
     }
 
     setContainerWidth(calculateWidth(newCart.length));
 
     if (newCart.length === 0 && startAnim) {
       setStartAnim(false);
+      sessionStorage.setItem("startAnim", "false");
     }
 
     prevCartRef.current = newCart;
   }, [cartPro]);
-
- 
 
   const calculateWidth = (cartLength) => {
     switch (cartLength) {
@@ -55,7 +58,7 @@ function CartPop() {
       case 3:
         return 80;
       default:
-        return 80; // Adjust this default value if needed
+        return 80;
     }
   };
 
@@ -69,7 +72,7 @@ function CartPop() {
         <img src={Boom} />
       </div>
       <div className="cartSecImg" style={{ minWidth: `${containerWidth}px` }}>
-      {proCart.slice(-3).map((item, index) => (
+        {proCart.slice(-3).map((item, index) => (
           <div
             className={`cartImgSec cartImgSec${index + 1} ${
               removingPid === item.pid ? "scale-down" : ""

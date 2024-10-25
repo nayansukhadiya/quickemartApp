@@ -137,7 +137,7 @@ function ProDetailPage() {
       <div className="detailMain">
         <div className="img-section part-section">
           <div
-            className="mainImg"
+            className="mainImg lightGrayBorder shadowDeep"
             style={{
               backgroundColor: averageColor || "transparent",
               transition: "background-color 0.3s ease",
@@ -159,7 +159,7 @@ function ProDetailPage() {
         </div>
 
         <div className="detail-section-product part-section mainPart">
-          <div className="bgDetailDifferent firstSecDetail">
+          <div className="bgDetailDifferent shadowDeep lightGrayBorder firstSecDetail">
             <div className="ProductPageDir">
               <Link to="/">Home</Link> <p> / </p>
               <Link
@@ -181,7 +181,7 @@ function ProDetailPage() {
               {product.mrp && <span>{product.mrp}</span>}
             </h3>
           </div>
-          <div className="bgDetailDifferent">
+          <div className="bgDetailDifferent shadowDeep lightGrayBorder">
             <Link
               className="allBrandPro"
               to={`/search?q=${renderIfExists(product.brand)}`}
@@ -206,7 +206,7 @@ function ProDetailPage() {
             </Link>
           </div>
 
-          <div className="bgDetailDifferent">
+          <div className="bgDetailDifferent shadowDeep lightGrayBorder">
             <div className="productDetailIconSec">
               <div className="productDetailIcon">
                 <div className="icon">
@@ -287,13 +287,13 @@ function ProDetailPage() {
       </div>
 
       <div className="mainPart relatedPart">
-        <div className="bgDetailDifferent">
+        <div className="bgDetailDifferent shadowDeep lightGrayBorder">
           <RelatedBrand category={product.sub_category} brandName={product.brand} />
         </div>
-        <div className="bgDetailDifferent">
+        <div className="bgDetailDifferent shadowDeep lightGrayBorder">
           <DetailPageRelated related_search_value={`similar?proId=${product.p_id}&subCategory=${product.sub_category}`} name={`similar product`} />
         </div>
-        <div className="bgDetailDifferent">
+        <div className="bgDetailDifferent shadowDeep lightGrayBorder">
           <DetailPageRelated related_search_value={`brandSimilar?proId=${product.p_id}&brand=${product.brand}`} name={`More product from ${product.brand}`} />
         </div>
       </div>

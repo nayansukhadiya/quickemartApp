@@ -88,7 +88,6 @@
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
-  border: 1px solid rgb(223, 223, 223);
   transition: all 0.2s linear;
 }
 .card:hover {

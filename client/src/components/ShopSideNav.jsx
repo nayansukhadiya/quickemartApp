@@ -7,7 +7,7 @@ function ShopSideNav({ catArr , ActiveBtn}) {
   const subcategories = catArr && catArr.length > 0 && catArr[0].subcategories ? catArr[0].subcategories : [];
 
   return (
-    <div className="sideNav">
+    <div className="sideNav lightGrayBorder">
       <nav className="navbar">
         <ul>
           {subcategories.length > 0 ? (

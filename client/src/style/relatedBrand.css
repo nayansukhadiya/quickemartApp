@@ -7,13 +7,16 @@
     display: flex;
     width: 100%;
     overflow-x: auto;
-    gap: 8px;
+    gap: 12px;
 }
-.relatedBrandSec .cardBrand img{
-    height: 70px;
+.relatedBrandSec .cardBrand{
+    height: 115px;
     width: 70px;
-    min-height: 70px;
+    min-height: 115px;
     min-width: 70px;
+}
+    .relatedBrandSec .cardBrand img{
+        width: 100%;
     border-radius: 5px;
     overflow: hidden;
     background-color: rgb(255, 255, 255);

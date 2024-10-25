@@ -2,8 +2,56 @@
   position: relative;
   left: 0;
   width: 100%;
-  background-color: #f5f7fd;
   min-height: 100vh;
+}
+
+.celebrationDiv{
+  position: fixed;
+  bottom: 0;
+  z-index: 201;
+  width: 100%;
+}
+.celebrationDiv img{
+  width: 50%;
+  margin: 0 auto;
+}
+.emptyCartMessageSec{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.emptyCartMessageSec .emptyCartMessage{
+color: var(--primary-color);
+font-size: 20px;
+padding: 14px 0;
+font-weight: 600;
+}
+.emptyCartMessageSec .iconSecEmpty svg path{
+  stroke: var(--primary-color);
+}
+.emptyCartMessageSec .startShopBtn{
+  width: min(100%,300px);
+  height: 60px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  line-height: 24px;
+  background-color: var(--primary-color);
+  text-align: center;
+  color: #ececec;
+}
+.cartPage .HomeBtn {
+  display: none;
 }
 .cartPage .addToCart {
   margin: 0;
@@ -15,11 +63,13 @@
 }
 .cartSec {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: flex-start;
   gap: 10px;
   width: 100%;
   height: 100%;
+  position: relative;
+  padding: 35px 0 100px 0;
 }
 .cartCardSec {
   width: 65%;
@@ -63,16 +113,72 @@ fill: var(--primary-color);
 }
 .cartCardSec,
 .cartTotal,
-.ApplyCoupe {
+.ApplyCoupon {
   background-color: white;
   overflow: hidden;
   border-radius: 16px;
-  border: 1px solid rgb(236, 236, 236);
-  /* box-shadow: rgba(0, 0, 0, 0.04) 2px 2px 8px; */
+  box-shadow: rgba(0, 0, 0, 0.04) 2px 2px 8px;
+}
+.deliveryBoyTip{
+  box-shadow: rgba(0, 0, 0, 0.04) 2px 2px 8px;
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  border-radius: 16px;
+  height: 150px;
+  background-image: linear-gradient(
+    180deg,
+    #ccdaf9 0%,
+    #ceddffe1 55%,
+    #9dbcff 100%
+  );
+}
+.deliveryBoyTip img{
+  position: absolute;
+  bottom: 10px;
+  right: 0px;
+  height: 130px;
+}
+.deliveryBoyTip .DetailSecDelivery{
+  width: 80%;
+}
+.deliveryBoyTip .DetailSecDelivery h4{
+  font-size: 18px;
+  font-weight: 700;
+  padding: 10px 0;
+}
+.deliveryBoyTip .DetailSecDelivery p{
+  font-size: 13px;
+  width: 90%;
+}
+.deliveryBoyTip .tipButtonSec{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.deliveryBoyTip .tipButtonSec button{
+  padding: 10px 16px;
+  letter-spacing: 1.2;
+  font-weight: 600;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid rgb(209, 209, 209);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.cartClearBtn button{
+  width: fit-content;
+  border-radius: 10px;
+  background-color: rgb(255, 143, 143);
+  color: rgb(255, 255, 255);
+  padding: 12px 15px;
+  font-size: 16px;
+  font-weight: 600;
 }
 .CartCard {
   gap: 6px;
-  padding: 15px 30px;
+  padding: 15px;
   display: flex;
   justify-content: space-between;
   width: auto;
@@ -95,15 +201,14 @@ fill: var(--primary-color);
   font-size: 14px;
 }
 .freeFee{
+  font-weight: 600;
   color: var(--primary-color);
 }
 .cancelFee{
-  font-size: smaller;
+  font-size: 10px;
   text-decoration: line-through;
 }
-.cartSec{
-  padding-top: 65px;
-}
+
 .imgCartSec {
   display: flex;
   align-items: center;
@@ -113,7 +218,6 @@ fill: var(--primary-color);
   border-radius: 10px;
   overflow: hidden;
   background-color: #ececec;
-  border: 1px solid rgb(242, 242, 242);
   background: linear-gradient(
       to right,
       rgb(248, 248, 248) 0%,
@@ -124,44 +228,65 @@ fill: var(--primary-color);
     no-repeat rgb(248, 248, 248);
 }
 .imgCartSec img {
-  width: 90px;
-  height: 90px;
+  width: 100%;
+  height: 100%;
   aspect-ratio: 1;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .offerBenefitsSec {
   width: 30%;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 16px;
+  position: sticky;
+  top: 100px;
 }
 .offerBenefitsSec h2 {
   font-weight: 600;
   font-size: 18px;
 }
-.ApplyCoupe {
-  padding: 20px;
-}
-.ApplyCoupe .titleSec {
+.AmountDetail {
   display: flex;
-  font-size: 18px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.ApplyCoupon .titleSec {
+  display: flex;
   font-weight: 600;
   align-items: center;
   gap: 8px;
   margin-bottom: 10px;
+}
+.ApplyCoupon .titleSec svg{
+  width: 18px;
+  height: 18px;
+}
+.ApplyCoupon button{
+  width: 100%;
+  padding: 14px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 10px;
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 600;
 }
 .CouponInput {
   font-size: 16px;
   border-radius: 10px;
   width: -webkit-fill-available;
   padding: 10px;
-  border: none;
   background-color: #f1f1f1;
   outline: none;
+  
 }
 .cartTotal {
-  padding: 18px;
+  background-color: #e9f0ff;
+  padding: 18px 18px 0 18px;
 }
 .cartTotal h3 {
   font-size: 18px;
@@ -169,37 +294,55 @@ fill: var(--primary-color);
   padding-bottom: 18px;
 }
 .summaryDiv {
-  padding: 10px 0;
+  padding: 8px 0;
   display: flex;
   width: auto;
   justify-content: space-between;
   align-items: center;
 }
-
+.summaryDiv:last-child{
+  padding: 10px 0 18px 0;
+}
 .totalAmount {
   border-top: 1px solid lightgray;
 }
+.ApplyCoupon {
+  padding: 10px;
+}
 .totalAmount p {
-  font-weight: 700;
+  font-weight: 600;
 }
 .cartProTotalAmount {
   font-weight: 600;
 }
 .checkOutSec {
-  width: 100%;
-  padding: 10px 0;
+  width: 76%;
+  padding: 10px;
   position: fixed;
+  align-items: center;
+  justify-content: space-between;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 20;
   display: flex;
   border-radius: 15px 15px 0px 0px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 0px 10px 0px;
 }
+.checkOutSec p{
+  font-size: 30px;
+  font-weight: 600;
+}
+.checkOutSecBtn svg{
+  height: 18px;
+  width: 18px;
+  margin-left: 7px;
+}
 .checkOutSecBtn {
-  width: 95%;
-  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  width: fit-content;
   background-color: var(--primary-color);
   color: white;
   padding: 18px;
@@ -208,21 +351,37 @@ fill: var(--primary-color);
   border-radius: 8px;
 }
 @media screen and (max-width: 450px) {
+  .cartPage .HomeBtn {
+    display: flex;
+  }
   .cartSec {
     flex-direction: column;
+  }
+  .CartCard {
+    gap: 10px;
+    padding: 10px;
   }
   .cartPage {
     width: 100vw;
   }
+  .ApplyCoupon {
+    padding: 10px;
+  }
+  .cartTotal {
+    padding: 18px 10px 0 10px;
+  }
   .cartPageIn {
     width: 94%;
     margin: 0 auto;
+    padding-top: 30px;
   }
   .cartCardSec {
     width: 100%;
-    /* padding: 12px; */
   }
-
+  .checkOutSec {
+    width: 94%;
+  padding: 10px 3%;
+  }
   .cartProName {
     font-size: 14px;
     font-weight: 600;
@@ -238,25 +397,14 @@ fill: var(--primary-color);
     text-overflow: ellipsis;
     white-space: wrap;
   }
-  .AmountDetail {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 6px;
-  }
+ 
   
   .imgCartSec {
     min-width: 60px;
     height: 60px;
   }
-  .imgCartSec img {
-    width: 50px;
-    height: 50px;
-  }
   .offerBenefitsSec {
     width: 100%;
-    flex-direction: column-reverse;
     gap: 10px;
   }
 }

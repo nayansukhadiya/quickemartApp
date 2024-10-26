@@ -95,6 +95,9 @@ button {
 .card .addToCart {
   width: auto;
 }
+.HomeSearch{
+  display: none;
+}
  .addToCart{
   background-color: white;
   border: 1px solid var(--primary-color);
@@ -204,6 +207,9 @@ a {
     width: 95%;
     overflow: scroll;
     height: calc(100% - 165.5px) ;
+  }
+  .HomeSearch{
+    display: block;
   }
 .main{
   width: 95%;

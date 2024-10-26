@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link, NavLink } from "react-router-dom";
 import '../style/logo.css'
+import LogoImg from '../assets/logo/quicke.png'
 function Logo() {
   return (
     <div className="logo-section">
-    <Link to='/'><h3>Quick<span>E</span></h3></Link>
+    <Link to='/'><img src={LogoImg}/></Link>
     </div>
   )
 }

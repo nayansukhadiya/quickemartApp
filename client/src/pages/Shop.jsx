@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import HomeCard from "../components/HomeCard";
 import "../style/home.css";
@@ -125,7 +125,7 @@ function Shop() {
       .sort((a, b) => a.brand.localeCompare(b.brand));
     setAllBrand(uniqueArrayWithCount);
     console.log(uniqueArrayWithCount)
-  }, [categoryArr]);
+  }, [categoryArr,filterBrand]);
 
   function handleCheckedBrand(item) {
     if (checkedBrand.includes(item)) {

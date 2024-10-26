@@ -15,8 +15,6 @@ function ProDetailPage() {
   const query = new URLSearchParams(location.search).get("id");
   const [averageColor, setAverageColor] = useState("");
   const [detailArr, setDetailArr] = useState([]);
-  const [ setMainImage] = useState("");
-  const [ setImages] = useState([]);
   const [loading, setLoading] = useState(true); // New loading state
 
   const searchQuery = query ? query.split("-") : [];
@@ -44,11 +42,6 @@ function ProDetailPage() {
           console.log("Fetched product:", data);
           setDetailArr([data]);
           if (data.images && data.images.length > 0) {
-            const updatedImages = data.images.map((img) =>
-              replaceImageDimensions(img)
-            );
-            setImages(updatedImages);
-            setMainImage(updatedImages[0]);
             if (imgRef.current) {
               imgRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
@@ -81,9 +74,6 @@ function ProDetailPage() {
     }
   };
 
-  const handleImageError = () => {
-    setMainImage("path/to/default-image.jpg");
-  };
 
   const renderIfExists = (value, fallback = "Loading...") => {
     return value ? value : fallback;
@@ -153,7 +143,6 @@ function ProDetailPage() {
               }
               alt="Main product"
               onLoad={handleImageLoad}
-              onError={handleImageError} // Added error handler
             />
           </div>
         </div>

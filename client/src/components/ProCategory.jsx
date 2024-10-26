@@ -30,6 +30,5 @@ function ProCategory() {
     </>
   );
 }
-{/* <div className="headProCategory"><p>Category</p><Link to="/category">Sell all Category</Link></div> */}
 
 export default ProCategory

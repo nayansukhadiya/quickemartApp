@@ -129,7 +129,7 @@ const useGeminiChat = () => {
     } catch (error) {
       setError(`Error setting safety settings: ${error.message}`);
     }
-  }, [apiKey]);
+  }, [apiKey,brandArr,namePro]);
 
   const sendMessage = async (userInput) => {
     if (!chatSession) {

@@ -50,7 +50,7 @@ function CartPop() {
     }
   
     prevCartRef.current = newCart;
-  }, [cartPro]);
+  }, [cartPro,startAnim]);
   
 
   const calculateWidth = (cartLength) => {

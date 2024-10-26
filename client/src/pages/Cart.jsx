@@ -1,6 +1,6 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect, useRef, useCallback } from "react";
 import UserContext from "../context/UserContext";
-import CartCard from "../components/CartCard"; // Import the CartCard component
+import CartCard from "../components/CartCard";
 import "../style/cart.css";
 import BackToShop from "../components/BackToShop";
 import { Link } from "react-router-dom";
@@ -8,55 +8,51 @@ import DeliverBoyImg from "../assets/img/delivery_boy (2).png";
 
 function Cart() {
   const [proCart, setProCart] = useState([]);
-  const [ setTotalAmount] = useState(0);
   const [discount, setDiscount] = useState(0);
   const { cartPro } = useContext(UserContext);
   const [couponApplied, setCouponApplied] = useState(false);
   const inputRef = useRef(null);
 
-  const coupons = [
-    { code: "hi", discount: 10 },
-    { code: "SAVE20", discount: 20 },
-  ];
+  const calculateTotalValue = useCallback(() => {
+    return proCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  }, [proCart]);
 
-  useEffect(() => {
-    setProCart(cartPro);
-  }, [cartPro]);
+  const ApplyCoupon = useCallback(() => {
+    const coupons = [
+      { code: "hi", discount: 10 },
+      { code: "SAVE20", discount: 20 },
+    ];
 
-  const ApplyCoupon = () => {
     const inputValue = inputRef.current ? inputRef.current.value || 0 : 0;
     const foundCoupon = coupons.find((coupon) => coupon.code === inputValue);
 
     if (foundCoupon) {
-      const discountAmount =
-        (calculateTotalValue() * foundCoupon.discount) / 100;
+      const discountAmount = (calculateTotalValue() * foundCoupon.discount) / 100;
       setDiscount(discountAmount);
       setCouponApplied(true);
     } else {
       setDiscount(0);
       setCouponApplied(false); // Reset coupon applied status
     }
-  };
+  }, [calculateTotalValue]);
 
-  const calculateTotalValue = () => {
-    return proCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  };
-
-
-  const calculateDeliveryFee = () => {
+  const calculateDeliveryFee = useCallback(() => {
     return proCart.length > 0 ? 50 : 0;
-  };
+  }, [proCart.length]);
 
-  const calculateTotalAmount = () => {
+  const calculateTotalAmount = useCallback(() => {
     const subtotal = calculateTotalValue();
-
     return subtotal - discount;
-  };
+  }, [calculateTotalValue, discount]);
+
+  useEffect(() => {
+    setProCart(cartPro);
+  }, [cartPro]);
 
   useEffect(() => {
     ApplyCoupon();
-    setTotalAmount(calculateTotalAmount());
-  }, [proCart, discount, couponApplied]);
+  }, [proCart, discount, couponApplied, ApplyCoupon]);
+
 
   return (
     <div className={`cartPage ${proCart.length < 1 ? "emptyCart" : ""}`}>
@@ -193,7 +189,7 @@ function Cart() {
                     <button>₹30</button>
                     <button>₹50</button>
                   </div>
-                  <img src={DeliverBoyImg} />
+                  <img src={DeliverBoyImg}  alt="img" />
                 </div>
                 
                 <div className="cartTotal lightGrayBorder ">

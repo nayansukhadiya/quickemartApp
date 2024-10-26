@@ -28,7 +28,7 @@ function RelatedBrand({ category, brandName }) {
     };
 
     fetchBrands();
-  }, [category]); // Re-fetch if category changes
+  }, [category,brandName]); // Re-fetch if category changes
 
   if (loading) {
     return <div>Loading...</div>; // Loading state

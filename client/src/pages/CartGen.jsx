@@ -47,102 +47,83 @@ function CartGen() {
         const cleanedKey = key.replace(/-/g, " ");
 
         // Function to apply filters with priority
-        function applyFilters(
-          productArray,
-          cleanedKey,
-          resCategory,
-          resBrand,
-          resUnit
-        ) {
-          const searchKey = cleanedKey.toLowerCase();
-          const resUnitAsFloat = Math.floor(parseFloat(resUnit));
-          let filterApplied = false;
-          let filtered = [];
+       // Function to apply filters with priority
+function applyFilters(
+  productArray,
+  cleanedKey,
+  resCategory,
+  resBrand,
+  resUnit
+) {
+  const searchKey = cleanedKey.toLowerCase();
+  const resUnitAsFloat = Math.floor(parseFloat(resUnit));
+  let filtered = [];
 
-          // Priority 1: Exact match on name, sub_category, unit (excluding "combo")
-          filtered = productArray.filter(
-            (product) =>
-              product.data?.name?.toLowerCase().includes(searchKey) &&
-              product.data?.sub_category === resCategory &&
-              product.data?.unit?.includes(resUnitAsFloat) &&
-              !product.data?.unit?.includes("combo")
-          );
+  // Priority 1: Exact match on name, sub_category, unit (excluding "combo")
+  filtered = productArray.filter(
+    (product) =>
+      product.data?.name?.toLowerCase().includes(searchKey) &&
+      product.data?.sub_category === resCategory &&
+      product.data?.unit?.includes(resUnitAsFloat) &&
+      !product.data?.unit?.includes("combo")
+  );
 
-          if (filtered.length > 0) {
-            filterApplied = true;
-          }
+  // Priority 2: Match name, sub_category, and brand (excluding "combo")
+  if (filtered.length === 0) {
+    filtered = productArray.filter(
+      (product) =>
+        product.data?.sub_category
+          ?.toLowerCase()
+          .includes(resCategory.toLowerCase()) &&
+        product.data?.name?.toLowerCase().includes(searchKey) &&
+        product.data?.brand === resBrand &&
+        !product.data?.unit?.includes("combo")
+    );
+  }
 
-          // Priority 2: Match name, sub_category, and brand (excluding "combo")
-          if (filtered.length === 0) {
-            filtered = productArray.filter(
-              (product) =>
-                product.data?.sub_category
-                  ?.toLowerCase()
-                  .includes(resCategory.toLowerCase()) &&
-                product.data?.name?.toLowerCase().includes(searchKey) &&
-                product.data?.brand === resBrand &&
-                !product.data?.unit?.includes("combo")
-            );
+  // Priority 3: Match name and brand only (excluding "combo")
+  if (filtered.length === 0) {
+    filtered = productArray.filter(
+      (product) =>
+        product.data?.name?.toLowerCase().includes(searchKey) &&
+        product.data?.brand === resBrand &&
+        !product.data?.unit?.includes("combo")
+    );
+  }
 
-            if (filtered.length > 0) {
-              filterApplied = true;
-            }
-          }
+  // Priority 4: Match name and sub_category (excluding "combo")
+  if (filtered.length === 0) {
+    filtered = productArray.filter(
+      (product) =>
+        product.data?.sub_category === resCategory &&
+        product.data?.name?.toLowerCase().includes(searchKey) &&
+        !product.data?.unit?.includes("combo")
+    );
+  }
 
-          // Priority 3: Match name and brand only (excluding "combo")
-          if (filtered.length === 0) {
-            filtered = productArray.filter(
-              (product) =>
-                product.data?.name?.toLowerCase().includes(searchKey) &&
-                product.data?.brand === resBrand &&
-                !product.data?.unit?.includes("combo")
-            );
+  // Priority 5: Match sub_category and brand (excluding "combo")
+  if (filtered.length === 0) {
+    filtered = productArray.filter(
+      (product) =>
+        product.data?.sub_category === resCategory &&
+        product.data?.brand === resBrand &&
+        !product.data?.unit?.includes("combo") &&
+        !product.data?.unit?.toLowerCase().includes("local vendor")
+    );
+  }
 
-            if (filtered.length > 0) {
-              filterApplied = true;
-            }
-          }
+  // Priority 6: Match name only (excluding "combo")
+  if (filtered.length === 0) {
+    filtered = productArray.filter(
+      (product) =>
+        product.data?.name?.toLowerCase().includes(searchKey) &&
+        !product.data?.unit?.includes("combo")
+    );
+  }
 
-          // Priority 4: Match name and sub_category (excluding "combo")
-          if (filtered.length === 0) {
-            filtered = productArray.filter(
-              (product) =>
-                product.data?.sub_category === resCategory &&
-                product.data?.name?.toLowerCase().includes(searchKey) &&
-                !product.data?.unit?.includes("combo")
-            );
+  return filtered;
+}
 
-            if (filtered.length > 0) {
-              filterApplied = true;
-            }
-          }
-
-          // Priority 5: Match sub_category and brand (excluding "combo")
-          if (filtered.length === 0) {
-            filtered = productArray.filter(
-              (product) =>
-                product.data?.sub_category === resCategory &&
-                product.data?.brand === resBrand &&
-                !product.data?.unit?.includes("combo") &&
-                !product.data?.unit?.toLowerCase().includes("local vendor")
-            );
-
-            if (filtered.length > 0) {
-              filterApplied = true;
-            }
-          }
-
-          // Priority 6: Match name only (excluding "combo")
-          if (filtered.length === 0) {
-            filtered = productArray.filter(
-              (product) =>
-                product.data?.name?.toLowerCase().includes(searchKey) &&
-                !product.data?.unit?.includes("combo")
-            );
-          }
-
-          return filtered;
-        }
 
         filtered[key] = applyFilters(
           productArray,

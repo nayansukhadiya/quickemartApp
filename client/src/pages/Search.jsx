@@ -58,7 +58,7 @@ function Search() {
     return () => {
       debouncedSearchTerm.cancel();
     };
-  }, [query, debouncedSearchTerm]);
+  }, [query, debouncedSearchTerm, searchArr]);
 
   return (
     <div className="shop-cards gridLayout searchPageSec">

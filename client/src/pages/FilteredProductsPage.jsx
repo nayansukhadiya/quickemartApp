@@ -37,7 +37,7 @@ console.log(`${config.apiUrl}/products?sub_category=${subCategory}`)
       <h1>Products in {subCategory}</h1>
       <div className="FeaturesHome">
         <div className="category-title-sec">
-          <h2 className="category-title"></h2>
+          <h2 className="category-title">{subCategory}</h2>
           <Link to={`/shop?catid=sweets&subid=${subCategory}`}>See All</Link>
         </div>
         <CardSlider>

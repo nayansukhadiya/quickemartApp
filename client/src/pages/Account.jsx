@@ -2,7 +2,7 @@ import React from 'react'
 
 function Account() {
   return (
-    <div>Account</div>
+    <div>Account page coming soon</div>
   )
 }
 

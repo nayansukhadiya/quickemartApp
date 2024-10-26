@@ -6,17 +6,17 @@ import useChatProduct from "../hooks/useChatProduct";
 
 function ChatBot({ chatPrompt, foodStyleBtn }) {
   const { chatArray, setChatArray } = useContext(UserContext);
-  const {  setAnsGet, setChatLoad } = useContext(UserContext);
+  const { setAnsGet, setChatLoad } = useContext(UserContext);
   const [prompt, setPrompt] = useState("");
-  const [foodPmt, setFoodPmt] = useState(null); 
+  const [foodPmt, setFoodPmt] = useState(null);
   const [rapidRecipeArr, setRapidRecipeArr] = useState([]);
-  const [userCartMessage, setUserCartMessage] =  useState(null)
+  const [userCartMessage, setUserCartMessage] = useState(null);
   const inputRef = useRef(null);
-  
+
   useEffect(() => {
     setFoodPmt(foodStyleBtn);
   }, [foodStyleBtn]);
-  
+
   const { filterPro } = useChatProduct(chatArray);
   const { sendMessage, isLoading, error, response } = useGeminiChat();
 
@@ -25,12 +25,12 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
     if (prompt.trim() === "") return;
     setAnsGet(true);
     setChatLoad(true);
-    const promptMessage = `I want you to create a shopping cart based on my request. Here's my dish request to how to cook and give me require every minor single ingredients of every single dish: ${prompt} And food Style is must be ${foodPmt}. Please provide a list of ingredients and quantities in JSON format.`;
+    const promptMessage = `I want you to create a shopping cart based on my request. Here's my dish request to how to cook and give me required every minor single ingredient of every single dish: ${prompt}. And food style is must be ${foodPmt}. Please provide a list of ingredients and quantities in JSON format.`;
 
     try {
       setChatArray((prev) => [
         ...prev,
-        { author: "user", message: prompt }
+        { author: "user", message: prompt },
       ]);
       await sendMessage(promptMessage);
       setChatLoad(false);
@@ -53,53 +53,52 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
 
   useEffect(() => {
     if (response) {
-      setRapidRecipeArr([
-        {
-          recipe: {
-            name: response.name,
-            ingredients: response.ingredients,
-          },
-          summary: response.summary,
-          userMessageDetail: response.userMessageDetail,
+      const newRecipe = {
+        recipe: {
+          name: response.name,
+          ingredients: response.ingredients,
         },
-      ]);
-      setUserCartMessage(response.userMessageDetail)
+        summary: response.summary,
+        userMessageDetail: response.userMessageDetail,
+      };
+
+      setRapidRecipeArr([newRecipe]);
+      setUserCartMessage(response.userMessageDetail);
     } else {
       setRapidRecipeArr([]);
     }
   }, [response]);
-  
+
+  useEffect(() => {
+    if (rapidRecipeArr.length > 0) {
+      const newIndex = chatArray.length;
+      const newEntry = {
+        cart_id: generateUniqueIdWithIndex(newIndex),
+        author: "admin",
+        useChatProduct: userCartMessage,
+        rapidRecipeArr: rapidRecipeArr,
+      };
+
+      // Update chat array and filter products
+      setChatArray((prev) => {
+        const updatedChatArray = [...prev, newEntry];
+        filterPro([newEntry]); // Call filterPro with the new entry
+        return updatedChatArray; // Return the updated array
+      });
+
+      console.log("response is ", rapidRecipeArr);
+    }
+  }, [rapidRecipeArr, chatArray, filterPro, userCartMessage, setChatArray]);
+
   const generateUniqueIdWithIndex = (index) => {
-    return `Rapid.nayan.dev-${Date.now()}-${index}`; 
+    return `Rapid.nayan.dev-${Date.now()}-${index}`;
   };
-  
+
   useEffect(() => {
     if (chatPrompt) {
       setPrompt(chatPrompt);
     }
   }, [chatPrompt]);
-  
-  
-  useEffect(() => {
-    const newIndex = chatArray.length;
-    setChatArray((prev) => [
-      ...prev,
-      {
-        cart_id: generateUniqueIdWithIndex(newIndex),
-        author: "admin",
-        useChatProduct: userCartMessage,
-        rapidRecipeArr,
-      },
-    ]);
-
-    filterPro([{
-      cart_id: generateUniqueIdWithIndex(newIndex),
-      author: "admin",
-      useChatProduct: userCartMessage,
-      rapidRecipeArr,
-    }]);
-    console.log("response is ",rapidRecipeArr)
-  }, [rapidRecipeArr]);
 
   useEffect(() => {
     if (inputRef.current) {
@@ -127,21 +126,21 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
           type="submit"
           disabled={isLoading || !prompt.trim()}
           aria-label="Send Message"
-          className={` ${isLoading ? 'loadingChatBtn' : ''}`} 
+          className={`${isLoading ? 'loadingChatBtn' : ''}`}
         >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1em"
-              height="1em"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="white"
-                fillRule="evenodd"
-                d="M3.402 6.673c-.26-2.334 2.143-4.048 4.266-3.042l11.944 5.658c2.288 1.083 2.288 4.339 0 5.422L7.668 20.37c-2.123 1.006-4.525-.708-4.266-3.042L3.882 13H12a1 1 0 1 0 0-2H3.883z"
-                clipRule="evenodd"
-              />
-            </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1em"
+            height="1em"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="white"
+              fillRule="evenodd"
+              d="M3.402 6.673c-.26-2.334 2.143-4.048 4.266-3.042l11.944 5.658c2.288 1.083 2.288 4.339 0 5.422L7.668 20.37c-2.123 1.006-4.525-.708-4.266-3.042L3.882 13H12a1 1 0 1 0 0-2H3.883z"
+              clipRule="evenodd"
+            />
+          </svg>
         </button>
       </form>
       {error && <div className="error">{error}</div>}

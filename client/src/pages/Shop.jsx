@@ -124,6 +124,7 @@ function Shop() {
       }))
       .sort((a, b) => a.brand.localeCompare(b.brand));
     setAllBrand(uniqueArrayWithCount);
+    console.log(uniqueArrayWithCount)
   }, [categoryArr]);
 
   function handleCheckedBrand(item) {

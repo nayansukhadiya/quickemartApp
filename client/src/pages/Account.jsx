@@ -2,7 +2,7 @@ import React from 'react'
 
 function Account() {
   return (
-    <div>Account page coming soon thx nayan sukhadiya</div>
+    <div>Account page coming soon nayan sukhadiya</div>
   )
 }
 

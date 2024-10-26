@@ -1,8 +1,9 @@
 import React from 'react'
+import '../style/Account.css'
 
 function Account() {
   return (
-    <div>Account page coming soon nayan sukhadiya</div>
+    <div className='AccountPage'>Account page coming soon nayan sukhadiya</div>
   )
 }
 

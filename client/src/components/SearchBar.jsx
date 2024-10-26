@@ -36,11 +36,6 @@ function SearchBar() {
     }
   };
 
-  const handleSearch = () => {
-    if (query !== new URLSearchParams(location.search).get("q")) {
-      navigate(`/search?q=${encodeURIComponent(query)}`);
-    }
-  };
 
   const handleCancel = () => {
     setQuery("");

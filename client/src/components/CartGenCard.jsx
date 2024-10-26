@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { FastAverageColor } from "fast-average-color";
 import "../style/cartGenCard.css";
 import AddCartBtn from "./AddCartBtn";

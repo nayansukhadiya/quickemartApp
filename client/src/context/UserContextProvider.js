@@ -9,7 +9,7 @@ const UserContextProvider = ({ children }) => {
   const [ansGet, setAnsGet] = useState(false);
   const [chatArrPro, setChatArrPro] = useState([]);
   const [chatLoad, setChatLoad] = useState(false);
-  const [navCat, setNavCat] = useState([
+  const [navCat] = useState([
     { label: "Chips", linkName: "chips", path: "eat/lng" },
     { label: "Chocolates", linkName: "chocolates", path: "eat/0pt" },
     { label: "Biscuit, Cookie & Rusk", linkName: "biscuit", path: "eat/5am" },

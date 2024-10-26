@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import '../style/ProCategory.css'
 import "../style/CategoryPage.css";
 function ProCategory() {
@@ -17,7 +17,7 @@ function ProCategory() {
       <div className="categorySec">
         {catArr.map((item) => (
           <NavLink className="categoryCard" to={`/shop?catid=${item}`} key={item}>
-            <img src={require(`../assets/category_img/n/${item}.png`)} />
+            <img src={require(`../assets/category_img/n/${item}.png`)} alt="img"/>
             <p>
               {" "}
               {item

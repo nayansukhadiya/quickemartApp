@@ -139,10 +139,6 @@ function CartGen() {
                 product.data?.name?.toLowerCase().includes(searchKey) &&
                 !product.data?.unit?.includes("combo")
             );
-
-            if (filtered.length > 0) {
-              filterApplied = true;
-            }
           }
 
           return filtered;

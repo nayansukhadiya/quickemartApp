@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext, useMemo } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import "../style/chatBox.css";
 import useGeminiChat from "../hooks/useGeminiChat";
 import UserContext from "../context/UserContext";
@@ -6,7 +6,7 @@ import useChatProduct from "../hooks/useChatProduct";
 
 function ChatBot({ chatPrompt, foodStyleBtn }) {
   const { chatArray, setChatArray } = useContext(UserContext);
-  const { ansGet, setAnsGet, chatLoad, setChatLoad } = useContext(UserContext);
+  const {  setAnsGet, setChatLoad } = useContext(UserContext);
   const [prompt, setPrompt] = useState("");
   const [foodPmt, setFoodPmt] = useState(null); 
   const [rapidRecipeArr, setRapidRecipeArr] = useState([]);

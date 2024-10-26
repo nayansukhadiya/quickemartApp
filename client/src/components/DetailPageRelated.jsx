@@ -28,7 +28,7 @@ function DetailPageRelated({ related_search_value, name }) {
     };
 
     fetchBrands();
-  }, [related_search_value]); // Re-fetch if related_search_value changes
+  }, [related_search_value,name]); // Re-fetch if related_search_value changes
 
   if (loading) {
     return <div>Loading...</div>; // Loading state

@@ -10,8 +10,7 @@ function CartPop() {
   const [startAnim, setStartAnim] = useState(
     sessionStorage.getItem("startAnim") === "true"
   );
-  const [removingPid, setRemovingPid] = useState(null);
-  const [sliceRange, setSliceRange] = useState([0, 3]);
+  const [removingPid] = useState(null);
   const [containerWidth, setContainerWidth] = useState(40);
   const [removalMessage, setRemovalMessage] = useState(false);
 
@@ -27,27 +26,32 @@ function CartPop() {
   useEffect(() => {
     const previousCart = prevCartRef.current || [];
     const newCart = cartPro;
-
+  
     if (previousCart.length > newCart.length) {
       setRemovalMessage(true);
     }
-
+  
     setProCart(newCart);
-
+  
     if (newCart.length === 1) {
-      setStartAnim(true);
-      sessionStorage.setItem("startAnim", "true");
+      setStartAnim(() => {
+        sessionStorage.setItem("startAnim", "true");
+        return true;
+      });
     }
-
+  
     setContainerWidth(calculateWidth(newCart.length));
-
+  
     if (newCart.length === 0 && startAnim) {
-      setStartAnim(false);
-      sessionStorage.setItem("startAnim", "false");
+      setStartAnim(() => {
+        sessionStorage.setItem("startAnim", "");
+        return false;
+      });
     }
-
+  
     prevCartRef.current = newCart;
   }, [cartPro]);
+  
 
   const calculateWidth = (cartLength) => {
     switch (cartLength) {
@@ -69,7 +73,7 @@ function CartPop() {
           removalMessage ? "RemoveMessageActive" : ""
         }`}
       >
-        <img src={Boom} />
+        <img src={Boom} alt="img" />
       </div>
       <div className="cartSecImg" style={{ minWidth: `${containerWidth}px` }}>
         {proCart.slice(-3).map((item, index) => (

@@ -12,7 +12,7 @@ function Banner() {
           <NavLink to='/chat' id='bannerBtn'>Try now</NavLink>
         </div>
       </div>
-      <img src='https://cdn3d.iconscout.com/3d/premium/thumb/chatbot-3d-icon-download-in-png-blend-fbx-gltf-file-formats--robot-chat-talk-communication-robotic-automation-internet-marketing-pack-business-icons-6497271.png?f=webp'/>
+      <img src='https://cdn3d.iconscout.com/3d/premium/thumb/chatbot-3d-icon-download-in-png-blend-fbx-gltf-file-formats--robot-chat-talk-communication-robotic-automation-internet-marketing-pack-business-icons-6497271.png?f=webp' alt='img'/>
     </div>
   );
 }

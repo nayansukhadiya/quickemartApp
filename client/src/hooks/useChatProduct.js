@@ -3,7 +3,7 @@ import UserContext from "../context/UserContext";
 import config from "../config";
 
 function useChatProduct() { 
-  const { chatArrPro, setChatArrPro } = useContext(UserContext);
+  const { setChatArrPro } = useContext(UserContext);
 
   const filterPro = async (arr) => {
     if (!arr || arr.length === 0) return;

@@ -15,8 +15,8 @@ function ProDetailPage() {
   const query = new URLSearchParams(location.search).get("id");
   const [averageColor, setAverageColor] = useState("");
   const [detailArr, setDetailArr] = useState([]);
-  const [mainImage, setMainImage] = useState("");
-  const [images, setImages] = useState([]);
+  const [ setMainImage] = useState("");
+  const [ setImages] = useState([]);
   const [loading, setLoading] = useState(true); // New loading state
 
   const searchQuery = query ? query.split("-") : [];

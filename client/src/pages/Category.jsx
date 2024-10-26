@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import "../style/CategoryPage.css";
 
 function Category() {
@@ -17,7 +17,7 @@ function Category() {
       <div className="categorySec">
         {catArr.map((item) => (
           <NavLink className="categoryCard" to={`/shop?catid=${item}`}>
-            <img src={require(`../assets/category_img/n/${item}.png`)} />
+            <img src={require(`../assets/category_img/n/${item}.png`)} alt="img" />
             <p>
               {" "}
               {item

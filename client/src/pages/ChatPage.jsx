@@ -146,13 +146,10 @@ const foodStyle = [
 ];
 
 function ChatPage() {
-  const { ansGet,setAnsGet } = useContext(UserContext);
+  const { ansGet } = useContext(UserContext);
   const [promptChat, setPromptChat] = useState(null);
   const [foodStyleBtn, setFoodStyleBtn] = useState("veg");
 
-  useEffect(() => {
-    const foodStyleData = foodStyle.find(item => item.title === foodStyleBtn);
-  }, [foodStyleBtn]);
 
   const handleSuggestionClick = (text) => {
     setPromptChat(text);

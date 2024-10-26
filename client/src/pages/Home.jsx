@@ -13,8 +13,8 @@ function Home() {
       <SearchBar />
       </div>
       <Banner />
-     {/* <CartGenCard /> */}
-      {/* <HomeBanner /> */}
+     <CartGenCard />
+      <HomeBanner />
       <ProCategory />
       <FilteredProductsPage subCategory={"chips"}/>
     </div>

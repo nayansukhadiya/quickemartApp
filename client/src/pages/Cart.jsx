@@ -4,15 +4,13 @@ import CartCard from "../components/CartCard"; // Import the CartCard component
 import "../style/cart.css";
 import BackToShop from "../components/BackToShop";
 import { Link } from "react-router-dom";
-import celebrationGif from "../assets/boomAnim/celebration.gif";
 import DeliverBoyImg from "../assets/img/delivery_boy (2).png";
-import giftImg from "../assets/img/gift.png";
 
 function Cart() {
   const [proCart, setProCart] = useState([]);
-  const [totalAmount, setTotalAmount] = useState(0);
+  const [ setTotalAmount] = useState(0);
   const [discount, setDiscount] = useState(0);
-  const { cartPro, setCartPro } = useContext(UserContext);
+  const { cartPro } = useContext(UserContext);
   const [couponApplied, setCouponApplied] = useState(false);
   const inputRef = useRef(null);
 
@@ -44,12 +42,6 @@ function Cart() {
     return proCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   };
 
-  const calculateTotalSavings = () => {
-    return proCart.reduce((acc, item) => {
-      const saving = item.mrp ? (item.mrp - item.price) * item.quantity : 0;
-      return acc + saving;
-    }, 0);
-  };
 
   const calculateDeliveryFee = () => {
     return proCart.length > 0 ? 50 : 0;
@@ -57,7 +49,6 @@ function Cart() {
 
   const calculateTotalAmount = () => {
     const subtotal = calculateTotalValue();
-    const deliveryFee = calculateDeliveryFee();
 
     return subtotal - discount;
   };

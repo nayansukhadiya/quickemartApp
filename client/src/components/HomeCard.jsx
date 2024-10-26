@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import AddCartBtn from "./AddCartBtn";
 import { FastAverageColor } from "fast-average-color";
@@ -14,8 +14,7 @@ function HomeCard({
   unit,
   brand,
 }) {
-  const [averageColor, setAverageColor] = useState(null);
-  const [imgClass, setImgClass] = useState("pngImg"); // Default class is for PNG
+  const [ setAverageColor] = useState(null);
   const [isTransparent, setIsTransparent] = useState(false);
   const imgRef = useRef(null);
 

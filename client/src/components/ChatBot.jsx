@@ -88,7 +88,7 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
 
       console.log("response is ", rapidRecipeArr);
     }
-  }, [rapidRecipeArr, chatArray, filterPro, userCartMessage, setChatArray]);
+  }, [rapidRecipeArr]);
 
   const generateUniqueIdWithIndex = (index) => {
     return `Rapid.nayan.dev-${Date.now()}-${index}`;

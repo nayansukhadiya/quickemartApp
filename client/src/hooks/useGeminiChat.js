@@ -10,11 +10,7 @@ const useGeminiChat = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [namePro, setNamePro] = useState(null);
 
-  useEffect(() => {
-    if (!apiKey) {
-      setError("Missing GEMINI_API_KEY environment variable");
-      return;
-    }
+  useEffect(()=> {
     fetch("./data/name.json")
       .then((res) => res.json())
       .then((Data) => {
@@ -25,6 +21,13 @@ const useGeminiChat = () => {
       .then((Data) => {
         setBrandsArr(Data);
       });
+  },[brandArr,namePro])
+  useEffect(() => {
+    if (!apiKey) {
+      setError("Missing GEMINI_API_KEY environment variable");
+      return;
+    }
+    
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
@@ -129,7 +132,7 @@ const useGeminiChat = () => {
     } catch (error) {
       setError(`Error setting safety settings: ${error.message}`);
     }
-  }, [apiKey,brandArr,namePro]);
+  }, [apiKey]);
 
   const sendMessage = async (userInput) => {
     if (!chatSession) {

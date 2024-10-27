@@ -279,7 +279,9 @@ app.get('/detail', async (req, res) => {
   }
 });
 
-
+app.get('/', (req, res) => {
+  res.send('Hello, your backend is running!');
+});
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

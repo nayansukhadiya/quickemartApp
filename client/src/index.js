@@ -13,6 +13,8 @@ import Account from './pages/Account';
 import ChatPage from './pages/ChatPage';
 import CartGen from './pages/CartGen';
 import Category from './pages/Category';
+import Login from './pages/Login';
+import Sighin from './pages/Sighin';
 
 
 const router = createBrowserRouter(
@@ -27,6 +29,8 @@ const router = createBrowserRouter(
       <Route path='account' element={<Account />}/>
       <Route path='cartgen' element={<CartGen />}/>
       <Route path='category' element={<Category />}/>
+      <Route path='login' element={<Login />}/>
+      <Route path='sighin' element={<Sighin />}/>
     </Route>
   )
 );

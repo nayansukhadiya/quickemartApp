@@ -10,66 +10,30 @@ import CartPop from './components/CartPop';
 function Layout() {
   const [searchActive, setSearchActive] = useState(false);
   const [chatBgSet, setChatBgSet] = useState(false);
-  const [searchBarRem,setSearchBarRem] = useState(false);
-  const [chatBtnHide,setChatBtnHide] = useState(false);
-  const [CartPopAnim,setCartPopAnim] = useState(false);
-  const location = useLocation(); 
-  
+  const [hideNavbar, setHideNavbar] = useState(false);
+  const [chatBtnHide, setChatBtnHide] = useState(false);
+  const [cartPopAnim, setCartPopAnim] = useState(false);
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   useEffect(() => {
-    const currentPath = location.pathname; 
-    if (currentPath === "/search" || currentPath === "/chat" || currentPath === "/cartgen"  || currentPath === "/cart" || currentPath === "/detail") {
-      setSearchActive(true);
-    } else {
-      setSearchActive(false);
-    }
-  }, [location]);
-  
-  useEffect(() => {
-    const currentPath = location.pathname; 
-    if (currentPath === "/chat") {
-      setChatBgSet(true); 
-    } else {
-      setChatBgSet(false); 
-    }
-  }, [location]);
-  useEffect(() => {
-    const currentPath = location.pathname; 
-    if (currentPath === "/chat" || currentPath === "/cartgen") {
-      setChatBtnHide(true); 
-    } else {
-      setChatBtnHide(false); 
-    }
-  }, [location]);
-  useEffect(() => {
-    const currentPath = location.pathname; 
-    if (currentPath === "/chat" || currentPath === "/cart") {
-      setCartPopAnim(true); 
-    } else {
-      setCartPopAnim(false); 
-    }
-  }, [location]);
-  useEffect(()=> {
-    const currentPath = location.pathname; 
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    if ((isMobile && currentPath === "/") || currentPath === "/search") { 
-      setSearchBarRem(false);
-    }else if(!isMobile){
-      setSearchBarRem(false);
-    } else {
-      setSearchBarRem(true);
-    }
-  }, [location])
+    setSearchActive(['/search', '/chat', '/cartgen', '/cart', '/detail'].includes(currentPath));
+    setChatBgSet(currentPath === '/chat');
+    setChatBtnHide(['/chat', '/cartgen'].includes(currentPath));
+    setCartPopAnim(['/chat', '/cart'].includes(currentPath));
+    setHideNavbar(currentPath === '/login' || currentPath === '/sighin');
+  }, [currentPath]);
 
   return (
     <UserContextProvider>
-      {!searchBarRem &&  <Navbar />}
-      {!chatBtnHide &&  <CartAiBtn />}
-      <div className={`main ${searchBarRem ? "mobileShop" : ""}`}>
+      {!hideNavbar && <Navbar />}
+      {!chatBtnHide && <CartAiBtn />}
+      <div className={`main ${hideNavbar ? 'mobileShop' : ''}`}>
         <Outlet />
       </div>
-      {!CartPopAnim &&  <CartPop />}
-      {!searchActive &&  <BottomNav />}
-      {chatBgSet && <ChatBg />} 
+      {!cartPopAnim && <CartPop />}
+      {!searchActive && <BottomNav />}
+      {chatBgSet && <ChatBg />}
     </UserContextProvider>
   );
 }

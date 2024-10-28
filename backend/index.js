@@ -5,6 +5,7 @@ import cors from 'cors';
 import Product from './models/Product.js'; 
 import Category from './models/Category.js';
 
+
 dotenv.config();
 
 const app = express();
@@ -276,8 +277,9 @@ app.get('/detail', async (req, res) => {
 });
 
 app.get('/', (req, res) => {
+  console.log(req.headers)
   res.send('Hello, your backend is running!');
-});
+}); 
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

@@ -1,7 +1,7 @@
 import React from "react";
 import "./BottomNavBar.css";
 import { Link } from "react-router-dom";
-import CartAiBtn from "../../components/chatAiBtn/CartAiBtn";
+import CartBtn from "../../components/CartBtn/CartBtn";
 function BottomNavBar() {
   return (
     <div className="BottomNavBar">
@@ -81,7 +81,7 @@ function BottomNavBar() {
        
         <Link to="/cart">
          
-        <CartAiBtn />   <p>Cart</p>
+        <CartBtn />   <p>Cart</p>
          
         </Link>
 

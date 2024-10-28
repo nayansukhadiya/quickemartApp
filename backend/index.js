@@ -82,11 +82,7 @@ app.get('/related/similar', async (req, res) => {
 
     // Prepare to store the similar products
     let similarProducts = [];
-
-    // Calculate how many products to get from the right side
-    const rightCount = Math.min(12, totalCount - (currentIndex + 1)); // Get maximum 12 or remaining count
-
-    // If the index is less than the total count
+    const rightCount = Math.min(12, totalCount - (currentIndex + 1)); 
     if (currentIndex >= 0 && currentIndex < totalCount) {
       // Get products to the right
       similarProducts.push(...newArray.slice(currentIndex + 1, currentIndex + 1 + rightCount));

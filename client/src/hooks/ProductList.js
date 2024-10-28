@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import HomeCard from "../components/HomeCard";
-import CardSlider from "../components/CardSlider";
-import "../style/cardSlider.css";
+import ProductCard from "../../components/ProductCard";
+import CardSlider from "../../components/CardSlider";
+import "./cardSlider.css";
 import { Link } from "react-router-dom";
 
 const ProductList = ({ category }) => {
@@ -37,7 +37,7 @@ const ProductList = ({ category }) => {
       </div>
       <CardSlider>
         {products.slice(0, 15).map((item) => (
-          <HomeCard
+          <ProductCard
             key={item.id}
             img={item.images[0]}
             name={item.title}

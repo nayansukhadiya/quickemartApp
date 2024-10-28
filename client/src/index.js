@@ -4,17 +4,15 @@ import './style/index.css';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom'; 
 import Layout from './Layout';
-import Shop from './pages/Shop';
-import Home from './pages/Home';
-import Search from './pages/Search';
-import ProDetailPage from './pages/ProDetailPage';
-import Cart from './pages/Cart';
-import Account from './pages/Account';
-import ChatPage from './pages/ChatPage';
-import CartGen from './pages/CartGen';
-import Category from './pages/Category';
-import Login from './pages/Login';
-import Sighin from './pages/Sighin';
+import Shop from './pages/ShopPage/Shop'; // Adjusted import
+import Home from './pages/HomePage/Home'; // Adjusted import
+import Search from './pages/SearchPage/Search'; // Adjusted import
+import ProductDetailPage from './pages/ProductDetailPage/ProDetailPage'; // Adjusted import
+import Cart from './pages/CartPage/Cart'; // Adjusted import
+import Account from './pages/AccountPage/Account'; // Adjusted import
+import ChatPage from './pages/ChatPage/ChatPage'; // Adjusted import
+import CartGeneratorPage from './pages/CartGeneratorPage/CartGeneratorPage'; // Adjusted import
+import Category from './pages/CategoryPage/Category'; 
 
 
 const router = createBrowserRouter(
@@ -23,14 +21,14 @@ const router = createBrowserRouter(
       <Route path="" element={<Home/>}/>
       <Route path="shop" element={<Shop />} />
       <Route path='search' element={<Search />}/>
-      <Route path='detail' element={<ProDetailPage />}/>
+      <Route path='detail' element={<ProductDetailPage />}/>
       <Route path='chat' element={<ChatPage />}/>
       <Route path='cart' element={<Cart />}/>
       <Route path='account' element={<Account />}/>
-      <Route path='cartgen' element={<CartGen />}/>
+      <Route path='CartGeneratorPage' element={<CartGeneratorPage />}/>
       <Route path='category' element={<Category />}/>
-      <Route path='login' element={<Login />}/>
-      <Route path='sighin' element={<Sighin />}/>
+      {/* <Route path='login' element={<Login />}/>
+      <Route path='sighin' element={<Sighin />}/> */}
     </Route>
   )
 );

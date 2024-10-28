@@ -1,0 +1,170 @@
+.CartPopUpSec {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary-color);
+  height: 40px;
+  width: 0px;
+  visibility: hidden;
+  color: aliceblue;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0;
+  z-index: -1;
+  transition: all 1s linear;
+}
+.removalMessage {
+  position: absolute;
+  top: -40px;
+  width: 0%;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  display: none;
+  width: 40px;
+  z-index: 100;
+}
+.RemoveMessageActive {
+  display: flex;
+  animation: CartPopUpRemove 1.4s forwards ease-in-out;
+}
+@keyframes CartPopUpRemove {
+  100% {
+    width: 100%;
+  }
+}
+.reverseAnim {
+  animation: CartPopUpReverse 1s forwards ease-in-out;
+}
+.startAnim {
+  animation: CartPopUp 0.4s forwards ease-in-out;
+}
+@keyframes CartPopUp {
+  100% {
+    z-index: 200;
+    visibility: visible;
+    padding: 8px;
+    width: fit-content;
+  }
+}
+@keyframes CartPopUpReverse {
+  0% {
+    padding: 8px;
+    width: fit-content;
+  }
+  100% {
+    padding: 0;
+    width: 0; /* Or whatever width you want */
+  }
+}
+.CartPopUpSec .cartSecImg {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 40px;
+}
+.CartPopUpSec .cartSecImg .cartImgSec {
+  outline: 1px solid var(--primary-color);
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 40px;
+  min-height: 40px;
+  width: 40px;
+  height: 40px;
+  background-color: aliceblue;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@keyframes slideDown {
+  0% {
+    top: -30px;
+    opacity: 0;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+.CartPopUpSec .cartSecImg .animatedAdd {
+  animation: slideDown 0.63s ease;
+}
+.CartPopUpSec .cartSecImg .cartImgSec:last-child {
+  animation: slideDown 0.63s ease;
+}
+
+.CartPopUpSec .cartSecImg .cartImgSec1 {
+  left: 0px;
+  z-index: 1;
+}
+.CartPopUpSec .cartSecImg .cartImgSec2 {
+  left: 20px;
+  z-index: 2;
+}
+.CartPopUpSec .cartSecImg .cartImgSec3 {
+  left: 40px;
+  z-index: 3;
+}
+.CartPopUpSec .cartSecImg .cartImgSec img {
+  width: 70%;
+  aspect-ratio: 1;
+}
+.CartPopUpSec .CartPopUpDetail {
+  width: 50px;
+  flex-direction: column;
+  animation: detail 0.1s forwards linear;
+  animation-delay: 0.5s;
+  visibility: hidden;
+  display: flex;
+}
+@keyframes detail {
+  100% {
+    visibility: visible;
+  }
+}
+.CartPopUpSec .CartPopUpDetail p {
+  color: aliceblue;
+  font-size: 11px;
+}
+.CartPopUpSec .CartPopUpDetail h5 {
+  color: aliceblue;
+  font-size: 12px;
+}
+.CartPopUpSec .viewBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  transform: rotate(90deg);
+  border-radius: 50%;
+  background-color: rgba(240, 248, 255, 0.23);
+  animation: svgRotate 0.15s forwards linear;
+  animation-delay: 0.4s;
+}
+@keyframes svgRotate {
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.scale-down {
+  animation: scaleDown 0.3s forwards; /* Adjust the duration as needed */
+}
+
+@keyframes scaleDown {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0);
+    opacity: 0; /* Optionally make it fade out */
+  }
+}

@@ -1,0 +1,558 @@
+.shopPage {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  margin-top: 20px;
+  gap: 15px;
+  position: relative;
+}
+.MobileShop {
+  width: auto;
+  display: flex;
+  background-color: var(--primary-color);
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0px 20px;
+/* height: 30px; */
+color: white;
+}
+.MobileShop p {
+  /* line-height: 20px; */
+  font-size: 20px;
+/* height: 20px; */
+}
+.MobileShop svg{
+  width: 20px;
+  height: 20px;
+}
+.brandFilterSec {
+  position: fixed;
+  right: 0;
+  bottom: -100vh;
+  height: 100vh;
+  width: 100vw;
+  z-index: 22;
+  transition: right 0.3s ease-in-out;
+}
+.loaderSec{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f1f1;
+  top: 0;
+  left: 0;
+  z-index: 45;
+}
+
+.skeletonLoaderSec{
+  width: 100%;
+  min-height: 500px;
+  background: #fff;
+  position: absolute;
+  z-index: 12;
+}
+.LoaderNone{
+  display: none !important;
+}
+.bgFilter {
+  height: 100vh;
+  width: 100vw;
+  background: #00000075;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+}
+.ActiveBgFilter {
+  z-index: 21;
+  opacity: 1;
+  /* transition: all 0.3s linear; */
+}
+.ActiveSideBar {
+  bottom: 0;
+}
+
+.brandFilterSec .brandFilterDiv {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: -300px;
+  bottom: 0vh;
+  height: calc(100% - 146px);
+  padding: 146px 2% 0 2%;
+  width: 300px;
+  background-color: #ffffff;
+  transition: right 0.3s ease-in-out;
+}
+
+.ActiveSideBar .brandFilterDiv {
+  right: 0;
+}
+.brandFilterDiv .upperSecDiv {
+  padding: 20px 10px;
+  display: flex;
+  font-size: 30px;
+  font-style: 600;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.closeSideBar {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 40px;
+  width: 40px;
+}
+.brandList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: start;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 10px;
+  height: 80%;
+}
+.brandBtnFilter {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 16px;
+  line-height: 35px;
+}
+.ActiveBrandBtnFilter {
+  color: #000000;
+}
+.firstSec {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  text-align: left;
+}
+.Brand_LogooDiv {
+  height: 35px;
+  width: 35px;
+  min-height: 35px;
+  min-width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #b5b5b5;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.Brand_LogooDiv img {
+  height: 100%;
+  width: 100%;
+  aspect-ratio: 1;
+}
+.clear {
+  clear: both;
+}
+
+.customCheckBox {
+  display: block;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 0px 0px 2px rgb(129, 129, 129);
+}
+.ActiveCustomCheckBox {
+  border: 2px solid #47da99;
+  box-shadow: 0px 0px 0px 2px #47da99;
+}
+.transition {
+  width: 0px;
+  height: 0px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #47da99;
+  position: absolute;
+  z-index: 100;
+  transition: 300ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ActiveChecked {
+  width: 16px;
+  height: 16px;
+}
+.transition svg {
+  stroke: white;
+  width: 16px;
+  height: 16px;
+}
+.countBrandFilter {
+  font-size: 12px;
+}
+.filterApplyDiv {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 10px 0;
+  justify-content: space-around;
+}
+.filterApplyDiv button {
+  padding: 13px 30px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  width: 50%;
+}
+.filterApplyDiv .filterBtn {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+.sideNav {
+  position: sticky;
+  top: 144px;
+  left: 0;
+  height: fit-content;
+  max-height: unset;
+}
+
+.sideNav nav ul {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  border: 1px solid rgb(240, 240, 240);
+}
+
+.sideNav nav ul li {
+  position: relative;
+  list-style: none;
+  margin: 0;
+}
+
+.shopPage .bottomPart {
+  display: none;
+}
+
+.sideNav nav ul li a {
+  overflow: hidden;
+  position: relative;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  white-space: break-spaces;
+  padding: 8px 0;
+  gap: 15px;
+  font-weight: 600;
+  font-size: 14px;
+  width: 100%;
+  cursor: pointer;
+  border-top: 1px solid rgb(235, 235, 235);
+  margin-right: 5px;
+}
+
+.ActiveBtn {
+  position: relative;
+  background: var(--secondary-color);
+  /* border-right: 4px solid var(--primary-color); */
+}
+.ActiveBtn::before{
+  content: '';
+  border-radius: 5px 0px 0px 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 3px;
+  background-color: var(--primary-color);
+}
+
+.sideNav nav ul li a:hover {
+  color: var(--primary-color);
+}
+.sideNav nav ul li a .sideBarImgSec {
+  position: relative;
+  height: 70px;
+  width: 70px;
+  margin-left: 10px;
+  /* border-radius: 10px; */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+.sideNav nav ul li a .sideBarImgSec .bgImg {
+  position: absolute;
+  height: 40px;
+  width: 75px;
+  bottom: -10px;
+  border-radius: 10px;
+  background-color: #a4bdcc60;
+}
+
+.sideNav nav ul li a img {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  aspect-ratio: 1;
+}
+.ActiveBtn img {
+  transform: scale(1.2);
+  transition: all 0.2s linear;
+}
+/* .shop-cards */
+.gridLayout
+ {
+  grid-template-columns: repeat(5, 1fr);
+  display: grid;
+  gap: 10px;
+}
+.DisablePaginate {
+  display: none;
+}
+.searchPageSec {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.shop-cards .card {
+  width: 100%;
+  max-width: unset;
+}
+
+.shopMain {
+  max-height: unset;
+  overflow: auto;
+  position: relative;
+}
+
+.upperSecShop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 70px 0 20px 0;
+}
+
+.dropbtn {
+  padding: 8px 12px;
+  /* min-width: 120px; */
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 7px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  overflow: hidden;
+  border-radius: 8px;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 30;
+}
+
+.dropdown-content button {
+  width: 100%;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content button:hover {
+  color: #f9f9f9;
+  background-color: var(--primary-color);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: var(--primary-color);
+}
+
+.pagination {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  margin: 20px 0;
+  justify-content: center;
+}
+.skeletonLoaderSecActiveDis{
+  opacity: 0;
+}
+.pagination button {
+  height: 35px;
+  width: 35px;
+  border: none;
+  font-weight: 600;
+  color: #222222;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+}
+
+.pagination button.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.pagination button:hover:not(:disabled) {
+  outline: 1px solid var(--primary-color);
+}
+
+@media (max-width: 1200px) {
+  .gridLayout {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .searchPageSec {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 1000px) {
+  .gridLayout  {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .searchPageSec {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .gridLayout  {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .searchPageSec {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .main{
+    height: calc(100% - 67.5px);
+  }
+  .ShopMainPage {
+    height: calc(100% - 80px);
+    width: 100%;
+    overflow: hidden;
+  }
+  .upperSecShop {
+    margin: 10px;
+  }
+  .shopMain {
+    max-height: 100%;
+    overflow: auto;
+  }
+  .shopPage {
+    background-color: #f1f1f17e;
+    height: calc(100% - 122px);
+    grid-template-columns: 75px 1fr;
+    gap: 8px;
+    width: 95%;
+    margin: auto;
+    padding: 8px 0;
+  }
+  .sideNav {
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.04) 2px 2px 8px;
+    border: 1px solid rgb(223, 223, 223);
+    position: unset;
+    min-width: 30px;
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 73px;
+    padding-right: 4px ;
+    border-radius: 0px 10px 10px 0px;
+-moz-border-radius: 0px 10px 10px 0px;
+-webkit-border-radius: 0px 10px 10px 0px;
+  }
+  .sideNav nav ul {
+    border: none;
+  }
+  .sideNav nav ul li {
+    width: 77px;
+  }
+  .sideNav nav ul li a {
+    flex-direction: column;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    width: 68px;
+    min-width: auto;
+  }
+
+  .sideNav nav ul li a img {
+    width: 55px;
+    height: 55px;
+  }
+  .sideNav nav ul li a .sideBarImgSec .bgImg {
+    height: 40px;
+    width: 68px;
+  }
+  .sideNav nav ul li a .sideBarImgSec {
+    height: 70px;
+    width: 70px;
+    margin-left: 5px;
+  }
+  .gridLayout  {
+    padding: 0;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .brandFilterDiv .upperSecDiv {
+    font-size: 24px;
+  }
+  .filterApplyDiv {
+    justify-content: space-around;
+  }
+
+  .filterApplyDiv button {
+    background-color: transparent;
+  }
+  .brandFilterSec {
+    transition: bottom 0.3s ease-in-out;
+  }
+  .brandFilterSec .brandFilterDiv {
+    right: 0;
+    bottom: -50vh;
+    height: 60vh;
+    padding: 10px 4%;
+    width: 92%;
+    transition: bottom 0.3s ease-in-out;
+    border-radius: 20px 20px 0px 0px;
+    -moz-border-radius: 20px 20px 0px 0px;
+    -webkit-border-radius: 20px 20px 0px 0px;
+    border: 0px solid #000000;
+  }
+  .brandFilterSec {
+    z-index: 101;
+  }
+  .ActiveSideBar .brandFilterDiv {
+    bottom: 0px;
+  }
+}

@@ -1,0 +1,151 @@
+.headerCls{
+  width: 100%;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 140;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 86px;
+}
+header {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-transform: capitalize;
+  justify-content: space-evenly;
+  /* position: relative; */
+}
+
+.ProductNav ul {
+  display: flex;
+  gap: 30px;
+  justify-content: space-around;
+}
+.ProductNav li {
+  list-style: none;
+  padding: 20px 0;
+  width: 100%;
+  text-align: center;
+}
+.ProductNav a,.dropdownPro button {
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.dropdownPro {
+  position: relative;
+}
+
+
+.dropdown-list {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+  z-index: 1000;
+}
+
+.dropdown-list a {
+  padding: 10px 16px;
+  color: #333;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dropdown-list a:hover {
+  background-color: #f1f1f1;
+}
+
+.NavActiveBtn{
+  border-radius: 4px;
+border-bottom: 4px solid var(--primary-color);
+color: var(--primary-color);
+}
+.activeNav {
+  color: var(--main2);
+  font-weight: 600;
+}
+.dropDownNav {
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  min-height: 250px;
+  min-width: 80%;
+  padding: 20px 10%;
+  background-color: rgb(255, 255, 255);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.2s linear;
+}
+li:hover .dropDownNav {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0, 5px);
+  pointer-events: all;
+}
+.upperPart,
+.bottomPart {
+  display: flex;
+  padding: 5px;
+  align-items: center;
+  width: 95%;
+  justify-content: space-between;
+  margin: auto;
+  /* overflow-x: auto; */
+}
+.ProductNav{
+  position: fixed;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  height: 60px;
+  align-items: center;
+  width: 100vw;
+  background: white;
+  justify-content: center;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.15);
+}
+header button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin-right: 8px;
+}
+header button svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (max-width: 480px) {
+  .ProductNav{
+    display: none;
+  }
+  header{
+    width: 100%;
+  }
+  .BottomNavBarbar{
+    display: block;
+  }
+  .upperPart{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .bottomPart{
+    display: none;
+  }
+  .other-logo{
+    display: none;
+  }
+}

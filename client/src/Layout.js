@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import UserContextProvider from './context/UserContextProvider';
-import BottomNav from './components/BottomNav';
-import ChatBg from './components/ChatBg';
-import CartAiBtn from './components/CartAiBtn';
-import CartPop from './components/CartPop';
+import BottomNavBar from './components/BottomNavbar/BottomNavBar'; // Corrected folder name
+import ChatBg from './pages/ChatPage/ChatBg'; // Ensure ChatBg is part of ChatPage
+import CartAiBtn from './components/chatAiBtn/CartAiBtn'; // Corrected folder name
+import CartPopUp from './components/cartPopupDiv/CartPopUp'; // Corrected folder name
+
 
 function Layout() {
   const [searchActive, setSearchActive] = useState(false);
   const [chatBgSet, setChatBgSet] = useState(false);
   const [searchBarRem,setSearchBarRem] = useState(false);
   const [chatBtnHide,setChatBtnHide] = useState(false);
-  const [CartPopAnim,setCartPopAnim] = useState(false);
+  const [CartPopUpAnim,setCartPopUpAnim] = useState(false);
   const location = useLocation(); 
   
   useEffect(() => {
     const currentPath = location.pathname; 
-    if (currentPath === "/search" || currentPath === "/chat" || currentPath === "/cartgen"  || currentPath === "/cart" || currentPath === "/detail") {
+    if (currentPath === "/search" || currentPath === "/chat" || currentPath === "/CartGeneratorPage"  || currentPath === "/cart" || currentPath === "/detail") {
       setSearchActive(true);
     } else {
       setSearchActive(false);
@@ -34,7 +35,7 @@ function Layout() {
   }, [location]);
   useEffect(() => {
     const currentPath = location.pathname; 
-    if (currentPath === "/chat" || currentPath === "/cartgen") {
+    if (currentPath === "/chat" || currentPath === "/CartGeneratorPage") {
       setChatBtnHide(true); 
     } else {
       setChatBtnHide(false); 
@@ -43,9 +44,9 @@ function Layout() {
   useEffect(() => {
     const currentPath = location.pathname; 
     if (currentPath === "/chat" || currentPath === "/cart") {
-      setCartPopAnim(true); 
+      setCartPopUpAnim(true); 
     } else {
-      setCartPopAnim(false); 
+      setCartPopUpAnim(false); 
     }
   }, [location]);
   useEffect(()=> {
@@ -67,8 +68,8 @@ function Layout() {
       <div className={`main ${searchBarRem ? "mobileShop" : ""}`}>
         <Outlet />
       </div>
-      {!CartPopAnim &&  <CartPop />}
-      {!searchActive &&  <BottomNav />}
+      {!CartPopUpAnim &&  <CartPopUp />}
+      {!searchActive &&  <BottomNavBar />}
       {chatBgSet && <ChatBg />} 
     </UserContextProvider>
   );

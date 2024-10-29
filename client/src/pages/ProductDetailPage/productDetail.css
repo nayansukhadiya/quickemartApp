@@ -277,14 +277,14 @@
     /* position: absolute; */
     z-index: -1;
   }
-  .mainImg::before{
+  .mainImg::before {
     content: '';
     position: absolute;
-    bottom: -2px;
-    height: 50px;
+    bottom: -4px;
+    height: 54px;
     width: 100%;
-    background: linear-gradient(180deg, rgba(246, 246, 246, 0), rgb(246, 246, 246));
-  }
+    background: linear-gradient(180deg, rgba(246, 246, 246, 0), rgb(255, 255, 255));
+}
   .ProductDetailPageNav {
     display: flex;
   }

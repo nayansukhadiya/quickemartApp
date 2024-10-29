@@ -1,19 +1,64 @@
-.detailPageRelatedSec{
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(6,1fr);
-    gap: 10px;
+.detailPageRelatedSec {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
 }
-.detailPageRelatedComponent h2{
-    font-size: 18px;
-    font-weight: 600;
-    padding: 4px 0 14px 0;
+.detailPageRelatedComponent h2 {
+  font-size: 18px;
+  font-weight: 600;
+  padding: 4px 0 14px 0;
+}
+.detailPageRelatedComponent .CartGeneratorPageCard {
+    width: 100%;
+}
+.detailPageRelatedComponent .similarPro{
+  grid-column: span 2;
+  padding: 8px;
+  height: 42px;
+  background-color: #efefef;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  justify-content: center;
+}
+.detailPageRelatedComponent .similarPro .similarImgSec{
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 70px;
+}
+.detailPageRelatedComponent .similarPro .similarImgSec .imgSec{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 50%; 
+  border: 1px solid #efefef;
+}
+.detailPageRelatedComponent .similarPro .similarImgSec .imgIndex2{
+  left: 15px;
+  z-index: 1;
+}
+.detailPageRelatedComponent .similarPro .similarImgSec .imgIndex3{
+  left: 30px;
+  z-index: 2;
+}
+.detailPageRelatedComponent .similarPro .similarImgSec .imgSec img{
+  width: 30px;
+  height: 30px;
 }
 @media screen and (max-width: 480px) {
-    .detailPageRelatedSec{
-        display: flex;
-    overflow-x: auto;}
-        .detailPageRelatedSec .card{
-            min-width: 200px;
-        }
+  .detailPageRelatedSec {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .detailPageRelatedSec .card {
+    min-width: 200px;
+  }
 }

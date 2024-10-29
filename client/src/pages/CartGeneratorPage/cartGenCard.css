@@ -10,8 +10,7 @@
 }
 .CartGeneratorPageCard .imgSec {
   position: relative;
-  width: 160px;
-  height: 160px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,7 +54,8 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: 33px;
+    height: 35px;
+    margin-bottom: 10px;
 }
 .CartGeneratorPageCard .detailCard .unit{
     font-weight: 500;
@@ -65,7 +65,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 40px;
+    height: 34px;
 }
 .CartGeneratorPageCard .priceAndCart .CardGenCardPrice{
     font-size: 16px;
@@ -73,13 +73,16 @@
     font-weight: 500;
 }
 
-.CartGeneratorPageCard .priceAndCart .addToCart {
+.CartGeneratorPageCard .addToCart {
+    position: absolute;
     width: 55%;
     margin: 0;
+    right:10px;
+    bottom:10px;
 }
-.CartGeneratorPageCard .priceAndCart .addToCart  .quantity{
+.CartGeneratorPageCard .addToCart  .quantity{
   width: unset;
 }
-.CartGeneratorPageCard .priceAndCart .addToCart .decrementBtn, .incrementBtn {
+.CartGeneratorPageCard .addToCart .decrementBtn, .incrementBtn {
   padding: 3px 8px;
 }

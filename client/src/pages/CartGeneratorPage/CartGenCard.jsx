@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { FastAverageColor } from "fast-average-color";
+import { Link } from "react-router-dom";
 import "./cartGenCard.css";
 import AddCartBtn from "../../components/AddCartBtn";
 
@@ -58,7 +59,8 @@ function CartGeneratorPageCard({
   };
 
   return (
-    <div className="CartGeneratorPageCard">
+    <div className="CartGeneratorPageCard"> 
+    <Link title={name} to={`/detail?id=${ProIDSearch}`}>
       <div
         className="imgSec"
         style={{
@@ -83,6 +85,8 @@ function CartGeneratorPageCard({
           <div className="CardGenCardPrice">
             &#8377; {price}{" "}
           </div>
+        </div>
+      </div></Link>
           <AddCartBtn
             ProIDSearch={ProIDSearch}
             img={img}
@@ -93,8 +97,6 @@ function CartGeneratorPageCard({
             category={category}
             discount={discount}
           />
-        </div>
-      </div>
     </div>
   );
 }

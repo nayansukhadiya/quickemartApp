@@ -79,7 +79,7 @@ const useGeminiChat = () => {
                     packet_size: {
                       type: "string",
                       description:
-                        "Packet size available in the store (e.g., 500g, 1kg) always give in g, L, kg etc..",
+                        "Packet size available in the store (e.g., 500g, 1kg) always give in g, L, kg etc.. if not any get by default give various",
                     },
                     NumberQuantity: {
                       type: "number",

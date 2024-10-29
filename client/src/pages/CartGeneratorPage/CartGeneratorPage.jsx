@@ -5,6 +5,7 @@ import CardSlider from "../../components/CardSlider/CardSlider";
 import "./chatGen.css";
 import CartGenCard from "./CartGenCard";
 import BackBtn from "../../components/BackBtn/BackBtn";
+import CartGeneratorLoader from "../../components/Loaders/CartGeneratorLoader";
 
 function CartGeneratorPage() {
   const { chatArrPro } = useContext(UserContext);
@@ -211,7 +212,7 @@ function CartGeneratorPage() {
     return (
       <>
         <BackBtn LinkName={"Generative Cart"} />
-        <p>Cart not found or loading...</p>;
+        <CartGeneratorLoader />
       </>
     );
   }

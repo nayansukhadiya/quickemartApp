@@ -5,6 +5,9 @@ import cors from 'cors';
 import Product from './models/Product.js'; 
 import Category from './models/Category.js';
 
+import relatedProductsRoute from './routes/relatedProducts.js';
+import brandSimilarRoute from './routes/brandSimilar.js';
+import subCategoryRoute from './routes/subCategory.js';
 
 dotenv.config();
 
@@ -22,7 +25,10 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
   .catch((err) => {
     console.error('Error connecting to MongoDB Atlas:', err.message);
   });
-
+// Use the routes
+app.use('/related', relatedProductsRoute);
+app.use('/related', brandSimilarRoute);
+app.use('/related', subCategoryRoute);
 // Sample route for searching products
 app.get('/products/search', async (req, res) => {
   const query = req.query.q
@@ -63,107 +69,6 @@ app.get('/products', async (req, res) => {
     res.json(products);
   } catch (error) {
     console.error('Error fetching products:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-//related brand product get
-app.get('/related/similar', async (req, res) => {
-  const { proId, subCategory } = req.query; 
-  try {
-    // Fetch products based on the subCategory
-    const filteredProducts = await Product.find({
-      sub_category: { $regex: subCategory, $options: 'i' }
-    });
-
-    // Find the index of the specified product
-    const currentIndex = filteredProducts.findIndex(product => product.p_id === proId);
-
-    // Get the total count of filtered products
-    const totalCount = filteredProducts.length;
-
-    // Prepare to store the similar products
-    let similarProducts = [];
-    const rightCount = Math.min(12, totalCount - (currentIndex + 1)); 
-    if (currentIndex >= 0 && currentIndex < totalCount) {
-      // Get products to the right
-      similarProducts.push(...newArray.slice(currentIndex + 1, currentIndex + 1 + rightCount));
-
-      const remainingCount = 12 - similarProducts.length; 
-      if (remainingCount > 0) {
-        const leftCount = Math.min(remainingCount, currentIndex);
-        // Get products to the left
-        similarProducts.unshift(...newArray.slice(currentIndex - leftCount, currentIndex));
-      }
-    }
-
-    // If the total is still less than 12, include additional products from either side
-    if (similarProducts.length < 12) {
-      const additionalCount = 12 - similarProducts.length;
-      // Check if there's room to get more from the right
-      const additionalFromRight = Math.min(additionalCount, totalCount - (currentIndex + 1 + rightCount));
-      similarProducts.push(...newArray.slice(currentIndex + 1 + rightCount, currentIndex + 1 + rightCount + additionalFromRight));
-
-      // If still less than 12, add from the left
-      if (similarProducts.length < 12) {
-        const remainingFromLeft = 12 - similarProducts.length;
-        similarProducts.unshift(...newArray.slice(currentIndex - remainingFromLeft, currentIndex));
-      }
-    }
-
-    // Send the similar products as a JSON response
-    res.json(similarProducts.slice(0, 12)); // Ensure to return only the first 12 products
-  } catch (error) {
-    console.error('Error fetching brands:', error); // Log the error for debugging
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
-
-
-
-
-// given data by the brand match 
-app.get('/related/brandSimilar', async (req, res) => {
-  const { proId, brand } = req.query; 
-  try {
-    // Fetch products based on the subCategory
-    const filteredProducts = await Product.find({
-      brand: { $regex: brand, $options: 'i' }
-    });
-
-    // Filter out the product with the specified proId
-    const newArray = filteredProducts.filter(product => product.p_id !== proId); 
-
-    // Check if filteredProducts is empty
-    if (newArray.length === 0) {
-      return res.json([]); // Return an empty array if no similar products are found
-    }
-
-    res.json(newArray); // Send the filtered products as a JSON response
-  } catch (error) {
-    console.error('Error fetching brands:', error); // Log the error for debugging
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
-// given data by the sub category match 
-app.get('/related', async (req, res) => {
-  const categoryName = req.query.related_brand; 
-  try {
-    const filteredProducts = await Product.find({
-      $or: [
-        { sub_category: { $regex: categoryName, $options: 'i' } }
-      ]
-    });
-
-    // Check if filteredProducts is empty
-    if (filteredProducts.length === 0) {
-      return res.json([]); // Return an empty array if no products are found
-    }
-
-    res.json(uniqueBrands); // Send unique brands as a JSON response
-  } catch (error) {
-    console.error('Error fetching brands:', error); // Log the error for debugging
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

@@ -3,7 +3,7 @@ import UserContext from "../../context/UserContext";
 import { useLocation } from "react-router-dom";
 import CardSlider from "../../components/CardSlider/CardSlider";
 import "./chatGen.css";
-import CartGenCard from './CartGenCard'
+import CartGenCard from "./CartGenCard";
 import BackBtn from "../../components/BackBtn/BackBtn";
 
 function CartGeneratorPage() {
@@ -13,8 +13,8 @@ function CartGeneratorPage() {
   const [filteredProducts, setFilteredProducts] = useState(null);
   const [relatedProd, setRelatedProd] = useState({});
   const [titleAndMessage, setTitleAndMessage] = useState({
-    title: '',
-    message: ''
+    title: "",
+    message: "",
   });
   const query = new URLSearchParams(location.search).get("id");
   console.log("cart generation is the", chatArrPro);
@@ -30,7 +30,7 @@ function CartGeneratorPage() {
       setTitleAndMessage({
         title: cart.cart_name,
         message: cart.userMessageDetail,
-      })
+      });
       console.log("Find cart generation is the", cart);
     } else {
       setFindCart(null);
@@ -47,83 +47,82 @@ function CartGeneratorPage() {
         const cleanedKey = key.replace(/-/g, " ");
 
         // Function to apply filters with priority
-       // Function to apply filters with priority
-function applyFilters(
-  productArray,
-  cleanedKey,
-  resCategory,
-  resBrand,
-  resUnit
-) {
-  const searchKey = cleanedKey.toLowerCase();
-  const resUnitAsFloat = Math.floor(parseFloat(resUnit));
-  let filtered = [];
+        // Function to apply filters with priority
+        function applyFilters(
+          productArray,
+          cleanedKey,
+          resCategory,
+          resBrand,
+          resUnit
+        ) {
+          const searchKey = cleanedKey.toLowerCase();
+          const resUnitAsFloat = Math.floor(parseFloat(resUnit));
+          let filtered = [];
 
-  // Priority 1: Exact match on name, sub_category, unit (excluding "combo")
-  filtered = productArray.filter(
-    (product) =>
-      product.data?.name?.toLowerCase().includes(searchKey) &&
-      product.data?.sub_category === resCategory &&
-      product.data?.unit?.includes(resUnitAsFloat) &&
-      !product.data?.unit?.includes("combo")
-  );
+          // Priority 1: Exact match on name, sub_category, unit (excluding "combo")
+          filtered = productArray.filter(
+            (product) =>
+              product.data?.name?.toLowerCase().includes(searchKey) &&
+              product.data?.sub_category === resCategory &&
+              product.data?.unit?.includes(resUnitAsFloat) &&
+              !product.data?.unit?.includes("combo")
+          );
 
-  // Priority 2: Match name, sub_category, and brand (excluding "combo")
-  if (filtered.length === 0) {
-    filtered = productArray.filter(
-      (product) =>
-        product.data?.sub_category
-          ?.toLowerCase()
-          .includes(resCategory.toLowerCase()) &&
-        product.data?.name?.toLowerCase().includes(searchKey) &&
-        product.data?.brand === resBrand &&
-        !product.data?.unit?.includes("combo")
-    );
-  }
+          // Priority 2: Match name, sub_category, and brand (excluding "combo")
+          if (filtered.length === 0) {
+            filtered = productArray.filter(
+              (product) =>
+                product.data?.sub_category
+                  ?.toLowerCase()
+                  .includes(resCategory.toLowerCase()) &&
+                product.data?.name?.toLowerCase().includes(searchKey) &&
+                product.data?.brand === resBrand &&
+                !product.data?.unit?.includes("combo")
+            );
+          }
 
-  // Priority 3: Match name and brand only (excluding "combo")
-  if (filtered.length === 0) {
-    filtered = productArray.filter(
-      (product) =>
-        product.data?.name?.toLowerCase().includes(searchKey) &&
-        product.data?.brand === resBrand &&
-        !product.data?.unit?.includes("combo")
-    );
-  }
+          // Priority 3: Match name and brand only (excluding "combo")
+          if (filtered.length === 0) {
+            filtered = productArray.filter(
+              (product) =>
+                product.data?.name?.toLowerCase().includes(searchKey) &&
+                product.data?.brand === resBrand &&
+                !product.data?.unit?.includes("combo")
+            );
+          }
 
-  // Priority 4: Match name and sub_category (excluding "combo")
-  if (filtered.length === 0) {
-    filtered = productArray.filter(
-      (product) =>
-        product.data?.sub_category === resCategory &&
-        product.data?.name?.toLowerCase().includes(searchKey) &&
-        !product.data?.unit?.includes("combo")
-    );
-  }
+          // Priority 4: Match name and sub_category (excluding "combo")
+          if (filtered.length === 0) {
+            filtered = productArray.filter(
+              (product) =>
+                product.data?.sub_category === resCategory &&
+                product.data?.name?.toLowerCase().includes(searchKey) &&
+                !product.data?.unit?.includes("combo")
+            );
+          }
 
-  // Priority 5: Match sub_category and brand (excluding "combo")
-  if (filtered.length === 0) {
-    filtered = productArray.filter(
-      (product) =>
-        product.data?.sub_category === resCategory &&
-        product.data?.brand === resBrand &&
-        !product.data?.unit?.includes("combo") &&
-        !product.data?.unit?.toLowerCase().includes("local vendor")
-    );
-  }
+          // Priority 5: Match sub_category and brand (excluding "combo")
+          if (filtered.length === 0) {
+            filtered = productArray.filter(
+              (product) =>
+                product.data?.sub_category === resCategory &&
+                product.data?.brand === resBrand &&
+                !product.data?.unit?.includes("combo") &&
+                !product.data?.unit?.toLowerCase().includes("local vendor")
+            );
+          }
 
-  // Priority 6: Match name only (excluding "combo")
-  if (filtered.length === 0) {
-    filtered = productArray.filter(
-      (product) =>
-        product.data?.name?.toLowerCase().includes(searchKey) &&
-        !product.data?.unit?.includes("combo")
-    );
-  }
+          // Priority 6: Match name only (excluding "combo")
+          if (filtered.length === 0) {
+            filtered = productArray.filter(
+              (product) =>
+                product.data?.name?.toLowerCase().includes(searchKey) &&
+                !product.data?.unit?.includes("combo")
+            );
+          }
 
-  return filtered;
-}
-
+          return filtered;
+        }
 
         filtered[key] = applyFilters(
           productArray,
@@ -209,17 +208,22 @@ function applyFilters(
   };
 
   if (!findCart) {
-    return <>
-    <BackBtn LinkName={"Generative Cart"} />
-    <p>Cart not found or loading...</p>;
-     </> 
+    return (
+      <>
+        <BackBtn LinkName={"Generative Cart"} />
+        <p>Cart not found or loading...</p>;
+      </>
+    );
   }
-console.log(titleAndMessage)
+  console.log(titleAndMessage);
   return (
     <div className="CartGeneratorPagePage">
-      <BackBtn LinkName={"Generative Cart"}/>
+      <BackBtn LinkName={"Generative Cart"} />
+      <div className="TopSection">
+<p>Cart Name</p>
       <h1 className="CartGeneratorPageTitle">{titleAndMessage.title}</h1>
       <p className="CartUserMessage">{titleAndMessage.message}</p>
+      </div>
       {filteredProducts ? (
         Object.keys(filteredProducts).map((key) => (
           <div className="ingredientSec">
@@ -229,33 +233,37 @@ console.log(titleAndMessage)
                   <h3>{key.replace(/\b\w/g, (char) => char.toUpperCase())}</h3>
                 </div>
                 <div className="requiredDetailsSec">
-                <div>
-                  <p>Available packet size</p>
-                  <h3>
-                    {findCart &&
-                    findCart.products &&
-                    findCart.products[key]?.length > 0
-                      ? findCart.products[key][0]?.resUnit === "null"
-                        ? null
-                        : findCart.products[key][0]?.resUnit
-                      : "😢 We're really sorry"}
-                  </h3>
+                  <div className="shadowDeep">
+                    <p>Available packet size</p>
+                    <h3>
+                    {
+  findCart?.products?.[key]?.length > 0
+    ? findCart.products[key][0]?.resUnit !== "null"
+      ? findCart.products[key][0].resUnit
+      : null
+    : "😢 We're really sorry"
+      ? "😢 We're really sorry"
+      : "various"
+}
+
+                    </h3>
+                  </div>
+                  <div className="shadowDeep">
+                    <p>Total Required</p>
+                    <h3>
+                      {formatCartQuantityAndUnit(
+                        findCart.products[key][0]?.resUnit,
+                        findCart.products[key][0]?.resQuantity
+                      )}
+                    </h3>
+                  </div>
                 </div>
-                <div>
-                  <p>Total Required</p>
-                  <h3>
-                    {formatCartQuantityAndUnit(
-                      findCart.products[key][0]?.resUnit,
-                      findCart.products[key][0]?.resQuantity
-                    )}
-                  </h3>
-                </div></div>
-                <div className="prdDetail">
+                <div className="prdDetail shadowDeep">
                   <p>Do you Know</p>
                   <h3>
-  {findCart.products[key][0]?.ingredientsDetail || "😢 We're really sorry"}
-</h3>
-
+                    {findCart.products[key][0]?.ingredientsDetail ||
+                      "😢 We're really sorry"}
+                  </h3>
                 </div>
               </div>
               <div className="sliderSecIn">

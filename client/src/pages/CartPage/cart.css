@@ -127,7 +127,7 @@ fill: var(--primary-color);
   justify-content: space-between;
   position: relative;
   border-radius: 16px;
-  height: 150px;
+  height: 180px;
   background-image: linear-gradient(
     180deg,
     #ccdaf9 0%,
@@ -135,11 +135,87 @@ fill: var(--primary-color);
     #9dbcff 100%
   );
 }
+.tipInputSection {
+  margin-top: 20px;
+}
+
+.tipInputSection label {
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.predefinedTipOptions {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.predefinedTipOptions button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px; 
+  letter-spacing: 1.2;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  cursor: pointer;
+}
+.predefinedTipOptions button svg{
+  width: 16px;
+  height: 16px;
+}
+.predefinedTipOptions button.matchAmount{
+  background-color: var(--primary-color);
+  color: #e9f0ff;
+}
+
+
 .deliveryBoyTip img{
   position: absolute;
   bottom: 10px;
   right: 0px;
   height: 130px;
+}
+.customValueAdd{
+  width: 60%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 16px;
+  padding: 6px;
+}
+.customValueAdd input{
+  background-color: #ffffff;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  width: 70px;
+  outline: none;
+  border: none;
+  padding: 7px 12px;
+}
+.customValueAdd button{
+  padding: 0;
+  color: var(--primary-color);
+  background-color: transparent;
+  box-shadow: none;
+  border: unset;
+  border-radius: unset;
+    cursor: pointer;
+    text-align: center;
+    background-color: #e9f0ff;
+    padding: 7px 12px;
+    border-radius: 7px;
+    font-weight: 400;
+}
+.customValueAdd button.AddAmount{
+  background-color: var(--primary-color);
+  color: white;
 }
 .deliveryBoyTip .DetailSecDelivery{
   width: 80%;
@@ -158,15 +234,7 @@ fill: var(--primary-color);
   align-items: center;
   gap: 6px;
 }
-.deliveryBoyTip .tipButtonSec button{
-  padding: 10px 16px;
-  letter-spacing: 1.2;
-  font-weight: 600;
-  background-color: white;
-  border-radius: 10px;
-  border: 1px solid rgb(209, 209, 209);
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-}
+
 .cartClearBtn button{
   width: fit-content;
   border-radius: 10px;
@@ -285,7 +353,7 @@ fill: var(--primary-color);
   
 }
 .cartTotal {
-  background-color: #e9f0ff;
+  background-color: #ffffff;
   padding: 18px 18px 0 18px;
 }
 .cartTotal h3 {

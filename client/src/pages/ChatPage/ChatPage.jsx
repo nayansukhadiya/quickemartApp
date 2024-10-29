@@ -157,7 +157,7 @@ function ChatPage() {
 
   return (
     <div className="ChatPage">
-      <BackBtn LinkName={"Urban24 AI"}/>
+      <BackBtn LinkName={"Quick AI"}/>
       <div className="pageRes">
         <div className={`prePageChat ${ansGet === true ? "ChatActive" : ""}`}>
         <TextAnimation />

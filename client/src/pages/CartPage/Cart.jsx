@@ -1,4 +1,10 @@
-import React, { useState, useContext, useEffect, useRef, useCallback } from "react";
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
 import UserContext from "../../context/UserContext";
 import CartCard from "./CartCard";
 import "./cart.css";
@@ -11,11 +17,15 @@ function Cart() {
   const [discount, setDiscount] = useState(0);
   const { cartPro } = useContext(UserContext);
   const [couponApplied, setCouponApplied] = useState(false);
+  const [tipAmount, setTipAmount] = useState(0);
+  const [isCustom, setIsCustom] = useState(false);
+  const [customTipValue, setCustomTipValue] = useState(20);
   const inputRef = useRef(null);
 
   const calculateTotalValue = useCallback(() => {
     return proCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   }, [proCart]);
+
 
   const ApplyCoupon = useCallback(() => {
     const coupons = [
@@ -27,14 +37,36 @@ function Cart() {
     const foundCoupon = coupons.find((coupon) => coupon.code === inputValue);
 
     if (foundCoupon) {
-      const discountAmount = (calculateTotalValue() * foundCoupon.discount) / 100;
+      const discountAmount =
+        (calculateTotalValue() * foundCoupon.discount) / 100;
       setDiscount(discountAmount);
       setCouponApplied(true);
     } else {
       setDiscount(0);
-      setCouponApplied(false); // Reset coupon applied status
+      setCouponApplied(false);
     }
   }, [calculateTotalValue]);
+  const handleCustomTip = () => {
+    setTipAmount(0);
+    setIsCustom((prev) => !prev);
+  };
+  const handleClose = () => {
+    setIsCustom((prev) => !prev);
+  };
+  const predefinedTips = [20, 30, 50];
+
+  const handleTipChange = (event) => {
+    const value = Number(event.target.value);
+    setCustomTipValue(value);
+  };
+  const AddAmountCustom = () => {
+    if (customTipValue >= 20 && customTipValue <= 200) {
+      setTipAmount(customTipValue);
+    } else alert("please enter amount between 20 to 200");
+  };
+  const handlePredefinedTip = (value) => {
+    setTipAmount(value);
+  };
 
   const calculateDeliveryFee = useCallback(() => {
     return proCart.length > 0 ? 50 : 0;
@@ -42,8 +74,12 @@ function Cart() {
 
   const calculateTotalAmount = useCallback(() => {
     const subtotal = calculateTotalValue();
-    return subtotal - discount;
-  }, [calculateTotalValue, discount]);
+    return subtotal - discount + tipAmount;
+  }, [calculateTotalValue, discount, tipAmount]);
+
+  const clearCart = () => {
+    setProCart([]);
+  };
 
   useEffect(() => {
     setProCart(cartPro);
@@ -52,8 +88,7 @@ function Cart() {
   useEffect(() => {
     ApplyCoupon();
   }, [proCart, discount, couponApplied, ApplyCoupon]);
-
-
+  const isMatchAmount = predefinedTips.includes(tipAmount);
   return (
     <div className={`cartPage ${proCart.length < 1 ? "emptyCart" : ""}`}>
       {proCart.length < 1 ? (
@@ -144,30 +179,10 @@ function Cart() {
                 {proCart.map((item) => (
                   <CartCard key={item.ProIDSearch} item={item} />
                 ))}
-                
               </div>
               <div className="offerBenefitsSec">
-              <div className="ApplyCoupon lightGrayBorder ">
-                  <div className="titleSec">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-circle-percent"
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="m15 9-6 6" />
-                      <path d="M9 9h.01" />
-                      <path d="M15 15h.01" />
-                    </svg>
-                    Apply Coupon
-                  </div>
+                <div className="ApplyCoupon lightGrayBorder ">
+                  <div className="titleSec">{/* Coupon Section */}</div>
                   <input
                     type="text"
                     placeholder="Enter Coupon"
@@ -176,6 +191,7 @@ function Cart() {
                   />
                   <button onClick={ApplyCoupon}>Apply Coupon</button>
                 </div>
+
                 <div className="deliveryBoyTip">
                   <div className="DetailSecDelivery">
                     <h4>Tip for Delivery boy</h4>
@@ -184,14 +200,71 @@ function Cart() {
                       directly to your delivery partner.
                     </p>
                   </div>
-                  <div className="tipButtonSec">
-                    <button>₹20</button>
-                    <button>₹30</button>
-                    <button>₹50</button>
+                  <div className="tipInputSection">
+                    <label>Choose Tip Amount:</label>
+                    <div className="predefinedTipOptions">
+                      {isCustom ? (
+                        <>
+                          {predefinedTips.map((tip) => (
+                            <button
+                              key={tip}
+                              onClick={() => handlePredefinedTip(tip)}
+                              className={tipAmount === tip ? "matchAmount" : ""}
+                            >
+                              ₹{tip}
+                            </button>
+                          ))}
+                          <button
+                            onClick={handleCustomTip}
+                            className={
+                              tipAmount === customTipValue &&
+                              !predefinedTips.includes(customTipValue)
+                                ? "matchAmount"
+                                : ""
+                            }
+                          >
+                            {customTipValue && tipAmount >0 &&
+                            !predefinedTips.includes(customTipValue) ? (
+                              <>
+                                ₹{tipAmount}{" "}
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  class="lucide lucide-pencil"
+                                >
+                                  <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
+                                  <path d="m15 5 4 4" />
+                                </svg>
+                              </>
+                            ) : (
+                              <>Custom</>
+                            )}
+                          </button>
+                        </>
+                      ) : (
+                        <div className="customValueAdd">
+                        <input
+                            type="number"
+                            value={customTipValue}
+                            onChange={handleTipChange}
+                            placeholder="Enter custom tip (₹20-₹300)"
+                          />
+                          <button onClick={AddAmountCustom} className="AddAmount">Add</button>
+                          <button onClick={handleClose}>close</button>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                  <img src={DeliverBoyImg}  alt="img" />
+                  <img src={DeliverBoyImg} alt="Delivery Boy" />
                 </div>
-                
+
                 <div className="cartTotal lightGrayBorder ">
                   <h3>Bill Detail</h3>
                   <div className="summarySec">
@@ -208,22 +281,24 @@ function Cart() {
                     <div className="summaryDiv">
                       <p>Delivery Fee</p>
                       <p className="summaryValue">
-                        <span className="freeFee">FREE</span>{" "}
-                        <span className="cancelFee">
-                          ₹{calculateDeliveryFee().toFixed(2)}
-                        </span>
+                        ₹{calculateDeliveryFee().toFixed(2)}
                       </p>
                     </div>
+                    <div className="summaryDiv">
+                      <p>Tip</p>
+                      <p className="summaryValue">₹{tipAmount.toFixed(2)}</p>
+                    </div>
                     <div className="summaryDiv totalAmount">
-                      <p className="">Total Amount</p>
+                      <p>Total Amount</p>
                       <p className="summaryValue">
                         ₹{calculateTotalAmount().toFixed(2)}
                       </p>
                     </div>
                   </div>
                 </div>
-              <div className="cartClearBtn">
-                  <button>Clear Cart</button>
+
+                <div className="cartClearBtn">
+                  <button onClick={clearCart}>Clear Cart</button>
                 </div>
               </div>
             </div>
@@ -236,10 +311,10 @@ function Cart() {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-arrow-right"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide lucide-arrow-right"
                 >
                   <path d="M5 12h14" />
                   <path d="m12 5 7 7-7 7" />
@@ -249,8 +324,6 @@ function Cart() {
           </div>
         </>
       )}
-
-      {/* <div className="celebrationDiv"><img src={celebrationGif}/></div> */}
     </div>
   );
 }

@@ -66,7 +66,7 @@ const useGeminiChat = () => {
                   properties: {
                     ingredient_name: {
                       type: "string",
-                      description: `Please don't give name like that Coca-Cola instead give me coca cola Name of the ingredient, if not specified, provide a popular brand i will give you the 6000 products do not use Cold Drink instead use soft drinks name do mean i want est match on top name array make sure if the possible than give me the name from the arr ${namePro}`,
+                      description: `give name in single product like(not tomatoes give tomato, etc...)Please don't give name like that Coca-Cola instead give me coca cola Name of the ingredient, if not specified, provide a popular brand i will give you the 6000 products do not use Cold Drink instead use soft drinks name do mean i want est match on top name array make sure if the possible than give me the name from the arr ${namePro}`,
                     },
                     brand: {
                       type: "string",
@@ -91,6 +91,7 @@ const useGeminiChat = () => {
                       description:
                         "give me the relative category as you thought that is my category from the database dry_fruits, masala, chocolates, chips, whole_spices, oil, instance_noodles, juices, rice, crunchies, nuts_makhana, milk_drink, coffee, cookies, other_dals, fresh_vegetable, herbs_seasoning, i_c_tub, soft_drinks, dark_chocolates, candies_gums, sticks, peanut_spread, poha, namkeens, tea, fresh_fruit, spread_dips, cheese, popcorn, green_herbal_tea, pickels_chutney, nachos, soda, ice_tea_cold_coffee, cakes_pels, cream_biscuits, korean_noodles, fruit_syrups, i_c_cup, sugar, asian_sauces, energy_bars, wafers_biscuit, oats, drink_mixture, bread, othe_sweets, ghee, salted_plain, batter, marle_digestive, enrgy_drinks, cooking_sauces, pastes, filter_coffee, salt, moong_dals, flakes, cones, tomato_ketchup, flour, olive_oil, panner_cream, cooking_pasta, i_c_sandwiches, toor_dals, bread, kids_cereals, hakka_noodles, chana_dals, yogurts, soup, i_c_kulfi, butter, cup_noodles, jaggery, kabuli_chana, instance_pasta, gulab_jamun, chocolate_spread, milk, choco_syrups, frozen_vegetable, laddoo, rusk_khari, pav, papad, kaju_katli, peda, rasgulla, chana, curd, burfi, jams, soan_papdi, vinegar_sauses give according to you other wise return defult ",
                     },
+                    
                     ingredientsDetail: {
                       type: "string",
                       description:

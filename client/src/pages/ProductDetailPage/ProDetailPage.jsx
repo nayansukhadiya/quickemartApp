@@ -127,7 +127,7 @@ function ProductDetailPagePage() {
       <div className="detailMain">
         <div className="img-section part-section">
           <div
-            className="mainImg lightGrayBorder shadowDeep"
+            className="mainImg lightGrayBorder"
             style={{
               backgroundColor: averageColor || "transparent",
               transition: "background-color 0.3s ease",

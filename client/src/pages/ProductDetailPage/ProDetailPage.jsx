@@ -280,10 +280,10 @@ function ProductDetailPagePage() {
           <RelatedBrand category={product.sub_category} brandName={product.brand} />
         </div>
         <div className="bgDetailDifferent shadowDeep lightGrayBorder">
-          <DetailPageRelated related_search_value={`similar?proId=${product.p_id}&subCategory=${product.sub_category}`} name={`similar product`} />
+          <DetailPageRelated related_search_value={`similar?proId=${product.p_id}&subCategory=${product.sub_category}`} valueLink={`${product.sub_category}`} name={`similar product`} />
         </div>
         <div className="bgDetailDifferent shadowDeep lightGrayBorder">
-          <DetailPageRelated related_search_value={`brandSimilar?proId=${product.p_id}&brand=${product.brand}`} name={`More product from ${product.brand}`} />
+          <DetailPageRelated related_search_value={`brandSimilar?proId=${product.p_id}&brand=${product.brand}`} valueLink={`${product.brand}`} name={`More product from ${product.brand}`} />
         </div>
       </div>
     </>

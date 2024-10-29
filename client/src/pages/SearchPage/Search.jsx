@@ -5,6 +5,7 @@ import "../../pages/HomePage/home.css";
 import "../../pages/ShopPage/shop.css";
 import _ from "lodash";
 import config from "../../config";
+import CircleLoader from "../../components/Loaders/CircleLoader";
 
 function Search() {
   const location = useLocation();
@@ -78,7 +79,7 @@ function Search() {
           />
         ))
       ) : (
-        <p>No products found for "{qValue}".</p>
+        <CircleLoader />
       )}
     </div>
   );

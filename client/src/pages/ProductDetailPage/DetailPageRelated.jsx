@@ -4,7 +4,7 @@ import CartGenCard from "../../pages/CartGeneratorPage/CartGenCard";
 import "./detailPageRelated.css";
 import { Link } from "react-router-dom";
 
-function DetailPageRelated({ related_search_value, name }) {
+function DetailPageRelated({ related_search_value, name, valueLink }) {
   const [brand, setBrand] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -43,7 +43,7 @@ function DetailPageRelated({ related_search_value, name }) {
   if (error) {
     return <div>Error: {error}</div>; // Error state
   }
-
+  
   return (
     <div className="detailPageRelatedComponent">
       <h2>{name}</h2>
@@ -65,16 +65,30 @@ function DetailPageRelated({ related_search_value, name }) {
               brand={item.brand}
             />
           ))}
-          <Link className="similarPro">
+          <Link to={`/search?q=${valueLink}`} className="similarPro">
             More product
             <div className="similarImgSec">
-              {brand.slice(12, 15).map((item, index) => (
-                <div className={`imgSec imgIndex${index + 1}`}>
+              {brand.slice(-3).map((item, index) => (
+                <div key={index} className={`imgSec imgIndex${index + 1}`}>
                   <img src={item.img} />
                 </div>
               ))}
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-step-forward"><line x1="6" x2="6" y1="4" y2="20"/><polygon points="10,4 20,12 10,20"/></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-step-forward"
+            >
+              <line x1="6" x2="6" y1="4" y2="20" />
+              <polygon points="10,4 20,12 10,20" />
+            </svg>
           </Link>
         </div>
       )}

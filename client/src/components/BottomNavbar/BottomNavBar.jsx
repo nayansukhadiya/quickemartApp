@@ -75,7 +75,6 @@ function BottomNavBar() {
                 strokeLinejoin="round"
               />
             </svg>
-         
             <p>Category</p>
         </Link>
        

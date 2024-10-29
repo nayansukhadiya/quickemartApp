@@ -81,7 +81,7 @@ function ProductDetailPagePage() {
 
   const product = detailArr[0];
 
-  if (loading) { // Conditional rendering for loading state
+  if (loading) { 
     return <CircleLoader />;
   }
 

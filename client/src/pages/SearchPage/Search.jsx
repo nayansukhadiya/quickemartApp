@@ -14,7 +14,7 @@ function Search() {
   const [filterProduct, setFilterProduct] = useState([]);
   const [searchArr, setSearchArr] = useState([]);
   const [loader, setLoader] = useState(false);
-  const [openSidebar, setOpenSideBar] = useState(true);
+  const [openSidebar, setOpenSideBar] = useState(false);
   const [sideBarPrice, setSideBarPrice] = useState(true);
   const [sideBarBrand, setSideBarBrand] = useState(false);
   const [sideBarCategory, setSideBarCategory] = useState(false);

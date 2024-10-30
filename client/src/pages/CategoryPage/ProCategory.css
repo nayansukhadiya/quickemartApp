@@ -29,15 +29,16 @@
   border-radius: 10px;
   background-color: #efefef;
   background-image: linear-gradient(
-    150deg,
+    180deg,
     #0084d160 0%,
     #0084d138 55%,
-    #699bff77 100%
+    #699bff2a 100%
   );
 }
 .categoryCard img {
   position: absolute;
-  right: -25px;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: -25px;
   aspect-ratio: 1;
   width: 80%;
@@ -45,9 +46,11 @@
   object-fit: cover;
 }
 .categoryCard p {
+  text-align: center;
   position: absolute;
   top: 10px;
-  left: 10px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 70%;
   font-weight: 500;
   font-size: 18px;

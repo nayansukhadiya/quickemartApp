@@ -15,10 +15,10 @@ import DeliverBoyImg from "../../assets/images/delivery_boy (2).png";
 function Cart() {
   const [proCart, setProCart] = useState([]);
   const [discount, setDiscount] = useState(0);
-  const { cartPro } = useContext(UserContext);
+  const { cartPro ,setCartPro} = useContext(UserContext);
   const [couponApplied, setCouponApplied] = useState(false);
   const [tipAmount, setTipAmount] = useState(0);
-  const [isCustom, setIsCustom] = useState(false);
+  const [isCustom, setIsCustom] = useState(true);
   const [customTipValue, setCustomTipValue] = useState(20);
   const inputRef = useRef(null);
 
@@ -78,7 +78,7 @@ function Cart() {
   }, [calculateTotalValue, discount, tipAmount]);
 
   const clearCart = () => {
-    setProCart([]);
+    setCartPro([]);
   };
 
   useEffect(() => {

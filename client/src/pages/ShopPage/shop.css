@@ -308,18 +308,9 @@ color: white;
   transform: scale(1.2);
   transition: all 0.2s linear;
 }
-/* .shop-cards */
-.gridLayout
- {
-  grid-template-columns: repeat(5, 1fr);
-  display: grid;
-  gap: 10px;
-}
+
 .DisablePaginate {
   display: none;
-}
-.searchPageSec {
-  grid-template-columns: repeat(5, 1fr);
 }
 
 .shop-cards .card {
@@ -394,6 +385,7 @@ color: white;
   margin: 20px 0;
   justify-content: center;
 }
+
 .skeletonLoaderSecActiveDis{
   opacity: 0;
 }
@@ -403,9 +395,10 @@ color: white;
   border: none;
   font-weight: 600;
   color: #222222;
-  background-color: #f1f1f1;
+  background-color: white;
+  outline: 1px solid #dddddd;
   cursor: pointer;
-  border-radius: 50%;
+  border-radius: 7px;
 }
 
 .pagination button:disabled {
@@ -421,35 +414,6 @@ color: white;
   outline: 1px solid var(--primary-color);
 }
 
-@media (max-width: 1200px) {
-  .gridLayout {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .searchPageSec {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-@media (max-width: 1000px) {
-  .gridLayout  {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .searchPageSec {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 800px) {
-  .gridLayout  {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .searchPageSec {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
 
 @media screen and (max-width: 480px) {
   .main{
@@ -519,11 +483,7 @@ color: white;
     width: 70px;
     margin-left: 5px;
   }
-  .gridLayout  {
-    padding: 0;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
-  }
+ 
   .brandFilterDiv .upperSecDiv {
     font-size: 24px;
   }

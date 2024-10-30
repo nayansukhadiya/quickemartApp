@@ -25,7 +25,7 @@
 
 @font-face {
   font-family: "gillroy";
-  src: url('../assets/font/Gilroy-Regular.ttf');
+  src: url("../assets/font/Gilroy-Regular.ttf");
 }
 * {
   font-weight: 400;
@@ -34,7 +34,7 @@
 
   /* font-family: helvetica neue, Arial, sans-serif; */
   /* font-family: "Sora", sans-serif; */
-  font-family: 'Uber Move Text', sans-serif;
+  font-family: "Uber Move Text", sans-serif;
   /* font-family: 'Urbanist', sans-serif; */
   /* font-family: 'Poppins', sans-serif; */
   /* font-family: 'Qanelas Soft', sans-serif; */
@@ -72,9 +72,14 @@ button {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(135deg, #86acfe66 0%, #0084d147 80%, #0084d150 100%);
+  background-image: linear-gradient(
+    135deg,
+    #86acfe66 0%,
+    #0084d147 80%,
+    #0084d150 100%
+  );
 }
-.main{
+.main {
   /* width: min(80%, 1250px); */
   width: 80%;
   margin: 0 auto;
@@ -84,10 +89,15 @@ button {
 .lightGrayBorder {
   border: 1px solid lightgray;
 }
-.shadowDeep{
-  box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
+.shadowDeep {
+  box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px,
+    rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px,
+    rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px,
+    rgba(42, 51, 70, 0.04) 0px 6px 6px -3px,
+    rgba(14, 63, 126, 0.04) 0px 12px 12px -6px,
+    rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
 }
-.mobileShop{
+.mobileShop {
   height: 100% !important;
   padding-top: 0 !important;
   width: 100% !important;
@@ -95,10 +105,10 @@ button {
 .card .addToCart {
   width: auto;
 }
-.HomeSearch{
+.HomeSearch {
   display: none;
 }
- .addToCart{
+.addToCart {
   background-color: white;
   border: 1px solid var(--primary-color);
   border-radius: 8px;
@@ -116,7 +126,7 @@ button {
   transition: background-color 0.3s ease;
 }
 .addButton {
-color: var(--primary-color);
+  color: var(--primary-color);
   border: none;
   height: 30px;
   width: 100%;
@@ -194,26 +204,66 @@ a {
   height: 100%;
   width: 100%;
 }
+.gridLayout{
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(5, 1fr);
+}
+@media (max-width: 1200px) {
+  .gridLayout {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .searchPageSec {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 1000px) {
+  .gridLayout {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .searchPageSec {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .gridLayout {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .searchPageSec {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media screen and (max-width: 480px) {
-  .mobileShop{
+  .gridLayout  {
+    padding: 0;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .mobileShop {
     height: 100% !important;
     padding-top: 0 !important;
     width: 100% !important;
   }
-  .homePage{
+  .homePage {
     margin-bottom: 90px;
   }
   .main {
     width: 95%;
     overflow: scroll;
-    height: calc(100% - 165.5px) ;
+    height: calc(100% - 165.5px);
   }
-  .HomeSearch{
+  .HomeSearch {
     display: block;
   }
-.main{
-  width: 95%;
-}
+  .main {
+    width: 95%;
+  }
   .decrementBtn,
   .incrementBtn {
     padding: 3px 10px;
@@ -227,6 +277,11 @@ a {
     height: 16.5px;
   }
   .chatBg {
-    background-image: linear-gradient(135deg, #ffffffd7 0%,  #0083d136 80%,#ccecff 100%);
+    background-image: linear-gradient(
+      135deg,
+      #ffffffd7 0%,
+      #0083d136 80%,
+      #ccecff 100%
+    );
   }
 }

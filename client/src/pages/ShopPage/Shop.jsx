@@ -73,7 +73,7 @@ function Shop() {
 
       try {
         const response = await fetch(
-          `${config.apiUrl}/products?sub_category=${subName}`
+          `${config.apiUrl}/products/sub_category?name=${subName}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -326,31 +326,79 @@ function Shop() {
               />
             ))}
           </div>
+ 
+ 
+
           <div className={totalPages === 1 ? "DisablePaginate" : "pagination"}>
-            <button
-              onClick={() => paginate(currentPage - 1)}
-              disabled={currentPage === 1}
-            >
-              &lt;
-            </button>
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-              (number) => (
-                <button
-                  key={number}
-                  onClick={() => paginate(number)}
-                  className={number === currentPage ? "active" : ""}
-                >
-                  {number}
-                </button>
-              )
-            )}
-            <button
-              onClick={() => paginate(currentPage + 1)}
-              disabled={currentPage === totalPages}
-            >
-              &gt;
-            </button>
-          </div>
+      <button
+        onClick={() => paginate(currentPage - 1)}
+        disabled={currentPage === 1}
+      >
+        &lt;
+      </button>
+
+      {totalPages > 4 ? (
+        <>
+          {/* Show the first page */}
+          <button
+            onClick={() => paginate(1)}
+            className={currentPage === 1 ? "active" : ""}
+          >
+            1
+          </button>
+
+          {/* Show ellipsis if current page is greater than 4 */}
+          {currentPage > 4 && <span>...</span>}
+
+          {/* Show pages around the current page */}
+          {Array.from(
+            { length: Math.min(3, totalPages - 2) },
+            (_, i) => currentPage - 1 + i
+          )
+            .filter((page) => page > 1 && page < totalPages)
+            .map((page) => (
+              <button
+                key={page}
+                onClick={() => paginate(page)}
+                className={page === currentPage ? "active" : ""}
+              >
+                {page}
+              </button>
+            ))}
+
+          {/* Show ellipsis if current page is less than total - 3 */}
+          {currentPage < totalPages - 3 && <span>...</span>}
+
+          {/* Show the last page */}
+          <button
+            onClick={() => paginate(totalPages)}
+            className={currentPage === totalPages ? "active" : ""}
+          >
+            {totalPages}
+          </button>
+        </>
+      ) : (
+        // If there are 5 or fewer pages, show all
+        Array.from({ length: totalPages }, (_, i) => (
+          <button
+            key={i + 1}
+            onClick={() => paginate(i + 1)}
+            className={i + 1 === currentPage ? "active" : ""}
+          >
+            {i + 1}
+          </button>
+        ))
+      )}
+
+      <button
+        onClick={() => paginate(currentPage + 1)}
+        disabled={currentPage === totalPages}
+      >
+        &gt;
+      </button>
+    </div>
+
+
         </div>
       </div>
     </div>

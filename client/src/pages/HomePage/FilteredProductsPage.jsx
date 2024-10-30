@@ -6,12 +6,12 @@ import config from "../../config";
 
 function FilteredProductsPage({ subCategory }) {
   const [products, setProducts] = useState([]);
-console.log(`${config.apiUrl}/products?sub_category=${subCategory}`)
+console.log(`${config.apiUrl}/products/sub_category?name=${subCategory}`)
   useEffect(() => {
     const fetchFilteredProducts = async () => {
       try {
         const response = await fetch(
-          `${config.apiUrl}/products?sub_category=${subCategory}`
+          `${config.apiUrl}/products/sub_category?name=${subCategory}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");

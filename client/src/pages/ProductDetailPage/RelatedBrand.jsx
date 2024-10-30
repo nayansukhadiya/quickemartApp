@@ -12,7 +12,7 @@ function RelatedBrand({ category, brandName }) {
   useEffect(() => {
     const fetchBrands = async () => {
       try {
-        const response = await fetch(`${config.apiUrl}/brand?related_brand=${category}&brand=${brandName}`);
+        const response = await fetch(`${config.apiUrl}/related/brand?related_brand=${category}&brand=${brandName}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

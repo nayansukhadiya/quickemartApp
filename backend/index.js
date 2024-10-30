@@ -5,10 +5,15 @@ import cors from 'cors';
 import Product from './models/Product.js'; 
 import Category from './models/Category.js';
 
-import relatedProductsRoute from './routes/relatedProducts.js';
-import brandSimilarRoute from './routes/brandSimilar.js';
-import subCategoryRoute from './routes/subCategory.js';
+import relatedProductsRoute from './routes/Related/relatedProducts.js';
+import brandSimilarProductRoute from './routes/Related/brandSimilar.js';
+import subCategoryRoute from './routes/Related/subCategory.js';
+import ProRelatedBrand from './routes/Related/ProRelatedBrand.js'
 
+
+import ProductSearch from './routes/products/ProductSearch.js'
+import ProductBySubCategory from './routes/products/ProductSubCategory.js'
+import ProductByFilter from './routes/products/ProductsByFilter.js'
 dotenv.config();
 
 const app = express();
@@ -27,51 +32,13 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
   });
 // Use the routes
 app.use('/related', relatedProductsRoute);
-app.use('/related', brandSimilarRoute);
-app.use('/related', subCategoryRoute);
-// Sample route for searching products
-app.get('/products/search', async (req, res) => {
-  const query = req.query.q
+app.use('/related', brandSimilarProductRoute);
+app.use('/related', subCategoryRoute); 
+app.use('/related', ProRelatedBrand);
 
-  if (!query) {
-    return res.status(400).json({ error: 'Query parameter is required' });
-  }
-
-  try {
-    const filteredProducts = await Product.find({
-      $or: [
-        { name: { $regex: query, $options: 'i' } },
-        { category: { $regex: query, $options: 'i' } },
-        { sub_category: { $regex: query, $options: 'i' } },
-        { brand: { $regex: query, $options: 'i' } }
-      ]
-    });
-    res.json(filteredProducts);
-  } catch (error) {
-    console.error('Error fetching filtered products:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
-// Route for fetching products by sub_category
-app.get('/products', async (req, res) => {
-  const subCategory = req.query.sub_category;
-  try {
-    let products;
-    if (subCategory) {
-      // Fetch products by sub_category from MongoDB
-      products = await Product.find({ sub_category: subCategory });
-    } else {
-      // Fetch all products from MongoDB
-      products = await Product.find();
-    }
-
-    res.json(products);
-  } catch (error) {
-    console.error('Error fetching products:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
+app.use('/products', ProductSearch);
+app.use('/products',ProductBySubCategory);
+app.use('/products',ProductByFilter);
 
 // categories wise saw
 app.get('/categories', async (req, res) => {
@@ -95,66 +62,8 @@ app.get('/categories', async (req, res) => {
 
 
 
-app.get('/products/filter', async (req, res) => {
 
-  try {
-    const { q, category } = req.query; // Destructure q and category from req.query
-    const filterCriteria = {
-      $or: [] // Initialize an array for OR conditions
-    };
 
-    // If a name (q) is provided, use it for filtering
-    if (q) {
-      filterCriteria.$or.push({ name: { $regex: q, $options: 'i' } }); // Search by name
-    }
-
-    // If a category is provided, include it in the criteria
-    if (category) {
-      filterCriteria.$or.push({ sub_category: { $regex: category, $options: 'i' } }); // Filter by the given category
-    }
-
-    // Execute the query with the built filter criteria
-    const filteredProducts = await Product.find(filterCriteria);
-    res.json(filteredProducts);
-  } catch (error) {
-    console.error('Error fetching filtered products:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
-//similar brand get from  sub category
-
-app.get('/brand', async (req, res) => {
-  const categoryName = req.query.related_brand;  // Get category from the query
-  const excludedBrand = req.query.brand;         // Get the brand to exclude from the query
-  
-  try {
-    // Find products based on the related category (sub_category)
-    const filteredProducts = await Product.find({
-      sub_category: { $regex: categoryName, $options: 'i' }  // Case-insensitive matching
-    });
-
-    // Check if no products are found
-    if (filteredProducts.length === 0) {
-      return res.json([]); // Return an empty array if no products are found
-    }
-
-    // Extract all brand names from the products
-    const brandArr = filteredProducts.map(item => item.brand);
-
-    // Filter out the brand that needs to be excluded
-    const filteredBrands = brandArr.filter(productBrand => productBrand !== excludedBrand);
-
-    // Get unique brands using Set
-    const uniqueBrands = Array.from(new Set(filteredBrands)); // Convert Set back to an array
-
-    // Send the unique brands as a JSON response
-    res.json(uniqueBrands);
-  } catch (error) {
-    console.error('Error fetching brands:', error); // Log the error for debugging
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
 
 
 

@@ -1,0 +1,131 @@
+.searchPageSec {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(7, 1fr);
+}
+.FoundPro {
+  font-size: 20px;
+  font-weight: 500;
+  padding: 20px 0;
+  color: var(--text-color);
+}
+.FoundPro span {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+.FilterSec {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.384);
+  height: 92%;
+  width: 100vw;
+  left: 0;
+  opacity: 0;
+  bottom: 0;
+  z-index: -22;
+}
+.FilterSec.visible {
+  opacity: 1;
+  touch-action: none;
+  z-index: 22;
+}
+.FilterSec .filterSecDiv {
+    transition: all 300ms ease-in-out;
+    position: absolute;
+    width: 500px;
+    height: 98%;
+    background-color: white;
+    bottom: 0;
+    padding: 1% 0;
+    right: -600px;
+}
+.visible .filterSecDiv{
+    transition: all 300ms ease-in-out;
+    right: 0;
+}
+.FilterSec .filterSecDiv .HeaderSidebar{
+    padding: 10px 20px;
+    border-bottom: 1px solid lightgray;
+}
+.FilterSec .filterSecDiv .BottomSec {
+  display: grid;
+  grid-template-columns: 35% 65%;
+  height: 85%;
+}
+.FilterSec .filterSecDiv .BottomSec .titleSec {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid lightgray;
+}
+.FilterSec .filterSecDiv .BottomSec .titleSec button {
+  text-align: left;
+  padding: 10px 20px;
+  height: 50px;
+  font-weight: 600;
+  font-size: 16px;
+  position: relative;
+}
+.FilterSec .filterSecDiv .BottomSec .titleSec button.ActiveBtnFilter {
+  color: var(--primary-color);
+}
+.FilterSec .filterSecDiv .BottomSec .titleSec button.ActiveBtnFilter::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 35px;
+  width: 4px;
+  background-color: var(--primary-color);
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.FilterSec .filterSecDiv .BottomSec .ContentSecFilter{
+    padding: 10px 20px;
+    overflow-y: auto;
+}
+.filterSecDiv .SearchBrandSec{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 1px solid lightgray;
+    background-color: #ffffff;
+    border-radius: 10px;
+    height: 34px;
+    padding: 5px 10px;
+    gap: 10px;
+}
+.filterSecDiv .SearchBrandSec input{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 34px;
+}
+.filterSecDiv .FilActionBtnSec{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+    padding: 10px 2.5%;
+    width: 95%;
+    margin: auto;
+    border-top: 1px solid lightgray;
+}
+.filterSecDiv .FilActionBtnSec button{
+    padding: 10px 20px;
+    height: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    position: relative;
+    border-radius: 10px;
+}
+.filterSecDiv .FilActionBtnSec button:nth-child(2){
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+@media screen and (max-width: 480px) {
+  .searchPageSec {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

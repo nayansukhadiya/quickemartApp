@@ -1,7 +1,7 @@
 .HomeBannerSection {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 10px;
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -13,43 +13,20 @@
 }
 .HomeBannerBox{
     overflow: hidden;
-    position: relative;
-    min-width: 340px;
-    height: 180px;
-    aspect-ratio: 16 / 9;
-    padding: 12px 16px;
-    border-radius: 10px;
-    box-shadow: rgba(100, 100, 111, 0.223) 0px 7px 29px 0px;
+    min-width: 350px;
+    height: 200px;
+    aspect-ratio: 16 /9;
+    border-radius: 22px;
 }
-.HomeBannerBox img{
-    position: absolute;
-    right: -30px;
-    bottom: -30px;
-    width: 280px;
-    object-fit: contain;
-    z-index: 0;
+.HomeBannerBox2{
+    overflow: hidden;
+    min-width: 122px;
+    width: 122px;
+    height: 200px;
+    border-radius: 22px;
 }
-.HomeBannerBox .detailHomeBanner{
-    position: absolute;
-    width: 80%;
-    display: flex;
+.HomeBannerBox img,.HomeBannerBox2 img{
     height: 100%;
-    flex-direction: column;
-}
-.HomeBannerBox .detailHomeBanner p{
-    font-size: 24px;
-    font-weight: 700;
-}
-.HomeBannerBox .detailHomeBanner a{
-    position: absolute;
-    bottom: 20px;
-    /* z-index: 1; */
-    cursor: pointer;
-    text-transform: capitalize;
-    font-weight: 600;
-    font-size: 14px;
-    background-color: aliceblue;
-    width: fit-content;
-    padding: 8px 16px;
-    border-radius: 8px;
+    width: 100%;
+    object-fit: cover;
 }

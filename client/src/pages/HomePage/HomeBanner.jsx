@@ -2,24 +2,28 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import './HomeBanner.css'
 
+
 function HomeBanner() {
-  return (
+let arr = ["parle","cornitos","nescafe","bru","doritos"]
+let arr2 = ["dawwat","india"]
+    return (
+        <>
     <div className='HomeBannerSection'>
-        <div className='HomeBannerBox' style={{background: "#bfffbf"}}>
-            <div className='detailHomeBanner'>
-                <p>Fresh Vegetable & Fruits</p>
-                <Link to='/shop?catid=sweets&subid=vegetable'>order now</Link>
-            </div>
-            <img src='https://sojmayimpex.com/wp-content/uploads/2021/05/about_veg.png' alt='img'></img>
+        {arr.map((item) => (
+            <div className='HomeBannerBox'>
+        <img src={require(`../../assets/images/banner/${item}.png`)} alt="img"/>
         </div>
-        <div className='HomeBannerBox' style={{background: "#bfffbf"}}>
-            <div className='detailHomeBanner'>
-                <p>Fresh Vegetable & Fruits</p>
-                <Link to='/shop?catid=sweets&subid=vegetable'>order now</Link>
-            </div>
-            <img src='http://localhost:3000/static/media/chocolates.471de7f0776ac206769c.png' alt='img'></img>
+        ))}
+                    </div>
+        <p>Best Deal</p>
+                <div className='HomeBannerSection'>
+        {arr2.map((item) => (
+            <div className='HomeBannerBox2'>
+        <img src={require(`../../assets/images/banner/focusBrand/${item}.png`)} alt="img"/>
         </div>
+        ))}
     </div>
+        </>
   )
 }
 

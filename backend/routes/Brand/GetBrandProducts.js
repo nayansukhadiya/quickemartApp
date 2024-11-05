@@ -2,19 +2,15 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../../models/Product.js');
 
-
-router.get('/sub_category', async (req, res) => {
-    const subCategory = req.query.name;
+router.get('/', async (req, res) => {
+    const brandName = req.query.name;
     try {
       let products;
-      if (subCategory) {
-        // Fetch products by sub_category from MongoDB
-        products = await Product.find({ sub_category: subCategory });
+      if (brandName) {
+        products = await Product.find({ brand: brandName });
       } else {
-        // Fetch all products from MongoDB
         products = await Product.find();
       }
-  
       res.json(products);
     } catch (error) {
       console.error('Error fetching products:', error);

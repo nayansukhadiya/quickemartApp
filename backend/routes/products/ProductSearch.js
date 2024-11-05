@@ -1,6 +1,6 @@
-import express from "express";
+const express = require('express');
 const router = express.Router();
-import Product from "../../models/Product.js";
+const Product = require('../../models/Product.js');
 
 router.get("/search", async (req, res) => {
   const query = req.query.q;
@@ -53,4 +53,4 @@ router.get("/search", async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;

@@ -173,7 +173,7 @@ function ProductDetailPagePage() {
           <div className="bgDetailDifferent shadowDeep lightGrayBorder">
             <Link
               className="allBrandPro"
-              to={`/search?q=${renderIfExists(product.brand)}`}
+              to={`/brand?name=${renderIfExists(product.brand)}`}
             >
               <img
                 src={require(`../../assets/images/Brand_Logo/${product.brand

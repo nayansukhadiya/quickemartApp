@@ -13,7 +13,7 @@ import Account from './pages/AccountPage/Account'; // Adjusted import
 import ChatPage from './pages/ChatPage/ChatPage'; // Adjusted import
 import CartGeneratorPage from './pages/CartGeneratorPage/CartGeneratorPage'; // Adjusted import
 import Category from './pages/CategoryPage/Category'; 
-
+import BrandPage from './pages/BrandPage/BrandPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +27,7 @@ const router = createBrowserRouter(
       <Route path='account' element={<Account />}/>
       <Route path='CartGeneratorPage' element={<CartGeneratorPage />}/>
       <Route path='category' element={<Category />}/>
+      <Route path='brand' element={<BrandPage />}/>
       {/* <Route path='login' element={<Login />}/>
       <Route path='sighin' element={<Sighin />}/> */}
     </Route>

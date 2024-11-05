@@ -1,6 +1,6 @@
-import express from 'express';
+const express = require('express');
 const router = express.Router();
-import Product from '../../models/Product.js';
+const Product = require('../../models/Product.js');
 
 //similar brand get from  sub category
 
@@ -38,4 +38,4 @@ router.get('/brand', async (req, res) => {
   
 
 
-export default router;
+module.exports = router;

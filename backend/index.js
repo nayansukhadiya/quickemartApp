@@ -1,19 +1,21 @@
-import dotenv from 'dotenv';
-import mongoose from 'mongoose';
-import express from 'express';
-import cors from 'cors';
-import Product from './models/Product.js'; 
-import Category from './models/Category.js';
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+const express = require('express');
+const cors = require('cors');
+const Product = require('./models/Product.js');
+const Category = require('./models/Category.js');
 
-import relatedProductsRoute from './routes/Related/relatedProducts.js';
-import brandSimilarProductRoute from './routes/Related/brandSimilar.js';
-import subCategoryRoute from './routes/Related/subCategory.js';
-import ProRelatedBrand from './routes/Related/ProRelatedBrand.js'
+const relatedProductsRoute = require('./routes/Related/relatedProducts.js');
+const brandSimilarProductRoute = require('./routes/Related/brandSimilar.js');
+const subCategoryRoute = require('./routes/Related/subCategory.js');
+const ProRelatedBrand = require('./routes/Related/ProRelatedBrand.js');
 
+const ProductSearch = require('./routes/products/ProductSearch.js');
+const ProductBySubCategory = require('./routes/products/ProductSubCategory.js');
+const ProductByFilter = require('./routes/products/ProductsByFilter.js');
 
-import ProductSearch from './routes/products/ProductSearch.js'
-import ProductBySubCategory from './routes/products/ProductSubCategory.js'
-import ProductByFilter from './routes/products/ProductsByFilter.js'
+const GetBrandProducts = require('./routes/Brand/GetBrandProducts.js');
+
 dotenv.config();
 
 const app = express();
@@ -30,6 +32,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
   .catch((err) => {
     console.error('Error connecting to MongoDB Atlas:', err.message);
   });
+
 // Use the routes
 app.use('/related', relatedProductsRoute);
 app.use('/related', brandSimilarProductRoute);
@@ -37,10 +40,12 @@ app.use('/related', subCategoryRoute);
 app.use('/related', ProRelatedBrand);
 
 app.use('/products', ProductSearch);
-app.use('/products',ProductBySubCategory);
-app.use('/products',ProductByFilter);
+app.use('/products', ProductBySubCategory);
+app.use('/products', ProductByFilter);
 
-// categories wise saw
+app.use('/brand',GetBrandProducts);
+
+// Categories route
 app.get('/categories', async (req, res) => {
   const categoryName = req.query.cat_name; 
   try {
@@ -60,14 +65,7 @@ app.get('/categories', async (req, res) => {
   }
 });
 
-
-
-
-
-
-
-
-//detail page 
+// Detail page route
 app.get('/detail', async (req, res) => {
   const p_id = req.query.p_id; // Assuming you pass p_id as a query parameter
   try {
@@ -91,9 +89,10 @@ app.get('/detail', async (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  console.log(req.headers)
+  console.log(req.headers);
   res.send('Hello, your backend is running!');
-}); 
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

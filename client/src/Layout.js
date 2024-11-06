@@ -53,7 +53,7 @@ function Layout() {
   useEffect(()=> {
     const currentPath = location.pathname; 
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    if ((isMobile && currentPath==="/search") || currentPath === "/login" || currentPath === "/sighin") { 
+    if ((isMobile && currentPath==="/") || currentPath === "/login" || currentPath === "/sighin") { 
       setSearchBarRem(false);
     }else if(!isMobile){
       setSearchBarRem(false);

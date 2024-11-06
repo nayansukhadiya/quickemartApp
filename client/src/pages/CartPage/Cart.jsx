@@ -89,7 +89,6 @@ function Cart() {
   useEffect(() => {
     ApplyCoupon();
   }, [proCart, discount, couponApplied, ApplyCoupon]);
-  const isMatchAmount = predefinedTips.includes(tipAmount);
 
   const handleCheckOut = async (event) => {
     event.preventDefault(); 

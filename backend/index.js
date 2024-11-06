@@ -2,7 +2,6 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
-const Razorpay = require("razorpay"); // Add Razorpay
 const Product = require("./models/Product.js");
 const Category = require("./models/Category.js");
 
@@ -20,6 +19,8 @@ const GetCategories = require("./routes/category/GetCategories.js");
 const GetBrandProducts = require("./routes/Brand/GetBrandProducts.js");
 
 const GetProductDetail = require("./routes/Detail/GetProductDetail.js");
+
+const OrderIdGenerate = require("./routes/RazorPay/OrderIdGenerate.js");
 
 dotenv.config();
 
@@ -58,38 +59,8 @@ app.use("/categories", GetCategories);
 
 app.use("/detail", GetProductDetail);
 
-// Order Creation Route with Razorpay
-app.post("/order", async (req, res) => {  // Use POST instead of GET
-  try {
-    const razorpay = new Razorpay({
-      key_id: process.env.RAZORPAY_KEY_ID,
-      key_secret: process.env.RAZORPAY_KEY_SECRET,
-    });
+app.use("/order", OrderIdGenerate);
 
-    if (!req.body || !req.body.amount) {
-      return res.status(400).send("Bad Request: Missing order details");
-    }
-
-    const options = {
-      amount: Math.round(req.body.amount * 100), // Amount in paise
-      currency: req.body.currency || "INR",
-      receipt: req.body.receipt || "default_receipt_id",
-    };
-
-    const order = await razorpay.orders.create(options);
-
-    if (!order) {
-      return res.status(400).send("Order creation failed");
-    }
-
-    res.json(order);
-  } catch (error) {
-    console.error("Error creating order:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
-
-// Root Route
 app.get("/", (req, res) => {
   console.log(req.headers);
   res.send("Hello Nayan Sukhadiya, your backend is running!");

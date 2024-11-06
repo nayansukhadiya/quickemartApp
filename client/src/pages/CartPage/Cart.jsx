@@ -12,6 +12,7 @@ import BackBtn from "../../components/BackBtn/BackBtn";
 import { useNavigate ,Link} from "react-router-dom";
 import config from "../../config";
 import DeliverBoyImg from "../../assets/images/delivery_boy (2).png";
+import RazorpayCheckout from 'react-razorpay';
 
 function Cart() {
   const [proCart, setProCart] = useState([]);
@@ -128,7 +129,7 @@ function Cart() {
       };
   
       // Open the Razorpay payment modal
-      const razorpay = new Razorpay(options);
+      const razorpay = new RazorpayCheckout(options);
       razorpay.open();
   
       razorpay.on('payment.failed', function (response) {

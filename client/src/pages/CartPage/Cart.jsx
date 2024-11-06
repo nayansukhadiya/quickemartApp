@@ -9,23 +9,24 @@ import UserContext from "../../context/UserContext";
 import CartCard from "./CartCard";
 import "./cart.css";
 import BackBtn from "../../components/BackBtn/BackBtn";
-import { Link } from "react-router-dom";
+import { useNavigate ,Link} from "react-router-dom";
+import config from "../../config";
 import DeliverBoyImg from "../../assets/images/delivery_boy (2).png";
 
 function Cart() {
   const [proCart, setProCart] = useState([]);
   const [discount, setDiscount] = useState(0);
-  const { cartPro ,setCartPro} = useContext(UserContext);
+  const { cartPro, setCartPro } = useContext(UserContext);
   const [couponApplied, setCouponApplied] = useState(false);
   const [tipAmount, setTipAmount] = useState(0);
   const [isCustom, setIsCustom] = useState(true);
   const [customTipValue, setCustomTipValue] = useState(20);
   const inputRef = useRef(null);
+  const navigate = useNavigate();
 
   const calculateTotalValue = useCallback(() => {
     return proCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   }, [proCart]);
-
 
   const ApplyCoupon = useCallback(() => {
     const coupons = [
@@ -89,6 +90,67 @@ function Cart() {
     ApplyCoupon();
   }, [proCart, discount, couponApplied, ApplyCoupon]);
   const isMatchAmount = predefinedTips.includes(tipAmount);
+
+  const handleCheckOut = async (event) => {
+    event.preventDefault(); // Prevent any default form behavior
+    const amount = calculateTotalAmount().toFixed(2); // Keep it in rupees here
+    const currency = "INR";
+    const receiptID = "ns12345quick";
+  
+    try {
+      const response = await fetch(`${config.apiUrl}/order`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount: amount, 
+          currency: currency,
+          receipt: receiptID,
+        }),
+      });
+      const data = await response.json();
+      
+      if (!data || !data.id) {
+        throw new Error("Failed to create order");
+      }
+  
+      // Razorpay payment options
+      const options = {
+        "key": "rzp_test_eHAmWy2Jih2wNG", // Replace with your Razorpay key ID
+        "amount": data.amount, // Amount from the order response in paise
+        "currency": data.currency,
+        "order_id": data.id, // `id` obtained from order creation response
+        "prefill": {
+          "name": "Nayan Sukhadiya",
+          "email": "gaurav.kumar@example.com",
+          "contact": "9000090000"
+        },
+      };
+  
+      // Open the Razorpay payment modal
+      const razorpay = new Razorpay(options);
+      razorpay.open();
+  
+      razorpay.on('payment.failed', function (response) {
+        // If payment fails, navigate to the home page
+        alert("Payment failed. Please try again.");
+        navigate('/');  // Navigate back to home page
+      });
+  
+      razorpay.on('payment.success', function (response) {
+        // On success, navigate to the home page
+        navigate('/');  // Navigate back to home page
+      });
+  
+    } catch (error) {
+      console.error("Checkout failed:", error);
+      alert("Checkout failed. Please try again.");
+    }
+  };
+  
+  
+
   return (
     <div className={`cartPage ${proCart.length < 1 ? "emptyCart" : ""}`}>
       {proCart.length < 1 ? (
@@ -223,7 +285,8 @@ function Cart() {
                                 : ""
                             }
                           >
-                            {customTipValue && tipAmount >0 &&
+                            {customTipValue &&
+                            tipAmount > 0 &&
                             !predefinedTips.includes(customTipValue) ? (
                               <>
                                 ₹{tipAmount}{" "}
@@ -250,13 +313,18 @@ function Cart() {
                         </>
                       ) : (
                         <div className="customValueAdd">
-                        <input
+                          <input
                             type="number"
                             value={customTipValue}
                             onChange={handleTipChange}
                             placeholder="Enter custom tip (₹20-₹300)"
                           />
-                          <button onClick={AddAmountCustom} className="AddAmount">Add</button>
+                          <button
+                            onClick={AddAmountCustom}
+                            className="AddAmount"
+                          >
+                            Add
+                          </button>
                           <button onClick={handleClose}>close</button>
                         </div>
                       )}
@@ -305,7 +373,7 @@ function Cart() {
 
             <div className="checkOutSec lightGrayBorder ">
               <p>₹{calculateTotalAmount().toFixed(2)}</p>
-              <button className="checkOutSecBtn">
+              <button className="checkOutSecBtn" onClick={handleCheckOut}>
                 Checkout{" "}
                 <svg
                   viewBox="0 0 24 24"

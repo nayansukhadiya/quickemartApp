@@ -92,7 +92,7 @@ function Cart() {
   const isMatchAmount = predefinedTips.includes(tipAmount);
 
   const handleCheckOut = async (event) => {
-    event.preventDefault(); // Prevent any default form behavior
+    event.preventDefault(); 
     const amount = calculateTotalAmount().toFixed(2); // Keep it in rupees here
     const currency = "INR";
     const receiptID = "ns12345quick";

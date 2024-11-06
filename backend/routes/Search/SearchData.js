@@ -2,13 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../../models/Product.js');
 
-router.get("/search", async (req, res) => {
+router.get("/", async (req, res) => {
   const query = req.query.q;
   const ResponseObj = {
     filteredProducts: null,
     brands: null,
     categories: null,
-    price: { MinPrice: null, MaxPrice: null } // Removed units
   };
 
   if (!query) {
@@ -29,22 +28,17 @@ router.get("/search", async (req, res) => {
 
     const brandArr = [];
     const categoriesArr = [];
-    const PriceArr = [];
 
     for (const element of filteredProducts) {
       brandArr.push(element.brand);
       categoriesArr.push(element.category);
-      PriceArr.push(element.price);
     }
 
     const UniqueBrand = [...new Set(brandArr)];
     const UniqueSubCat = [...new Set(categoriesArr)];
-    const UniquePrice = [...new Set(PriceArr)];
 
     ResponseObj.brands = UniqueBrand;
     ResponseObj.categories = UniqueSubCat;
-    ResponseObj.price.MinPrice = Math.min(...UniquePrice);
-    ResponseObj.price.MaxPrice = Math.max(...UniquePrice);
 
     res.json(ResponseObj);
   } catch (error) {

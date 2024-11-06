@@ -20,8 +20,6 @@ function Search() {
   const [sideBarCategory, setSideBarCategory] = useState(false);
   const query = new URLSearchParams(location.search).get("q");
   const [BrandFilterArr, setBrandFilterArr] = useState([]);
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(1000);
   const [range, setRange] = useState({ min: null, max: null });
 
   useEffect(() => {
@@ -81,12 +79,8 @@ function Search() {
     };
   }, [query, debouncedSearchTerm, searchArr]);
 
-  const clearFilters = () => {
-    setRange({ min: minPrice, max: maxPrice });
-    setFilterProduct(searchArr.slice(0, 50)); // Reset to initial search results
-  };
+ 
   const AppearSubSideSec = (section) => {
-    setSideBarPrice(false);
     setSideBarBrand(false);
     setSideBarCategory(false);
 
@@ -96,9 +90,6 @@ function Search() {
         break;
       case "category":
         setSideBarCategory(true);
-        break;
-      case "price":
-        setSideBarPrice(true);
         break;
       default:
         setSideBarBrand(true);
@@ -180,7 +171,7 @@ function Search() {
             </div>
           </div>
           <div className="FilActionBtnSec">
-            <button onClick={clearFilters}>Clear Filter</button>
+            {/* <button onClick={clearFilters}>Clear Filter</button> */}
             <button>Apply</button>
           </div>
         </div>

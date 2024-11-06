@@ -10,7 +10,7 @@ const brandSimilarProductRoute = require('./routes/Related/brandSimilar.js');
 const subCategoryRoute = require('./routes/Related/subCategory.js');
 const ProRelatedBrand = require('./routes/Related/ProRelatedBrand.js');
 
-const ProductSearch = require('./routes/products/ProductSearch.js');
+const SearchData = require('./routes/Search/SearchData.js');
 const ProductBySubCategory = require('./routes/products/ProductSubCategory.js');
 const ProductByFilter = require('./routes/products/ProductsByFilter.js');
 
@@ -39,7 +39,7 @@ app.use('/related', brandSimilarProductRoute);
 app.use('/related', subCategoryRoute); 
 app.use('/related', ProRelatedBrand);
 
-app.use('/products', ProductSearch);
+app.use('/search', SearchData);
 app.use('/products', ProductBySubCategory);
 app.use('/products', ProductByFilter);
 

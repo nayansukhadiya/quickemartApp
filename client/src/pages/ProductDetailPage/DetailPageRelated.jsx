@@ -65,7 +65,7 @@ function DetailPageRelated({ related_search_value, name, valueLink }) {
               brand={item.brand}
             />
           ))}
-          <Link to={`/search?q=${valueLink}`} className="similarPro">
+          <Link to={`/search?q=${valueLink}`} className="similarPro lightGrayBorder">
             More product
             <div className="similarImgSec">
               {brand.slice(-3).map((item, index) => (

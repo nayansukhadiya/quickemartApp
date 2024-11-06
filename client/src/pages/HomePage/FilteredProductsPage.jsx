@@ -6,7 +6,7 @@ import config from "../../config";
 
 function FilteredProductsPage({ subCategory }) {
   const [products, setProducts] = useState([]);
-console.log(`${config.apiUrl}/products/sub_category?name=${subCategory}`)
+  console.log(`${config.apiUrl}/products/sub_category?name=${subCategory}`);
   useEffect(() => {
     const fetchFilteredProducts = async () => {
       try {
@@ -21,7 +21,7 @@ console.log(`${config.apiUrl}/products/sub_category?name=${subCategory}`)
         if (Array.isArray(data)) {
           setProducts(data);
         } else {
-          setProducts([]); 
+          setProducts([]);
         }
       } catch (error) {
         console.error("Error fetching filtered products:", error);
@@ -33,10 +33,13 @@ console.log(`${config.apiUrl}/products/sub_category?name=${subCategory}`)
 
   return (
     <div>
-      <h1>Products in {subCategory}</h1>
       <div className="FeaturesHome">
         <div className="category-title-sec">
-          <h2 className="category-title">{subCategory}</h2>
+          <h2 className="category-title">
+            {subCategory
+              .replace(/_/g, " ")
+              .replace(/\b\w/g, (char) => char.toUpperCase())}
+          </h2>
           <Link to={`/shop?catid=sweets&subid=${subCategory}`}>See All</Link>
         </div>
         <CardSlider>
@@ -45,16 +48,16 @@ console.log(`${config.apiUrl}/products/sub_category?name=${subCategory}`)
               .slice(0, 25)
               .map((item) => (
                 <ProductCard
-                  key={item.p_id} 
-                  ProIDSearch={item.p_id} 
-                  img={item.img} 
-                  name={item.name} 
+                  key={item.p_id}
+                  ProIDSearch={item.p_id}
+                  img={item.img}
+                  name={item.name}
                   price={item.price}
-                  mrp={item.mrp} 
-                  unit={item.unit} 
-                  category={item.category} 
-                  discount={item.discount} 
-                  brand={item.brand} 
+                  mrp={item.mrp}
+                  unit={item.unit}
+                  category={item.category}
+                  discount={item.discount}
+                  brand={item.brand}
                 />
               ))
           ) : (

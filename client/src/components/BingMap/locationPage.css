@@ -1,0 +1,215 @@
+.locationPage {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.688);
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+.locationBox {
+  width: min(95%, 400px);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+}
+.locationBox .upperSecLocation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+.locationBox .InputAndBtnLocation svg {
+  width: 20px;
+  height: 20px;
+}
+.locationBox .InputAndBtnLocation > button,
+.locationBox .InputAndBtnLocation .SearchSecLocation {
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 10px;
+  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+}
+.locationBox .InputAndBtnLocation > button {
+  background-color: var(--primary-color);
+  color: #fff;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.locationBox .InputAndBtnLocation .SearchSecLocation {
+  background-color: white;
+  border: 1px solid lightgray;
+  width: calc(100% - 20px);
+  transition: border-color 0.3s ease; /* Smooth transition */
+}
+
+.locationBox .InputAndBtnLocation .SearchSecLocation input {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.locationBox .InputAndBtnLocation .SearchSecLocation:focus-within {
+  border-color: var(--primary-color); 
+  caret-color: var(--primary-color);
+}
+.locationBox .SuggestionList {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.CurrentLocation {
+  overflow: hidden;
+  position: relative;
+  width: auto;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+}
+.CurrentLocation h1 {
+  font-size: 16px;
+  color: var(--primary-color);
+  font-weight: 600;
+  padding-bottom: 5px;
+}
+.CurrentLocation p {
+  font-size: 14px;
+  width: 90%;
+}
+.CurrentLocation svg {
+  opacity: 0.5;
+  width: 60px;
+  height: 60px;
+  stroke: var(--primary-color);
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+}
+.orSec {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.orSec::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background-color: rgb(209, 225, 255);
+  z-index: -1;
+}
+.orSec span {
+  font-size: 14px;
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  background-color: rgb(209, 225, 255);
+}
+.locationBox .SuggestionList .suggestionBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+}
+.locationBox .SuggestionList .suggestionBox:hover {
+  color: var(--primary-color);
+  cursor: pointer;
+}
+.locationBox .SuggestionList .suggestionBox .iconSecSuggestion {
+  background-color: var(--secondary-color);
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+.locationBox .SuggestionList .suggestionBox .iconSecSuggestion svg {
+  stroke: var(--primary-color);
+}
+.locationBox .SuggestionList .suggestionBox h3 {
+  font-size: 14px;
+}
+.locationBox .SuggestionList .suggestionBox p {
+  font-size: 12px;
+  padding-top: 4px;
+}
+
+.center-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 120px;
+}
+.loader-shape-3 {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+}
+.loader-shape-3:after {
+  width: 30px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: var(--secondary-color);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 15px;
+}
+.loader-shape-3:before {
+  width: 20px;
+  height: 20px;
+  border-radius: 100% 100% 100% 0;
+  box-shadow: 0px 0px 0px 2px var(--primary-color);
+  animation: anm-SL-3-move 1s linear infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-46deg);
+  margin-top: 20px;
+}
+.loader-shape-3:before,
+.loader-shape-3:after {
+  position: absolute;
+  content: "";
+}
+@keyframes anm-SL-3-move {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -5px;
+  }
+  100% {
+    top: 0;
+  }
+}
+@media screen and (max-width: 480px) {
+    .locationBox {
+        width: 85%;
+        padding: 13px;
+    }
+}

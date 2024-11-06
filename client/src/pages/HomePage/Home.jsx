@@ -1,20 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Banner from "./Banner";
 import ProCategory from "../../pages/CategoryPage/ProCategory";
 import HomeBanner from "./HomeBanner";
 import FilteredProductsPage from "./FilteredProductsPage";
-import SearchBar from "../../components/SearchBar/SearchBar";
-import '../../style/index.css'
+import '../../style/index.css';
+
 function Home() {
+  const arr = ["chips", "soft_drinks", "milk"];
+  let scrolledPast400 = false;
+
+  useEffect(() => {
+    // Function to handle scroll
+    const handleScroll = () => {
+      if (window.scrollY >= 400 && !scrolledPast400) {
+        console.log("Scrolled 400px!");
+        scrolledPast400 = true; // Prevents further logging until scrolled back
+      } else if (window.scrollY < 400) {
+        scrolledPast400 = false; // Reset when scrolling above 400px
+      }
+    };
+
+    // Attach the scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="homePage" >
+    <div className="homePage">
       <div className="HomeSearch">
-      <SearchBar />
+        {/* <SearchBar /> */}
       </div>
       <Banner />
       <HomeBanner />
       <ProCategory />
-      <FilteredProductsPage subCategory={"chips"}/>
+      {arr.map((item) => (
+        <FilteredProductsPage key={item} subCategory={item} />
+      ))}
     </div>
   );
 }

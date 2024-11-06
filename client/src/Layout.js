@@ -6,6 +6,7 @@ import BottomNavBar from './components/BottomNavbar/BottomNavBar'; // Corrected 
 import ChatBg from './pages/ChatPage/ChatBg'; // Ensure ChatBg is part of ChatPage
 import CartAiBtn from './components/chatAiBtn/CartAiBtn'; // Corrected folder name
 import CartPopUp from './components/cartPopupDiv/CartPopUp'; // Corrected folder name
+import BingAddressAutoSuggest from './components/BingMap/BingAddressAutoSuggest';
 
 
 function Layout() {
@@ -52,7 +53,7 @@ function Layout() {
   useEffect(()=> {
     const currentPath = location.pathname; 
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    if ((isMobile && currentPath === "/") || currentPath === "/search" || currentPath === "/login" || currentPath === "/sighin") { 
+    if ((isMobile && currentPath==="/search") || currentPath === "/login" || currentPath === "/sighin") { 
       setSearchBarRem(false);
     }else if(!isMobile){
       setSearchBarRem(false);
@@ -63,6 +64,7 @@ function Layout() {
 
   return (
     <UserContextProvider>
+      <BingAddressAutoSuggest />
       {!searchBarRem &&  <Navbar />}
       {!chatBtnHide &&  <CartAiBtn />}
       <div className={`main ${searchBarRem ? "mobileShop" : ""}`}>

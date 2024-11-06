@@ -4,7 +4,7 @@ import SearchBar from '../SearchBar/SearchBar'
 import Logo from '../logo/Logo'
 import { useLocation } from 'react-router-dom';
 import OtherActionBtn from "./OtherActionBtn";
-
+import UserLocation from '../UserLocation/UserLocation';
 
 function Navbar() {
   const [searchActive, setSearchActive] = useState(false);
@@ -24,7 +24,8 @@ function Navbar() {
       <header>
         <div className="upperPart">
           <Logo />
-          {!searchActive && <SearchBar />}
+          {/* {!searchActive && <SearchBar />} */}
+          <UserLocation />
          <OtherActionBtn />
         </div>
       </header>

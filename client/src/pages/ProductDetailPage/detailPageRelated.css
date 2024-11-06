@@ -16,7 +16,6 @@
   grid-column: span 2;
   padding: 8px;
   height: 42px;
-  background-color: #efefef;
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -39,7 +38,7 @@
   justify-content: center;
   background-color: white;
   border-radius: 50%; 
-  border: 1px solid #efefef;
+  border: 1px solid #ffffff;
 }
 .detailPageRelatedComponent .similarPro .similarImgSec .imgIndex2{
   left: 15px;

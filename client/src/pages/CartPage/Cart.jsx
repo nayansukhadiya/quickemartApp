@@ -93,7 +93,7 @@ function Cart() {
 
   const handleCheckOut = async (event) => {
     event.preventDefault(); 
-    const amount = calculateTotalAmount().toFixed(2); // Keep it in rupees here
+    const amount = calculateTotalAmount().toFixed(2); // Amount in rupees
     const currency = "INR";
     const receiptID = "ns12345quick";
   
@@ -117,30 +117,28 @@ function Cart() {
   
       // Razorpay payment options
       const options = {
-        "key": "rzp_test_eHAmWy2Jih2wNG", // Replace with your Razorpay key ID
-        "amount": data.amount, // Amount from the order response in paise
-        "currency": data.currency,
-        "order_id": data.id, // `id` obtained from order creation response
-        "prefill": {
-          "name": "Nayan Sukhadiya",
-          "email": "gaurav.kumar@example.com",
-          "contact": "9000090000"
+        key: "rzp_test_eHAmWy2Jih2wNG", // Replace with your Razorpay key ID
+        amount: data.amount, // Amount in paise
+        currency: data.currency,
+        order_id: data.id, // `id` from order creation response
+        prefill: {
+          name: "Nayan Sukhadiya",
+          email: "gaurav.kumar@example.com",
+          contact: "9000090000",
         },
       };
   
-      // Open the Razorpay payment modal
-      const razorpay = new RazorpayCheckout(options);
+      // Open Razorpay payment modal
+      const razorpay = new window.Razorpay(options);
       razorpay.open();
   
       razorpay.on('payment.failed', function (response) {
-        // If payment fails, navigate to the home page
         alert("Payment failed. Please try again.");
-        navigate('/');  // Navigate back to home page
+        navigate('/'); // Navigate back to home page
       });
   
       razorpay.on('payment.success', function (response) {
-        // On success, navigate to the home page
-        navigate('/');  // Navigate back to home page
+        navigate('/'); // Navigate back to home page
       });
   
     } catch (error) {
@@ -148,6 +146,7 @@ function Cart() {
       alert("Checkout failed. Please try again.");
     }
   };
+  
   
   
 

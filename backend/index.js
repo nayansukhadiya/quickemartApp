@@ -22,6 +22,8 @@ const GetProductDetail = require("./routes/Detail/GetProductDetail.js");
 
 const OrderIdGenerate = require("./routes/RazorPay/OrderIdGenerate.js");
 
+const AllProducts = require("./routes/products/AllProducts.js");
+
 dotenv.config();
 
 const app = express();
@@ -60,6 +62,8 @@ app.use("/categories", GetCategories);
 app.use("/detail", GetProductDetail);
 
 app.use("/order", OrderIdGenerate);
+
+app.use("/allpro", AllProducts);
 
 app.get("/", (req, res) => {
   console.log(req.headers);

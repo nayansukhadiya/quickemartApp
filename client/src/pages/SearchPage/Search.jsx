@@ -175,7 +175,7 @@ function Search() {
 
   return (
     <div className="searchPage">
-      {searchBarRem && <SearchBar />}
+      {!searchBarRem && <SearchBar />}
       <div className={`FilterSec ${openSidebar ? "visible" : ""}`}>
         <div className="filterSecDiv">
           <div className="HeaderSidebar">

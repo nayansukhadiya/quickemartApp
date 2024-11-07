@@ -15,6 +15,7 @@ function Layout() {
   const [searchBarRem,setSearchBarRem] = useState(false);
   const [chatBtnHide,setChatBtnHide] = useState(false);
   const [CartPopUpAnim,setCartPopUpAnim] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const location = useLocation(); 
   
   useEffect(() => {
@@ -54,8 +55,10 @@ function Layout() {
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     if (isMobile) { 
       setSearchBarRem(true);
+      setIsMobile(true);
     } else {
       setSearchBarRem(false);
+      setIsMobile(false);
     }
   }, [location])
 
@@ -64,7 +67,7 @@ function Layout() {
       <BingAddressAutoSuggest />
       {!searchBarRem &&  <Navbar />}
       {!chatBtnHide &&  <CartAiBtn />}
-      <div className={`main  ${searchBarRem ? "mobileShop" : ""}`}>
+      <div className={`main  ${isMobile ? "mobileShop" : ""}`}>
         <Outlet />
       </div>
       {!CartPopUpAnim &&  <CartPopUp />}

@@ -64,7 +64,7 @@ function Layout() {
       <BingAddressAutoSuggest />
       {!searchBarRem &&  <Navbar />}
       {!chatBtnHide &&  <CartAiBtn />}
-      <div className={`main ${searchBarRem ? "mobileShop" : ""}`}>
+      <div className={`main  ${searchBarRem ? "mobileShop" : ""}`}>
         <Outlet />
       </div>
       {!CartPopUpAnim &&  <CartPopUp />}

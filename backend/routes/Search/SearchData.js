@@ -29,15 +29,26 @@ router.get("/", async (req, res) => {
     const brandArr = [];
     const categoriesArr = [];
 
+    // Collect brands and categories
     for (const element of filteredProducts) {
       brandArr.push(element.brand);
       categoriesArr.push(element.category);
     }
 
+    // Get unique brands and categories
     const UniqueBrand = [...new Set(brandArr)];
     const UniqueSubCat = [...new Set(categoriesArr)];
 
-    ResponseObj.brands = UniqueBrand;
+    // Generate brand info with the total product count for each brand
+    const brandInfo = UniqueBrand.map(brand => {
+      const brandProductsCount = filteredProducts.filter(product => product.brand === brand).length;
+      return {
+        brandName: brand,
+        TotalBrandPro: brandProductsCount
+      };
+    });
+
+    ResponseObj.brands = brandInfo;
     ResponseObj.categories = UniqueSubCat;
 
     res.json(ResponseObj);

@@ -22,7 +22,8 @@ function UserLocation() {
   };
 
   return (
-    <div className="userLocationBox">
+    <>
+    <button onClick={openLocation} className="userLocationBox">
       <div className="deliveryMinSec">
         <div className="deliveryMinBox">
           {randomMin}
@@ -33,7 +34,7 @@ function UserLocation() {
         <h4>{userLocationName.formattedAddress || "Please"}</h4>
         <p>{userLocationName.locality || "Set Location"}</p>
       </div>
-      <button onClick={openLocation}>
+      <button >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -49,7 +50,8 @@ function UserLocation() {
           <path d="m6 9 6 6 6-6" />
         </svg>
       </button>
-    </div>
+      </button>
+    </>
   );
 }
 

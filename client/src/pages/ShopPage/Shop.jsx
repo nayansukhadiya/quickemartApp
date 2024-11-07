@@ -8,6 +8,7 @@ import config from "../../config";
 import ProductNav from "../../components/Navbar/ProductNav";
 import Loader from "../../components/Loaders/Loader";
 import SkeletonSec from "../../pages/ShopPage/SkeletonSec";
+import '../../style/CustomCheckBox.css'
 
 function Shop() {
   const [categoryArr, setCategoryArr] = useState([]);

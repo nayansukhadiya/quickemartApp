@@ -24,7 +24,7 @@ function Navbar() {
       <header>
         <div className="upperPart">
           <Logo />
-          {!searchActive && <SearchBar />}
+          {searchActive && <SearchBar />}
           <UserLocation />
          <OtherActionBtn />
         </div>

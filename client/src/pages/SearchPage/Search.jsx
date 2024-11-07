@@ -7,18 +7,28 @@ import "./search.css";
 import _ from "lodash";
 import config from "../../config";
 import CircleLoader from "../../components/Loaders/CircleLoader";
+import SearchBar from "../../components/SearchBar/SearchBar";
+import "../../style/CustomCheckBox.css";
 
 function Search() {
   const location = useLocation();
   const [qValue, setQValue] = useState("");
   const [filterProduct, setFilterProduct] = useState([]);
   const [searchArr, setSearchArr] = useState([]);
+  const [searchValue, setSearchValue] = useState();
+  const [searchCatValue, setSearchCatValue] = useState();
   const [loader, setLoader] = useState(false);
   const [openSidebar, setOpenSideBar] = useState(false);
   const [sideBarBrand, setSideBarBrand] = useState(false);
   const [sideBarCategory, setSideBarCategory] = useState(false);
+  const [searchBarRem, setSearchBarRem] = useState(false);
   const query = new URLSearchParams(location.search).get("q");
   const [BrandFilterArr, setBrandFilterArr] = useState([]);
+  const [checkedBrand, setCheckedBrand] = useState([]);
+  const [categoryFilter, setCategoryFilter] = useState([]);
+  const [checkedCategory, setCheckedCategory] = useState([]);
+  const defaultImage =
+    require("../../assets/images/Brand_Logo/amul.png").default;
 
   useEffect(() => {
     const fetchFilteredProducts = async () => {
@@ -34,7 +44,7 @@ function Search() {
           Array.isArray(data.filteredProducts) ? data.filteredProducts : []
         );
         setBrandFilterArr(data.brands);
-        console.log(" setBrandFilterArr(data.brands);", data.filteredProducts);
+        setCategoryFilter(data.categories);
       } catch (error) {
         console.error("Error fetching filtered products:", error);
       } finally {
@@ -57,6 +67,7 @@ function Search() {
               item.brand?.toLowerCase().includes(lowerTerm)
             );
           });
+          console.log("setFilterProduct(filtered)", filtered);
           setFilterProduct(filtered);
         }
       }, 300),
@@ -90,9 +101,81 @@ function Search() {
         setSideBarBrand(true);
     }
   };
+  
+  const OpenSideBar = () => {
+    setOpenSideBar(true);
+    setSideBarBrand(true);
+  };
+
+  function filterSearchBrand(value) {
+    setSearchValue(value);
+
+    const filteredBrands = BrandFilterArr.filter((item) => {
+      return item.brandName.toLowerCase().includes(value.toLowerCase());
+    });
+
+    setBrandFilterArr(filteredBrands);
+  }
+
+  function filterSearchCategory(value) {
+    setSearchCatValue(value);
+
+    const filterCategory = categoryFilter.filter((item) => {
+      return item.toLowerCase().includes(value.toLowerCase());
+    });
+
+    setCategoryFilter(filterCategory);
+  }
+
+  function handleCheckedBrand(brandName) {
+    if (checkedBrand.includes(brandName)) {
+      setCheckedBrand(checkedBrand.filter((brand) => brand !== brandName));
+    } else {
+      setCheckedBrand([...checkedBrand, brandName]);
+    }
+  }
+
+  function handleCheckedCat(categoryName) {
+    if (checkedCategory.includes(categoryName)) {
+      setCheckedCategory(checkedCategory.filter((category) => category !== categoryName));
+    } else {
+      setCheckedCategory([...checkedCategory, categoryName]);
+    }
+  }
+
+  function handleApplyFilter() {
+    const filteredProducts = searchArr.filter((item) => {
+      const matchesBrand = checkedBrand.length ? checkedBrand.includes(item.brand) : true;
+      const matchesCategory = checkedCategory.length ? checkedCategory.includes(item.category) : true;
+      return matchesBrand && matchesCategory;
+    });
+
+    setFilterProduct(filteredProducts);
+    setOpenSideBar(false);
+  }
+
+  function handleRemoveFilter() {
+    setCheckedBrand([]);
+    setCheckedCategory([]);
+    setFilterProduct(searchArr);
+    setOpenSideBar(false);
+  }
+
+  useEffect(() => {
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+    if (isMobile) {
+      setSearchBarRem(true);
+    } else {
+      setSearchBarRem(false);
+    }
+  }, [location]);
 
   return (
     <div className="searchPage">
+      {searchBarRem && <SearchBar />}
       <div className={`FilterSec ${openSidebar ? "visible" : ""}`}>
         <div className="filterSecDiv">
           <div className="HeaderSidebar">
@@ -150,33 +233,162 @@ function Search() {
                       <circle cx="11" cy="11" r="8" />
                       <path d="m21 21-4.3-4.3" />
                     </svg>
-                    {/* <input type="search" onChange={filterSearchBrand}/> */}
+                    <input
+                      value={searchValue}
+                      type="search"
+                      onChange={(event) =>
+                        filterSearchBrand(event.target.value)
+                      }
+                    />
                   </div>
-                  {BrandFilterArr.map((item, index) => (
-                    <p key={index}>{item}</p>
-                  ))}
+                  <div className="BrandFilterList">
+                    {BrandFilterArr.map((item) => (
+                      <button
+                        key={item.brand}
+                        className={`brandBtnFilter ${
+                          checkedBrand.includes(item.brandName)
+                            ? "ActiveBrandBtnFilter"
+                            : ""
+                        }`}
+                        onClick={() => handleCheckedBrand(item.brandName)}
+                      >
+                        <div className="firstSec">
+                          <div className="Brand_LogooDiv">
+                            <img
+                              alt={item}
+                              src={require(`../../assets/images/Brand_Logo/${item.brandName
+                                .toLowerCase()
+                                .replace(/ /g, "_")}.png`)}
+                              onError={(e) => {
+                                e.target.src = defaultImage;
+                              }}
+                            />
+                          </div>
+                          <p>
+                            {item.brandName}{" "}
+                            <span className="countBrandFilter">
+                              ({item.TotalBrandPro})
+                            </span>
+                          </p>
+                        </div>
+                        <div
+                          className={`customCheckBox ${
+                            checkedBrand.includes(item.brandName)
+                              ? "ActiveCustomCheckBox"
+                              : ""
+                          }`}
+                        >
+                          <div
+                            className={`transition ${
+                              checkedBrand.includes(item.brandName)
+                                ? "ActiveChecked"
+                                : ""
+                            }`}
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path d="M20 6 9 17l-5-5" />
+                            </svg>
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
               {sideBarCategory && (
                 <div className="sideBarSection">
                   <h3>Category</h3>
+                  <div className="SearchBrandSec">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="m21 21-4.3-4.3" />
+                    </svg>
+                    <input
+                      value={searchCatValue}
+                      type="search"
+                      onChange={(event) =>
+                        filterSearchCategory(event.target.value)
+                      }
+                    />
+                  </div>
+                  <div className="BrandFilterList">
+                    {categoryFilter.map((item) => (
+                      <button
+                        key={item}
+                        className={`brandBtnFilter ${
+                          checkedCategory.includes(item)
+                            ? "ActiveBrandBtnFilter"
+                            : ""
+                        }`}
+                        onClick={() => handleCheckedCat(item)}
+                      >
+                        <div className="firstSec">
+                          <p>
+                            {item
+                              .replace(/_/g, " ")
+                              .replace(/\b\w/g, (char) => char.toUpperCase())}
+                          </p>
+                        </div>
+                        <div
+                          className={`customCheckBox ${
+                            checkedCategory.includes(item)
+                              ? "ActiveCustomCheckBox"
+                              : ""
+                          }`}
+                        >
+                          <div
+                            className={`transition ${
+                              checkedCategory.includes(item)
+                                ? "ActiveChecked"
+                                : ""
+                            }`}
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path d="M20 6 9 17l-5-5" />
+                            </svg>
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
           </div>
           <div className="FilActionBtnSec">
-            <button >Clear Filter</button>
-            <button>Apply</button>
+            <button onClick={handleRemoveFilter}>Clear Filter</button>
+            <button onClick={handleApplyFilter}>Apply</button>
           </div>
         </div>
         <div className="filterBg"></div>
       </div>
       <div className="openFilterSec">
         {filterProduct.length} Products Found
-        <button
-          onClick={() => setOpenSideBar(true)}
-          className="openFilterSearch"
-        >
+        <button onClick={OpenSideBar} className="openFilterSearch">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -184,10 +396,9 @@ function Search() {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
+            strokeWidth="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="lucide lucide-sliders-horizontal"
           >
             <line x1="21" x2="14" y1="4" y2="4" />
             <line x1="10" x2="3" y1="4" y2="4" />
@@ -198,7 +409,7 @@ function Search() {
             <line x1="14" x2="14" y1="2" y2="6" />
             <line x1="8" x2="8" y1="10" y2="14" />
             <line x1="16" x2="16" y1="18" y2="22" />
-          </svg>{" "}
+          </svg>
           Filter
         </button>
       </div>

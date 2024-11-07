@@ -219,9 +219,6 @@
   opacity: 0.9;
 }
 @media screen and (max-width: 480px) {
-  .HomeSearch > .searchBar {
-    display: none;
-  }
   .banner {
     padding: 20px 15px;
     border-radius: 14px;

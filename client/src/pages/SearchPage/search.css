@@ -9,6 +9,14 @@
   padding: 20px 0;
   color: var(--text-color);
 }
+.openFilterSec{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width:auto;
+  padding: 15px 0px;
+  margin: 10px 0;
+}
 .FoundPro span {
   font-weight: 600;
   color: var(--primary-color);
@@ -22,6 +30,19 @@
   opacity: 0;
   bottom: 0;
   z-index: -22;
+}
+.openFilterSearch{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 7px;
+  border: 1px solid lightgray;
+}
+.openFilterSearch svg{
+  width: 18px;
+  height: 18px;
 }
 .FilterSec.visible {
   opacity: 1;

@@ -15,20 +15,16 @@ function Search() {
   const [searchArr, setSearchArr] = useState([]);
   const [loader, setLoader] = useState(false);
   const [openSidebar, setOpenSideBar] = useState(false);
-  const [sideBarPrice, setSideBarPrice] = useState(true);
   const [sideBarBrand, setSideBarBrand] = useState(false);
   const [sideBarCategory, setSideBarCategory] = useState(false);
   const query = new URLSearchParams(location.search).get("q");
   const [BrandFilterArr, setBrandFilterArr] = useState([]);
-  const [range, setRange] = useState({ min: null, max: null });
 
   useEffect(() => {
     const fetchFilteredProducts = async () => {
       setLoader(true);
       try {
-        const response = await fetch(
-          `${config.apiUrl}/products/search?q=${query}`
-        );
+        const response = await fetch(`${config.apiUrl}/search?q=${query}`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -37,8 +33,8 @@ function Search() {
         setSearchArr(
           Array.isArray(data.filteredProducts) ? data.filteredProducts : []
         );
-        setRange({ min: data.price.MinPrice, max: data.price.MaxPrice });
         setBrandFilterArr(data.brands);
+        console.log(" setBrandFilterArr(data.brands);", data.filteredProducts);
       } catch (error) {
         console.error("Error fetching filtered products:", error);
       } finally {
@@ -61,7 +57,7 @@ function Search() {
               item.brand?.toLowerCase().includes(lowerTerm)
             );
           });
-          setFilterProduct(filtered.slice(0, 50));
+          setFilterProduct(filtered);
         }
       }, 300),
     [searchArr]
@@ -79,7 +75,6 @@ function Search() {
     };
   }, [query, debouncedSearchTerm, searchArr]);
 
- 
   const AppearSubSideSec = (section) => {
     setSideBarBrand(false);
     setSideBarCategory(false);
@@ -112,9 +107,9 @@ function Search() {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
                 <path d="M18 6 6 18"></path>
                 <path d="m6 6 12 12"></path>
@@ -135,23 +130,30 @@ function Search() {
               >
                 Category
               </button>
-              <button
-                className={sideBarPrice ? "ActiveBtnFilter" : ""}
-                onClick={() => AppearSubSideSec("price")}
-              >
-                Price
-              </button>
             </div>
             <div className="ContentSecFilter">
               {sideBarBrand && (
                 <div className="sideBarSection">
                   <h3>Brand</h3>
                   <div className="SearchBrandSec">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="m21 21-4.3-4.3" />
+                    </svg>
                     {/* <input type="search" onChange={filterSearchBrand}/> */}
                   </div>
-                  {BrandFilterArr.map((item) => (
-                    <p>{item}</p>
+                  {BrandFilterArr.map((item, index) => (
+                    <p key={index}>{item}</p>
                   ))}
                 </div>
               )}
@@ -160,25 +162,45 @@ function Search() {
                   <h3>Category</h3>
                 </div>
               )}
-              {sideBarPrice && (
-                <div className="sideBarSection">
-                  <h3>Price Range</h3>
-                  <p>
-                    Range is the {range.min} - {range.max}
-                  </p>
-                </div>
-              )}
             </div>
           </div>
           <div className="FilActionBtnSec">
-            {/* <button onClick={clearFilters}>Clear Filter</button> */}
+            <button >Clear Filter</button>
             <button>Apply</button>
           </div>
         </div>
         <div className="filterBg"></div>
       </div>
       <div className="openFilterSec">
-        <button onClick={() => setOpenSideBar(true)}>open</button>
+        {filterProduct.length} Products Found
+        <button
+          onClick={() => setOpenSideBar(true)}
+          className="openFilterSearch"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-sliders-horizontal"
+          >
+            <line x1="21" x2="14" y1="4" y2="4" />
+            <line x1="10" x2="3" y1="4" y2="4" />
+            <line x1="21" x2="12" y1="12" y2="12" />
+            <line x1="8" x2="3" y1="12" y2="12" />
+            <line x1="21" x2="16" y1="20" y2="20" />
+            <line x1="12" x2="3" y1="20" y2="20" />
+            <line x1="14" x2="14" y1="2" y2="6" />
+            <line x1="8" x2="8" y1="10" y2="14" />
+            <line x1="16" x2="16" y1="18" y2="22" />
+          </svg>{" "}
+          Filter
+        </button>
       </div>
       <div className="shop-cards gridLayout searchPageSec">
         {loader ? (

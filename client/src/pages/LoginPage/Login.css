@@ -1,0 +1,49 @@
+.LoginPage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.LoginBox {
+  width: min(80%, 400px);
+  height: 60vh;
+  background-color: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  /* box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px; */
+  border: 1px solid rgb(223, 223, 223);
+}
+.LoginBox form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.LoginBox .LoginComponents{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.LoginBox .LoginComponents input{
+    height: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid lightgray;
+}
+.LoginBox form button{
+    padding: 10px;
+    height: 50px;
+    font-size: 16px;
+    width: 100%;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 10px;
+    font-weight: 500;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}

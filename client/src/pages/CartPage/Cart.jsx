@@ -123,7 +123,7 @@ function Cart() {
         order_id: data.id, // `id` from order creation response
         prefill: {
           name: "Nayan Sukhadiya",
-          email: "gaurav.kumar@example.com",
+          email: "email@example.com",
           contact: "9000090000",
         },
       };
@@ -133,19 +133,23 @@ function Cart() {
       razorpay.open();
   
       razorpay.on('payment.failed', function (response) {
+        alert(response)
         alert("Payment failed. Please try again.");
-        navigate('/'); // Navigate back to home page
+        navigate('/'); 
       });
-  
+      
       razorpay.on('payment.success', function (response) {
-        navigate('/'); // Navigate back to home page
+        alert(response)
+        alert("Payment successful. Redirecting to home page.");
+        navigate('/');
       });
   
     } catch (error) {
       console.error("Checkout failed:", error);
       alert("Checkout failed. Please try again.");
     }
-  };
+};
+
   
   
   

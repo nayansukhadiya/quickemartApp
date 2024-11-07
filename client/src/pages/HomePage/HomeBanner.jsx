@@ -1,30 +1,45 @@
-import React from 'react'
+import React from "react";
 import { Link } from "react-router-dom";
-import './HomeBanner.css'
-
+import "./HomeBanner.css";
 
 function HomeBanner() {
-let arr = ["parle","cornitos","nescafe","bru","doritos"]
-let arr2 = ["dawwat","india"]
-    return (
-        <>
-    <div className='HomeBannerSection'>
-        {arr.map((item) => (
-            <div className='HomeBannerBox'>
-        <img src={require(`../../assets/images/banner/${item}.png`)} alt="img"/>
-        </div>
+  let mainArr = [
+    { name: "fruit", link: "/shop?catid=fruits" },
+    { name: "chocolate", link: "shop?catid=chocolates" },
+    { name: "maggie", link: "/brand?name=Maggi" },
+    { name: "tooMuch", link: "/brand?name=Maggi" },
+  ];
+  let arr2 = [
+    { name: "dawwat", link: "https://example.com/parle" },
+    { name: "india", link: "https://example.com/cornitos" },
+    { name: "supremeharvest", link: "https://example.com/nescafe" },
+    { name: "zoff", link: "https://example.com/bru" },
+    { name: "milkymist", link: "https://example.com/doritos" },
+  ];
+  return (
+    <div className="HomeBannerSec">
+      <div className=" HomeBannerSection HomeBannerSectionMain HomeGrid">
+        {mainArr.map((item) => (
+          <Link to={item.link} className="HomeBannerBoxMain">
+            <img
+              src={require(`../../assets/images/banner/${item.name}.png`)}
+              alt="img"
+            />
+          </Link>
         ))}
-                    </div>
-        <p>Best Deal</p>
-                <div className='HomeBannerSection'>
+      </div>
+      <div className="HomeBannerSection HomeGrid HomeBrand1">
         {arr2.map((item) => (
-            <div className='HomeBannerBox2'>
-        <img src={require(`../../assets/images/banner/focusBrand/${item}.png`)} alt="img"/>
-        </div>
+          <Link to={item.link} className="HomeBannerBox2">
+            <img
+              src={require(`../../assets/images/banner/focusBrand/${item.name}.png`)}
+              alt="img"
+            />
+          </Link>
         ))}
+      </div>
     </div>
-        </>
-  )
+  );
 }
 
-export default HomeBanner
+export default HomeBanner;

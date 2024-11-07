@@ -1,12 +1,9 @@
-.HomeBannerSection {
+.HomeBannerSec{
     display: flex;
-    align-items: center;
-    gap: 10px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding: 20px 0;
+    flex-direction: column;
+    gap: 20px;
 }
+
 
 .HomeBannerSection::-webkit-scrollbar {
     display: none;
@@ -29,4 +26,57 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+}
+.HomeBannerSectionMain{
+    grid-template-columns: repeat(4,1fr);
+}
+.HomeBannerSection2{
+    padding: 30px 0;
+    gap: 10px;
+    grid-template-columns: repeat(5,1fr);
+}
+
+.HomeBannerBoxMain{
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: 20px;
+}
+.HomeBannerBoxMain img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.HomeGrid{
+    width: 100%;
+    display: grid;
+    gap: 15px;
+}
+.HomeBrand1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+@media screen and (max-width: 480px) {
+    /* .HomeBannerSec{
+        gap: 10px;
+    } */
+.HomeBannerSection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.HomeBannerBoxMain{
+    min-width: 300px;
+}
+.HomeBannerSection2Div{
+    min-width: 230px;
+}
 }

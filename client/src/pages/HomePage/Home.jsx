@@ -4,6 +4,8 @@ import ProCategory from "../../pages/CategoryPage/ProCategory";
 import HomeBanner from "./HomeBanner";
 import FilteredProductsPage from "./FilteredProductsPage";
 import '../../style/index.css';
+import HomeAd1 from "./HomeAd1";
+import SearchBar from '../../components/SearchBar/SearchBar'
 
 function Home() {
   const arr = ["chips", "soft_drinks", "milk"];
@@ -32,11 +34,12 @@ function Home() {
   return (
     <div className="homePage">
       <div className="HomeSearch">
-        {/* <SearchBar /> */}
+        <SearchBar />
       </div>
       <Banner />
       <HomeBanner />
       <ProCategory />
+      <HomeAd1 />
       {arr.map((item) => (
         <FilteredProductsPage key={item} subCategory={item} />
       ))}

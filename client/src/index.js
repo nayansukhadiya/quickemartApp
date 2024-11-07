@@ -14,9 +14,12 @@ import ChatPage from './pages/ChatPage/ChatPage'; // Adjusted import
 import CartGeneratorPage from './pages/CartGeneratorPage/CartGeneratorPage'; // Adjusted import
 import Category from './pages/CategoryPage/Category'; 
 import BrandPage from './pages/BrandPage/BrandPage';
+import Login from './pages/LoginPage/Login';
+import Signin from './pages/SighInPage/Signin';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
+    <>
     <Route path="/" element={<Layout />}>
       <Route path="" element={<Home/>}/>
       <Route path="shop" element={<Shop />} />
@@ -28,9 +31,10 @@ const router = createBrowserRouter(
       <Route path='CartGeneratorPage' element={<CartGeneratorPage />}/>
       <Route path='category' element={<Category />}/>
       <Route path='brand' element={<BrandPage />}/>
-      {/* <Route path='login' element={<Login />}/>
-      <Route path='sighin' element={<Sighin />}/> */}
     </Route>
+      <Route path='login' element={<Login />}/>
+      <Route path='sighin' element={<Signin />}/>
+      </>
   )
 );
 

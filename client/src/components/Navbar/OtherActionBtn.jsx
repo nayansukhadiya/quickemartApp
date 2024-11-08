@@ -1,7 +1,7 @@
 import React from "react";
 import "./navbar.css";
 import { Link } from "react-router-dom";
-import CartAiBtn from "../../components/chatAiBtn/CartAiBtn";
+import CartBtn from "../CartBtn/CartBtn";
 function OtherActionBtn() {
   return (
     <div className="other-logo">
@@ -32,7 +32,7 @@ function OtherActionBtn() {
         </button>
       </Link>
       <Link to="/cart">
-        <CartAiBtn />
+        <CartBtn />
       </Link>
     </div>
   );

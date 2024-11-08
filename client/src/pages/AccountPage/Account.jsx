@@ -3,7 +3,11 @@ import './Account.css'
 
 function Account() {
   return (
-    <div className='AccountPage'>Account page coming soon thx for visit Nayan sukhadiya 😊</div>
+    <div className='AccountPage'>
+      <div className='AccountMain'>
+        <h1>Nayan Sukhadiya</h1>
+      </div>
+    </div>
   )
 }
 

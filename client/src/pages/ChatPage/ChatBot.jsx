@@ -159,6 +159,7 @@ function ChatBot({ chatPrompt }) {
           type="submit"
           disabled={isLoading || !prompt.trim()}
           aria-label="Send Message"
+          onClick={handleSubmit}
           className={`${isLoading ? "loadingChatBtn" : ""}`}
         >
           <svg

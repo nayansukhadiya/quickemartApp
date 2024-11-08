@@ -41,7 +41,9 @@ header {
 .dropdownPro {
   position: relative;
 }
-
+.other-logo{
+  display: flex;
+}
 
 .dropdown-list {
   position: absolute;
@@ -145,7 +147,5 @@ header button svg {
   .bottomPart{
     display: none;
   }
-  .other-logo{
-    display: none;
-  }
+ 
 }

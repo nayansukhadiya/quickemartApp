@@ -48,6 +48,9 @@ router.get("/", async (req, res) => {
       };
     });
 
+    // Sort the brandInfo array by the TotalBrandPro in descending order
+    brandInfo.sort((a, b) => b.TotalBrandPro - a.TotalBrandPro);
+
     ResponseObj.brands = brandInfo;
     ResponseObj.categories = UniqueSubCat;
 

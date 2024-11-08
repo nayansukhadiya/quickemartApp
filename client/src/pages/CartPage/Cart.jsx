@@ -12,7 +12,6 @@ import BackBtn from "../../components/BackBtn/BackBtn";
 import { useNavigate ,Link} from "react-router-dom";
 import config from "../../config";
 import DeliverBoyImg from "../../assets/images/delivery_boy (2).png";
-import RazorpayCheckout from 'react-razorpay';
 
 function Cart() {
   const [proCart, setProCart] = useState([]);
@@ -117,10 +116,13 @@ function Cart() {
   
       // Razorpay payment options
       const options = {
-        key: "rzp_test_eHAmWy2Jih2wNG", // Replace with your Razorpay key ID
-        amount: data.amount, // Amount in paise
+        key: "rzp_test_eHAmWy2Jih2wNG", 
+        amount: data.amount,
         currency: data.currency,
-        order_id: data.id, // `id` from order creation response
+        order_id: data.id,
+        handler: async function (response) {
+        console.log(response);
+        },
         prefill: {
           name: "Nayan Sukhadiya",
           email: "email@example.com",
@@ -130,8 +132,7 @@ function Cart() {
   
       // Open Razorpay payment modal
       const razorpay = new window.Razorpay(options);
-      razorpay.open();
-  
+      
       razorpay.on('payment.failed', function (response) {
         alert(response)
         alert("Payment failed. Please try again.");
@@ -143,6 +144,8 @@ function Cart() {
         alert("Payment successful. Redirecting to home page.");
         navigate('/');
       });
+      razorpay.open();
+      event.preventDefault();
   
     } catch (error) {
       console.error("Checkout failed:", error);

@@ -28,7 +28,7 @@ backdrop-filter: blur(35px);
 .chatBox .chatBoxInput {
   width: 100%;
   min-height: 40px;
-  padding: 10px;
+  padding: 10px 0;
   font-size: 16px;
   background-color: transparent;
   border: none;

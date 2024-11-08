@@ -16,6 +16,7 @@ import Category from './pages/CategoryPage/Category';
 import BrandPage from './pages/BrandPage/BrandPage';
 import Login from './pages/LoginPage/Login';
 import Signin from './pages/SighInPage/Signin';
+import GetStartedPage from './pages/GetStarted/GetStartedPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,6 +35,7 @@ const router = createBrowserRouter(
     </Route>
       <Route path='login' element={<Login />}/>
       <Route path='sighin' element={<Signin />}/>
+      <Route path='new' element={<GetStartedPage />}/>
       </>
   )
 );

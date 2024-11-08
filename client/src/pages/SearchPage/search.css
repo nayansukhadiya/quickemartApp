@@ -3,6 +3,9 @@
   gap: 8px;
   grid-template-columns: repeat(7, 1fr);
 }
+.searchPage h4{
+  padding: 20px 0;
+}
 .FoundPro {
   font-size: 20px;
   font-weight: 500;
@@ -150,7 +153,26 @@
   background-color: var(--primary-color);
   color: white;
 }
-
+.SearchTopBrandsListHome{
+  padding: 20px 0;
+  display: flex;
+  gap: 10px;
+  overflow-X: auto;
+  overflow-y: hidden;
+}
+.SearchTopBrandsListHome .BrandList{
+  min-width: 80px;
+  min-height: 80px;
+  border-radius: 10px;
+}
+.SearchTopBrandsListHome .BrandList img{
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #d5d5d5;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 0.602187px 0.602187px -1.25px, rgba(0, 0, 0, 0.16) 0px 2.28853px 2.28853px -2.5px, rgba(0, 0, 0, 0.063) 0px 10px 10px -3.75px;
+}
 @media screen and (max-width: 480px) {
  .mobileShop .searchPage{
     padding-top: 15px;

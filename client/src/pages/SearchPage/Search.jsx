@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ProductCard from "../../components/ProductCard";
 import "../../pages/HomePage/home.css";
 import "../../pages/ShopPage/shop.css";
@@ -413,27 +413,51 @@ function Search() {
           Filter
         </button>
       </div>
+      <div className="">
+      {
+  loader ? (
+    <CircleLoader />
+  ) : filterProduct.length > 0 ? (
+    <div>
+      <h4>Top Brands</h4>
+      <div className="SearchTopBrandsListHome">
+        {BrandFilterArr.slice(0,10).map((item) => (
+          <Link to={`/brand?name=${item.brandName}`} className="BrandList">
+          <img
+            key={item.brandName} // Adding a unique key prop for each image
+            alt={item.brandName}
+            src={require(`../../assets/images/Brand_Logo/${item.brandName
+              .toLowerCase()
+              .replace(/ /g, "_")}.png`)}
+            onError={(e) => {
+              e.target.src = defaultImage; // Fallback image in case of error
+            }}
+          /></Link>
+        ))}
+      </div>
+      <h4>Top Brands</h4>
       <div className="shop-cards gridLayout searchPageSec">
-        {loader ? (
-          <CircleLoader />
-        ) : filterProduct.length > 0 ? (
-          filterProduct.map((item) => (
-            <ProductCard
-              key={item.p_id}
-              ProIDSearch={item.p_id}
-              img={item.img}
-              name={item.name}
-              price={item.price}
-              mrp={item.mrp}
-              unit={item.unit}
-              category={item.category}
-              discount={item.discount}
-              brand={item.brand}
-            />
-          ))
-        ) : (
-          <p>No products found.</p>
-        )}
+        {filterProduct.map((item) => (
+          <ProductCard
+            key={item.p_id}
+            ProIDSearch={item.p_id}
+            img={item.img}
+            name={item.name}
+            price={item.price}
+            mrp={item.mrp}
+            unit={item.unit}
+            category={item.category}
+            discount={item.discount}
+            brand={item.brand}
+          />
+        ))}
+      </div>
+    </div>
+  ) : (
+    <p>No products found.</p>
+  )
+}
+
       </div>
     </div>
   );

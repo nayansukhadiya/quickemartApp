@@ -1,0 +1,82 @@
+.GetStartedPage{
+display: grid;
+grid-template-columns: 40% 60%;
+width: 80%;
+margin:  auto;
+align-items: center;
+gap: 30px;
+height: 100vh;
+}
+/* .BgGetStarted{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    transform: rotateX(180deg);
+} */
+.GetStartedPage .SvgSec {
+    background-image: linear-gradient(
+    150deg,
+    #c4d7ff 0%,
+    #bdd2ffe1 55%,
+    #88adff 100%
+  );
+   
+}
+.GetStartedPage .SvgSec img{
+ width: 100%;
+ /* height: 80%; */
+ aspect-ratio: 1;
+ object-fit: contain;
+}
+.GetStartedPage .ContentSec{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.GetStartedPage .ContentSec h1{
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 60px;
+    color: var(--primary-color);
+}
+.GetStartedPage .ContentSec h2 {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 50px;
+    background: -webkit-linear-gradient(135deg,#ff5656, cornflowerblue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .GetStartedPage .ContentSec button{
+    width: 300px;
+    height: 60px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 22px;
+    line-height: 22px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+  @media screen and (max-width: 480px) {
+    .GetStartedPage{
+        width: 95%;
+        grid-template-columns: 100%;
+        gap: 10px;
+    }
+    .GetStartedPage .ContentSec h1{
+        font-size: 24px;
+        line-height: 25px;
+    }
+    .GetStartedPage .ContentSec h2{
+        font-size: 20px;
+        line-height: 22px;
+    }
+  }

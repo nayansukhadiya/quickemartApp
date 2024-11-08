@@ -152,10 +152,6 @@ border: 1px solid rgb(175, 175, 175);
 }
 
 @media (max-width: 480px) {
-  .chatHistory {
-    width: 95%;
-    padding: 2% 2.5% 0 2.5%;
-  }
   .Message {
     font-size: 14px; /* Smaller font for mobile */
     max-width: 76%; /* Increased max-width for mobile */

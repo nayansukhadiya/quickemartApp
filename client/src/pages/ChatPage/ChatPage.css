@@ -123,9 +123,9 @@ display: none;
   transition: all 0.32s linear;
 background: rgba(180, 180, 180, 0.418);
 border-radius: 16px;
-/* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
-backdrop-filter: blur(5px);
--webkit-backdrop-filter: blur(5px);
+background: #b4b4b41e;
+backdrop-filter: blur(35px);
+-webkit-backdrop-filter: blur(35px);
 }
 .suggestedCard:hover {
   color: white;
@@ -177,8 +177,8 @@ backdrop-filter: blur(5px);
 
 @media (max-width: 480px) {
   .ChatPage {
-    width: 95%;
-    padding: 2.5%;
+    width: 100%;
+    padding: 0;
   }
 
   .ChatSuggestCardSec {

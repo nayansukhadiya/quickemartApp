@@ -21,6 +21,7 @@ function Cart() {
   const [tipAmount, setTipAmount] = useState(0);
   const [isCustom, setIsCustom] = useState(true);
   const [customTipValue, setCustomTipValue] = useState(20);
+  const [startPayment, setStartPayment] = useState(false);
   const inputRef = useRef(null);
   const navigate = useNavigate();
 
@@ -91,6 +92,7 @@ function Cart() {
   }, [proCart, discount, couponApplied, ApplyCoupon]);
 
   const handleCheckOut = async (event) => {
+    setStartPayment(true)
     event.preventDefault(); 
     const amount = calculateTotalAmount().toFixed(2); // Amount in rupees
     const currency = "INR";
@@ -122,6 +124,7 @@ function Cart() {
         order_id: data.id,
         handler: async function (response) {
         console.log(response);
+        setStartPayment(false);
         },
         prefill: {
           name: "Nayan Sukhadiya",
@@ -150,6 +153,9 @@ function Cart() {
     } catch (error) {
       console.error("Checkout failed:", error);
       alert("Checkout failed. Please try again.");
+    }
+    finally{
+      setStartPayment(false)
     }
 };
 
@@ -214,6 +220,12 @@ function Cart() {
       ) : (
         <>
           <BackBtn LinkName={"Cart"} />
+          {startPayment ? <div className="loaderPayment">
+<div className="loader1">
+  <label>Redirecting To Razorpay...</label>
+  <div className="loading1"></div>
+</div>
+</div> : ""}
           <div className="cartPageIn">
             <div className="cartSec">
               <div className="cartCardSec lightGrayBorder ">

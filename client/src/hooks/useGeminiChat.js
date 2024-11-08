@@ -1,27 +1,15 @@
 import { useState, useEffect } from "react";
 import { GoogleGenerativeAI, HarmCategory } from "@google/generative-ai";
+import './GeminiData'
+import GeminiData from "./GeminiData";
 
 const useGeminiChat = () => {
   const apiKey = "AIzaSyCZnZEtxX0HlpoH7sWZhNKo49dm06zzSn4";
   const [chatSession, setChatSession] = useState(null);
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
-  const [brandArr, setBrandsArr] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [namePro, setNamePro] = useState(null);
 
-  useEffect(()=> {
-    fetch("./data/name.json")
-      .then((res) => res.json())
-      .then((Data) => {
-        setNamePro(Data);
-      });
-    fetch("./data/brand.json")
-      .then((res) => res.json())
-      .then((Data) => {
-        setBrandsArr(Data);
-      });
-  },[brandArr,namePro])
   useEffect(() => {
     if (!apiKey) {
       setError("Missing GEMINI_API_KEY environment variable");
@@ -66,11 +54,11 @@ const useGeminiChat = () => {
                   properties: {
                     ingredient_name: {
                       type: "string",
-                      description: `give name in single product like(not tomatoes give tomato, etc...)Please don't give name like that Coca-Cola instead give me coca cola Name of the ingredient, if not specified, provide a popular brand i will give you the 6000 products do not use Cold Drink instead use soft drinks name do mean i want est match on top name array make sure if the possible than give me the name from the arr ${namePro}`,
+                      description: `give name in single product like(not tomatoes give tomato, etc...)Please don't give name like that Coca-Cola instead give me coca cola Name of the ingredient, if not specified, provide a popular brand i will give you the 6000 products do not use Cold Drink instead use soft drinks name do mean i want est match on top name array make sure if the possible than give me the name from the arr ${GeminiData.namePro}`,
                     },
                     brand: {
                       type: "string",
-                      description: `Popular brand relating to the ingredient_name i giving you the name of every brand is ${brandArr} and fresh_vegetable and fresh_fruits are brand is Local Vendors (e.g., Coca-Cola, Pepsi for soft drinks)`,
+                      description: `Popular brand relating to the ingredient_name i giving you the name of every brand is ${GeminiData.brandArr} and fresh_vegetable and fresh_fruits are brand is Local Vendors (e.g., Coca-Cola, Pepsi for soft drinks)`,
                     },
                     quantity: {
                       type: "string",
@@ -135,28 +123,26 @@ const useGeminiChat = () => {
     }
   }, [apiKey]);
 
+  
   const sendMessage = async (userInput) => {
     if (!chatSession) {
       setError("Chat session not yet initialized");
       return;
     }
-    console.log(userInput);
+
     setIsLoading(true);
 
     try {
-      const promptMessage = `I want you to create a shopping cart based on my request. Here's my dish request: ${userInput}. If the number of people is not specified, make it for 1 person. Please provide a list of ingredients and quantities in JSON format. dont give the food order link always make sure give the ingredient of the food`;
+      const promptMessage = `I want you to create a shopping cart based on my request. Here's my dish request: ${userInput}. If the number of people is not specified, make it for 1 person. Please provide a list of ingredients and quantities in JSON format. Don't give the food order link. Always make sure to give the ingredient list for the food.`;
 
       const result = await chatSession.sendMessage(promptMessage);
-      console.log("API Response:", result.response);
-
       const responseText =
         result.response?.candidates?.[0]?.content?.parts?.[0]?.text;
-      const parsedResponse = responseText ? JSON.parse(responseText) : null;
-console.log("response from gemini is the",parsedResponse?.recipe)
-      setResponse(parsedResponse?.recipe);
 
+      const parsedResponse = responseText ? JSON.parse(responseText) : null;
+      setResponse(parsedResponse?.recipe);
     } catch (err) {
-      setError(err.message);
+      setError(`Failed to generate cart: ${err.message}`);
     } finally {
       setIsLoading(false);
     }

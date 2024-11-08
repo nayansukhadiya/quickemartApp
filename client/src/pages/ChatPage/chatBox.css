@@ -1,22 +1,28 @@
 .chatBox {
+  position: relative;
   height: auto;
-  width: 80%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  border: 1px solid rgb(175, 175, 175);
+  border-radius: 12px;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  background: #b4b4b41e;
+backdrop-filter: blur(35px);
+-webkit-backdrop-filter: blur(35px);
+  padding: 11px;
+  gap: 10px;
 }
 .chatBox .chatBoxForm {
   display: flex;
   width: 100%;
-  border-radius: 38px;
   overflow: hidden;
-  background-color: #ffffff;
-  padding: 11px;
   gap: 10px;
   align-items: end;
-  border: 1px solid rgb(217 216 216);
 }
-.chatBox .chat{
+.chatBox .chat {
   height: 40vh;
 }
 .chatBox .chatBoxInput {
@@ -40,16 +46,14 @@
 
 .chatBox button {
   background-color: var(--primary-color);
-  border-radius: 50%;
-  min-height: 40px;
-  min-width: 40px;
-  max-height: 40px;
-  max-width: 40px;
+  border-radius: 10px;
+  height: 40px;
+  width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.loadingChatBtn{
+.loadingChatBtn {
   opacity: 0.4;
   cursor: none;
 }
@@ -67,9 +71,11 @@
   animation: spin 1s infinite;
   border-radius: 100%;
   -webkit-box-shadow: 8px 0 0 1.6px black, 0 8px 0 1.6px var(--background-color),
-  0 -8px 0 1.6px var(--background-color), -8px 0 0 1.6px var(--background-color);
-box-shadow: 8px 0 0 1.6px black, 0 8px 0 1.6px var(--background-color),
-  0 -8px 0 1.6px var(--background-color), -8px 0 0 1.6px var(--background-color);
+    0 -8px 0 1.6px var(--background-color),
+    -8px 0 0 1.6px var(--background-color);
+  box-shadow: 8px 0 0 1.6px black, 0 8px 0 1.6px var(--background-color),
+    0 -8px 0 1.6px var(--background-color),
+    -8px 0 0 1.6px var(--background-color);
 }
 
 @-webkit-keyframes spin {
@@ -85,11 +91,79 @@ box-shadow: 8px 0 0 1.6px black, 0 8px 0 1.6px var(--background-color),
     transform: rotate(360deg);
   }
 }
+.ChatBotBottomSec {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.chatBox button.ChangeStyle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 7px;
+  background-color: transparent;
+  width: 120px;
+  padding: 0 10px;
+  height: 40px;
+  background: rgba(180, 180, 180, 0.116);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgb(175, 175, 175);
+}
+.chatBox button.ChangeStyle svg {
+  width: 14px;
+  height: 14px;
+  transition: all 0.2s linear;
+}
+.FoodStyleCardSec {
+  position: absolute;
+  bottom: 52px;
+  left: 10px;
+  align-items: center;
+  border-radius: 10px;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  background: rgb(255 255 255 / 44%);
+  backdrop-filter: blur(55px);
+  -webkit-backdrop-filter: blur(55px);
+  width: fit-content;
+  border: 1px solid rgb(175, 175, 175);
+}
+.FoodStyleCardSec button {
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  height: 34px;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 500;
+  white-space: nowrap;
+  background: rgba(180, 180, 180, 0.521);
+backdrop-filter: blur(55px);
+-webkit-backdrop-filter: blur(55px);
+}
+.FoodStyleCardSec button:hover{
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+.BtnSvgFlip {
+  transform: rotate(180deg);
+}
+.FoodStyleCardSec .active {
+  background-color: var(--primary-color);
+  color: aliceblue;
+}
 
 @media screen and (max-width: 480px) {
   .chatBox {
     width: 95%;
   }
+
   /* .chatBox .chatBoxForm {
     padding: 5px;
   } */

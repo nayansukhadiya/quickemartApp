@@ -4,15 +4,17 @@ import useGeminiChat from "../../hooks/useGeminiChat";
 import UserContext from "../../context/UserContext";
 import useChatProduct from "../../hooks/useChatProduct";
 
-function ChatBot({ chatPrompt, foodStyleBtn }) {
+function ChatBot({ chatPrompt }) {
   const { chatArray, setChatArray } = useContext(UserContext);
   const { setAnsGet, setChatLoad } = useContext(UserContext);
   const [prompt, setPrompt] = useState("");
   const [foodPmt, setFoodPmt] = useState(null);
   const [rapidRecipeArr, setRapidRecipeArr] = useState([]);
   const [userCartMessage, setUserCartMessage] = useState(null);
+  const [foodStyleBtn, setFoodStyleBtn] = useState("veg");
+  const [foodBtnOpen, setFoodBtnOpen] = useState(false);
   const inputRef = useRef(null);
-
+  const foodStyle = ["veg", "nonVeg", "vegan"];
   useEffect(() => {
     setFoodPmt(foodStyleBtn);
   }, [foodStyleBtn]);
@@ -28,10 +30,7 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
     const promptMessage = `I want you to create a shopping cart based on my request. Here's my dish request to how to cook and give me required every minor single ingredient of every single dish: ${prompt}. And food style is must be ${foodPmt}. Please provide a list of ingredients and quantities in JSON format.`;
 
     try {
-      setChatArray((prev) => [
-        ...prev,
-        { author: "user", message: prompt },
-      ]);
+      setChatArray((prev) => [...prev, { author: "user", message: prompt }]);
       await sendMessage(promptMessage);
       setChatLoad(false);
       setPrompt("");
@@ -41,7 +40,7 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       if (e.shiftKey) {
         return;
       } else {
@@ -103,7 +102,6 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
   useEffect(() => {
     if (inputRef.current) {
       const textarea = inputRef.current;
-      document.querySelector(".chatBoxForm").style.borderRadius = "28px";
       textarea.style.height = "40px";
       textarea.style.height = `${textarea.scrollHeight}px`;
       textarea.style.overflow = "auto";
@@ -122,11 +120,46 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
           disabled={isLoading}
           placeholder="Type Your Prompt..."
         />
+      </form>
+      {error && <div className="error">{error}</div>}
+      <div className="ChatBotBottomSec">
+        <div className="FoodStyleCardSec">
+          {foodBtnOpen &&
+            foodStyle.map((item) => (
+              <button
+                key={item}
+                onClick={() => setFoodStyleBtn(item)}
+                className={`${item} ${foodStyleBtn === item ? "active" : ""}`}
+              >
+                {item
+                  .replace(/_/g, " ")
+                  .replace(/\b\w/g, (char) => char.toUpperCase())}
+              </button>
+            ))}
+        </div>
+        <button className="ChangeStyle" onClick={() => setFoodBtnOpen(prev => !prev)}>
+          {foodStyleBtn
+            .replace(/_/g, " ")
+            .replace(/\b\w/g, (char) => char.toUpperCase())}{" "}
+          <svg className={`${foodBtnOpen ? "BtnSvgFlip" : ""}`}
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m18 15-6-6-6 6" />
+          </svg>
+        </button>
         <button
           type="submit"
           disabled={isLoading || !prompt.trim()}
           aria-label="Send Message"
-          className={`${isLoading ? 'loadingChatBtn' : ''}`}
+          className={`${isLoading ? "loadingChatBtn" : ""}`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -142,8 +175,7 @@ function ChatBot({ chatPrompt, foodStyleBtn }) {
             />
           </svg>
         </button>
-      </form>
-      {error && <div className="error">{error}</div>}
+      </div>
     </div>
   );
 }

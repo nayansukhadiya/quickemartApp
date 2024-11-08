@@ -7,6 +7,7 @@ import ChatBg from './pages/ChatPage/ChatBg'; // Ensure ChatBg is part of ChatPa
 import CartAiBtn from './components/chatAiBtn/CartAiBtn'; // Corrected folder name
 import CartPopUp from './components/cartPopupDiv/CartPopUp'; // Corrected folder name
 import BingAddressAutoSuggest from './components/BingMap/BingAddressAutoSuggest';
+import Logo from './components/logo/Logo';
 
 
 function Layout() {
@@ -52,12 +53,16 @@ function Layout() {
     }
   }, [location]);
   useEffect(()=> {
+    const currentPath = location.pathname; 
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    if (isMobile) { 
+    if (isMobile || currentPath === "/chat") { 
       setSearchBarRem(true);
-      setIsMobile(true);
     } else {
       setSearchBarRem(false);
+    }
+    if(isMobile){
+      setIsMobile(true);
+    }else{
       setIsMobile(false);
     }
   }, [location])
@@ -67,12 +72,14 @@ function Layout() {
       <BingAddressAutoSuggest />
       {!searchBarRem &&  <Navbar />}
       {!chatBtnHide &&  <CartAiBtn />}
-      <div className={`main  ${isMobile ? "mobileShop" : ""}`}>
+      <div className={`main  ${isMobile ? "mobileShop" : ""} ${chatBgSet ? "MainChat" : ""}`}>
         <Outlet />
       </div>
       {!CartPopUpAnim &&  <CartPopUp />}
       {!searchActive &&  <BottomNavBar />}
       {chatBgSet && <ChatBg />} 
+      {chatBgSet && <div className='chatLogo'> <Logo /></div>} 
+
     </UserContextProvider>
   );
 }

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import "./ChatPage.css";
 
 const messages = [
-  "No Idea What to Buy? Let RapidShop AI Do the Work!",
-  "Try Something New Tonight with RapidShop AI.",
-  "Stuck on What You Need? RapidShop AI Has You Covered!",
-  "One Click, and RapidShop AI Builds Your Perfect Cart."
+  "No Idea What to Buy? Let QuickE AI Do the Work!",
+  "Try Something New Tonight with QuickE AI.",
+  "Stuck on What You Need? QuickE AI Has You Covered!",
+  "One Click, and QuickE AI Builds Your Perfect Cart."
 ];
 
 const TextAnimation = () => {

@@ -18,6 +18,7 @@
 }
 .loaderPayment .loader1 {
   width: 350px;
+  max-width: 70%;
   height: 180px;
   border-radius: 10px;
   background: #fff;

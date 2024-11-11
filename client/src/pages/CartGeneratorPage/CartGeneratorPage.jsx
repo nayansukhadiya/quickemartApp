@@ -232,6 +232,7 @@ function CartGeneratorPage() {
               <div className="DetailSec cartInCard">
                 <div className="mainTitle">
                   <h3>{key.replace(/\b\w/g, (char) => char.toUpperCase())}</h3>
+                      {findCart.products[key][0]?.ingredientsDetail }
                 </div>
                 <div className="requiredDetailsSec">
                   <div className="shadowDeep">
@@ -245,7 +246,7 @@ function CartGeneratorPage() {
     : "😢 We're really sorry"
       ? "😢 We're really sorry"
       : "various"
-}
+    }
 
                     </h3>
                   </div>
@@ -258,13 +259,6 @@ function CartGeneratorPage() {
                       )}
                     </h3>
                   </div>
-                </div>
-                <div className="prdDetail shadowDeep">
-                  <p>Do you Know</p>
-                  <h3>
-                    {findCart.products[key][0]?.ingredientsDetail ||
-                      "😢 We're really sorry"}
-                  </h3>
                 </div>
               </div>
               <div className="sliderSecIn">
@@ -284,7 +278,7 @@ function CartGeneratorPage() {
                 {relatedProd[key]?.length > 0 && (
                   <div className="proSliderSec relatedPro1">
                     <h1 className="cardSecTitle cardSecTitle2">
-                      You Might Prefer That
+                      You Might Prefer
                     </h1>
                     <CardSlider>
                       {renderProducts(relatedProd[key], "related product")}

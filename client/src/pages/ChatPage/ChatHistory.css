@@ -81,11 +81,11 @@
   line-height: 1.4;
   flex-direction: column;
   gap: 5px;
-  width: fit-content;
-  max-width: 85%;
-  white-space: break-spaces;
+  width: auto;
+  max-width: 65%;
+  /* white-space: break-spaces; */
   border-radius: 20px;
-  overflow-wrap: break-word;
+  /* overflow-wrap: break-word; */
   transition: all 0.3s ease-in-out; 
   padding: 10px 17px;
 }
@@ -108,7 +108,8 @@
   align-self: flex-start;
   background: #ffffff;
   text-align: left;
-  border-radius: 20px 20px 20px 15px;
+  border-radius: 20px 20px 20px 0px;
+  border: 1px solid rgb(175, 175, 175);
   /* backdrop-filter: blur(5px);
 -webkit-backdrop-filter: blur(5px);
 border: 1px solid rgb(175, 175, 175); */
@@ -150,6 +151,7 @@ border: 1px solid rgb(175, 175, 175); */
   height: 17px;
   margin-right: 5px; /* Added margin for better spacing */
 }
+
 
 @media (max-width: 480px) {
   .Message {

@@ -28,8 +28,8 @@
   position: sticky;
   bottom: 10px;
   z-index: 2;
-  animation: bottomSecChatAnim 1s linear;
-  animation-delay: 3s;
+  animation: bottomSecChatAnim 0.7s linear;
+  animation-delay: 1.8s;
 }
 @keyframes  bottomSecChatAnim{
   0%{
@@ -158,7 +158,7 @@
   gap: 10px;
   font-weight: 500;
   animation: suggestedCardAnim 0.6s linear ;
-  animation-delay: 3.2s;
+  animation-delay: 2.2s;
 }
 .boxImgGemini div {
   min-height: 20px;
@@ -174,7 +174,7 @@
   /* width: 100%; */
   margin-bottom: 120px;
   animation: suggestedCardAnim 0.6s linear ;
-  animation-delay: 3.2s;
+  animation-delay: 2.2s;
 }
 .MainMessage h1 {
   font-size: 72px;
@@ -195,7 +195,7 @@
   padding-bottom: 6px;
   /* justify-content: center; */
   animation: suggestedCardAnim 0.6s linear ;
-  animation-delay: 3.2s;
+  animation-delay: 2.2s;
 }
 .suggestedCard {
   display: flex;
@@ -274,7 +274,7 @@
 
 @media (max-width: 480px) {
   .ChatPage {
-    width: 100%;
+    width: 97%;
     padding: 0;
   }
   .MainMessage{

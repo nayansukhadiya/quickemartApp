@@ -4,7 +4,7 @@ import './cardSlider.css';
 const CardSlider = ({ children }) => {
   const sliderRef = useRef(null);
   const [cardsToShow, setCardsToShow] = useState(3);
-  const [isOverflowing, setIsOverflowing] = useState(false); // Track if the slider overflows
+  const [isOverflowing, setIsOverflowing] = useState(true); // Track if the slider overflows
 
   const updateCardsToShow = () => {
     if (sliderRef.current) {

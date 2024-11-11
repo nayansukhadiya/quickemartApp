@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import ChatBot from "../../pages/ChatPage/ChatBot";
 import UserContext from "../../context/UserContext";
 import "./ChatPage.css";
-import TextAnimation from "./TextAnimation";
 import ChatHistory from "./ChatHistory";
 const suggestionArr = [
   {
@@ -140,7 +139,7 @@ const [greeting, setGreeting] = useState("");
   useEffect(() => {
     const timer = setTimeout(() => {
       setChatLoading(false);
-    }, 3500); // Set to false after 3 seconds
+    }, 2500); // Set to false after 3 seconds
 
     return () => clearTimeout(timer); // Clear timeout if component unmounts
   }, []);

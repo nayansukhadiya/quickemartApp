@@ -6,7 +6,7 @@ function Banner() {
   return (
     <div className='banner'>
       <div className='banner-detail'>
-        <h1>One Click, and Quick AI Builds Your Perfect Cart</h1>
+        <h1>Say goodbye to meal planning stress- get fresh groceries and tasty recipes delivered right at your door</h1>
         <p id='titleFont'>Not sure what you need? Let QuickE AI create your cart in one click. Say goodbye to endless searching and hello to smart shopping.</p>
         <div>
           <NavLink to='/chat' id='bannerBtn'>Try now</NavLink>

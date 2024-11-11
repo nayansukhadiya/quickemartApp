@@ -106,12 +106,12 @@
 }
 .adminMessage {
   align-self: flex-start;
-  background: #b4b4b44b;
+  background: #ffffff;
   text-align: left;
   border-radius: 20px 20px 20px 15px;
-  backdrop-filter: blur(5px);
+  /* backdrop-filter: blur(5px);
 -webkit-backdrop-filter: blur(5px);
-border: 1px solid rgb(175, 175, 175);
+border: 1px solid rgb(175, 175, 175); */
 }
 .adminMessage .rightSide {
   bottom: -9px;

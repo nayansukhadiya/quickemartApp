@@ -1,10 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ChatBot from "../../pages/ChatPage/ChatBot";
 import UserContext from "../../context/UserContext";
 import "./ChatPage.css";
 import TextAnimation from "./TextAnimation";
 import ChatHistory from "./ChatHistory";
-import BackBtn from "../../components/BackBtn/BackBtn";
 const suggestionArr = [
   {
     icon: (
@@ -132,19 +131,44 @@ const suggestionArr = [
 function ChatPage() {
   const { ansGet } = useContext(UserContext);
   const [promptChat, setPromptChat] = useState(null);
-
+const [chatLoading, setChatLoading] = useState(true);
+const [greeting, setGreeting] = useState("");
 
   const handleSuggestionClick = (text) => {
     setPromptChat(text);
   };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setChatLoading(false);
+    }, 3500); // Set to false after 3 seconds
 
+    return () => clearTimeout(timer); // Clear timeout if component unmounts
+  }, []);
+  useEffect(() => {
+    const hour = new Date().getHours();
+
+    if (hour < 12) {
+      setGreeting("Good Morning");
+    } else if (hour < 18) {
+      setGreeting("Good Afternoon");
+    } else {
+      setGreeting("Good Evening");
+    }
+  }, []);
   return (
     <div className="ChatPage">
       <div className="FadeBack topFade"></div>
+      {chatLoading && (
+        <div className="LoadingPageChat">
+          <h1>Welcome to QuickChat AI!</h1>
+        </div>
+      )}
           <div className="DemoChatBox"></div>
       <div className="pageRes">
         <div className={`prePageChat ${ansGet === true ? "ChatActive" : ""}`}>
-          <TextAnimation />
+          {/* <TextAnimation /> */}
+          <div className="MainMessage"><h1>Hello,</h1>
+          <h4>{greeting}! What type of cart would you like me to generate today?</h4></div>
           <div className="boxImgGemini">
             <div>Your cart has been generated using</div>
             <div>

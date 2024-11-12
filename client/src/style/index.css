@@ -83,13 +83,6 @@ button {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(
-    135deg,
-    #86acfe66 0%,
-    #0084d147 80%,
-    #0084d150 100%
-  );
-  background: #f7f7f7;
 }
 
 .chatBg .Layer {

@@ -120,7 +120,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: end;
   gap: 5px;
   text-wrap: balance;
   overflow-y: auto;

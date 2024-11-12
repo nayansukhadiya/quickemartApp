@@ -30,10 +30,10 @@ function ChatBot({ chatPrompt }) {
     const promptMessage = `I want you to create a shopping cart based on my request. Here's my dish request to how to cook and give me required every minor single ingredient of every single dish: ${prompt}. And food style is must be ${foodPmt}. Please provide a list of ingredients and quantities in JSON format.`;
 
     try {
+      setPrompt("");
       setChatArray((prev) => [...prev, { author: "user", message: prompt }]);
       await sendMessage(promptMessage);
       setChatLoad(false);
-      setPrompt("");
     } catch (err) {
       console.error("Error sending message:", err);
     }
@@ -128,7 +128,9 @@ function ChatBot({ chatPrompt }) {
             foodStyle.map((item) => (
               <button
                 key={item}
-                onClick={() => setFoodStyleBtn(item)}
+                onClick={() => {setFoodStyleBtn(item)
+                  setFoodBtnOpen(false);
+                }}
                 className={`${item} ${foodStyleBtn === item ? "active" : ""}`}
               >
                 {item

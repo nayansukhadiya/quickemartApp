@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import './logo.css'
-import LogoImg from '../../assets/images/quicke.png'
+import LogoImg from '../../assets/images/mainLogo.svg'
 function Logo() {
   return (
     <div className="logo-section">

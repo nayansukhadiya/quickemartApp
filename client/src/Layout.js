@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import UserContextProvider from './context/UserContextProvider';
 import BottomNavBar from './components/BottomNavbar/BottomNavBar'; // Corrected folder name
@@ -7,7 +7,8 @@ import ChatBg from './pages/ChatPage/ChatBg'; // Ensure ChatBg is part of ChatPa
 import CartAiBtn from './components/chatAiBtn/CartAiBtn'; // Corrected folder name
 import CartPopUp from './components/cartPopupDiv/CartPopUp'; // Corrected folder name
 import BingAddressAutoSuggest from './components/BingMap/BingAddressAutoSuggest';
-import Logo from './components/logo/Logo';
+import LogoImg from "./assets/images/quickAi.svg";
+
 
 
 function Layout() {
@@ -78,7 +79,7 @@ function Layout() {
       {!CartPopUpAnim &&  <CartPopUp />}
       {!searchActive &&  <BottomNavBar />}
       {chatBgSet && <ChatBg />} 
-      {chatBgSet && <div className='chatLogo'> <Logo /></div>} 
+      {chatBgSet && <div className='chatLogo'> <Link to={'/'}><img src={LogoImg} alt='img' /></Link></div>} 
 
     </UserContextProvider>
   );

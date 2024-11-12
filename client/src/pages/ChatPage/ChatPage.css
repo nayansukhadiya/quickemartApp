@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  gap: 10px;
+  gap: 2px;
   min-height: 100%;
   margin: auto;
 }
@@ -22,11 +22,10 @@
   background-color: transparent;
 }
 .BottomSecChat {
-  width: 100%;
-  /* padding: 0 15%; */
+  width: 70%;
   min-height: 120px;
-  position: sticky;
-  bottom: 10px;
+  position: fixed;
+  bottom: 3px;
   z-index: 2;
   animation: bottomSecChatAnim 0.7s linear;
   animation-delay: 1.8s;
@@ -43,6 +42,7 @@
 }
 .LoadingPageChat {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -51,12 +51,12 @@
   z-index: 999;
   top: 0;
   left: 0;
-  background: linear-gradient(208deg, #3468fa, #51e9fc);
-  background: radial-gradient(100% 100% at 4% 3%, var(--primary-color) 0%, transparent), radial-gradient( 100% 100% at var(--g2-1-x-position) var(--g2-1-y-position), #51e9fc -32%, transparent ), radial-gradient( 100% 100% at var(--g2-2-x-position) var(--g2-2-y-position), #195feb 0%, transparent ), #ffffff;
+  background: linear-gradient(28deg, #7398ff, #51e9fc);
+  background: radial-gradient(100% 100% at 4% 3%, #adc3ff 0%, transparent), radial-gradient( 100% 100% at var(--g2-1-x-position) var(--g2-1-y-position), #7dabff -32%, transparent ), radial-gradient( 100% 100% at var(--g2-2-x-position) var(--g2-2-y-position), #ffc8c8 0%, transparent ), #ffcdcd;
   animation-name: g-2;
   animation-iteration-count: infinite;
   animation-duration: 3s;
-  transition-timing-function: ease-in-out
+  transition-timing-function: linear
   }
   
   @property --g2-1-x-position { syntax: "<percentage>"; inherits: false; initial-value: 87.96875%; }
@@ -93,12 +93,21 @@
   } /* Fade out to transparent */
 }
 
-.LoadingPageChat h1 {
-  font-size: 3rem;
+.LoadingPageChat h1
+,.LoadingPageChat h3  {
+  font-size: 2rem;
   text-align: center;
-  color: white;
   font-weight: 600;
   width: 80%;
+}
+.LoadingPageChat h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.LoadingPageChat img{
+  width: max(70%,280px);
+  max-width: 300px;
+  padding: 10px 0 20px 0;
 }
 
 .DemoChatBox {
@@ -114,6 +123,9 @@
   justify-content: end;
   gap: 5px;
   text-wrap: balance;
+  overflow-y: auto;
+  height: 73vh;
+  margin-bottom: 124px;
 }
 .BackBtnDisplay {
   display: none;
@@ -182,6 +194,7 @@
  background: linear-gradient(-7deg, #3468fa, #51e9fc);  
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
 }
 .MainMessage h4{
   font-size: 30px
@@ -190,9 +203,7 @@
   width: 100%;
   display: flex;
   gap: 8px;
-  min-height: 185px;
   overflow-x: auto;
-  padding-bottom: 6px;
   /* justify-content: center; */
   animation: suggestedCardAnim 0.6s linear ;
   animation-delay: 2.2s;
@@ -203,15 +214,14 @@
   justify-content: space-between;
   position: relative;
   min-width: 205px;
-  min-height: 150px;
-  height: 150px;
+  min-height: 135px;
+  height: 135px;
   width: 290px;
   padding: 16px;
-  border-radius: 8px;
   border: 1px solid rgb(175, 175, 175);
   transition: all 0.32s linear;
   background: rgb(255, 255, 255);
-  border-radius: 16px;
+  border-radius: 12px;
 }
 @keyframes suggestedCardAnim {
   0%{
@@ -230,32 +240,11 @@
   background-color: var(--primary-color);
 }
 
-.suggestedCard:hover .suggestionIcon {
-  border: 1px solid rgba(255, 255, 255, 0.664);
-}
-.suggestedCard:hover .suggestionIcon svg {
-  stroke: white;
-}
-.suggestedCard .suggestionIcon {
-  border: 1px solid rgb(185, 185, 185);
-  width: 25px;
-  padding: 10px;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-}
-.suggestedCard .suggestionIcon svg {
-  stroke: var(--primary-color);
-  height: 21px;
-  width: 21px;
-}
 .suggestedCard .textSuggestion {
   height: 84px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 8px;
 }
 .suggestedCard .textSuggestion h3 {
   font-weight: 600;
@@ -273,6 +262,9 @@
 }
 
 @media (max-width: 480px) {
+  .BottomSecChat {
+    width: 95%;
+  }
   .ChatPage {
     width: 97%;
     padding: 0;

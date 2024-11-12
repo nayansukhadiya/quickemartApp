@@ -36,12 +36,12 @@ const useGeminiChat = () => {
               name: {
                 type: "string",
                 description:
-                  "and some time user demand the more dish than give all dishes respectively ingredients give name of the recipe according to user prompt like veg,non-veg,vegen Name of the recipe not found then do not mentioned if the recipe is not like veg,non-veg or vegan then simply return name of the related cart type or user prompt",
+                  "Emoji is required must include at end of the name and some time user demand the more dish than give all dishes respectively ingredients give name of the recipe according to user prompt like veg,non-veg,vegen Name of the recipe not found then do not mentioned if the recipe is not like veg,non-veg or vegan then simply return name of the related cart type or user prompt",
               },
               summary: {
                 type: "string",
                 description:
-                  "A brief summary of the recipe or dish response and user input",
+                  "Emoji is required with the in summary A brief summary of the recipe or dish response and user input",
               },
               userMessageDetail : {
                 type: "string", 

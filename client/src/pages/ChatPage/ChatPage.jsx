@@ -3,6 +3,7 @@ import ChatBot from "../../pages/ChatPage/ChatBot";
 import UserContext from "../../context/UserContext";
 import "./ChatPage.css";
 import ChatHistory from "./ChatHistory";
+import LogoImg from "../../assets/images/quickAi.svg";
 const suggestionArr = [
   {
     icon: (
@@ -125,13 +126,11 @@ const suggestionArr = [
   },
 ];
 
-
-
 function ChatPage() {
   const { ansGet } = useContext(UserContext);
   const [promptChat, setPromptChat] = useState(null);
-const [chatLoading, setChatLoading] = useState(true);
-const [greeting, setGreeting] = useState("");
+  const [chatLoading, setChatLoading] = useState(true);
+  const [greeting, setGreeting] = useState("");
 
   const handleSuggestionClick = (text) => {
     setPromptChat(text);
@@ -147,27 +146,34 @@ const [greeting, setGreeting] = useState("");
     const hour = new Date().getHours();
 
     if (hour < 12) {
-      setGreeting("Good Morning");
-    } else if (hour < 18) {
-      setGreeting("Good Afternoon");
-    } else {
-      setGreeting("Good Evening");
-    }
+      setGreeting("Good Morning ☀️");
+  } else if (hour < 18) {
+      setGreeting("Good Afternoon 🌞");
+  } else {
+      setGreeting("Good Evening 🌙");
+  }
+  
   }, []);
   return (
     <div className="ChatPage">
       <div className="FadeBack topFade"></div>
       {chatLoading && (
         <div className="LoadingPageChat">
-          <h1>Welcome to QuickChat AI!</h1>
+          <h1>Welcome to</h1>
+           <img src={LogoImg} alt="Logo" />
+        <h3>Turning Your Prompts into Perfect Carts!</h3>
         </div>
       )}
-          <div className="DemoChatBox"></div>
+      <div className="DemoChatBox"></div>
       <div className="pageRes">
         <div className={`prePageChat ${ansGet === true ? "ChatActive" : ""}`}>
           {/* <TextAnimation /> */}
-          <div className="MainMessage"><h1>Hello,</h1>
-          <h4>{greeting}! What type of cart would you like me to generate today?</h4></div>
+          <div className="MainMessage">
+            <h1>Hello 👋,</h1>
+            <h4>
+              {greeting} What type of cart would you like me to generate?
+            </h4>
+          </div>
           <div className="boxImgGemini">
             <div>Your cart has been generated using</div>
             <div>
@@ -199,8 +205,7 @@ const [greeting, setGreeting] = useState("");
       </div>
       <div className="DemoChatBox"></div>
       <div className="BottomSecChat">
-        
-      <ChatBot chatPrompt={promptChat}/>
+        <ChatBot chatPrompt={promptChat} />
       </div>
     </div>
   );

@@ -14,6 +14,10 @@
   -webkit-backdrop-filter: blur(35px);
   padding: 11px;
   gap: 10px;
+  background-color: rgba(255, 255, 255, 0.281);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  border-bottom: 1px solid rgb(197, 197, 197);
 }
 .chatBox .chatBoxForm {
   display: flex;
@@ -48,11 +52,37 @@
   background-color: var(--primary-color);
   border-radius: 10px;
   height: 40px;
-  width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #1fa2ff 0%,
+    #12d8fa 51%,
+    #1fa2ff 100%
+  );
+}
+.btn-grad {
+  padding: 15px 25px;
+  text-align: center;
+  font-weight: 600;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+}
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
 .loadingChatBtn {
   opacity: 0.4;
   cursor: none;
@@ -95,11 +125,11 @@
   display: flex;
   overflow: hidden;
   flex-direction: column;
-  background: rgb(255 255 255 / 44%);
-  backdrop-filter: blur(55px);
-  -webkit-backdrop-filter: blur(55px);
   width: fit-content;
   border: 1px solid rgb(175, 175, 175);
+  background-color: rgba(255, 255, 255, 0.281);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
 }
 .FoodStyleCardSec button {
   border-radius: 0;
@@ -114,7 +144,7 @@
   line-height: 20px;
   font-weight: 500;
   white-space: nowrap;
-  background: rgba(180, 180, 180, 0.521);
+  background-color: rgba(255, 255, 255, 0.651);
   backdrop-filter: blur(55px);
   -webkit-backdrop-filter: blur(55px);
 }

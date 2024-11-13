@@ -123,7 +123,7 @@
   gap: 5px;
   text-wrap: balance;
   overflow-y: auto;
-  height: 73vh;
+  height: 78vh;
   margin-bottom: 124px;
 }
 .BackBtnDisplay {
@@ -218,8 +218,10 @@
   width: 290px;
   padding: 16px;
   border: 1px solid rgb(175, 175, 175);
+  background-color: rgba(255, 255, 255, 0.747);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
   transition: all 0.32s linear;
-  background: rgb(255, 255, 255);
   border-radius: 12px;
 }
 @keyframes suggestedCardAnim {
@@ -255,6 +257,9 @@
 .prePageChat {
   align-items: center;
   display: flex;
+  justify-content: end;
+  height: 80vh;
+
 }
 .prePageChat {
   flex-direction: column;
@@ -285,6 +290,7 @@
   }
   .pageRes {
     gap: 2px;
+    height: calc(100vh - 248px);
   }
   .suggestedCard {
     min-height: 120px;

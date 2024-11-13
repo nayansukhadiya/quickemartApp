@@ -175,7 +175,7 @@ function Search() {
 
   return (
     <div className="searchPage">
-      {searchBarRem && <SearchBar />}
+      {searchBarRem && <div className="SearchActivePageTop"><SearchBar /></div>}
       <div className={`FilterSec ${openSidebar ? "visible" : ""}`}>
         <div className="filterSecDiv">
           <div className="HeaderSidebar">
@@ -419,7 +419,7 @@ function Search() {
     <CircleLoader />
   ) : filterProduct.length > 0 ? (
     <div>
-      <h4>Top Brands</h4>
+     
       <div className="SearchTopBrandsListHome">
         {BrandFilterArr.slice(0,10).map((item) => (
           <Link to={`/brand?name=${item.brandName}`} className="BrandList">
@@ -435,7 +435,7 @@ function Search() {
           /></Link>
         ))}
       </div>
-      <h4>Top Brands</h4>
+     
       <div className="shop-cards gridLayout searchPageSec">
         {filterProduct.map((item) => (
           <ProductCard
@@ -454,7 +454,7 @@ function Search() {
       </div>
     </div>
   ) : (
-    <p>No products found.</p>
+    <p className="NoError">No products found.</p>
   )
 }
 

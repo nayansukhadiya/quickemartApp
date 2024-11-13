@@ -78,10 +78,31 @@ button {
   padding-top: 0px !important;
 }
 .chatLogo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  padding: 0 5%;
   position: fixed;
   top: 1.25rem;
   left: 1.25rem;
   z-index: 30;
+}
+.HomeBtnChat{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  width: 38px;
+  border: 1px solid rgb(175, 175, 175);
+  background-color: rgba(255, 255, 255, 0.281);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  border-radius: 50%;
+}
+.HomeBtnChat svg{
+  height:22px;
+  width:22px;
 }
 .chatBg {
   position: fixed;
@@ -96,7 +117,7 @@ button {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.644);
+  background: rgba(255, 255, 255, 0.637);
   backdrop-filter: blur(46.5px);
   -webkit-backdrop-filter: blur(90.5px);
 }
@@ -362,10 +383,9 @@ a {
   .chatLogo {
     top: 0;
     left: 0;
-    width: 100%;
     background-color: rgba(255, 255, 255, 0.281);
     backdrop-filter: blur(2px);
-    padding: 16px 14px;
+    padding: 12px 5%;
     border-bottom: 1px solid rgb(197, 197, 197);
   }
   .chatLogo img {

@@ -46,7 +46,7 @@ function ChatHistory() {
                       )}
                     </ul>
                     <div className="linkSec">
-                      <Link to={`/CartGeneratorPage?id=${item.cart_id}`}>
+                      <Link to={`/CartGeneratorPage?id=${item.cart_id}`} title="Home">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="24"
@@ -67,7 +67,7 @@ function ChatHistory() {
                           <path d="m5 11 4-7" />
                           <path d="m9 11 1 9" />
                         </svg>{" "}
-                        View Your Cart
+                        View Cart
                       </Link>
                     </div>
                   </div>

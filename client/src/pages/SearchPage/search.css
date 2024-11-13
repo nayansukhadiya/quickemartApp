@@ -3,6 +3,29 @@
   gap: 8px;
   grid-template-columns: repeat(7, 1fr);
 }
+.NoError{
+  height: 300px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+.SearchActivePageTop{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 20px 0;
+  z-index: 99;
+  background: linear-gradient(180deg,  #b3e3ff ,  #e1f4ff);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.SearchActivePageTop .searchBar{
+width: 85%;
+margin: 0 auto;
+}
 .searchPage h4{
   padding: 20px 0;
 }
@@ -16,9 +39,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: auto;
-  padding: 15px 0px;
-  margin: 10px 0;
+  width: 95%;
+  padding: 90px 2.5% 0px 2.5%;
 }
 .FoundPro span {
   font-weight: 600;
@@ -55,7 +77,7 @@
 .FilterSec.visible {
   opacity: 1;
   touch-action: none;
-  z-index: 22;
+  z-index: 202;
 }
 .FilterSec .filterSecDiv {
   transition: all 300ms ease-in-out;
@@ -77,7 +99,7 @@
 }
 .FilterSec .filterSecDiv .BottomSec {
   display: grid;
-  grid-template-columns: 35% 65%;
+  grid-template-columns: 32% 68%;
   height: 85%;
 }
 .FilterSec .filterSecDiv .BottomSec .titleSec {
@@ -165,6 +187,7 @@
   min-height: 80px;
   border-radius: 10px;
 }
+
 .SearchTopBrandsListHome .BrandList img{
   width: 100%;
   border-radius: 5px;
@@ -184,12 +207,16 @@
     width: 100%;
   }
   .FilterSec .filterSecDiv .BottomSec .ContentSecFilter {
-    padding: 10px;
+    padding: 10px 15px;
   }
   .FilterSec.visible {
     z-index: 122;
 }
 .FilterSec {
     height: 100%;
+}
+.SearchTopBrandsListHome .BrandList{
+  min-width: 60px;
+  min-height: 60px;
 }
 }

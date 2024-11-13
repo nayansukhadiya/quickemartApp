@@ -23,7 +23,7 @@ function ChatHistory() {
           {chatArray.map((item) => {
             if (item.author === "user" && item.message) {
               return (
-                <div className="userMessage  shadowMes" key={item.id}>
+                <div className="userMessage Message shadowMes" key={item.id}>
                   {item.message}
                 </div>
               );
@@ -33,7 +33,7 @@ function ChatHistory() {
               return (
                 <div className="AdminMessageSec">
                   <img src={ChatLogo} alt="img" />
-                  <div className="adminMessage " key={item.id}>
+                  <div className="adminMessage Message" key={item.id}>
                     <h3 className="cartTitle">
                       {item.rapidRecipeArr[0]?.recipe?.name}
                     </h3>

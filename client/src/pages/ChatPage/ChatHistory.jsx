@@ -23,19 +23,8 @@ function ChatHistory() {
           {chatArray.map((item) => {
             if (item.author === "user" && item.message) {
               return (
-                <div className="userMessage Message shadowMes" key={item.id}>
+                <div className="userMessage  shadowMes" key={item.id}>
                   {item.message}
-                  {/* <div className="tailMessage leftSide">
-                    <svg
-                      width="17"
-                      height="17"
-                      viewBox="0 0 17 17"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M11.5 10.5C12.0014 13.5086 14.8333 16.3333 16.5 17C10.1 17 6 14.8333 5 13.5L0 15L0.5 0H11V2V4V4.5C11 5.5 11 7.5 11.5 10.5Z" />
-                    </svg>
-                  </div> */}
                 </div>
               );
             }
@@ -44,7 +33,7 @@ function ChatHistory() {
               return (
                 <div className="AdminMessageSec">
                   <img src={ChatLogo} alt="img" />
-                  <div className="adminMessage Message" key={item.id}>
+                  <div className="adminMessage " key={item.id}>
                     <h3 className="cartTitle">
                       {item.rapidRecipeArr[0]?.recipe?.name}
                     </h3>

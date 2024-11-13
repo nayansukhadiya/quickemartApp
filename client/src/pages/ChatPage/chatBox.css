@@ -62,35 +62,6 @@
   height: 20px;
 }
 
-.chatBox button .spinner:before {
-  display: block;
-  height: 3px;
-  width: 3px;
-  content: "";
-  -webkit-animation: spin 1s infinite;
-  animation: spin 1s infinite;
-  border-radius: 100%;
-  -webkit-box-shadow: 8px 0 0 1.6px black, 0 8px 0 1.6px var(--background-color),
-    0 -8px 0 1.6px var(--background-color),
-    -8px 0 0 1.6px var(--background-color);
-  box-shadow: 8px 0 0 1.6px black, 0 8px 0 1.6px var(--background-color),
-    0 -8px 0 1.6px var(--background-color),
-    -8px 0 0 1.6px var(--background-color);
-}
-
-@-webkit-keyframes spin {
-  to {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes spin {
-  to {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
 .ChatBotBottomSec {
   display: flex;
   width: 100%;

@@ -28,9 +28,7 @@
   text-align: left;
   max-width: 70%;
   animation: loadingAnimation 1.2s;
-  
-  
-
+  border:  1px solid var(--primary-color);
 }
 .AdminMessageSec{
   width: 100%;

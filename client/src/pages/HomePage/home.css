@@ -221,8 +221,9 @@
 }
 @media screen and (max-width: 480px) {
   .banner {
+    height: auto;
     padding: 20px 15px;
-    border-radius: 14px;
+    border-radius: 10px;
   }
   .banner-detail {
     width: 100%;
@@ -232,7 +233,7 @@
     padding: 10px 20px;
   }
   .banner-detail > h1 {
-    font-size: 1.7rem;
+    font-size: 1.2rem;
   }
   #titleFont {
     width: 70%;

@@ -9,9 +9,7 @@ function useChatProduct() {
     if (!arr || arr.length === 0) return;
   
     const ingredients = arr[0]?.rapidRecipeArr[0]?.recipe?.ingredients;
-  const userMessageDetail = arr[0]?.useChatProduct
-  console.log("=====================",arr)
-  console.log(">>>>>>>>>>>>>>>>>>>",userMessageDetail)
+  const userMessageDetail = arr[0]?.useChatProduct;
     if (ingredients && ingredients.length > 0) {
       const fetchPromises = ingredients.map((ingredient) => {
 

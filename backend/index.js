@@ -52,6 +52,7 @@ app.use("/related", subCategoryRoute);
 app.use("/related", ProRelatedBrand);
 
 app.use("/search", SearchData);
+
 app.use("/products", ProductBySubCategory);
 app.use("/products", ProductByFilter);
 

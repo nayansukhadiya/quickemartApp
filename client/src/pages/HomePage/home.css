@@ -6,23 +6,54 @@
   height: 300px;
   border-radius: 20px;
   padding: 40px;
-  margin: 20px 0;
+  margin: 10px 0  20px 0;
   position: relative;
   overflow: hidden;
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     150deg,
-    #c4d7ff 0%,
-    #bdd2ffe1 55%,
-    #88adff 100%
-  );
-
+    #ffd9d9 0%,
+    #e0eaffe1 55%,
+    #c0d4ff 100%
+  ); */
+  background-color: #f0f0f5;
+  border: 1px solid lightgray;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-.demoimg {
-  /* width: 100%; */
-  height: 100%;
-  background-color: #88adff;
+.LogoAndAddressSecHome{
+  display: none;
+  justify-content: space-between;
+  position: relative;
+  left: 0px;
+  top: 0;
+  transform: translateX(-2%);
+  padding: 10px 20px;
+width: 100vw;
+background: linear-gradient(rgb(141, 181, 255),rgb(170, 200, 255));
 }
+.LogoAndAddressSecHome .userLocationBox{
+  width: 220px;
+}
+.LogoImageBanner{
+  height: 30px;
+  width: fit-content;
+  object-fit: contain;
+}
+.HomeSearch{
+  position: sticky;
+  left: 0px;
+  top: 0;
+  transform: translateX(-2%);
+  padding: 10px 0 20px 0;
+width: 100vw;
+z-index: 99;
+background: linear-gradient( rgb(170, 200, 255), rgb(191, 213, 255));
+}
+.HomeSearch .searchBar{
+  width: 85%;
+  margin: 0 auto;
+  border: 1px solid rgb(170, 170, 170);
+}
+
 .banner-detail {
   display: flex;
   flex-direction: column;
@@ -30,26 +61,27 @@
   width: 70%;
   left: 60px;
   z-index: 2;
+  justify-content: end;
 }
 .banner-detail > h1 {
   font-weight: 600;
-  font-size: 35px;
+  font-size: 25px;
 }
-.banner img {
+.banner .BannerImage {
   position: absolute;
-  height: 100%;
-  right: 0px;
+  height: 90%;
+  right: 50px;
   bottom: 0px;
 }
 #bannerBtn {
   display: block;
-  color: var(--primary-color);
+  background-color: rgb(174, 202, 255);
   border-radius: 10px;
   width: fit-content;
   font-size: 1.2rem;
   padding: 10px 40px;
-  font-weight: 600;
-  background-color: #fff;
+  font-weight: 500;
+  color: var(--primary-color);
   text-decoration: none;
 }
 #titleFont {
@@ -60,22 +92,28 @@
 .FeaturesHome {
   width: 100%;
 }
-.nameCard {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgb(194, 194, 194);
-  border: 1px solid var(--primary-color);
-  background-color: #e7ffe8;
-  padding: 6px 14px;
-  border-radius: 5px;
-  outline: none;
-  min-width: 150px;
-  color: var(--primary-color);
-  font-weight: 700;
-  height: 267px;
+.TitleSec{
+margin-top: 10px;
+display: flex;
+align-items: center;
+gap: 20px;
 }
+.TitleSec h3{
+  position: relative;
+padding: 10px 0px 10px 0;
+background-color: white;
+font-size: 16px;
+font-weight: 600;
+color: rgb(58, 58, 58);
+white-space: nowrap;
+
+}
+.TitleSec .LineFaded{
+ width: 100%;
+  height: 2px;
+  background: linear-gradient( 90deg,rgb(151, 151, 151), transparent);
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -157,7 +195,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 33px;
+  height: 43px;
 }
 .card .discountBox {
   position: absolute;
@@ -221,27 +259,35 @@
 }
 @media screen and (max-width: 480px) {
   .banner {
-    height: auto;
     padding: 20px 15px;
-    border-radius: 10px;
+        border-radius: 10px;
+        height: 400px;
+        width: auto;
   }
   .banner-detail {
-    width: 100%;
+    justify-content: center;
+    width: 56%;
+  }
+  .LogoImageBanner{
+    height: 20px;
+    width: fit-content;
+    object-fit: contain;
   }
   #bannerBtn {
-    font-size: 1rem;
-    padding: 10px 20px;
+    font-size: 0.8rem;
+   padding: 10px 14px;
+   border-radius: 200px;
   }
   .banner-detail > h1 {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
   }
   #titleFont {
     width: 70%;
     font-size: 0.9rem;
   }
-  .banner img {
-    height: 180px;
-    opacity: 0.8;
+  .banner .BannerImage {
+    height: 85%;
+    right: 14px;
   }
   .relatedPro .card {
     width: unset;
@@ -253,5 +299,8 @@
   .card .img-section {
     height: unset;
     width: 100%;
+  }
+  .LogoAndAddressSecHome{
+    display: flex;
   }
 }

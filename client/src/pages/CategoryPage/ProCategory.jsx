@@ -17,7 +17,7 @@ function ProCategory() {
       <div className="categorySec">
         {catArr.map((item) => (
           <NavLink className="categoryCard" to={`/shop?catid=${item}`} key={item}>
-            <img src={require(`../../assets/images/category_images/n/${item}.png`)} alt="img"/>
+            <img src={require(`../../assets/images/category_images/png/${item}.png`)} alt="img"/>
             <p>
               {" "}
               {item

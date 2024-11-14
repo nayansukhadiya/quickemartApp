@@ -1,20 +1,23 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './home.css'; 
-
+import HomeBanner from '../../assets/images/homeBanner.png'
+import LogoImg from "../../assets/images/quickAi.svg";
 function Banner() {
   return (
-    <div className='banner'>
+    <NavLink to='/chat' className='banner'>
       <div className='banner-detail'>
-        <h1>Say goodbye to meal planning stress- get fresh groceries and tasty recipes delivered right at your door</h1>
+        <img src={LogoImg} alt='logo' className='LogoImageBanner'/>
+        <h1>Tell us what you need – watch your AI-powered cart come to life!</h1>
         {/* <p id='titleFont'>Not sure what you need? Let QuickE AI create your cart in one click. Say goodbye to endless searching and hello to smart shopping.</p> */}
-        <div>
+        {/* <div>
           <NavLink to='/chat' id='bannerBtn'>Try now</NavLink>
-        </div>
+        </div> */}
       </div>
+      <img src={HomeBanner} alt='img' className='BannerImage'/>
       {/* <img src='https://cdn3d.iconscout.com/3d/premium/thumb/chatbot-3d-icon-download-in-png-blend-fbx-gltf-file-formats--robot-chat-talk-communication-robotic-automation-internet-marketing-pack-business-icons-6497271.png?f=webp' alt='img'/> */}
       {/* <img src='https://plus.unsplash.com/premium_photo-1677094310919-d0361465d3be?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2hhdCUyMGJvdHxlbnwwfHwwfHx8MA%3D%3D' alt='img'/> */}
-    </div>
+    </NavLink>
   );
 }
 

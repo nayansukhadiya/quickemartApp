@@ -123,7 +123,7 @@
   gap: 5px;
   text-wrap: balance;
   overflow-y: auto;
-  height: 70vh;
+  height: 78vh;
   margin-bottom: 15vh;
 }
 .BackBtnDisplay {
@@ -290,7 +290,7 @@
   }
   .pageRes {
     gap: 2px;
-    margin-bottom: 17vh;
+    margin-bottom: 14vh;
   }
   .suggestedCard {
     min-height: 120px;

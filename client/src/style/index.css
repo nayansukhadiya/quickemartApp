@@ -382,11 +382,11 @@ a {
   .chatLogo {
     top: 0;
     left: 0;
-    background-color: rgba(255, 255, 255, 0.281);
-    backdrop-filter: blur(2px);
+    /* background-color: rgba(255, 255, 255, 0.281);
+    backdrop-filter: blur(2px); */
     padding: 12px 5%;
     height: 6vh;
-    border-bottom: 1px solid rgb(197, 197, 197);
+    /* border-bottom: 1px solid rgb(197, 197, 197); */
   }
   .chatLogo img {
     height: 25px;

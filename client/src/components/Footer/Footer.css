@@ -1,0 +1,52 @@
+.Footer {
+  margin: 20px 0 ;
+  padding: 10px 0 50px 0;
+  border-top: 1px solid lightgray;
+}
+.borderFaded {
+  height: 2px;
+  margin: 10px 0;
+  background: linear-gradient(90deg, rgb(151, 151, 151), transparent);
+}
+.FooterTitle {
+    padding-top: 30px;
+  font-size: 32px;
+  font-weight: 600;
+  font-family: "Sora", sans-serif;
+}
+.LogoSectionFooter {
+  padding: 20px 0;
+}
+.FooterAbout p {
+    /* width: 80%; */
+  padding: 5px 0;
+  font-size: 16px;
+  line-height: 24px;
+}
+.TechnologyUsed h5{
+    font-size: 20px;
+    margin: 10px 0;
+}
+.TechnologyUsed span{
+    font-weight: 600;
+    font-size: 16px;
+}
+.TechnologyUsed h3{
+    margin: 10px 0;
+    font-size: 14px;
+}
+.TechLogoSec{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.TechLogoSec .TechLogo img{
+    background-color: rgb(255, 255, 255);
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid rgb(218, 218, 218);
+width: 50px;
+height: 50px;
+aspect-ratio: 1;
+object-fit: contain;
+}

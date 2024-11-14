@@ -26,8 +26,8 @@
 }
 
 ::selection {
-  background-color: var(--sec-color);
-  color: var(--primary-color);
+  color: var(--sec-color);
+  background-color: var(--primary-color);
 }
 
 @font-face {

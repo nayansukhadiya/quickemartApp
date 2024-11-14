@@ -117,7 +117,7 @@
   aspect-ratio: 1;
 }
 .CartPopUpSec .CartPopUpDetail {
-  width: 50px;
+  width: 54px;
   flex-direction: column;
   animation: detail 0.1s forwards linear;
   animation-delay: 0.5s;

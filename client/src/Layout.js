@@ -1,86 +1,116 @@
-import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
-import UserContextProvider from './context/UserContextProvider';
-import BottomNavBar from './components/BottomNavbar/BottomNavBar'; // Corrected folder name
-import ChatBg from './pages/ChatPage/ChatBg'; // Ensure ChatBg is part of ChatPage
-import CartAiBtn from './components/chatAiBtn/CartAiBtn'; // Corrected folder name
-import CartPopUp from './components/cartPopupDiv/CartPopUp'; // Corrected folder name
-import BingAddressAutoSuggest from './components/BingMap/BingAddressAutoSuggest';
+import React, { useEffect, useState } from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+import UserContextProvider from "./context/UserContextProvider";
+import BottomNavBar from "./components/BottomNavbar/BottomNavBar"; // Corrected folder name
+import ChatBg from "./pages/ChatPage/ChatBg"; // Ensure ChatBg is part of ChatPage
+import CartAiBtn from "./components/chatAiBtn/CartAiBtn"; // Corrected folder name
+import CartPopUp from "./components/cartPopupDiv/CartPopUp"; // Corrected folder name
+import BingAddressAutoSuggest from "./components/BingMap/BingAddressAutoSuggest";
 import LogoImg from "./assets/images/quickAi.svg";
-
-
+import Footer from "./components/Footer/Footer";
 
 function Layout() {
   const [searchActive, setSearchActive] = useState(false);
   const [chatBgSet, setChatBgSet] = useState(false);
-  const [searchBarRem,setSearchBarRem] = useState(false);
-  const [chatBtnHide,setChatBtnHide] = useState(false);
-  const [CartPopUpAnim,setCartPopUpAnim] = useState(false);
+  const [searchBarRem, setSearchBarRem] = useState(false);
+  const [chatBtnHide, setChatBtnHide] = useState(false);
+  const [CartPopUpAnim, setCartPopUpAnim] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const location = useLocation(); 
-  
+  const location = useLocation();
+
   useEffect(() => {
-    const currentPath = location.pathname; 
-    if (currentPath === "/chat" || currentPath === "/CartGeneratorPage"  || currentPath === "/cart" || currentPath === "/detail" || currentPath === "/brand") {
+    const currentPath = location.pathname;
+    if (
+      currentPath === "/chat" ||
+      currentPath === "/CartGeneratorPage" ||
+      currentPath === "/cart" ||
+      currentPath === "/detail" ||
+      currentPath === "/brand"
+    ) {
       setSearchActive(true);
     } else {
       setSearchActive(false);
     }
   }, [location]);
-  
+
   useEffect(() => {
-    const currentPath = location.pathname; 
+    const currentPath = location.pathname;
     if (currentPath === "/chat") {
-      setChatBgSet(true); 
+      setChatBgSet(true);
     } else {
-      setChatBgSet(false); 
+      setChatBgSet(false);
     }
   }, [location]);
   useEffect(() => {
-    const currentPath = location.pathname; 
+    const currentPath = location.pathname;
     if (currentPath === "/chat" || currentPath === "/CartGeneratorPage") {
-      setChatBtnHide(true); 
+      setChatBtnHide(true);
     } else {
-      setChatBtnHide(false); 
+      setChatBtnHide(false);
     }
   }, [location]);
   useEffect(() => {
-    const currentPath = location.pathname; 
+    const currentPath = location.pathname;
     if (currentPath === "/chat" || currentPath === "/cart") {
-      setCartPopUpAnim(true); 
+      setCartPopUpAnim(true);
     } else {
-      setCartPopUpAnim(false); 
+      setCartPopUpAnim(false);
     }
   }, [location]);
-  useEffect(()=> {
-    const currentPath = location.pathname; 
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    if (isMobile || currentPath === "/chat") { 
+  useEffect(() => {
+    const currentPath = location.pathname;
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+    if (isMobile || currentPath === "/chat") {
       setSearchBarRem(true);
     } else {
       setSearchBarRem(false);
     }
-    if(isMobile){
+    if (isMobile) {
       setIsMobile(true);
-    }else{
+    } else {
       setIsMobile(false);
     }
-  }, [location])
+  }, [location]);
 
   return (
     <UserContextProvider>
       <BingAddressAutoSuggest />
-      {!searchBarRem &&  <Navbar />}
-      {!chatBtnHide &&  <CartAiBtn />}
-      <div className={`main  ${isMobile ? "mobileShop" : ""} ${chatBgSet ? "MainChat" : ""}`}>
+      {!searchBarRem && <Navbar />}
+      {!chatBtnHide && <CartAiBtn />}
+      <div
+        className={`main  ${isMobile ? "mobileShop" : ""} ${
+          chatBgSet ? "MainChat" : ""
+        }`}
+      >
         <Outlet />
+      <Footer />
       </div>
-      {!CartPopUpAnim &&  <CartPopUp />}
-      {!searchActive &&  <BottomNavBar />}
-      {chatBgSet && <ChatBg />} 
-      {chatBgSet && <div className='chatLogo'> <Link className='HomeBtnChat' to={'/'}>   <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="currentColor"><path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06z"/><path d="m12 5.432l8.159 8.159q.045.044.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198l.091-.086z"/></g></svg></Link></div>} 
-
+      {!CartPopUpAnim && <CartPopUp />}
+      {!searchActive && <BottomNavBar />}
+      {chatBgSet && <ChatBg />}
+      {chatBgSet && (
+        <div className="chatLogo">
+          {" "}
+          <Link className="HomeBtnChat" to={"/"}>
+            {" "}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+            >
+              <g fill="currentColor">
+                <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06z" />
+                <path d="m12 5.432l8.159 8.159q.045.044.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198l.091-.086z" />
+              </g>
+            </svg>
+          </Link>
+        </div>
+      )}
     </UserContextProvider>
   );
 }

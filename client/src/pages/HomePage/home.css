@@ -66,6 +66,8 @@ background: linear-gradient( rgb(170, 200, 255), rgb(191, 213, 255));
   justify-content: end;
 }
 .banner-detail > h1 {
+  font-family: "Sora", sans-serif;
+  line-height: 34px;
   font-weight: 600;
   font-size: 25px;
 }
@@ -282,6 +284,7 @@ white-space: nowrap;
   }
   .banner-detail > h1 {
     font-size: 0.9rem;
+    line-height: 1.3rem;
   }
   #titleFont {
     width: 70%;

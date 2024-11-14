@@ -3,7 +3,7 @@
   /* justify-content: center; */
   width: auto;
   min-height: 150px;
-  height: 300px;
+  height: 270px;
   border-radius: 20px;
   padding: 40px;
   margin: 10px 0  20px 0;
@@ -17,8 +17,7 @@
   ); */
   background-color: #f0f0f5;
   border: 1px solid lightgray;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
+  }
 .LogoAndAddressSecHome{
   display: none;
   justify-content: space-between;
@@ -34,7 +33,7 @@ background: linear-gradient(rgb(141, 181, 255),rgb(170, 200, 255));
   width: 220px;
 }
 .LogoImageBanner{
-  height: 30px;
+  height: 40px;
   width: fit-content;
   object-fit: contain;
 }
@@ -46,6 +45,9 @@ background: linear-gradient(rgb(141, 181, 255),rgb(170, 200, 255));
   padding: 10px 0 20px 0;
 width: 100vw;
 z-index: 99;
+border-radius: 0px 0px 20px 20px;
+-moz-border-radius: 0px 0px 20px 20px;
+-webkit-border-radius: 0px 0px 20px 20px;
 background: linear-gradient( rgb(170, 200, 255), rgb(191, 213, 255));
 }
 .HomeSearch .searchBar{
@@ -69,8 +71,8 @@ background: linear-gradient( rgb(170, 200, 255), rgb(191, 213, 255));
 }
 .banner .BannerImage {
   position: absolute;
-  height: 90%;
-  right: 50px;
+  height: 107%;
+  right: 31px;
   bottom: 0px;
 }
 #bannerBtn {
@@ -265,8 +267,8 @@ white-space: nowrap;
         width: auto;
   }
   .banner-detail {
-    justify-content: center;
-    width: 56%;
+    justify-content: start;
+    width: 100%;
   }
   .LogoImageBanner{
     height: 20px;
@@ -286,8 +288,9 @@ white-space: nowrap;
     font-size: 0.9rem;
   }
   .banner .BannerImage {
-    height: 85%;
-    right: 14px;
+    height: 73%;
+    right: 50%;
+    transform: translateX(50%);
   }
   .relatedPro .card {
     width: unset;

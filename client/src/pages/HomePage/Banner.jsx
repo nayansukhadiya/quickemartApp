@@ -8,7 +8,7 @@ function Banner() {
     <NavLink to='/chat' className='banner'>
       <div className='banner-detail'>
         <img src={LogoImg} alt='logo' className='LogoImageBanner'/>
-        <h1>Tell us what you need – watch your AI-powered cart come to life!</h1>
+        <h1>Your Shopping, Simplified. Just give us a prompt, and our AI-powered cart builder will instantly generate the perfect list of essentials, tailored to your needs!</h1>
         {/* <p id='titleFont'>Not sure what you need? Let QuickE AI create your cart in one click. Say goodbye to endless searching and hello to smart shopping.</p> */}
         {/* <div>
           <NavLink to='/chat' id='bannerBtn'>Try now</NavLink>

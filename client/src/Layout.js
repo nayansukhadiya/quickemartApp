@@ -7,8 +7,6 @@ import ChatBg from "./pages/ChatPage/ChatBg"; // Ensure ChatBg is part of ChatPa
 import CartAiBtn from "./components/chatAiBtn/CartAiBtn"; // Corrected folder name
 import CartPopUp from "./components/cartPopupDiv/CartPopUp"; // Corrected folder name
 import BingAddressAutoSuggest from "./components/BingMap/BingAddressAutoSuggest";
-import LogoImg from "./assets/images/quickAi.svg";
-import Footer from "./components/Footer/Footer";
 
 function Layout() {
   const [searchActive, setSearchActive] = useState(false);
@@ -87,7 +85,6 @@ function Layout() {
         }`}
       >
         <Outlet />
-      <Footer />
       </div>
       {!CartPopUpAnim && <CartPopUp />}
       {!searchActive && <BottomNavBar />}

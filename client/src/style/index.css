@@ -43,11 +43,11 @@
   /* font-family: "Sora", sans-serif; */
   /* font-family: "Uber Move Text", sans-serif; */
   /* font-family: 'Urbanist', sans-serif; */
-  font-family: 'Poppins', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
   /* font-family: 'Qanelas Soft', sans-serif; */
   /* font-family: 'Basier Circle', sans-serif; */
   /* font-family: 'Pilcrow', sans-serif; */
-  /* font-family: "Golos Text", sans-serif; */
+  font-family: "Golos Text", sans-serif;
   /* font-family: gillroy; */
 }
 html,
@@ -203,6 +203,7 @@ button {
 }
 .card .addToCart {
   width: auto;
+margin: 0;
 }
 .HomeSearch {
   display: none;
@@ -305,8 +306,8 @@ a {
 }
 .gridLayout {
   display: grid;
-  gap: 8px;
-  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  grid-template-columns: repeat(6, 1fr);
 }
 .BrandProductFound {
   padding: 10px 0;

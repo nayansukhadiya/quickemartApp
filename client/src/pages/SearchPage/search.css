@@ -1,6 +1,6 @@
 .searchPageSec {
   display: grid;
-  gap: 8px;
+  gap: 18px;
   grid-template-columns: repeat(7, 1fr);
 }
 .NoError{
@@ -19,8 +19,7 @@
   width: 100vw;
   padding: 20px 0;
   z-index: 99;
-  background: linear-gradient(180deg,  #b3e3ff ,  #e1f4ff);
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background: linear-gradient(rgb(194, 226, 255), rgb(255, 255, 255));
 }
 .SearchActivePageTop .searchBar{
 width: 85%;

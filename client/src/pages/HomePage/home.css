@@ -6,7 +6,7 @@
   height: 270px;
   border-radius: 20px;
   padding: 40px;
-  margin: 10px 0  20px 0;
+  margin: 10px 0 20px 0;
   position: relative;
   overflow: hidden;
   /* background-image: linear-gradient(
@@ -17,8 +17,8 @@
   ); */
   background-color: #f0f0f5;
   border: 1px solid lightgray;
-  }
-.LogoAndAddressSecHome{
+}
+.LogoAndAddressSecHome {
   display: none;
   justify-content: space-between;
   position: relative;
@@ -26,31 +26,32 @@
   top: 0;
   transform: translateX(-2%);
   padding: 10px 20px;
-width: 100vw;
-background: linear-gradient(rgb(141, 181, 255),rgb(170, 200, 255));
+  width: 100vw;
+  background: linear-gradient(rgb(170, 200, 255), rgb(194, 226, 255));
 }
-.LogoAndAddressSecHome .userLocationBox{
+.LogoAndAddressSecHome .userLocationBox {
   width: 220px;
 }
-.LogoImageBanner{
+.LogoImageBanner {
   height: 40px;
   width: fit-content;
   object-fit: contain;
 }
-.HomeSearch{
+.HomeSearch {
   position: sticky;
   left: 0px;
   top: 0;
   transform: translateX(-2%);
   padding: 10px 0 20px 0;
-width: 100vw;
-z-index: 99;
-border-radius: 0px 0px 20px 20px;
+  width: 100vw;
+  z-index: 99;
+  /* border-radius: 0px 0px 20px 20px;
 -moz-border-radius: 0px 0px 20px 20px;
--webkit-border-radius: 0px 0px 20px 20px;
-background: linear-gradient( rgb(170, 200, 255), rgb(191, 213, 255));
+-webkit-border-radius: 0px 0px 20px 20px; */
+  background: linear-gradient(rgb(194, 226, 255), rgb(255, 255, 255));
+  /* background: linear-gradient( rgb(170, 200, 255), rgb(191, 213, 255)); */
 }
-.HomeSearch .searchBar{
+.HomeSearch .searchBar {
   width: 85%;
   margin: 0 auto;
   border: 1px solid rgb(170, 170, 170);
@@ -96,26 +97,25 @@ background: linear-gradient( rgb(170, 200, 255), rgb(191, 213, 255));
 .FeaturesHome {
   width: 100%;
 }
-.TitleSec{
-margin-top: 10px;
-display: flex;
-align-items: center;
-gap: 20px;
+.TitleSec {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
-.TitleSec h3{
+.TitleSec h3 {
   position: relative;
-padding: 10px 0px 10px 0;
-background-color: white;
-font-size: 16px;
-font-weight: 600;
-color: rgb(58, 58, 58);
-white-space: nowrap;
-
+  padding: 10px 0px 10px 0;
+  background-color: white;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgb(58, 58, 58);
+  white-space: nowrap;
 }
-.TitleSec .LineFaded{
- width: 100%;
+.TitleSec .LineFaded {
+  width: 100%;
   height: 2px;
-  background: linear-gradient( 90deg,rgb(151, 151, 151), transparent);
+  background: linear-gradient(90deg, rgb(151, 151, 151), transparent);
 }
 
 .card {
@@ -127,7 +127,6 @@ white-space: nowrap;
   /* width: 200px; */
   max-width: 200px;
   background-color: #fff;
-  border-radius: 10px;
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
@@ -153,21 +152,21 @@ white-space: nowrap;
   aspect-ratio: 1;
   display: flex;
   margin: auto;
+  border-radius: 10px;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   background-color: rgb(240, 240, 245);
 }
-.card :hover img {
+.card :hover .ProductCardImgMain {
   transition: all 0.2s linear;
-  transform: scale(1.2);
+  transform: scale(1.1);
+  background-color: rgb(225, 225, 226);
 }
-.shop-cards .card:hover {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
+
 .card .pngImg {
-  width: 80%;
-  height: 80%;
+  width: 90%;
+  height: 90%;
   object-fit: contain;
   padding: 12px 0;
 }
@@ -177,11 +176,11 @@ white-space: nowrap;
   object-fit: cover;
 }
 .card .details {
-  padding: 10px 10px 0 10px;
+  padding: 10px 0px 0 0px;
   flex: 1 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 }
 
 .card .discountBoxInner svg path {
@@ -199,7 +198,7 @@ white-space: nowrap;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 43px;
+  height: 33px;
 }
 .card .discountBox {
   position: absolute;
@@ -257,30 +256,48 @@ white-space: nowrap;
 }
 .HomeSubTitle {
   min-height: 15px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
+}
+.HomeSubTitleUnit{
+  font-size: 12px;
   opacity: 0.9;
+}
+.card .cardBrandImgDiv {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.card .cardBrandImgDiv .HomeSubTitle{
+  font-size: 13px;
+}
+.card .cardBrandImgDiv img {
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid #f0f0f5;
 }
 @media screen and (max-width: 480px) {
   .banner {
     padding: 20px 15px;
-        border-radius: 10px;
-        height: 400px;
-        width: auto;
+    border-radius: 10px;
+    height: 400px;
+    width: auto;
   }
   .banner-detail {
     justify-content: start;
     width: 100%;
   }
-  .LogoImageBanner{
+  .LogoImageBanner {
     height: 20px;
     width: fit-content;
     object-fit: contain;
   }
   #bannerBtn {
     font-size: 0.8rem;
-   padding: 10px 14px;
-   border-radius: 200px;
+    padding: 10px 14px;
+    border-radius: 200px;
   }
   .banner-detail > h1 {
     font-size: 0.9rem;
@@ -306,7 +323,7 @@ white-space: nowrap;
     height: unset;
     width: 100%;
   }
-  .LogoAndAddressSecHome{
+  .LogoAndAddressSecHome {
     display: flex;
   }
 }

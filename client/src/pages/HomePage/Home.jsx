@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Banner from "./Banner";
 import ProCategory from "../../pages/CategoryPage/ProCategory";
 import HomeBanner from "./HomeBanner";
@@ -11,27 +11,6 @@ import SearchBar from '../../components/SearchBar/SearchBar'
 import UserLocation from '../../components/UserLocation/UserLocation'
 function Home() {
   const arr = ["chips", "soft_drinks", "milk"];
-  let scrolledPast400 = false;
-
-  useEffect(() => {
-    // Function to handle scroll
-    const handleScroll = () => {
-      if (window.scrollY >= 400 && !scrolledPast400) {
-        console.log("Scrolled 400px!");
-        scrolledPast400 = true; // Prevents further logging until scrolled back
-      } else if (window.scrollY < 400) {
-        scrolledPast400 = false; // Reset when scrolling above 400px
-      }
-    };
-
-    // Attach the scroll event listener
-    window.addEventListener("scroll", handleScroll);
-
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <div className="homePage">

@@ -70,7 +70,7 @@ function Search() {
           console.log("setFilterProduct(filtered)", filtered);
           setFilterProduct(filtered);
         }
-      }, 300),
+      }, 1000),
     [searchArr]
   );
 

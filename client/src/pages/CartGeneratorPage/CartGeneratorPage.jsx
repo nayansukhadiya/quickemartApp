@@ -75,8 +75,8 @@ function CartGeneratorPage() {
               (product) =>
                 product.data?.sub_category
                   ?.toLowerCase()
-                  .includes(resCategory.toLowerCase()) &&
-                product.data?.name?.toLowerCase().includes(searchKey) &&
+                  ?.includes(resCategory?.toLowerCase() || "") &&
+                product.data?.name?.toLowerCase()?.includes(searchKey || "") &&
                 product.data?.brand === resBrand &&
                 !product.data?.unit?.includes("combo")
             );
@@ -221,9 +221,9 @@ function CartGeneratorPage() {
     <div className="CartGeneratorPagePage">
       <BackBtn LinkName={"Generative Cart"} />
       <div className="TopSection">
-<p>Cart Name</p>
-      <h1 className="CartGeneratorPageTitle">{titleAndMessage.title}</h1>
-      <p className="CartUserMessage">{titleAndMessage.message}</p>
+        <p>Cart Name</p>
+        <h1 className="CartGeneratorPageTitle">{titleAndMessage.title}</h1>
+        <p className="CartUserMessage">{titleAndMessage.message}</p>
       </div>
       {filteredProducts ? (
         Object.keys(filteredProducts).map((key) => (
@@ -232,22 +232,19 @@ function CartGeneratorPage() {
               <div className="DetailSec cartInCard">
                 <div className="mainTitle">
                   <h3>{key.replace(/\b\w/g, (char) => char.toUpperCase())}</h3>
-                      {findCart.products[key][0]?.ingredientsDetail }
+                  {findCart.products[key][0]?.ingredientsDetail}
                 </div>
                 <div className="requiredDetailsSec">
                   <div className="shadowDeep">
                     <p>Available packet size</p>
                     <h3>
-                    {
-  findCart?.products?.[key]?.length > 0
-    ? findCart.products[key][0]?.resUnit !== "null"
-      ? findCart.products[key][0].resUnit
-      : null
-    : "😢 We're really sorry"
-      ? "😢 We're really sorry"
-      : "various"
-    }
-
+                      {findCart?.products?.[key]?.length > 0
+                        ? findCart.products[key][0]?.resUnit !== "null"
+                          ? findCart.products[key][0].resUnit
+                          : null
+                        : "😢 We're really sorry"
+                        ? "😢 We're really sorry"
+                        : "various"}
                     </h3>
                   </div>
                   <div className="shadowDeep">

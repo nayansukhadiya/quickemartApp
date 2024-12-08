@@ -1,6 +1,6 @@
 .headerCls{
   width: 100%;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
   background: #fff;
   position: fixed;
   top: 0;
@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: center;
   height: 86px;
+  background: linear-gradient(rgb(194, 226, 255), rgb(255, 255, 255));
 }
 header {
   width: 80%;
@@ -135,9 +136,6 @@ header button svg {
   }
   header{
     width: 100%;
-  }
-  .BottomNavBarbar{
-    display: block;
   }
   .upperPart{
     flex-direction: column;

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import UserContextProvider from "./context/UserContextProvider";
-import BottomNavBar from "./components/BottomNavbar/BottomNavBar"; // Corrected folder name
-import ChatBg from "./pages/ChatPage/ChatBg"; // Ensure ChatBg is part of ChatPage
-import CartAiBtn from "./components/chatAiBtn/CartAiBtn"; // Corrected folder name
-import CartPopUp from "./components/cartPopupDiv/CartPopUp"; // Corrected folder name
+import BottomNavBar from "./components/BottomNavbar/BottomNavBar"; 
+import ChatBg from "./pages/ChatPage/ChatBg"; 
+import CartAiBtn from "./components/chatAiBtn/CartAiBtn"; 
+import CartPopUp from "./components/cartPopupDiv/CartPopUp"; 
 import BingAddressAutoSuggest from "./components/BingMap/BingAddressAutoSuggest";
 
 function Layout() {

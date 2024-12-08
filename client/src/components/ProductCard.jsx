@@ -14,10 +14,10 @@ function ProductCard({
   unit,
   brand,
 }) {
-  const [ setAverageColor] = useState(null);
+  const [setAverageColor] = useState(null);
   const [isTransparent, setIsTransparent] = useState(false);
   const imgRef = useRef(null);
-
+  const defaultImage = require("../assets/images/Brand_Logo/amul.png").default;
   const handleImageLoad = () => {
     const fac = new FastAverageColor();
     const imgElement = imgRef.current;
@@ -62,7 +62,7 @@ function ProductCard({
   }
 
   return (
-    <div className="card lightGrayBorder">
+    <div className="card">
       <Link title={name} to={`/detail?id=${ProIDSearch}`}>
         <div
           className="img-section"
@@ -77,7 +77,7 @@ function ProductCard({
             src={img}
             alt={name}
             onLoad={handleImageLoad}
-            className={isTransparent ? "pngImg" : "jpgImg"} 
+            className={`${isTransparent ? "pngImg" : "jpgImg"} ProductCardImgMain`}
           />
         </div>
         {discount !== null && (
@@ -95,22 +95,31 @@ function ProductCard({
           </div>
         )}
         <div className="details">
+          <div className="cardBrandImgDiv">
+            <img
+              alt={brand}
+              src={
+                require(`../assets/images/Brand_Logo/${brand
+                  .toLowerCase()
+                  .replace(/ /g, "_")}.png`) || defaultImage
+              }
+              onError={(e) => {
+                e.target.src = defaultImage;
+              }}
+            />
+            <h5 className="HomeSubTitle">{brand || " "}</h5>
+          </div>
           <div>
             <p>{name}</p>
           </div>
           <div>
-            <h5 className="HomeSubTitle">{brand || " "}</h5>
-          </div>
-          <div>
-            <h5 className="HomeSubTitle">{unit || " "}</h5>
+            <h5 className="HomeSubTitle HomeSubTitleUnit">{unit || " "}</h5>
           </div>
           <div className="priceDetails">
-              <p className="price">
-                &#8377; {price.toLocaleString("en-IN")}{" "}
-              </p>
-                <span className="mrp">
-                  {mrp ? mrp.toLocaleString("en-IN") : ""}{" "}
-                </span>
+            <p className="price">&#8377; {price.toLocaleString("en-IN")} </p>
+            <span className="mrp">
+              {mrp ? mrp.toLocaleString("en-IN") : ""}{" "}
+            </span>
           </div>
         </div>
       </Link>

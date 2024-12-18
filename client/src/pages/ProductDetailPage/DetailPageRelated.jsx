@@ -4,7 +4,7 @@ import CartGenCard from "../../pages/CartGeneratorPage/CartGenCard";
 import "./detailPageRelated.css";
 import { Link } from "react-router-dom";
 
-function DetailPageRelated({ related_search_value, name, valueLink }) {
+function DetailPageRelated({ related_search_value, name, valueLink , RedirectLink}) {
   const [brand, setBrand] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -65,8 +65,8 @@ function DetailPageRelated({ related_search_value, name, valueLink }) {
               brand={item.brand}
             />
           ))}
-          <Link to={`/search?q=${valueLink}`} className="similarPro lightGrayBorder">
-            More product
+          <Link to={`${RedirectLink}${valueLink}`} className="similarPro">
+            
             <div className="similarImgSec">
               {brand.slice(-3).map((item, index) => (
                 <div key={index} className={`imgSec imgIndex${index + 1}`}>
@@ -74,6 +74,7 @@ function DetailPageRelated({ related_search_value, name, valueLink }) {
                 </div>
               ))}
             </div>
+            More product
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

@@ -127,7 +127,7 @@ function ProductDetailPagePage() {
       <div className="detailMain">
         <div className="img-section part-section">
           <div
-            className="mainImg lightGrayBorder"
+            className="mainImg "
             style={{
               backgroundColor: averageColor || "transparent",
               transition: "background-color 0.3s ease",
@@ -148,7 +148,7 @@ function ProductDetailPagePage() {
         </div>
 
         <div className="detail-section-product part-section mainPart">
-          <div className="bgDetailDifferent shadowDeep lightGrayBorder firstSecDetail">
+          <div className="bgDetailDifferent   firstSecDetail">
             <div className="ProductPageDir">
               <Link to="/">Home</Link> <p> / </p>
               <Link
@@ -165,12 +165,12 @@ function ProductDetailPagePage() {
             </div>
             <h3 className="ProTitle">{renderIfExists(product.name)}</h3>
             <h5>{renderIfExists(product.unit)}</h5>
-            <h3 className="ProTitle">
+            <h3 className="ProTitle ProPrice">
               &#8377; {renderIfExists(product.price)}{" "}
               {product.mrp && <span>{product.mrp}</span>}
             </h3>
           </div>
-          <div className="bgDetailDifferent shadowDeep lightGrayBorder">
+          <div className="bgDetailDifferent  ">
             <Link
               className="allBrandPro"
               to={`/brand?name=${renderIfExists(product.brand)}`}
@@ -195,7 +195,7 @@ function ProductDetailPagePage() {
             </Link>
           </div>
 
-          <div className="bgDetailDifferent shadowDeep lightGrayBorder">
+          <div className="bgDetailDifferent  ">
             <div className="productDetailIconSec">
               <div className="productDetailIcon">
                 <div className="icon">
@@ -280,10 +280,10 @@ function ProductDetailPagePage() {
           <RelatedBrand category={product.sub_category} brandName={product.brand} />
         </div>
         <div className="">
-          <DetailPageRelated related_search_value={`similar?proId=${product.p_id}&subCategory=${product.sub_category}`} valueLink={`${product.sub_category}`} name={`similar product`} />
+          <DetailPageRelated related_search_value={`similar?proId=${product.p_id}&subCategory=${product.sub_category}`} valueLink={`${product.sub_category}`} name={`similar product`} RedirectLink={'/search?q='} />
         </div>
         <div className="">
-          <DetailPageRelated related_search_value={`brandSimilar?proId=${product.p_id}&brand=${product.brand}`} valueLink={`${product.brand}`} name={`More product from ${product.brand}`} />
+          <DetailPageRelated related_search_value={`brandSimilar?proId=${product.p_id}&brand=${product.brand}`} valueLink={`${product.brand}`} name={`More product from ${product.brand}`} RedirectLink={'/brand?name='} />
         </div>
       </div>
     </>

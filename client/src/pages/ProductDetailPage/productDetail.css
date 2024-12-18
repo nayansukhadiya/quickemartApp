@@ -83,7 +83,8 @@
 }
 .bgDetailDifferent{
   width: auto;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
+  background-color: rgb(240, 240, 245);
   padding: 13px;
   border-radius: 10px;
 }
@@ -216,7 +217,7 @@
 .allBrandPro {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
   font-size: 16px;
   font-weight: 600;
   /* color: var(--primary-color); */
@@ -245,7 +246,7 @@
   flex-direction: column;
   gap: 2px;
   align-items: center;
-  background: linear-gradient(180deg, #f0fcff, rgb(255, 255, 255));
+  /* background: linear-gradient(180deg, #f0fcff, rgb(255, 255, 255)); */
 }
 .productDetailIcon svg {
   height: 24px;
@@ -265,9 +266,9 @@
   padding: 10px 0% 80px 0% !important;
 }
 @media screen and (max-width: 480px) {
-  .relatedPart{
+  /* .relatedPart{
     padding: 10px 3% 80px 3% !important;
-  }
+  } */
   .mainImg {
     position: relative;
     border-radius: 0;
@@ -299,6 +300,9 @@
   .ProTitle {
     font-size: 20px;
   }
+  .ProPrice{
+    font-size: 28px;
+  }
   .detailMain .img-section {
     position: unset;
     height: auto;
@@ -311,8 +315,8 @@
     width: 100%;
   }
   .mainPart {
-    width: 94%;
-    padding: 0 3%;
+    width: 97%;
+    padding: 0 1.5%;
     margin: auto;
   }
   .productDetailIconSec {

@@ -309,10 +309,6 @@ a {
   gap: 12px;
   grid-template-columns: repeat(6, 1fr);
 }
-.BrandProductFound {
-  padding: 10px 0;
-  font-size: 20px;
-}
 @media (max-width: 1200px) {
   .gridLayout {
     grid-template-columns: repeat(4, 1fr);
@@ -358,15 +354,12 @@ a {
     margin-bottom: 90px;
   }
   .main {
-    width: 95%;
+    width: 97%;
     overflow: scroll;
     height: calc(100% - 165.5px);
   }
   .HomeSearch {
     display: block;
-  }
-  .main {
-    width: 95%;
   }
   .decrementBtn,
   .incrementBtn {

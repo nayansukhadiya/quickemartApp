@@ -302,7 +302,7 @@ color: white;
   display: flex;
   width: 100%;
   gap: 10px;
-  margin: 20px 0;
+  margin: 20px 0 60px 0;
   justify-content: center;
 }
 
@@ -352,11 +352,10 @@ color: white;
     overflow: auto;
   }
   .shopPage {
-    background-color: #f1f1f17e;
     height: calc(100% - 122px);
     grid-template-columns: 75px 1fr;
     gap: 8px;
-    width: 95%;
+    width: 100%;
     margin: auto;
     padding: 8px 0;
   }
@@ -430,7 +429,7 @@ color: white;
     border: 0px solid #000000;
   }
   .brandFilterSec {
-    z-index: 101;
+    z-index: 201;
   }
   .ActiveSideBar .brandFilterDiv {
     bottom: 0px;

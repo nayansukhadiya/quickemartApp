@@ -16,18 +16,20 @@
   grid-column: span 2;
   padding: 8px;
   height: 42px;
-  border-radius: 6px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  /* gap: 12px; */
   font-weight: 600;
   justify-content: center;
+  background-color: rgb(240, 240, 245);
 }
 .detailPageRelatedComponent .similarPro .similarImgSec{
   position: relative;
   display: flex;
   align-items: center;
   width: 70px;
+  margin-right: 10px;
 }
 .detailPageRelatedComponent .similarPro .similarImgSec .imgSec{
   position: absolute;
@@ -36,9 +38,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border-radius: 50%; 
-  border: 1px solid #ffffff;
+  border: 1px solid #b9b9b9;
 }
 .detailPageRelatedComponent .similarPro .similarImgSec .imgIndex2{
   left: 15px;
@@ -49,8 +51,8 @@
   z-index: 2;
 }
 .detailPageRelatedComponent .similarPro .similarImgSec .imgSec img{
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
 }
 @media screen and (max-width: 480px) {
   .detailPageRelatedSec {

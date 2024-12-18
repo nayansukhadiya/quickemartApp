@@ -47,8 +47,6 @@ function CartGeneratorPage() {
         const productArray = findCart.products[key];
         const cleanedKey = key.replace(/-/g, " ");
 
-        // Function to apply filters with priority
-        // Function to apply filters with priority
         function applyFilters(
           productArray,
           cleanedKey,
@@ -121,6 +119,14 @@ function CartGeneratorPage() {
                 !product.data?.unit?.includes("combo")
             );
           }
+
+          if (filtered.length === 0) {
+            filtered = productArray.filter(
+              (product) =>
+                product.data?.name?.toLowerCase().includes(searchKey)
+            );
+          }
+
 
           return filtered;
         }

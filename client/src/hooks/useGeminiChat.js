@@ -28,7 +28,7 @@ const useGeminiChat = () => {
       responseSchema: {
         type: "object",
         description:
-          "Return ingredients. If the user gives any request like 'hi' or 'hey,' then give a greeting answer and not include the cart in the title. If at any time the user asks for a combo, then give all the names to make it, not just every dish as it is. (For example: if the user wants a combo of a burger and pizza, don't just give the dish name as ingredients; provide how to make the dish and give the proper list of minor to major ingredients for each single dish). Always include an emoji where required. I will give you 6,000 product names and the categories. Make sure you return the most relatable product from my data, and the most relevant data must be listed first, including quantities, brand, packet size, number quantity, and a summary for the requested recipe. If the recipe is mentioned, provide it; otherwise, mention the cart.",
+          "Return ingredients.if the any request include the incidents name and the with brand or any unit than give back both in respective felid (like request is the lays chips and amul cool than give the lays and cool in ingredient name and lays and amul give in the brand feild) if user request  If the user gives any request like 'hi' or 'hey,' then give a greeting answer and not include the cart in the title. If at any time the user asks for a combo, then give all the names to make it, not just every dish as it is. (For example: if the user wants a combo of a burger and pizza, don't just give the dish name as ingredients; provide how to make the dish and give the proper list of minor to major ingredients for each single dish). Always include an emoji where required. I will give you 6,000 product names and the categories. Make sure you return the most relatable product from my data, and the most relevant data must be listed first, including quantities, brand, packet size, number quantity, and a summary for the requested recipe. If the recipe is mentioned, provide it; otherwise, mention the cart.",
         properties: {
           recipe: {
             type: "object",
@@ -54,7 +54,7 @@ const useGeminiChat = () => {
                   properties: {
                     ingredient_name: {
                       type: "string",
-                      description: `give name in single product like(not tomatoes give tomato, etc...)Please don't give name like that Coca-Cola instead give me coca cola Name of the ingredient, if not specified, provide a popular brand i will give you the 6000 products do not use Cold Drink instead use soft drinks name do mean i want est match on top name array make sure if the possible than give me the name from the arr ${GeminiData.namePro}`,
+                      description: `(strict warning don't include the brand name in this felid) sometime you gate the any brand name or any unit so don't give bake to me give name in single product like(not tomatoes give tomato, etc...)Please don't give name like that Coca-Cola instead give me coca cola Name of the ingredient, if not specified, provide a popular brand i will give you the 6000 products do not use Cold Drink instead use soft drinks name do mean i want est match on top name array make sure if the possible than give me the name from the arr ${GeminiData.namePro}`,
                     },
                     brand: {
                       type: "string",

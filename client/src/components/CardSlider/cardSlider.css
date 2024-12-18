@@ -63,6 +63,10 @@
 .next {
   right: -18px;
 }
+.slider-button svg{
+  width: 28px;
+  height: 28px;
+}
 
 @media screen and (max-width: 480px) {
   .slider-button{
@@ -70,3 +74,4 @@
   }
   
 }
+

@@ -1,0 +1,31 @@
+.BrandPageSecTopSec{
+    margin: 21px 0 20px 0;
+    width: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.BrandPageSecTopSec img{
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+.brandTopSecDetail h1{
+    mix-blend-mode: difference;
+    font-size: 27px;
+    font-weight: 600;
+    font-family: "Sora", sans-serif;
+}
+.brandTopSecDetail p{
+    mix-blend-mode: difference;
+    font-size: 11px;
+    padding-top: 7px;
+}
+@media screen and (max-width: 480px) {
+    .BrandPageSecTopSec{
+        margin: 68px 0 10px 0;
+    }    
+}

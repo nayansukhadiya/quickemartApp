@@ -63,10 +63,10 @@ function CartGeneratorPageCard({
     <Link title={name} to={`/detail?id=${ProIDSearch}`}>
       <div
         className="imgSec"
-        style={{
-          backgroundColor: averageColor || "transparent",
-          transition: "background-color 0.3s ease",
-        }}
+        // style={{
+        //   backgroundColor: averageColor || "transparent",
+        //   transition: "background-color 0.3s ease",
+        // }}
       >
         <img
           ref={imgRef}

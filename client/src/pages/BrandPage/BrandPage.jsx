@@ -69,7 +69,10 @@ function BrandPage() {
           ref={imgRef}
           onLoad={handleImageLoad}
         />
-        <div className="brandTopSecDetail">
+        <div className="brandTopSecDetail"  style={{
+        backgroundColor: averageColor || "transparent",
+        transition: "background-color 0.3s ease",
+      }}>
         <h1>{query}</h1>
       <p className="BrandProductFound">
         {data.length} Product{data.length > 1 ? "s" : ""}

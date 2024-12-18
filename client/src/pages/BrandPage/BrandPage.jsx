@@ -40,7 +40,7 @@ function BrandPage() {
       fac
         .getColorAsync(imgElement)
         .then((color) => {
-          const rgbaWithAlpha = `rgba(${color.value[0]}, ${color.value[1]}, ${color.value[2]}, 0.53)`;
+          const rgbaWithAlpha = `rgba(${color.value[0]}, ${color.value[1]}, ${color.value[2]})`;
           setAverageColor(rgbaWithAlpha);
         })
         .catch((e) => {

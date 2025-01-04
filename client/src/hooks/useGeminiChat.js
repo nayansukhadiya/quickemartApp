@@ -54,7 +54,7 @@ const useGeminiChat = () => {
                   properties: {
                     ingredient_name: {
                       type: "string",
-                      description: `(strict warning don't include the brand name in this felid) sometime you gate the any brand name or any unit so don't give bake to me give name in single product like(not tomatoes give tomato, etc...)Please don't give name like that Coca-Cola instead give me coca cola Name of the ingredient, if not specified, provide a popular brand i will give you the 6000 products do not use Cold Drink instead use soft drinks name do mean i want est match on top name array make sure if the possible than give me the name from the arr ${GeminiData.namePro}`,
+                      description: `(strict warning don't include the brand name in this felid) sometime you gate the any brand name or any unit so don't give bake to me give name in single product like(not tomatoes give tomato, etc...)Please don't give name like that Coca-Cola instead give me coca cola Name of the ingredient, if not specified, provide a popular brand i will give you the 6000 products do not use Cold Drink instead use soft drinks name do mean i want est match on top name array make sure if the possible`,
                     },
                     brand: {
                       type: "string",
